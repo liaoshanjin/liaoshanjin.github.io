@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Stringer 的博客</title>
+    <link>liaoshanjin.github.io/posts/</link>
+    <description>Recent content in Posts on Stringer 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Thu, 24 Oct 2019 10:19:19 +0800</lastBuildDate>
+    
+	<atom:link href="liaoshanjin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PHPunit 单元测试</title>
+      <link>liaoshanjin.github.io/posts/about/</link>
+      <pubDate>Thu, 24 Oct 2019 10:19:19 +0800</pubDate>
+      
+      <guid>liaoshanjin.github.io/posts/about/</guid>
+      <description>关于博客 ​ 这些年来一直都想有自己的一个博客，也不是为了什么，就当是自己的云笔记。第三方笔记用过印象笔记和有道云笔记。因为有道云支持 markdown 所以现在也只主导有道云笔记。现在的这个博客就当是自个儿的一个笔记本吧。
+​ 虽然之前也有搭建类似的博客，但是也是没有经常使用，慢慢的随着服务器到期也就消失了。特别是过去的一段时间，因为不想备案域名而使用 Vultr 的服务器，顺便搭了个自己的梯子。但是问题这个服务器太卡了。所有也就没有继续使用下去了。刚好这次腾讯云的活动，便买了三年的服务器，至少这个博客能存在几年，以后的事再说吧，
+关于自己 ​ 一直想给自己找个好听的名字，没有想到。最后用了 Stringer 这个名字。我也不懂什么意思，因为他根本就不是个单词。
+​ 说来其实做开发已经很久了，从 2015 年开始接触 PHP ，不知也走过了快四个年头。这四年感觉自个儿需要学习的东西还是有太多太多，特别是基础。希望接下去能花更多的时间来补充自己。
+关于技术 ​ 这些年来，学习的东西很广，但是没有一样是精深的，也是我个人的一个痛。再次也给自己确定一个未来的主打方向。明确一下接下来该学习什么。
+​ Laravel 毫无疑问，掌握这门最优雅的 PHP 开发框架是最基础的。目前个人来说，使用这个框架也已经没有压力。但是我希望能继续话时间去了解 Laravel 的核心，并且能试着将他魔改。
+​ Swoole 使用 Swoole 是解决 PHP 无法建立长连接最好途径。学，必须得学。
+​ MySQL 毫无疑问，MySQL 是基础。必须得学。
+package main import &amp;#34;fmt&amp;#34; func main{ fmt.Plintln(&amp;#34;hello world&amp;#34;) } &amp;lt;?php function () { echo &amp;#34;hello world&amp;#34;; }  </description>
+    </item>
+    
+  </channel>
+</rss>

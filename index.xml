@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Stringer 的博客</title>
-    <link>liaoshanjin.github.io/</link>
+    <link>https://liaoshanjin.github.io/</link>
     <description>Recent content on Stringer 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
     <lastBuildDate>Thu, 24 Oct 2019 11:36:29 +0800</lastBuildDate>
     
-	<atom:link href="liaoshanjin.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://liaoshanjin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于我</title>
-      <link>liaoshanjin.github.io/about/</link>
+      <link>https://liaoshanjin.github.io/about/</link>
       <pubDate>Thu, 24 Oct 2019 11:36:29 +0800</pubDate>
       
-      <guid>liaoshanjin.github.io/about/</guid>
+      <guid>https://liaoshanjin.github.io/about/</guid>
       <description> 关于我 </description>
     </item>
     
     <item>
       <title>PHPunit 单元测试</title>
-      <link>liaoshanjin.github.io/posts/about/</link>
+      <link>https://liaoshanjin.github.io/posts/about/</link>
       <pubDate>Thu, 24 Oct 2019 10:19:19 +0800</pubDate>
       
-      <guid>liaoshanjin.github.io/posts/about/</guid>
+      <guid>https://liaoshanjin.github.io/posts/about/</guid>
       <description>关于博客 ​ 这些年来一直都想有自己的一个博客，也不是为了什么，就当是自己的云笔记。第三方笔记用过印象笔记和有道云笔记。因为有道云支持 markdown 所以现在也只主导有道云笔记。现在的这个博客就当是自个儿的一个笔记本吧。
 ​ 虽然之前也有搭建类似的博客，但是也是没有经常使用，慢慢的随着服务器到期也就消失了。特别是过去的一段时间，因为不想备案域名而使用 Vultr 的服务器，顺便搭了个自己的梯子。但是问题这个服务器太卡了。所有也就没有继续使用下去了。刚好这次腾讯云的活动，便买了三年的服务器，至少这个博客能存在几年，以后的事再说吧，
 关于自己 ​ 一直想给自己找个好听的名字，没有想到。最后用了 Stringer 这个名字。我也不懂什么意思，因为他根本就不是个单词。

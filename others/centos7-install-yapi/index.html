@@ -249,23 +249,16 @@ stopsignal=INT</p>
 
 #### 根据 `supervisord.conf` 启动守护进程</pre></div>
 <p>supervisord -c /etc/supervisor/supervisord.conf</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;   如果报了以下错误
-&gt;
-&gt;   ```
-&gt;     Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.
-&gt;   ```
-&gt;
-&gt;   这个错误的原因就是 `supervisor.sock` 这个文件会被系统自动删除或者其它原因不存在了，删除软连接就可以了。`supervisor.sock` 生成的位置可以去 `supervisor` 的配置文件中找到。
-&gt;
-&gt;   解决方法如下
-&gt;
-&gt;   ```
-&gt;     unlink /var/run/supervisor.sock
-&gt;   
-&gt;     unlink /tmp/supervisor.sock
-&gt;   ```
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;   如果报了以下错误</pre></div>
+<p>Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">这个错误的原因就是 `supervisor.sock` 这个文件会被系统自动删除或者其它原因不存在了，删除软连接就可以了。`supervisor.sock` 生成的位置可以去 `supervisor` 的配置文件中找到。
 
-#### 查看进程</pre></div>
+&gt;   解决方法如下</pre></div>
+<p>unlink /var/run/supervisor.sock</p>
+</blockquote>
+
+<p>unlink /tmp/supervisor.sock</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#### 查看进程</pre></div>
 <p>ps -ef | grep YApiGhost</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 设置为开机启动
 
@@ -274,7 +267,6 @@ stopsignal=INT</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#### 添加下面的内容，`wq` 保存。</pre></div>
 <p>[Unit]
 Description=Supervisor daemon</p>
-</blockquote>
 
 <p>[Service]
 Type=forking

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHPunit 单元测试"/>
+<meta name="twitter:description" content="PHPunit 单元测试 最近公司写的项目也是因为测试 BUG 太多，导致进度缓慢，所以后端也开始写单元测试减少测试的压力。
+我们使用的是 Laravel 框架，所以我这边就记录一下 Laravel 框架的单元测试。
+单元测试 PHPunit PHPUnit 是一个轻量级的 PHP 测试框架，Laravel 默认就支持用 PHPUnit 来做测试，并为你的应用程序配置好了 phpunit.xml 文件，只需在命令行上运行 phpunit 就可以进行测试。
+尝试在项目根目录执行 phpunit ： 值得说明的是，我的开发环境是使用 Homestead 的，已经有全局安装 phpunit , 如果你的是类似 WAMP 、PHPstudy 等集成环境，是没办法直接在根目录执行 phpunit , 但是我们可以使用 Laravel 框架自带的，如：
+同样的可以测试。
+创建测试文件 首先我们来创建一个单元测试文件，使用 Laravel 提供的 artisan 命令
+php artisan make:test RoleApiTest 该命令会在 tests/Feature 目录中创建 RoleApiTest.php 文件，我们会发现 tests 目录中有 Feature 和 Unit 两个目录，如何区分这两个目录呢？
+ Unit —— 单元测试是从程序员的角度编写的。它们用于确保类的特定方法执行一组特定任务。 Feature —— 功能测试是从用户的角度编写的。它们确保系统按照用户期望的那样运行，包括几个对象的相互作用，甚至是一个完整的 HTTP 请求。  我们测试 API 属于功能测试，应该创建在 Feature 目录中。"/>
+
+    <meta property="og:title" content="PHPunit 单元测试" />
+<meta property="og:description" content="PHPunit 单元测试 最近公司写的项目也是因为测试 BUG 太多，导致进度缓慢，所以后端也开始写单元测试减少测试的压力。
+我们使用的是 Laravel 框架，所以我这边就记录一下 Laravel 框架的单元测试。
+单元测试 PHPunit PHPUnit 是一个轻量级的 PHP 测试框架，Laravel 默认就支持用 PHPUnit 来做测试，并为你的应用程序配置好了 phpunit.xml 文件，只需在命令行上运行 phpunit 就可以进行测试。
+尝试在项目根目录执行 phpunit ： 值得说明的是，我的开发环境是使用 Homestead 的，已经有全局安装 phpunit , 如果你的是类似 WAMP 、PHPstudy 等集成环境，是没办法直接在根目录执行 phpunit , 但是我们可以使用 Laravel 框架自带的，如：
+同样的可以测试。
+创建测试文件 首先我们来创建一个单元测试文件，使用 Laravel 提供的 artisan 命令
+php artisan make:test RoleApiTest 该命令会在 tests/Feature 目录中创建 RoleApiTest.php 文件，我们会发现 tests 目录中有 Feature 和 Unit 两个目录，如何区分这两个目录呢？
+ Unit —— 单元测试是从程序员的角度编写的。它们用于确保类的特定方法执行一组特定任务。 Feature —— 功能测试是从用户的角度编写的。它们确保系统按照用户期望的那样运行，包括几个对象的相互作用，甚至是一个完整的 HTTP 请求。  我们测试 API 属于功能测试，应该创建在 Feature 目录中。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-unit/" />
+<meta property="article:published_time" content="2019-10-24T16:29:57+08:00" />
+<meta property="article:modified_time" content="2019-10-24T16:29:57+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/laravel/laravel-unit/">
+    
+    <title>
+  PHPunit 单元测试 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-unit/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>PHPunit 单元测试</h1>
+    </header>
+
+    
+
+<h3 id="phpunit-单元测试"><code>PHPunit</code> 单元测试</h3>
+
+<p>最近公司写的项目也是因为测试 <code>BUG</code> 太多，导致进度缓慢，所以后端也开始写单元测试减少测试的压力。</p>
+
+<p>我们使用的是 <code>Laravel</code> 框架，所以我这边就记录一下 <code>Laravel</code> 框架的单元测试。</p>
+
+<h4 id="单元测试-phpunit">单元测试 <code>PHPunit</code></h4>
+
+<p><code>PHPUnit</code> 是一个轻量级的 <code>PHP</code> 测试框架，<code>Laravel</code> 默认就支持用 <code>PHPUnit</code> 来做测试，并为你的应用程序配置好了 <code>phpunit.xml</code> 文件，只需在命令行上运行 <code>phpunit</code> 就可以进行测试。</p>
+
+<p>尝试在项目根目录执行 <code>phpunit</code> ： <img src="http://148.70.84.101/storage/article/2019/07/04/yf1ND5bg3Z6FojsMLYvcQm4H1SX5dDpsS206Wll5.png" alt="1562206286744.png" /></p>
+
+<p>值得说明的是，我的开发环境是使用 <code>Homestead</code> 的，已经有全局安装 <code>phpunit</code> , 如果你的是类似 <code>WAMP</code> 、<code>PHPstudy</code> 等集成环境，是没办法直接在根目录执行 <code>phpunit</code> , 但是我们可以使用 <code>Laravel</code> 框架自带的，如：</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/g4qlFCfLKDpDfbUlEOafhTsSSMdH6eTSQlY2SLwM.png" alt="1562206457040.png" /></p>
+
+<p>同样的可以测试。</p>
+
+<h4 id="创建测试文件">创建测试文件</h4>
+
+<p>首先我们来创建一个单元测试文件，使用 <code>Laravel</code> 提供的 <code>artisan</code> 命令</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">php artisan make:test RoleApiTest</pre></div>
+<p>该命令会在 <code>tests/Feature</code> 目录中创建 <code>RoleApiTest.php</code> 文件，我们会发现 <code>tests</code> 目录中有 <code>Feature</code> 和 <code>Unit</code> 两个目录，如何区分这两个目录呢？</p>
+
+<ul>
+<li><code>Unit</code> —— 单元测试是从程序员的角度编写的。它们用于确保类的特定方法执行一组特定任务。</li>
+<li><code>Feature</code> —— 功能测试是从用户的角度编写的。它们确保系统按照用户期望的那样运行，包括几个对象的相互作用，甚至是一个完整的 <code>HTTP</code> 请求。</li>
+</ul>
+
+<p>我们测试 <code>API</code> 属于功能测试，应该创建在 <code>Feature</code> 目录中。</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/BjQicGd4ryUjpVH04ncGMLb91IXsIJpIMZNdnbtH.png" alt="1562206687451.png" /></p>
+
+<h4 id="测试添加会员">测试添加会员</h4>
+
+<p>打开我们刚刚生成 <code>RoleApiTest.php</code> 文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> Tests\Feature;
+
+<span style="font-weight:bold">use</span> Tests\TestCase;
+<span style="font-weight:bold">use</span> Illuminate\Foundation\Testing\WithFaker;
+<span style="font-weight:bold">use</span> Illuminate\Foundation\Testing\RefreshDatabase;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class RoleApiTest
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package Tests\Feature
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">RoleApiTest</span> <span style="font-weight:bold">extends</span> TestCase
+{
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 添加角色测试
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @author   : stringer &lt;10******56@qq.com&gt;
+</span><span style="font-style:italic">     * @datetime : 2019/7/4 10:34
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> testStoreRole()
+    {
+        $data = [
+            <span style="font-style:italic">&#39;name&#39;</span>         =&gt; <span style="font-style:italic">&#39;root&#39;</span>,
+            <span style="font-style:italic">&#39;display_name&#39;</span> =&gt; <span style="font-style:italic">&#39;root管理员&#39;</span>,
+            <span style="font-style:italic">&#39;description&#39;</span>  =&gt; <span style="font-style:italic">&#39;拥有一切权限&#39;</span>,
+        ];
+
+        $response = $this-&gt;json(<span style="font-style:italic">&#39;POST&#39;</span>, <span style="font-style:italic">&#39;/api/v1/admin/roles&#39;</span>, $data);
+
+        $assertData = [
+            <span style="font-style:italic">&#39;id&#39;</span>           =&gt; 2,
+            <span style="font-style:italic">&#39;name&#39;</span>         =&gt; <span style="font-style:italic">&#39;root&#39;</span>,
+            <span style="font-style:italic">&#39;display_name&#39;</span> =&gt; <span style="font-style:italic">&#39;root管理员&#39;</span>,
+            <span style="font-style:italic">&#39;description&#39;</span>  =&gt; <span style="font-style:italic">&#39;拥有一切权限&#39;</span>,
+        ];
+
+        $response-&gt;assertStatus(201)-&gt;assertJsonFragment($assertData);
+    }
+
+
+}
+</code></pre></div>
+<p><code>RoleApiTest</code> 就是测试添加一个角色。使用 <code>$this-&gt;json</code> 可以方便的模拟各种 <code>HTTP</code> 请求：</p>
+
+<ul>
+<li>第一个参数 —— 请求的方法，添加角色使用的是 <code>POST</code> 方法；</li>
+<li>第二个参数 —— 请求地址，请求 <code>/api/v1/admin/roles</code>；</li>
+<li>第三个参数 —— 请求参数，传入 <code>name</code>，<code>display_name</code>，<code>description</code>，这三个必填参数；</li>
+<li>第四个参数 —— 请求 <code>Header</code>，可以直接设置 <code>header</code>，也可以利用 <code>withHeaders</code>方法达到同样的目的；</li>
+</ul>
+
+<p>执行测试：</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/DG6pQmZ7ANTNw4HE2SIN5CWqrA3GuKzshxi3R8lG.png" alt="image.png" /></p>
+
+<p>查看数据库</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/6ZwWoGK7KTpQoQyUq5lyVoIosCnyGpaovvSbytiq.png" alt="1562207985532.png" /></p>
+
+<p>在上面过程中我们进行了一个最基本的测试。因为我这个测试是没有使用登录账号测试的，在工作中，很多操作都是需要登录用户才能够测试的，那么接下来我们就来改动一下上面的代码。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> Tests\Feature;
+
+<span style="font-weight:bold">use</span> http\Client\Curl\User;
+<span style="font-weight:bold">use</span> Tests\TestCase;
+<span style="font-weight:bold">use</span> Illuminate\Foundation\Testing\WithFaker;
+<span style="font-weight:bold">use</span> Illuminate\Foundation\Testing\RefreshDatabase;
+<span style="font-weight:bold">use</span> Tests\Traits\ActingJWTUser;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class RoleApiTest
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package Tests\Feature
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">RoleApiTest</span> <span style="font-weight:bold">extends</span> TestCase
+{
+
+    <span style="font-weight:bold">use</span> ActingJWTUser;
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">protected</span> $user;
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 设置用户
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @author   : stringer &lt;10******56@qq.com&gt;
+</span><span style="font-style:italic">     * @datetime : 2019/7/4 10:45
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> setUp()
+    {
+        <span style="font-weight:bold">parent</span>::setUp();
+        $this-&gt;user = \App\Models\User::query()-&gt;first();
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 添加角色测试
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @author   : stringer &lt;10******56@qq.com&gt;
+</span><span style="font-style:italic">     * @datetime : 2019/7/4 10:34
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> testStoreRole()
+    {
+        $data = [
+            <span style="font-style:italic">&#39;name&#39;</span>         =&gt; <span style="font-style:italic">&#39;root&#39;</span>,
+            <span style="font-style:italic">&#39;display_name&#39;</span> =&gt; <span style="font-style:italic">&#39;root管理员&#39;</span>,
+            <span style="font-style:italic">&#39;description&#39;</span>  =&gt; <span style="font-style:italic">&#39;拥有一切权限&#39;</span>,
+        ];
+
+        $response = $this-&gt;JWTActingAs($this-&gt;user)-&gt;json(<span style="font-style:italic">&#39;POST&#39;</span>, <span style="font-style:italic">&#39;/api/v1/admin/roles&#39;</span>, $data);
+
+        $assertData = [
+            <span style="font-style:italic">&#39;id&#39;</span>           =&gt; 6,
+            <span style="font-style:italic">&#39;name&#39;</span>         =&gt; <span style="font-style:italic">&#39;root&#39;</span>,
+            <span style="font-style:italic">&#39;display_name&#39;</span> =&gt; <span style="font-style:italic">&#39;root管理员&#39;</span>,
+            <span style="font-style:italic">&#39;description&#39;</span>  =&gt; <span style="font-style:italic">&#39;拥有一切权限&#39;</span>,
+        ];
+
+        $response-&gt;assertStatus(201)-&gt;assertJsonFragment($assertData);
+    }
+
+
+}
+</code></pre></div>
+<p>首先我们介绍一下 <code>setUp</code> 方法。<code>setUp</code> 方法会在测试开始之前执行。类似我们的构造函数。这样我们就先获取一个会员，然后以这个会员的身份进行测试。如果你需要权限，可以在设置指定的会员。</p>
+
+<p>这其中我们使用了一个名为 <code>ActingJWTUser</code> 的 <code>trait</code> , 这个 <code>trait</code> 的主要作用是帮我们获取我们刚刚 查询出来的测试会员的 <code>Token</code> , 并且在我们对接口进行测试的时候可以设置 <code>Bearer Token</code> 。</p>
+
+<p>这样我们就能方便的使用 <code>JWTActingAs</code> 方法，登录查询的指定用户。最后得到的响应 <code>$response</code>，通过 <code>assertStatus</code> 断言响应结果为 <code>201</code>，通过 <code>assertJsonFragment</code> 断言响应结果包含 <code>assertData</code> 数据。</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/1YUrYMGxPCHicUpKexFbRSffyva9pRYjuqlLrLXz.png" alt="1562209260314.png" /></p>
+
+<h4 id="测试角色信息">测试角色信息</h4>
+
+<p>打开我们的 <code>RoleApiTest.php</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    ... 
+    ...
+    ...
+
+
+    /**
+     * 测试查看角色
+     *
+     * @author   : stringer &lt;<span style="font-weight:bold">10</span><span style="">******</span>56<span style="">@</span>qq<span style="">.</span>com&gt;
+     * @datetime : 2019/7/4 11:58
+     */
+    public function testShowRole()
+    {
+        $role = $this-&gt;makeRole();
+
+        $response = $this-&gt;actingAs($this-&gt;user)-&gt;json(&#39;GET&#39;, &#39;/api/v1/admin/roles/&#39; . $role-&gt;id . &#39;?include=permissions&#39;);
+
+         $response-&gt;assertStatus(200)-&gt;assertJsonFragment([&#39;status&#39; =&gt; &#39;success&#39;]);
+    }
+
+
+    /**
+     * 创建一个用户，并且关联所有的权限
+     *
+     * @author   : stringer &lt;<span style="font-weight:bold">10</span><span style="">******</span>56<span style="">@</span>qq<span style="">.</span>com&gt;
+     * @datetime : 2019/7/4 11:07
+     */
+    protected function makeRole()
+    {
+        $role = factory(Role::class)-&gt;create();
+
+        $role-&gt;attachPermissions(\App\Models\Permission::query()-&gt;get());
+
+        return $role;
+    }</code></pre></div>
+<p>在这边我们增加了 <code>testShowRole</code> 测试用例。要查看角色，我们需要先新增一个角色。所以增加了一个 <code>makeRole</code> 的方法，为当前测试的用户查看角色。</p>
+
+<p>执行测试：</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/nsqpsLkfGeKg3G63XoUek7S0aOFa4Tn5NIXlqpKb.png" alt="1562219683702.png" /></p>
+
+<p>这边我们使用了 <code>filter</code> 方法进行过滤。如果我们不过滤的话，就会报错，因为上面的添加角色断言只能一次。</p>
+
+<p>附 过滤语法：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> phpunit --filter testShowRole</pre></div>
+<h4 id="测试编辑角色">测试编辑角色</h4>
+
+<p>打开我们的 <code>RoleApiTest.php</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    ...
+    ...
+
+    /**
+     * 测试修改角色
+     *
+     * @author   : stringer &lt;<span style="font-weight:bold">10</span><span style="">******</span>56<span style="">@</span>qq<span style="">.</span>com&gt;
+     * @datetime : 2019/7/4 14:11
+     */
+    public function testUpdateRole()
+    {
+        $role = $this-&gt;makeRole();
+
+        $data = [
+            &#39;name&#39;         =&gt; &#39;stringer&#39;,
+            &#39;display_name&#39; =&gt; &#39;stringer管理员&#39;,
+            &#39;description&#39;  =&gt; &#39;拥有一切权限&#39;,
+        ];
+
+        $response = $this-&gt;actingAs($this-&gt;user)-&gt;json(&#39;PATCH&#39;, &#39;/api/v1/admin/roles/&#39; . $role-&gt;id . &#39;?include=permissions&#39;, $data);
+
+        $assertData = [
+            &#39;id&#39;           =&gt; $role-&gt;id,
+            &#39;name&#39;         =&gt; &#39;stringer&#39;,
+            &#39;display_name&#39; =&gt; &#39;stringer管理员&#39;,
+            &#39;description&#39;  =&gt; &#39;拥有一切权限&#39;,
+        ];
+
+        $response-&gt;assertStatus(200)-&gt;assertJson([&#39;status&#39; =&gt; &#39;success&#39;])-&gt;assertJsonFragment($assertData);
+    }</code></pre></div>
+<p>同样的测试修改角色，我们先准备好要修改的角色数据 <code>$data</code>，调用 <em>修改角色</em> 接口，修改刚才创建的角色，最后断言响应状态码为 <code>200</code> 以及结果中包含 <code>$assertData</code>。</p>
+
+<p>执行测试：</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/73KVi3hiW4aoFH1HvjEwrYncWlfMUsUtqRONgobf.png" alt="1562220950194.png" /></p>
+
+<h4 id="测试删除角色">测试删除角色</h4>
+
+<p>打开我们的 <code>RoleApiTest.php</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">...
+...
+
+    /**
+     * 测试删除角色
+     *
+     * @author   : stringer &lt;<span style="font-weight:bold">10</span><span style="">******</span>56<span style="">@</span>qq<span style="">.</span>com&gt;
+     * @datetime : 2019/7/4 14:19
+     */
+    public function testDeleteRole()
+    {
+        $role = $this-&gt;makeRole();
+
+        $response = $this-&gt;actingAs($this-&gt;user)-&gt;json(&#39;DELETE&#39;, &#39;/api/v1/admin/roles/&#39; . $role-&gt;id);
+
+        $response-&gt;assertStatus(204);
+
+        $response = $this-&gt;actingAs($this-&gt;user)-&gt;json(&#39;GET&#39;, &#39;/api/v1/admin/roles/&#39; . $role-&gt;id);
+
+        $response-&gt;assertStatus(404);
+    }</code></pre></div>
+<p>首先通过 <code>makeRole</code> 创建一个角色，然后通过 <code>DELETE</code> 方法调用 <em>删除角色</em> 接口，将角色删除，断言响应状态码为 <code>204</code>。</p>
+
+<p>接着请求角色详情接口，断言响应状态码为 <code>404</code>，因为该角色已经被删除了，所以会得到 <code>404</code>。</p>
+
+<p>执行测试：</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/04/tAj72RZWYCAZo1mpFPzSAU8XUZFNVMUdhsR1kl1B.png" alt="1562221321834.png" /></p>
+
+<h4 id="测试角色列表">测试角色列表</h4>
+
+<p>打开我们的 <code>RoleApiTest.php</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    ...
+    ...
+
+
+    /**
+     * 测试角色列表
+     *
+     * @author   : stringer &lt;<span style="font-weight:bold">10</span><span style="">******</span>56<span style="">@</span>qq<span style="">.</span>com&gt;
+     * @datetime : 2019/7/4 14:27
+     */
+    public function testIndexRole()
+    {
+        $response = $this-&gt;actingAs($this-&gt;user)-&gt;json(&#39;GET&#39;, &#39;/api/v1/admin/roles&#39;);
+
+        $response-&gt;assertStatus(200)-&gt;assertJsonFragment([&#39;status&#39; =&gt; &#39;success&#39;]);
+    }</code></pre></div>
+<p>通过 <code>GET</code> 方法调用 <em>角色列表</em> 接口，获取角色列表，断言响应状态码为 <code>200</code>，并且断言返回的 <code>json</code> 中包含了</p>
+
+<p><code>['status' =&gt; 'success']</code> 的数组。 执行测试： <img src="http://148.70.84.101/storage/article/2019/07/04/zT4BpfODwuuPe7vdMW8jOckIUkyaUT5PlVksBPXY.png" alt="image.png" /></p>
+
+<h4 id="总结">总结</h4>
+
+<p>以上我们使用单元测试进行了针对角色的 增、删、改、差。有效的减少测试工程师的测试压力。下一篇我们将介绍第三方黑盒测试。使用 <code>PostMan</code> 进行自动化测试。</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2019
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

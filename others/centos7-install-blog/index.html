@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos7 安装博客"/>
+<meta name="twitter:description" content="1. 环境 1.1 Linux 我们选 centos7 下载地址 摸我 1.2 服务器 我们使用 LNMP 一键安装 地址 摸我 1.3 博客 我们使用 陈家健 的开源 blog 地址 摸我 2. 准备  以下安装约定在服务器的身份是 root 权限，lnmp 安装包在 root 的家目录执行
+在安装完 LNMP 后，我们使用 composer 直接安装 blog ,却发现报错了，那是因为我们的 php 没有打开 fileinfo 扩展，所以我们 需要先开启 fileinfo 扩展，开启的方法有两种，分别是在安装 LNMP 前和安装 LNMP 后。
+ 2.1 安装 LNMP 前开启 fileinfo 扩展 我们看下安装 LNMP 的代码
+wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1."/>
+
+    <meta property="og:title" content="Centos7 安装博客" />
+<meta property="og:description" content="1. 环境 1.1 Linux 我们选 centos7 下载地址 摸我 1.2 服务器 我们使用 LNMP 一键安装 地址 摸我 1.3 博客 我们使用 陈家健 的开源 blog 地址 摸我 2. 准备  以下安装约定在服务器的身份是 root 权限，lnmp 安装包在 root 的家目录执行
+在安装完 LNMP 后，我们使用 composer 直接安装 blog ,却发现报错了，那是因为我们的 php 没有打开 fileinfo 扩展，所以我们 需要先开启 fileinfo 扩展，开启的方法有两种，分别是在安装 LNMP 前和安装 LNMP 后。
+ 2.1 安装 LNMP 前开启 fileinfo 扩展 我们看下安装 LNMP 的代码
+wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/centos7-install-blog/" />
+<meta property="article:published_time" content="2019-10-24T17:29:09+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:29:09+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/others/centos7-install-blog/">
+    
+    <title>
+  Centos7 安装博客 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/centos7-install-blog/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Centos7 安装博客</h1>
+    </header>
+
+    
+
+<h4 id="1-环境">1. 环境</h4>
+
+<h5 id="1-1-linux-我们选-centos7-下载地址-摸我-https-opsx-alibaba-com-mirror">1.1 Linux 我们选 centos7 下载地址 <a href="https://opsx.alibaba.com/mirror">摸我</a></h5>
+
+<h5 id="1-2-服务器-我们使用-lnmp-一键安装-地址-摸我-https-lnmp-org-install-html">1.2 服务器 我们使用 LNMP 一键安装 地址 <a href="https://lnmp.org/install.html">摸我</a></h5>
+
+<h5 id="1-3-博客-我们使用-陈家健-的开源-blog-地址-摸我-https-github-com-jcc-blog">1.3 博客 我们使用 陈家健 的开源 blog 地址 <a href="https://github.com/jcc/blog">摸我</a></h5>
+
+<h4 id="2-准备">2. 准备</h4>
+
+<blockquote>
+<p>以下安装约定在服务器的身份是 root 权限，lnmp 安装包在 root 的家目录执行</p>
+
+<p>在安装完 LNMP 后，我们使用 composer 直接安装 blog ,却发现报错了，那是因为我们的 php 没有打开 fileinfo 扩展，所以我们 需要先开启 fileinfo 扩展，开启的方法有两种，分别是在安装 LNMP 前和安装 LNMP 后。</p>
+</blockquote>
+
+<h5 id="2-1-安装-lnmp-前开启-fileinfo-扩展">2.1 安装 LNMP 前开启 fileinfo 扩展</h5>
+
+<p>我们看下安装 LNMP 的代码</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5 &amp;&amp; ./install.sh lnmp</code></pre></div>
+<p>可以拆分为以下步骤</p>
+
+<p><strong>下载解压并进入 LNMP 目录</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5</code></pre></div>
+<p><strong>编辑 LNMP 的配置文件 <code>lnmp.conf</code></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim lnmp.conf</code></pre></div>
+<p><strong>将原来的配置 <code>Enable_PHP_Fileinfo='n'</code> 修改为 开启</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Enable_PHP_Fileinfo=&#39;y&#39;</pre></div>
+<p><strong>最后执行安装</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">./install.sh lnmp</pre></div>
+<h5 id="2-2-在-lnmp-安装完以后开启-fileinfo-扩展">2.2 在 LNMP 安装完以后开启 fileinfo 扩展</h5>
+
+<p>严格意义上讲这不算是开启，可以叫做重装 PHP 了，耗时较长， 步骤如下</p>
+
+<p><strong>找到 LNMP 的 解压目录 ，进入目录，</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd ~/lnmp1.5</pre></div>
+<p><strong>同样修改 LNMP 的配置文件 lnmp.conf ，开启 fileinfo 的扩展</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">vim lnmp.conf
+
+Enable_PHP_Fileinfo=&#39;y&#39;</pre></div>
+<p><strong>最后执行升级 bash</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">./upgrade.sh php</pre></div>
+<p>等待一段时间后安装完成后，就会开启 fileinfo 扩展</p>
+
+<h4 id="3-安装-最新版的-lts-nodejs">3. 安装 最新版的 lts nodejs</h4>
+
+<blockquote>
+<p>在查看安装步骤中发现我们的博客 需要使用到 nodejs, 所以我们先预装 node 和 npm</p>
+</blockquote>
+
+<h5 id="3-1-使用epel安装">3. 1 使用EPEL安装</h5>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum install epel-release -y</code></pre></div>
+<h5 id="3-2-安装完后-就可以使用-yum-命令安装-nodejs-了">3.2 安装完后，就可以使用 yum 命令安装 nodejs 了，</h5>
+
+<p>安装的一般会是 <code>6.x</code> 的版本，并且会将 <code>npm(3.x)</code> 作为依赖包一起安装</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum install nodejs -y</code></pre></div>
+<h5 id="3-3-安装完成后-验证是否正确的安装">3.3 安装完成后，验证是否正确的安装</h5>
+
+<p><code>node -v</code> 和 <code>npm -v</code>，如果输出如下版本信息，说明成功安装</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">v6.16.0
+
+3.10.10</pre></div>
+<h5 id="3-4-安装-n-n是nodejs-管理工具">3.4 安装 n， n是nodejs 管理工具</h5>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install -g n</code></pre></div>
+<h5 id="3-5-卸载-nodejs-v6-16-0-版本">3.5 卸载 nodejs (v6.16.0 版本)</h5>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum remove nodejs npm -y</code></pre></div>
+<h5 id="3-6-使用-n-安装-最新-lts-版的-nodejs">3.6 使用 n 安装 最新 lts 版的 nodejs</h5>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">n latest</pre></div>
+<p>当然也可以安装指定的版本</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">n 8.11.3  </pre></div>
+<h5 id="3-7-使用-n-选择-切换-node-的版本">3.7 使用 n 选择（切换） node 的版本</h5>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">n</pre></div>
+<h5 id="3-8-切换失效的解决方法">3.8 切换失效的解决方法</h5>
+
+<p>我们在切换完毕后执行 <code>node -v</code> , 发现提示 <code>-bash: /usr/bin/node: 没有那个文件或目录</code></p>
+
+<p>我们首先找出 node 的安装路径</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">which node</code></pre></div>
+<p>那么我们的 node 所在目录是 <code>/usr/local/bin/node</code></p>
+
+<p>而 n 默认安装路径是 <code>/usr/local</code>，若你的 <code>node</code> 不是在此路径下，n 切换版本就不能把 <code>bin</code> 、<code>lib</code> 、<code>include</code> 、<code>share</code> 复制该路径中，所以我们必须通过 <code>N_PREFIX</code> 变量来修改 n 的默认 <code>node</code> 安装路径。 编辑环境配置文件：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim ~/.bash_profile</code></pre></div>
+<p>将下面两行代码插入到文件末尾：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export N_PREFIX=/usr/local             <span style="font-style:italic">#node实际安装位置</span>
+export PATH=$N_PREFIX/bin:$PATH</code></pre></div>
+<p>保存退出后，执行 <code>source</code> 使修改生效</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">source ~/.bash_profile</code></pre></div>
+<p>至此，我们便安装了最新的稳定版的 node 和 npm .可以使用 <code>node -v</code> 和 <code>npm -v</code> 查看版本</p>
+
+<h4 id="4-删除禁用函数">4. 删除禁用函数</h4>
+
+<p>在安装完 PHP 的 fileinfo 扩展后，我们用命令 <code>composer create-project jcc/blog</code> 安装过程中还是会报错</p>
+
+<p>那是因为我们没有删除 php.ini 里面的某些禁用函数</p>
+
+<p>步骤如下：</p>
+
+<p>使用以下命令找出 php.ini 配置文件，发现在 <code>/usr/local/php/etc/php.ini</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">php -i | grep php.ini</code></pre></div>
+<p>编辑 php.ini 文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim  /usr/local/php/etc/php.ini</code></pre></div>
+<p>找到 disable_functions 删除以下方法</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cat /usr/local/php/etc/php.ini | grep disable_functions
+
+proc_open    exec    proc_get_status        symlink        shell_exec    chown (顺便)</pre></div>
+<p>重启 php-fpm</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">lnmp php-fpm restart</pre></div>
+<h4 id="5-安装博客">5. 安装博客</h4>
+
+<p>前面的准备那么多，终于到了安装步骤啦</p>
+
+<p>首先配置 composer 的中国镜像 ，我们使用 laravel china 的镜像</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">wget https://dl.laravel-china.org/composer.phar -O /usr/local/bin/composer
+
+chmod a+x /usr/local/bin/composer
+
+composer config -g repo.packagist composer https://packagist.laravel-china.org</pre></div>
+<p>使用 composer 安装 博客 , 因为我使用 lnmp 添加了一个 <code>fashop.test</code> 的站点，并且目录也是这个。我这边先把 <code>fashop.test</code> 这个目录删除了，然在安装：</p>
+
+<blockquote>
+<p>在删除过程中 我们发现 站点目录下有个 叫 <code>.user.ini</code> 的隐藏文件，即使你是 root 权限也没办法删除。这是你需要执行以下命令，我这边以 <code>/home/wwwroot/fashop.test/.user.ini</code> 为例：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;     chattr -i /home/wwwroot/fashop.test/.user.ini
+&gt;   ```
+&gt;
+&gt;   之后便可以删除了</pre></div>
+<p>shell
+cd /home/wwwroot/</p>
+</blockquote>
+
+<p>composer create-project jcc/blog fashop.test</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">问题来了：
+
+![1555556110905.png](http://148.70.84.101/storage/article/2019/08/06/tKagbAt7Njoes7lbxiVKWOQqJqrBsZ5iy4uMaOjM.png)
+
+在安装结束前报错了，这是在 执行 `composer.json` 里面的 `scripts` 的 `php artisan package:discover` 时报错了.
+
+错误原因：
+
+**我们的 .env 和 .env.example 文件中的 `APP_NAME` 为 默认的 `PJ Blog` ，此处有空格导致报错。**
+
+解决方法：修改 .env 和 .env.example 中 的 `PJ Blog` 为 `PJ_Blog` 或者自定义
+
+顺便配置一下 mysql 的连接信息
+
+完了继续执行 `php artisan package:discover` 。
+
+**迁移数据库等等**</pre></div>
+<p>php artisan blog:install</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">我们可以在浏览器打开站点 `fashp.test/public` 发现 权限报错了，解决如下</pre></div>
+<p>cd /home/wwwroot/fashop.test/</p>
+
+<p>chmod -R 755 storage/</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**接着我们继续执行 `php artisan blog:admin` 进行安装**。
+
+记录 passport:install 生成的信息</pre></div>
+<p>Client ID: 1
+Client secret: IbpAAiIr9gI7TrFfvI9cwCqaJ0tleuY78IeBLOJk
+Password grant client created successfully.
+Client ID: 2
+Client secret: ukAomVONB5lyRopWKGS9GWqBnqL2zQ15S6J8d3vd</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**接着我们开始配置前端**
+
+进入项目根目录，执行执行 `npm install`</pre></div>
+<p>cd /home/wwwroot/fashop.test/</p>
+
+<p>npm install</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">如果不想使用 node 也可以使用 yarn , 安装如下</pre></div>
+<p>shell</p>
+
+<h1 id="使用shell脚本安装yarn">使用shell脚本安装yarn</h1>
+
+<p>curl -o- -L <a href="https://yarnpkg.com/install.sh">https://yarnpkg.com/install.sh</a> | bash</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">打开一个新的 shell 窗口 ，配置 `yarn`</pre></div>
+<p>shell</p>
+
+<h1 id="配置使用yarn国内的源">配置使用yarn国内的源</h1>
+
+<p>yarn config set registry <a href="https://registry.npm.taobao.org">https://registry.npm.taobao.org</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">然后在项目根目录执行 `yarn` 效果和上面 `npm install` 一样
+
+最后执行 `yarn run dev` 或者 `npm run dev`
+
+我们在浏览器打开 `http://www.fashop.test/public/` 便有了原型
+
+**设置 博客 语言**
+
+在 .env 文件中设置语言为中文， `vim .env` 在最下面添加</pre></div>
+<p>LOCALE=zh_cn</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">重新刷新，便是中文网站。
+
+**重设站点**
+
+虽然我们的网站已经好了，但是样式变形非常严重，打开 `F12` 刷新页面，发现我们的 `css`
+
+文件没有加载进来。原因是我们的网站是 根目录是 在 `/home/wwwroot/fashop.test/` 下
+
+而 我们的网站是 `laravel` 开发的。入口文件应该是 `/home/wwwroot/fashop.test/public/`
+
+所以我们需要修改 nginx 的配置， 进入 NGINX 的配置目录</pre></div>
+<p>cd /usr/local/nginx/conf/vhost/</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">可以先备份一份</pre></div>
+<p>cp fashop.test.conf fashop.test.conf.copy</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**编辑 配置文件 `fashop.test.conf`， 修改入口目录**</pre></div>
+<p>root  /home/wwwroot/fashop.test;</p>
+
+<p>root  /home/wwwroot/fashop.test/public;</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**编辑 配置文件 `fastcgi.conf` , 注释 含有 `open_basedir` 的那一行**</pre></div>
+<p>vim /usr/local/nginx/conf/fastcgi.conf</p>
+
+<h1 id="fastcgi-param-php-admin-value-open-basedir-document-root-tmp-proc">fastcgi_param PHP_ADMIN_VALUE &ldquo;open_basedir=$document_root/:/tmp/:/proc/&ldquo;;</h1>
+
+<p>```</p>
+
+<p>重启 lnmp 服务。 <code>lnmp restart</code></p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2019
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自定义接口 response 和 异常"/>
+<meta name="twitter:description" content="封装返回的统一消息 接口主流返回 json 格式，其中包含 http状态码，status请求状态，data请求资源结果等等。需要我们有一个 API 接口全局都能有统一的格式和对应的数据处理。
+在 app/Api/Helpers 目录 (不存在目录自己新建) 下新建 ApiResponse.php 填入如下内容
+&lt;?php namespace App\Api\Helpers; use Symfony\Component\HttpFoundation\Response as HttpBaseResponse; /** * Trait ApiResponse * * @package App\Api\Helpers */ trait ApiResponse { /** * @var int */ protected $httpCode = HttpBaseResponse::HTTP_OK; /** * 设置 Http 的状态码 * * @param $code * * @return $this */ public function setHttpCode($code) { $this-&gt;httpCode = $code; return $this; } /** * 获取 Http 状态码 * * @return int */ public function getHttpCode() { return $this-&gt;httpCode; } /** * 最基础的一个返回 json * * @param $data * @param array $header * * @return \Illuminate\Http\JsonResponse */ public function baseResponse($data, $header = []) { return \Response::json($data, $this-&gt;getHttpCode(), $header); } /** * 定义返回的格式 * * @param array $data * @param $messageStatus * @param null $httpCode * * @return \Illuminate\Http\JsonResponse */ public function status(array $data, $messageStatus, $httpCode = null) { if ( !"/>
+
+    <meta property="og:title" content="自定义接口 response 和 异常" />
+<meta property="og:description" content="封装返回的统一消息 接口主流返回 json 格式，其中包含 http状态码，status请求状态，data请求资源结果等等。需要我们有一个 API 接口全局都能有统一的格式和对应的数据处理。
+在 app/Api/Helpers 目录 (不存在目录自己新建) 下新建 ApiResponse.php 填入如下内容
+&lt;?php namespace App\Api\Helpers; use Symfony\Component\HttpFoundation\Response as HttpBaseResponse; /** * Trait ApiResponse * * @package App\Api\Helpers */ trait ApiResponse { /** * @var int */ protected $httpCode = HttpBaseResponse::HTTP_OK; /** * 设置 Http 的状态码 * * @param $code * * @return $this */ public function setHttpCode($code) { $this-&gt;httpCode = $code; return $this; } /** * 获取 Http 状态码 * * @return int */ public function getHttpCode() { return $this-&gt;httpCode; } /** * 最基础的一个返回 json * * @param $data * @param array $header * * @return \Illuminate\Http\JsonResponse */ public function baseResponse($data, $header = []) { return \Response::json($data, $this-&gt;getHttpCode(), $header); } /** * 定义返回的格式 * * @param array $data * @param $messageStatus * @param null $httpCode * * @return \Illuminate\Http\JsonResponse */ public function status(array $data, $messageStatus, $httpCode = null) { if ( !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/laravel/larave-response-exception/" />
+<meta property="article:published_time" content="2019-10-24T17:09:10+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:09:10+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/laravel/larave-response-exception/">
+    
+    <title>
+  自定义接口 response 和 异常 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/larave-response-exception/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>自定义接口 response 和 异常</h1>
+    </header>
+
+    
+
+<h3 id="封装返回的统一消息">封装返回的统一消息</h3>
+
+<p>接口主流返回 <code>json</code> 格式，其中包含 <code>http状态码</code>，<code>status请求状态</code>，<code>data请求资源结果</code>等等。需要我们有一个 API 接口全局都能有统一的格式和对应的数据处理。</p>
+
+<p>在 <code>app/Api/Helpers</code> 目录 (不存在目录自己新建) 下新建 <code>ApiResponse.php</code> 填入如下内容</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Api\Helpers;
+
+<span style="font-weight:bold">use</span> Symfony\Component\HttpFoundation\Response <span style="font-weight:bold">as</span> HttpBaseResponse;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Trait ApiResponse
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Api\Helpers
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">trait</span>  ApiResponse
+{
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var int
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">protected</span> $httpCode = HttpBaseResponse::HTTP_OK;
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 设置 Http 的状态码
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param $code
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return $this
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> setHttpCode($code)
+    {
+        $this-&gt;httpCode = $code;
+
+        <span style="font-weight:bold">return</span> $this;
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 获取 Http 状态码
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return int
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> getHttpCode()
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;httpCode;
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 最基础的一个返回 json
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param       $data
+</span><span style="font-style:italic">     * @param array $header
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> baseResponse($data, $header = [])
+    {
+        <span style="font-weight:bold">return</span> \Response::json($data, $this-&gt;getHttpCode(), $header);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 定义返回的格式
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param array $data
+</span><span style="font-style:italic">     * @param       $messageStatus
+</span><span style="font-style:italic">     * @param null  $httpCode
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> status(<span style="font-weight:bold">array</span> $data, $messageStatus, $httpCode = <span style="font-weight:bold">null</span>)
+    {
+        <span style="font-weight:bold">if</span> ( ! is_null($httpCode)) {
+            $this-&gt;setHttpCode($httpCode);
+        }
+
+        $format = [
+            <span style="font-style:italic">&#39;status&#39;</span> =&gt; $messageStatus,
+            <span style="font-style:italic">&#39;code&#39;</span>   =&gt; $this-&gt;httpCode,
+        ];
+
+        $responseArray = array_merge($format, $data);
+
+        <span style="font-weight:bold">return</span> $this-&gt;baseResponse($responseArray);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 默认成功的消息返回
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param        $message
+</span><span style="font-style:italic">     * @param string $messageStatus
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> message($message, $messageStatus = <span style="font-style:italic">&#39;success&#39;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;status([<span style="font-style:italic">&#39;message&#39;</span> =&gt; $message], $messageStatus);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 数据返回
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param        $data
+</span><span style="font-style:italic">     * @param string $messageStatus
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> success($data, $messageStatus = <span style="font-style:italic">&#39;success&#39;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;status([<span style="font-style:italic">&#39;data&#39;</span> =&gt; $data], $messageStatus);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 默认错误的消息返回
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param        $message
+</span><span style="font-style:italic">     * @param string $messageStatus
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> error($message, $messageStatus = <span style="font-style:italic">&#39;error&#39;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;status([<span style="font-style:italic">&#39;message&#39;</span> =&gt; $message], $messageStatus);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 错误的时候消息返回
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param        $message
+</span><span style="font-style:italic">     * @param int    $httpCode
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> failed($message, $httpCode = HttpBaseResponse::HTTP_BAD_REQUEST)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;setHttpCode($httpCode)-&gt;error($message);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 服务器错误返回
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param string $message
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> internalError($message = <span style="font-style:italic">&#34;服务器内部错误&#34;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;failed($message, HttpBaseResponse::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 创建成功的时候提示
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param string $message
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> created($message = <span style="font-style:italic">&#39;created&#39;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;setHttpCode(HttpBaseResponse::HTTP_CREATED)-&gt;message($message);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 删除时的返回
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param string $message
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> deleted($message = <span style="font-style:italic">&#39;deleted&#39;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;setHttpCode(HttpBaseResponse::HTTP_NO_CONTENT)-&gt;message($message);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 没有找到的错误
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param string $message
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> notFound($message = <span style="font-style:italic">&#39;Not Found&#39;</span>)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;setHttpCode(HttpBaseResponse::HTTP_NOT_FOUND)-&gt;error($message);
+    }
+
+
+}
+</code></pre></div>
+<h3 id="异常自定义处理">异常自定义处理</h3>
+
+<p>在 <code>app/Api/Helpers</code> 目录下新建 <code>ExceptionReport.php</code> 文件，填入以下内容：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Api\Helpers;
+
+<span style="font-weight:bold">use</span> Exception;
+<span style="font-weight:bold">use</span> Illuminate\Auth\Access\AuthorizationException;
+<span style="font-weight:bold">use</span> Illuminate\Auth\AuthenticationException;
+<span style="font-weight:bold">use</span> Illuminate\Database\Eloquent\ModelNotFoundException;
+<span style="font-weight:bold">use</span> Illuminate\Http\Request;
+<span style="font-weight:bold">use</span> Illuminate\Support\Arr;
+<span style="font-weight:bold">use</span> Illuminate\Validation\ValidationException;
+<span style="font-weight:bold">use</span> Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+<span style="font-weight:bold">use</span> Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+<span style="font-weight:bold">use</span> Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class ExceptionReport
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Api\Helpers
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">ExceptionReport</span>
+{
+
+    <span style="font-weight:bold">use</span> ApiResponse;
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> $exception;
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> $request;
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">protected</span> $report;
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var array
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> $doReport = [
+        UnauthorizedHttpException::class     =&gt; [<span style="font-style:italic">&#39;未登录或者登录已失效&#39;</span>, 401],
+        MethodNotAllowedHttpException::class =&gt; [<span style="font-style:italic">&#39;访问方式不正确&#39;</span>, 405],
+        NotFoundHttpException::class         =&gt; [<span style="font-style:italic">&#39;访问的路由不存在&#39;</span>, 404],
+        ModelNotFoundException::class        =&gt; [<span style="font-style:italic">&#39;模型没有找到&#39;</span>, 404],
+        AuthorizationException::class        =&gt; [<span style="font-style:italic">&#39;没有此权限&#39;</span>, 403],
+        AuthenticationException::class       =&gt; [<span style="font-style:italic">&#39;未授权的访问&#39;</span>, 401],
+        ValidationException::class           =&gt; [],
+    ];
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * ExceptionReport constructor.
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param $exception
+</span><span style="font-style:italic">     * @param $request
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> __construct(Exception $exception, Request $request)
+    {
+        $this-&gt;exception = $exception;
+        $this-&gt;request   = $request;
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 接管错误异常
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param \Exception $exception
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \App\Api\Helpers\ExceptionReport
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">static</span> <span style="font-weight:bold">function</span> make(Exception $exception)
+    {
+        <span style="font-weight:bold">return</span> <span style="font-weight:bold">new</span> <span style="font-weight:bold">static</span>($exception, \request());
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 判断异常是否已经自定义
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return bool
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> canReport()
+    {
+        <span style="font-weight:bold">foreach</span> (array_keys($this-&gt;doReport) <span style="font-weight:bold">as</span> $exception) {
+            <span style="font-weight:bold">if</span> ($this-&gt;exception instanceof $exception) {
+                $this-&gt;report = $exception;
+
+                <span style="font-weight:bold">return</span> <span style="font-weight:bold">true</span>;
+            }
+        }
+
+        <span style="font-weight:bold">return</span> <span style="font-weight:bold">false</span>;
+    }
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 反馈自定义的异常
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> report()
+    {
+        <span style="font-weight:bold">if</span> ($this-&gt;exception instanceof ValidationException) {
+            $error = Arr::first($this-&gt;exception-&gt;errors());
+
+            <span style="font-weight:bold">return</span> $this-&gt;failed(Arr::first($error), $this-&gt;exception-&gt;status);
+        }
+
+        $message = $this-&gt;doReport[$this-&gt;report];
+
+        <span style="font-weight:bold">return</span> $this-&gt;failed($message[0], $message[1]);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 线上环境时的报错
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> prodReport()
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;failed(<span style="font-style:italic">&#39;服务器内部错误&#39;</span>, 500);
+    }
+
+
+}
+</code></pre></div>
+<h4 id="接管异常">接管异常</h4>
+
+<p>修改 <code>app/Exceptions</code> 目录下的 <code>Handler.php</code> 文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Exceptions;
+
+<span style="font-weight:bold">use</span> App\Api\Helpers\ExceptionReport;
+<span style="font-weight:bold">use</span> Exception;
+<span style="font-weight:bold">use</span> Illuminate\Foundation\Exceptions\Handler <span style="font-weight:bold">as</span> ExceptionHandler;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class Handler
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Exceptions
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">Handler</span> <span style="font-weight:bold">extends</span> ExceptionHandler
+{
+
+    ....
+    ....
+    ....
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * 重构异常
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @param \Illuminate\Http\Request $request
+</span><span style="font-style:italic">     * @param \Exception               $exception
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> render($request, Exception $exception)
+    {
+        <span style="font-weight:bold">if</span> ($request-&gt;ajax() || $request-&gt;is(<span style="font-style:italic">&#39;api/*&#39;</span>)) {
+            $e = ExceptionReport::make($exception);
+            <span style="font-weight:bold">if</span> ($e-&gt;canReport()) {
+                <span style="font-weight:bold">return</span> $e-&gt;report();
+            }
+
+            <span style="font-style:italic"># 判断是否开启了 Debug ,开启则显示详细异常，否则使用自定义的异常
+</span><span style="font-style:italic"></span>            <span style="font-weight:bold">if</span> (env(<span style="font-style:italic">&#39;APP_DEBUG&#39;</span>)) {
+                <span style="font-weight:bold">return</span> <span style="font-weight:bold">parent</span>::render($request, $exception);
+            } <span style="font-weight:bold">else</span> {
+                <span style="font-weight:bold">return</span> $e-&gt;prodReport();
+            }
+
+        }
+
+        <span style="font-weight:bold">return</span> <span style="font-weight:bold">parent</span>::render($request, $exception);
+    }
+
+}
+</code></pre></div>
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2019
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

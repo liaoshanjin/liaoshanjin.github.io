@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHPstorm 的一些笔记"/>
+<meta name="twitter:description" content="开发这些年，用过的 IDE 可能算多的了。从最早的 HBuilder 到 Sublime ,在到 ATom , VScode , Eclipse For PHP 到最后的 PHPstorm 。只有 PHPstorm 让我不会有在更改的可能。所以下面我就记一下个人的 PHPstorm 的设置。
+ 主题 主题使用的是 Material Theme Ui ,很喜欢这个主题。
+快捷键系列  ctrl &#43; shift &#43; A 快速搜索配置项  例如去掉面包屑 ctrl &#43; shift &#43; A ,弹出搜索框后输入 breadcrumb ,然后在选择 don&#39;t show 例如去掉折叠线ctrl &#43; shift &#43; A,弹出搜索框后输入code folding,然后去掉显示代码折叠大纲的勾，保存 去掉参数提示ctrl &#43; shift &#43; A,弹出搜索框后输入show parameter name hits,然后去掉show parameter name hits的勾 去掉右边的竖线Show right margin  ctrl &#43; shift &#43; N 快速打文件,弹出搜索框后输入你想打开的文件 ctrl &#43; F12 查看类的方法（文件结构）, 弹出的文件结构可以直接搜索 ctrl &#43; E 打开最近编辑或打开的文件列表, 弹出的文件结构可以直接搜索 ctrl &#43; alt &#43; shift &#43; N 方法搜索，能快速定位到方法 ctrl &#43; alt &#43; L 快速的排版 shift &#43; F6 选择要统一修改的内容，然后可以统一编辑  ctrl &#43; ~ 快速打开主题选择  ctrl &#43; z 撤销 ctrl &#43; shift &#43; z 反撤销  自定义快捷键  ctrl &#43; shift &#43; A,弹出搜索框后输入keymap, 然后点击右边的搜索框,按你目前的快捷键,然后可以设置   自定义类的注释头  ctrl &#43; shift &#43; A,弹出搜索框后输入file template, 点击模板,选择PHP FILE,因为他有包含PHP File Header."/>
+
+    <meta property="og:title" content="PHPstorm 的一些笔记" />
+<meta property="og:description" content="开发这些年，用过的 IDE 可能算多的了。从最早的 HBuilder 到 Sublime ,在到 ATom , VScode , Eclipse For PHP 到最后的 PHPstorm 。只有 PHPstorm 让我不会有在更改的可能。所以下面我就记一下个人的 PHPstorm 的设置。
+ 主题 主题使用的是 Material Theme Ui ,很喜欢这个主题。
+快捷键系列  ctrl &#43; shift &#43; A 快速搜索配置项  例如去掉面包屑 ctrl &#43; shift &#43; A ,弹出搜索框后输入 breadcrumb ,然后在选择 don&#39;t show 例如去掉折叠线ctrl &#43; shift &#43; A,弹出搜索框后输入code folding,然后去掉显示代码折叠大纲的勾，保存 去掉参数提示ctrl &#43; shift &#43; A,弹出搜索框后输入show parameter name hits,然后去掉show parameter name hits的勾 去掉右边的竖线Show right margin  ctrl &#43; shift &#43; N 快速打文件,弹出搜索框后输入你想打开的文件 ctrl &#43; F12 查看类的方法（文件结构）, 弹出的文件结构可以直接搜索 ctrl &#43; E 打开最近编辑或打开的文件列表, 弹出的文件结构可以直接搜索 ctrl &#43; alt &#43; shift &#43; N 方法搜索，能快速定位到方法 ctrl &#43; alt &#43; L 快速的排版 shift &#43; F6 选择要统一修改的内容，然后可以统一编辑  ctrl &#43; ~ 快速打开主题选择  ctrl &#43; z 撤销 ctrl &#43; shift &#43; z 反撤销  自定义快捷键  ctrl &#43; shift &#43; A,弹出搜索框后输入keymap, 然后点击右边的搜索框,按你目前的快捷键,然后可以设置   自定义类的注释头  ctrl &#43; shift &#43; A,弹出搜索框后输入file template, 点击模板,选择PHP FILE,因为他有包含PHP File Header." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/phpstorm-personal/" />
+<meta property="article:published_time" content="2019-10-24T17:17:31+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:17:31+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/others/phpstorm-personal/">
+    
+    <title>
+  PHPstorm 的一些笔记 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/phpstorm-personal/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>PHPstorm 的一些笔记</h1>
+    </header>
+
+    
+
+<blockquote>
+<p>开发这些年，用过的 <code>IDE</code> 可能算多的了。从最早的 <code>HBuilder</code> 到 <code>Sublime</code> ,在到 <code>ATom</code> , <code>VScode</code> , <code>Eclipse For PHP</code> 到最后的 <code>PHPstorm</code> 。只有 <code>PHPstorm</code> 让我不会有在更改的可能。所以下面我就记一下个人的 <code>PHPstorm</code> 的设置。</p>
+</blockquote>
+
+<h4 id="主题">主题</h4>
+
+<p>主题使用的是 <code>Material Theme Ui</code> ,很喜欢这个主题。</p>
+
+<h4 id="快捷键系列">快捷键系列</h4>
+
+<ul>
+<li><code>ctrl + shift + A</code> 快速搜索配置项
+
+<ul>
+<li>例如去掉面包屑 <code>ctrl + shift + A</code> ,弹出搜索框后输入 <code>breadcrumb</code> ,然后在选择 <code>don't show</code></li>
+<li>例如去掉折叠线<code>ctrl + shift + A</code>,弹出搜索框后输入<code>code folding</code>,然后去掉<code>显示代码折叠大纲</code>的勾，保存</li>
+<li>去掉参数提示<code>ctrl + shift + A</code>,弹出搜索框后输入<code>show parameter name hits</code>,然后去掉<code>show parameter name hits</code>的勾</li>
+<li>去掉右边的竖线<code>Show right margin</code></li>
+</ul></li>
+<li><code>ctrl + shift + N</code> 快速打文件,弹出搜索框后输入你想打开的文件</li>
+<li><code>ctrl + F12</code> 查看类的方法（文件结构）, 弹出的文件结构可以直接搜索</li>
+<li><code>ctrl + E</code> 打开最近编辑或打开的文件列表, 弹出的文件结构可以直接搜索</li>
+<li><code>ctrl + alt + shift + N</code> 方法搜索，能快速定位到方法</li>
+<li><code>ctrl + alt + L</code> 快速的排版</li>
+<li><code>shift + F6</code> 选择要统一修改的内容，然后可以统一编辑</li>
+<li></li>
+<li><code>ctrl + ~</code> 快速打开主题选择</li>
+<li></li>
+<li><code>ctrl + z</code> 撤销</li>
+<li><code>ctrl + shift + z</code> 反撤销</li>
+</ul>
+
+<h4 id="自定义快捷键">自定义快捷键</h4>
+
+<ul>
+<li><code>ctrl + shift + A</code>,弹出搜索框后输入<code>keymap</code>, 然后点击右边的搜索框,按你目前的快捷键,然后可以设置</li>
+<li></li>
+</ul>
+
+<h4 id="自定义类的注释头">自定义类的注释头</h4>
+
+<ul>
+<li><code>ctrl + shift + A</code>,弹出搜索框后输入<code>file template</code>, 点击<code>模板</code>,选择<code>PHP FILE</code>,因为他有包含<code>PHP File Header.php</code>,点击<code>包含</code>切换, 选择<code>PHP File Header</code>进行编辑,保存</li>
+<li></li>
+</ul>
+
+<h4 id="自定义排版样式">自定义排版样式</h4>
+
+<ul>
+<li><code>ctrl + shift + A</code>,弹出搜索框后输入<code>code style</code>, 选择<code>php</code></li>
+</ul>
+
+<h4 id="自定义主题">自定义主题</h4>
+
+<ul>
+<li>打开<a href="http://www.phpstorm-themes.com/">主题网站</a></li>
+<li>选择要换的主题，点击<code>codepen.icls</code></li>
+<li>复制全部内容</li>
+<li>打开目录<code>C:\Users\Administrator\.PhpStorm2018.1\config\colors</code>,新建一个<code>.icls</code>的文件，如<code>codopen.icls</code></li>
+<li>将复制的内容黏贴就好。然后选择这个主题</li>
+</ul>
+
+<h4 id="解决插件下载慢的问题">解决插件下载慢的问题</h4>
+
+<ul>
+<li>ctrl + shift + A, 弹出搜索框后输入updates, Use secure connection 的 勾去掉就可以了,</li>
+</ul>
+
+<h4 id="选中高亮">选中高亮</h4>
+
+<ul>
+<li>Ctrl + Alt + S 打开安装插件, 并安装插件 BrowseWordAtCaret</li>
+<li>在 Settings - Editor - General - Appearance - Browse Word At Caret 下勾选设置</li>
+<li>在 Settings - Editor - Color Scheme - BrowerWordAtCaret 页面设置颜色</li>
+</ul>
+
+<h4 id="设置支持-todo-fixme-xxx-等特殊设置">设置支持 <code>TODO</code>、<code>FIXME</code>、<code>XXX</code> 等特殊设置</h4>
+
+<ul>
+<li><code>Ctrl + Shift +A</code> 输入 <code>TODO</code> ,选择 <code>setting</code>, 点击右上角的添加, <code>pattern</code> 输入 <code>\bxxx\b.*</code>, 勾选 <code>use coloer themes ...</code> 即可</li>
+</ul>
+
+<h4 id="个人phpstorm快捷键">个人PHPstorm快捷键</h4>
+
+<ul>
+<li><p>全屏切换</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Alt + S
+Alt + W</pre></div></li>
+
+<li><p>关闭项目</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Ctrl + Shift + Q</pre></div></li>
+
+<li><p>弹出设置</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Ctrl + Shift + A</pre></div></li>
+
+<li><p>打开terminal(命令行)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Alt + T</pre></div></li>
+
+<li><p>查看一个类的所有方法</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Alt + Z     Ctrl + F12</pre></div></li>
+
+<li><p>列出最近打开的文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Ctrl + E</pre></div></li>
+
+<li><p>代码格式化</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Ctrl + Alt + L</pre></div></li>
+</ul>
+
+<h4 id="bootstrap4-插件">bootstrap4 插件</h4>
+
+<ul>
+<li><p>生成HTML标签</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">b4-$ + Tab</pre></div></li>
+
+<li><p>bootstrap4提示</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">b4    然后 Ctrl + J</pre></div></li>
+</ul>
+
+<h4 id="快捷设置系列">快捷设置系列</h4>
+
+<blockquote>
+<p>此系列基于 <code>Shift + Ctrl +A</code> 呼出设置搜索</p>
+</blockquote>
+
+<ul>
+<li><p>勾选掉不需要的插件提示</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">live templadtes</pre></div></li>
+
+<li><p>个人代码风格</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">code style, 弹出设置后  选择 PHP, 点击 set from, 然后选择 WordPress</pre></div></li>
+
+<li><p>设置等号对齐</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">code style, 弹出设置后  选择 PHP, 点击导航 Wrapping and Braces 最后勾选
+Align consecutive assignments 和 Align key-value pairs</pre></div></li>
+
+<li><p>快捷键创建新文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Alt + Home 键可以定位你需要创建文件的目录， 然后 Alt + Insert 键新建你想要创建的文件类型</pre></div></li>
+
+<li><p>重构代码</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Ctrl + Shift + Alt + T ,弹出的对话框中选择 Methons , 自选重构</pre></div></li>
+
+<li><p>多点编辑</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">鼠标移动到需要编辑单词的后面, 使用快捷键 Alt + J ，随后可多点编辑</pre></div></li>
+</ul>
+
+<h4 id="设置-terminal-的字体">设置 <code>Terminal</code> 的字体</h4>
+
+<p>打开设置 <code>Editor &gt;&gt; Code Scheme &gt;&gt; Console Font</code> 选择想要设置的字体。</p>
+
+<p>我的字体是 <code>Laravel</code> 作者的字体 <code>Operator</code> . 下载地址<a href="http://148.70.84.101/storage/resources//Operator Mono.zip">摸我</a></p>
+
+<p>效果图：</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/08/ozVAEXnQXGjhZSJsDZZmvf7O39Df4xPgmfsxKn9Y.png" alt="image.png" /></p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2019
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

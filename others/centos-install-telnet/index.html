@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="centos7 安装 telnet"/>
+<meta name="twitter:description" content="今天在学 swoole 的时候因为需要使用到 telnet 。但是我的虚拟机并没有安装 telnet 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。
+ 首先检查是否安装 telnet
+rpm -qa | grep telnet 在安装 Telnet 前先检查系统是否安装了 telnet-server 和 xinetd
+yum list | grep telnet yum list | grep xinetd 进行安装，客户端和服务器端：
+yum -y install telnet-server.x86_64 yum -y install telnet.x86_64 yum -y install xinetd.x86_64 查看是否已经安装 xinetd (若已经安装则不安装)：
+rpm -qa | grep xinetd  安装 xinetd 服务：
+yum install xinetd -y  telnet 服务默认是不开启的，修改文件 /etc/xinetd.d/telnet来开启服务：
+ &gt; telnet` 文件如有则修改，若不存在，可自己 `vim` 创建修改： 修改 `disable = yes` 为 `disable = no &gt; ``` 修改后的 `telnet` 文件为： default: yes  description: The telnet server servestelnet sessions; it uses  unencrypted username/password pairs for authentication."/>
+
+    <meta property="og:title" content="centos7 安装 telnet" />
+<meta property="og:description" content="今天在学 swoole 的时候因为需要使用到 telnet 。但是我的虚拟机并没有安装 telnet 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。
+ 首先检查是否安装 telnet
+rpm -qa | grep telnet 在安装 Telnet 前先检查系统是否安装了 telnet-server 和 xinetd
+yum list | grep telnet yum list | grep xinetd 进行安装，客户端和服务器端：
+yum -y install telnet-server.x86_64 yum -y install telnet.x86_64 yum -y install xinetd.x86_64 查看是否已经安装 xinetd (若已经安装则不安装)：
+rpm -qa | grep xinetd  安装 xinetd 服务：
+yum install xinetd -y  telnet 服务默认是不开启的，修改文件 /etc/xinetd.d/telnet来开启服务：
+ &gt; telnet` 文件如有则修改，若不存在，可自己 `vim` 创建修改： 修改 `disable = yes` 为 `disable = no &gt; ``` 修改后的 `telnet` 文件为： default: yes  description: The telnet server servestelnet sessions; it uses  unencrypted username/password pairs for authentication." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/centos-install-telnet/" />
+<meta property="article:published_time" content="2019-10-24T17:21:09+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:21:09+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/others/centos-install-telnet/">
+    
+    <title>
+  centos7 安装 telnet · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/centos-install-telnet/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>centos7 安装 telnet</h1>
+    </header>
+
+    
+
+<blockquote>
+<p>今天在学 <code>swoole</code> 的时候因为需要使用到 <code>telnet</code> 。但是我的虚拟机并没有安装 <code>telnet</code> 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。</p>
+</blockquote>
+
+<p><strong>首先检查是否安装 <code>telnet</code></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">rpm -qa | grep telnet</pre></div>
+<p><strong>在安装 <code>Telnet</code> 前先检查系统是否安装了 <code>telnet-server</code> 和 <code>xinetd</code></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum list | grep telnet
+
+yum list | grep xinetd</pre></div>
+<p><strong>进行安装，客户端和服务器端：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum -y install telnet-server.x86_64
+
+yum -y install telnet.x86_64
+
+yum -y install xinetd.x86_64</pre></div>
+<p><strong>查看是否已经安装 <code>xinetd</code> (若已经安装则不安装)：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">rpm -qa | grep xinetd </pre></div>
+<p><strong>安装 <code>xinetd</code> 服务：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum install xinetd  -y </pre></div>
+<p><strong><code>telnet</code> 服务默认是不开启的，修改文件 <code>/etc/xinetd.d/telnet</code>来开启服务：</strong></p>
+
+<blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;   telnet` 文件如有则修改，若不存在，可自己 `vim` 创建修改： 修改 `disable = yes` 为 `disable = no
+&gt;   ```
+
+修改后的 `telnet` 文件为：</pre></div>
+<h1 id="default-yes">default: yes</h1>
+</blockquote>
+
+<h1 id="description-the-telnet-server-servestelnet-sessions-it-uses">description: The telnet server servestelnet sessions; it uses </h1>
+
+<h1 id="unencrypted-username-password-pairs-for-authentication">unencrypted username/password pairs for authentication.</h1>
+
+<p>service telnet
+{<br />
+      flags           = REUSE<br />
+      socket_type     = stream<br />
+      wait            = no<br />
+      user            = root<br />
+      server          =/usr/sbin/in.telnetd<br />
+      log_on_failure  += USERID<br />
+      disable         = no<br />
+}</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**安装后检查：**</pre></div>
+<p>rpm -qa | grep telnet</p>
+
+<p>rpm -qa | grep xinetd</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**启动 `telnet` 和依赖的 `xinetd` 服务：**</pre></div>
+<p>service xinetd restart</p>
+
+<p>systemctl restart  xinetd.service</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**查看启动：**</pre></div>
+<p>ps -ef | grep xinetd</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**使用 `talnet`**</pre></div>
+<p>telnet 127.0.0.1 9501</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**设置服务开机启动：**</pre></div>
+<p>chkconfig &ndash;level 35 xinetd on</p>
+
+<p>systemctl enable xinetd.service</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**查看：**</pre></div>
+<p>chkconfig &ndash;list
+```</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2019
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

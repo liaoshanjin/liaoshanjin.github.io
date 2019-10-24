@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL 引擎 InnoDB 和 MyISAM 的区别"/>
+<meta name="twitter:description" content="InnoDB 和 MyISAM 是最常见的两种数据库引擎。在表现方面也是各有自己的优劣。其中最大的区别：InnoDB 支持事务处理，而 MyISAM 不支持。
+MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
+以下是一些细节和更具体的差别。
+ InnoDB 不支持 FULLTEXT 类型的索引 InnoDB 中不保存表的具体行数，也就是说执行 select count(*) from table 时，InnoDB 要扫描一遍整个表来计算有多少行。但是 MyISAM 只要简单的读出保存好的行数即可。注意的是，当 count(*) 语句包含 where 条件时，两种引擎的操作是一样的。 对于 AUTO_INCREMENT 类型的字段，InnoDB 中必须包含只有该字段的索引。但是在 MyISAM 表中，可以和其他字段一起建立联合索引。 DELETE FROM TABLE 时， InnoDB 不会重新建立表，而是一行一行的删除。 LOAD TABLE FROM MASTER 操作对于 InnoDB 是不起作用的。解决方法首先把 InnoDB 表改成 MyISAM 表，导入数据后在改成 InnoDB ，但是对于使用的额外的 InnoDB 特性 （例如外键）的表不适用。  另外， InnoDB 表的行锁也不是绝对的，例如在执行一个 SQL 不能确定要扫描的范围， InnoDB 表同样会锁全表， 例如 update table set num = 1 where name like &quot;%aaa%&quot;"/>
+
+    <meta property="og:title" content="MySQL 引擎 InnoDB 和 MyISAM 的区别" />
+<meta property="og:description" content="InnoDB 和 MyISAM 是最常见的两种数据库引擎。在表现方面也是各有自己的优劣。其中最大的区别：InnoDB 支持事务处理，而 MyISAM 不支持。
+MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
+以下是一些细节和更具体的差别。
+ InnoDB 不支持 FULLTEXT 类型的索引 InnoDB 中不保存表的具体行数，也就是说执行 select count(*) from table 时，InnoDB 要扫描一遍整个表来计算有多少行。但是 MyISAM 只要简单的读出保存好的行数即可。注意的是，当 count(*) 语句包含 where 条件时，两种引擎的操作是一样的。 对于 AUTO_INCREMENT 类型的字段，InnoDB 中必须包含只有该字段的索引。但是在 MyISAM 表中，可以和其他字段一起建立联合索引。 DELETE FROM TABLE 时， InnoDB 不会重新建立表，而是一行一行的删除。 LOAD TABLE FROM MASTER 操作对于 InnoDB 是不起作用的。解决方法首先把 InnoDB 表改成 MyISAM 表，导入数据后在改成 InnoDB ，但是对于使用的额外的 InnoDB 特性 （例如外键）的表不适用。  另外， InnoDB 表的行锁也不是绝对的，例如在执行一个 SQL 不能确定要扫描的范围， InnoDB 表同样会锁全表， 例如 update table set num = 1 where name like &quot;%aaa%&quot;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/mysql/innodb-myisam-diff/" />
+<meta property="article:published_time" content="2019-10-24T17:16:13+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:16:13+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/mysql/innodb-myisam-diff/">
+    
+    <title>
+  MySQL 引擎 InnoDB 和 MyISAM 的区别 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/mysql/innodb-myisam-diff/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>MySQL 引擎 InnoDB 和 MyISAM 的区别</h1>
+    </header>
+
+    <p><code>InnoDB</code> 和 <code>MyISAM</code> 是最常见的两种数据库引擎。在表现方面也是各有自己的优劣。其中最大的区别：<code>InnoDB</code> 支持事务处理，而 <code>MyISAM</code> 不支持。</p>
+
+<p><code>MyISAM</code> 引擎强调的是性能，其执行速度比 <code>InnoDB</code> 快。</p>
+
+<p>以下是一些细节和更具体的差别。</p>
+
+<ul>
+<li><code>InnoDB</code> 不支持 <code>FULLTEXT</code> 类型的索引</li>
+<li><code>InnoDB</code> 中不保存表的具体行数，也就是说执行 <code>select count(*) from table</code> 时，<code>InnoDB</code> 要扫描一遍整个表来计算有多少行。但是 <code>MyISAM</code> 只要简单的读出保存好的行数即可。注意的是，当 <code>count(*)</code> 语句包含 <code>where</code> 条件时，两种引擎的操作是一样的。</li>
+<li>对于 <code>AUTO_INCREMENT</code> 类型的字段，<code>InnoDB</code> 中必须包含只有该字段的索引。但是在 <code>MyISAM</code> 表中，可以和其他字段一起建立联合索引。</li>
+<li><code>DELETE FROM TABLE</code> 时， <code>InnoDB</code> 不会重新建立表，而是一行一行的删除。</li>
+<li><code>LOAD TABLE FROM MASTER</code> 操作对于 <code>InnoDB</code> 是不起作用的。解决方法首先把 <code>InnoDB</code> 表改成 <code>MyISAM</code> 表，导入数据后在改成 <code>InnoDB</code> ，但是对于使用的额外的 <code>InnoDB</code> 特性 （例如外键）的表不适用。</li>
+</ul>
+
+<p>另外， <code>InnoDB</code> 表的行锁也不是绝对的，例如在执行一个 <code>SQL</code> 不能确定要扫描的范围， <code>InnoDB</code> 表同样会锁全表， 例如 <code>update table set num = 1 where name like &quot;%aaa%&quot;</code></p>
+
+<p><strong>两种了类型最主要的差别就是 <code>InnoDB</code> 支持事务处理和外键和行级锁。</strong> 而 <code>MyISAM</code> 不支持，所以 <code>MyISAM</code> 往往就容易被认为只适合在小项目中使用。</p>
+
+<p>作为使用 <code>MySQL</code> 的用户角度出发，<code>InnoDB</code> 和 <code>MyISAM</code>都是比较喜欢的。如果数据库平台达到要求：<code>99.9%</code> 的稳定性，方便的扩展和高可用性来说的话， <code>MyISAM</code> 绝对是首选。</p>
+
+<p>原因如下：</p>
+
+<ul>
+<li>平台上承载的大部分项目是读多写少的项目，而 <code>MyISAM</code> 的读性能是比 <code>InnoDB</code> 强不少的。</li>
+<li><code>MyISAM</code> 的索引和数据是分开的，并且索引是有压缩的，内存使用率就对应提高不少。能加载更多的索引，而 <code>InnoDB</code> 是索引和数据紧密捆绑的，没有使用压缩从而造成 <code>InnoDB</code> 比 <code>MyISAM</code> 体积庞大不少。</li>
+<li>经常隔一两个月就会发生 应用开发人员 不小心 <code>update</code> 一个表时 <code>where</code> 写的范围不对，导致这个表没法正常使用了。这个时候 <code>MyISAM</code> 的优越性就体现出来的。随便从当天拷贝的压缩包取出对应表的文件，随便放到一个数据库目录下，然后 <code>dump</code> 成 <code>SQL</code> 在导回到主表，并把对应的 <code>binlog</code> 补上。 如果是 <code>InnoDB</code> ，恐怕不可能有这样的速度。</li>
+<li>从接触的应用逻辑来说， <code>select count(*)</code> 和 <code>order by</code> 是最频繁的。大概能占了整个 <code>SQL</code> 总语句的 <code>60%</code> 以上的操作。而这种操作 <code>InnoDB</code> 其实是会锁表的，很多人以为 <code>InnoDB</code> 是行级锁，那只是 <code>where</code> 对它主键是有效的，非主键的都会锁全表的。</li>
+<li>迁移数据的时候，<code>MyISAM</code> 是非常方便的，只需要 迁移对应表的 <code>frm.MYD,MYI</code> 的文件。这样在对应版本的数据库启动就行。而 <code>InnoDB</code> 就需要导出 <code>xxx.sql</code> 了，因为光迁移文件，受字典数据文件的影响，对方是无法使用的。</li>
+<li>如果和 <code>MyISAM</code> 比 <code>insert</code> 写操作的话， <code>InnoDB</code> 还达不到 <code>MyISAM</code> 的写性能。如果是针对基于索引的 <code>update</code> 操作，虽然 <code>MyISAM</code> 可能会逊色 <code>InnoDB</code> ，但是高并发的写，从库能否追的上也是一个问题，还不如通过多实例分库分表架构来解决。</li>
+<li>如果是用 <code>MyISAM</code> 的话， <code>merge</code> 引擎可以大大加快应用部门的开发速度，他们只要对这个 <code>merge</code> 表做一些 <code>select count(*)</code> 操作，非常适合大项目约几亿的 <code>rows</code> 某一类型（如日志，调查统计）的业务表。</li>
+</ul>
+
+<p>当然 <code>InnoDB</code> 也不是绝对不用，用事务的项目就用 <code>InnoDB</code>的。另外如果说 <code>MyISAM</code> 无法承受太多写操作，可以通过架构来弥补。</p>
+
+<p>最后文章来源：<a href="http://www.php20.cn/article/42">仙士可博客</a></p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2019
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

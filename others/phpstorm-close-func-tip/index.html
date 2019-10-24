@@ -10,24 +10,32 @@
     <meta name="keywords" content="php,go,程序员">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Laravels"/>
-<meta name="twitter:description" content="stringer 的个人博客"/>
+<meta name="twitter:title" content="Phpstorm 关闭函数的波浪线提醒"/>
+<meta name="twitter:description" content="PHPSrotm 上一些函数有波浪线提醒？ 在使用 一些函数的时候 ，比如 json_decode 、 json_encode 或者在使用 bc 函数库计算金钱的时候，phpstorm 上会出现下划的波浪线。
+那么如何解决呢？很简单。将鼠标移到函数上面去会有提示：
+ext-bcmath is missing in composer.json 。
+所以我们只需要在 composer.json 上加上 ext-bcmath 就好了。"/>
 
-    <meta property="og:title" content="Laravels" />
-<meta property="og:description" content="stringer 的个人博客" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://liaoshanjin.github.io/laravel/" />
-
-<meta property="og:updated_time" content="2019-10-24T17:25:23+08:00" />
+    <meta property="og:title" content="Phpstorm 关闭函数的波浪线提醒" />
+<meta property="og:description" content="PHPSrotm 上一些函数有波浪线提醒？ 在使用 一些函数的时候 ，比如 json_decode 、 json_encode 或者在使用 bc 函数库计算金钱的时候，phpstorm 上会出现下划的波浪线。
+那么如何解决呢？很简单。将鼠标移到函数上面去会有提示：
+ext-bcmath is missing in composer.json 。
+所以我们只需要在 composer.json 上加上 ext-bcmath 就好了。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/phpstorm-close-func-tip/" />
+<meta property="article:published_time" content="2019-10-24T17:27:09+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:27:09+08:00" />
 
 
     
-      <base href="https://liaoshanjin.github.io/laravel/">
+      <base href="https://liaoshanjin.github.io/others/phpstorm-close-func-tip/">
     
-    <title>Laravels · Stringer 的博客</title>
+    <title>
+  Phpstorm 关闭函数的波浪线提醒 · Stringer 的博客
+</title>
 
     
-      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/">
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/phpstorm-close-func-tip/">
     
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
@@ -53,7 +61,6 @@
     <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
 
-    <link rel="alternate" type="application/rss+xml" href="https://liaoshanjin.github.io/laravel/index.xml" title="Stringer 的博客" />
     <meta name="generator" content="Hugo 0.59.0" />
   </head>
 
@@ -98,38 +105,33 @@
 
       <div class="content">
         
-  <section class="container list">
-  <h1 class="title">Laravels</h1>
-  <ul>
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Phpstorm 关闭函数的波浪线提醒</h1>
+    </header>
+
     
-    <li>
-      <span class="date">October 24, 2019</span>
-      <a class="title" href="https://liaoshanjin.github.io/laravel/backup-sql/"> 备份管理后台数据</a>
-    </li>
-    
-    <li>
-      <span class="date">October 24, 2019</span>
-      <a class="title" href="https://liaoshanjin.github.io/laravel/larave-response-exception/">自定义接口 response 和 异常</a>
-    </li>
-    
-    <li>
-      <span class="date">October 24, 2019</span>
-      <a class="title" href="https://liaoshanjin.github.io/laravel/laravel-resource-api/">使用 Laravel 的 API资源开发接口</a>
-    </li>
-    
-    <li>
-      <span class="date">October 24, 2019</span>
-      <a class="title" href="https://liaoshanjin.github.io/laravel/laravel-unit/">PHPunit 单元测试</a>
-    </li>
-    
-  </ul>
-  
 
+<h4 id="phpsrotm-上一些函数有波浪线提醒">PHPSrotm 上一些函数有波浪线提醒？</h4>
 
+<p>在使用 一些函数的时候 ，比如 <code>json_decode</code> 、 <code>json_encode</code> 或者在使用 <code>bc</code> 函数库计算金钱的时候，<code>phpstorm</code> 上会出现下划的波浪线。</p>
 
+<p><img src="http://148.70.84.101/storage/article/2019/07/25/001.png" alt="img" /></p>
 
+<p><img src="http://148.70.84.101/storage/article/2019/07/25/002.png" alt="img" /></p>
 
+<p>那么如何解决呢？很简单。将鼠标移到函数上面去会有提示：</p>
 
+<p><img src="http://148.70.84.101/storage/article/2019/07/25//003.png" alt="img" /></p>
+
+<p><code>ext-bcmath is missing in composer.json</code> 。</p>
+
+<p>所以我们只需要在 <code>composer.json</code> 上加上 <code>ext-bcmath</code> 就好了。</p>
+
+<p><img src="http://148.70.84.101/storage/article/2019/07/25//004.png" alt="img" /></p>
+
+  </article>
 </section>
 
 

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 OAuth2.0 登录"/>
+<meta name="twitter:description" content="以 passport 为例。 项目情况 ：
+A 项目是一个社交项目。在后续的需求中，我们使用该项目中的账号密码登录。A 项目也用 passport 登录。
+以 api.a.test 为例：
+安装 passport
+composer require laravel/passport php artisan migrate php artisan passport:install ... ... 项目 B 是另一个前后端分离的项目
+已知 B 项目已得到了 A 项目给的 CLIENT_ID , CLIENT_SECRET, REDIRECT_URI
+前端域名 ： www.b.test
+后端域名 ： api.b.test
+前端：
+前端的人物是获取 code , 得到 code 之后可以直接请求 B 项目的后端。获取 code 的流程如下：
+ 默认使用 passport 的路由，直接跳转到 A 项目的认证地址
+ let url = &#34;api.a.test/oauth/authorize?client_id=CLIENT_ID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=*&#34; window.local.href = url   其中 client_id 是上面 A 项目分配的 CLIENT_ID，redirect_uri 是 我们自己在 A 项目中申请时提交的地址 REDIRECT_URI，用于获取 code 的地址。 response_type 固定为 code 。 scope 固定为 *。"/>
+
+    <meta property="og:title" content="使用 OAuth2.0 登录" />
+<meta property="og:description" content="以 passport 为例。 项目情况 ：
+A 项目是一个社交项目。在后续的需求中，我们使用该项目中的账号密码登录。A 项目也用 passport 登录。
+以 api.a.test 为例：
+安装 passport
+composer require laravel/passport php artisan migrate php artisan passport:install ... ... 项目 B 是另一个前后端分离的项目
+已知 B 项目已得到了 A 项目给的 CLIENT_ID , CLIENT_SECRET, REDIRECT_URI
+前端域名 ： www.b.test
+后端域名 ： api.b.test
+前端：
+前端的人物是获取 code , 得到 code 之后可以直接请求 B 项目的后端。获取 code 的流程如下：
+ 默认使用 passport 的路由，直接跳转到 A 项目的认证地址
+ let url = &#34;api.a.test/oauth/authorize?client_id=CLIENT_ID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=*&#34; window.local.href = url   其中 client_id 是上面 A 项目分配的 CLIENT_ID，redirect_uri 是 我们自己在 A 项目中申请时提交的地址 REDIRECT_URI，用于获取 code 的地址。 response_type 固定为 code 。 scope 固定为 *。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-passport-oauth/" />
+<meta property="article:published_time" content="2020-01-10T20:29:57+08:00" />
+<meta property="article:modified_time" content="2020-01-10T20:29:57+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/laravel/laravel-passport-oauth/">
+    
+    <title>
+  使用 OAuth2.0 登录 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-passport-oauth/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>使用 OAuth2.0 登录</h1>
+    </header>
+
+    
+
+<h4 id="以-passport-为例">以 <code>passport</code> 为例。</h4>
+
+<p>项目情况 ：</p>
+
+<p><code>A</code> 项目是一个社交项目。在后续的需求中，我们使用该项目中的账号密码登录。<code>A</code> 项目也用 <code>passport</code> 登录。</p>
+
+<p>以 <code>api.a.test</code> 为例：</p>
+
+<p>安装 <code>passport</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">composer require laravel/passport
+
+php artisan migrate
+
+php artisan passport:install
+
+...
+...</code></pre></div>
+<p>项目 <code>B</code> 是另一个前后端分离的项目</p>
+
+<p>已知 <code>B</code> 项目已得到了 <code>A</code> 项目给的 <code>CLIENT_ID</code> , <code>CLIENT_SECRET</code>, <code>REDIRECT_URI</code></p>
+
+<p>前端域名 ： <code>www.b.test</code></p>
+
+<p>后端域名 ： <code>api.b.test</code></p>
+
+<p>前端：</p>
+
+<p>前端的人物是获取 <code>code</code> , 得到 <code>code</code> 之后可以直接请求 <code>B</code> 项目的后端。获取 <code>code</code> 的流程如下：</p>
+
+<blockquote>
+<p>默认使用 passport 的路由，直接跳转到 A 项目的认证地址</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="font-weight:bold">let</span> url = <span style="font-style:italic">&#34;api.a.test/oauth/authorize?client_id=CLIENT_ID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=*&#34;</span>
+
+window.local.href = url
+</code></pre></div>
+<blockquote>
+<p>其中 client_id 是上面 A 项目分配的 CLIENT_ID，redirect_uri 是 我们自己在 A 项目中申请时提交的地址 REDIRECT_URI，用于获取 code 的地址。 response_type 固定为 code 。 scope 固定为 *。</p>
+</blockquote>
+
+<p>上面的结果会跳转到 REDIRECT_URI 加上 code 参数。前端获取到code 之后在请求后端。</p>
+
+<p>后端：</p>
+
+<p>后端只需接受 <code>code</code>， 并且使用 <code>code</code>  去 <code>A</code> 项目获取个人信息。</p>
+
+<p>我们也可以自己注册一个 <code>ServiceProvider</code> 去获取。</p>
+
+<p>举例：</p>
+
+<p><em>App\Crowdfunding\Providers\MembersProvider.php</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Crowdfunding\Providers;
+
+<span style="font-weight:bold">use</span> GuzzleHttp\ClientInterface;
+<span style="font-weight:bold">use</span> Laravel\Socialite\Contracts\Provider;
+<span style="font-weight:bold">use</span> Laravel\Socialite\Two\AbstractProvider;
+<span style="font-weight:bold">use</span> Laravel\Socialite\Two\User;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class MembersProvider
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Crowdfunding\Providers
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">MembersProvider</span> <span style="font-weight:bold">extends</span> AbstractProvider <span style="font-weight:bold">implements</span> Provider
+{
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * @var array
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">protected</span> $scopes = [<span style="font-style:italic">&#34;*&#34;</span>];
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * {@inheritdoc}.
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> getAuthUrl($state)
+    {
+        <span style="font-weight:bold">return</span> $this-&gt;buildAuthUrlFromBase(config(<span style="font-style:italic">&#34;other.members_authorize_url&#34;</span>), $state);
+    }
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * {@inheritdoc}.
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> getTokenUrl()
+    {
+        <span style="font-weight:bold">return</span> config(<span style="font-style:italic">&#34;other.members_token_url&#34;</span>);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * {@inheritdoc}.
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> getUserByToken($token)
+    {
+        $response = $this-&gt;getHttpClient()-&gt;get(config(<span style="font-style:italic">&#34;other.members_user_info_url&#34;</span>), [
+            <span style="font-style:italic">&#39;headers&#39;</span> =&gt; [
+                <span style="font-style:italic">&#39;Authorization&#39;</span> =&gt; <span style="font-style:italic">&#39;Bearer &#39;</span> . $token,
+            ],
+        ]);
+
+        <span style="font-weight:bold">return</span> json_decode($response-&gt;getBody(), <span style="font-weight:bold">true</span>);
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * {@inheritdoc}.
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> mapUserToObject(<span style="font-weight:bold">array</span> $user)
+    {
+        <span style="font-weight:bold">return</span> (<span style="font-weight:bold">new</span> User())-&gt;setRaw($user)-&gt;map([
+            <span style="font-style:italic">&#39;id&#39;</span>            =&gt; $user[<span style="font-style:italic">&#39;id&#39;</span>],
+            <span style="font-style:italic">&#39;name&#39;</span>          =&gt; $user[<span style="font-style:italic">&#39;name&#39;</span>],
+            <span style="font-style:italic">&#39;full_name&#39;</span>     =&gt; $user[<span style="font-style:italic">&#39;full_name&#39;</span>],
+            <span style="font-style:italic">&#39;email&#39;</span>         =&gt; $user[<span style="font-style:italic">&#39;email&#39;</span>],
+            <span style="font-style:italic">&#39;mobile&#39;</span>        =&gt; $user[<span style="font-style:italic">&#39;mobile&#39;</span>],
+            <span style="font-style:italic">&#39;wechat_avatar&#39;</span> =&gt; $user[<span style="font-style:italic">&#39;wechat_avatar&#39;</span>],
+        ]);
+    }
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * {@inheritdoc}.
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">protected</span> <span style="font-weight:bold">function</span> getTokenFields($code)
+    {
+        <span style="font-weight:bold">return</span> [
+            <span style="font-style:italic">&#39;grant_type&#39;</span>    =&gt; <span style="font-style:italic">&#39;authorization_code&#39;</span>,
+            <span style="font-style:italic">&#39;client_id&#39;</span>     =&gt; $this-&gt;clientId,
+            <span style="font-style:italic">&#39;client_secret&#39;</span> =&gt; $this-&gt;clientSecret,
+            <span style="font-style:italic">&#39;redirect_uri&#39;</span>  =&gt; config(<span style="font-style:italic">&#34;other.members_redirect_url&#34;</span>),
+            <span style="font-style:italic">&#39;code&#39;</span>          =&gt; $code,
+        ];
+    }
+
+
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * {@inheritdoc}.
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> getAccessTokenResponse($code)
+    {
+        $postKey = (version_compare(ClientInterface::VERSION, <span style="font-style:italic">&#39;6&#39;</span>) === 1) ? <span style="font-style:italic">&#39;form_params&#39;</span> : <span style="font-style:italic">&#39;body&#39;</span>;
+
+        $response = $this-&gt;getHttpClient()-&gt;post($this-&gt;getTokenUrl(), [
+            <span style="font-style:italic">&#39;headers&#39;</span> =&gt; [<span style="font-style:italic">&#39;Accept&#39;</span> =&gt; <span style="font-style:italic">&#39;application/json&#39;</span>],
+            $postKey  =&gt; $this-&gt;getTokenFields($code),
+        ]);
+
+        <span style="font-weight:bold">return</span> json_decode($response-&gt;getBody(), <span style="font-weight:bold">true</span>);
+    }
+
+
+}
+</code></pre></div>
+<p>值得注意的是，这边有好几个地址：</p>
+
+<ul>
+<li><code>getAuthUrl()</code>  方法中的  MEMBERS_AUTHORIZE_URL</li>
+<li><code>getTokenUrl()</code> 方法中的  MEMBERS_TOKEN_URL</li>
+
+<li><p><code>getUserByToken()</code> 方法中的 MEMBERS_USER_INFO_URL</p></li>
+
+<li><p><code>getTokenFields()</code> 方法中的 MEMBERS_REDIRECT_URL</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">MEMBERS_AUTHORIZE_URL=api.a.test/oauth/authorize
+MEMBERS_TOKEN_URL=api.a.test/oauth/token
+MEMBERS_USER_INFO_URL = A项目自定义。
+MEMBERS_REDIRECT_URL= 就是上面的 REDIRECT_URI</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">php artisan make:provider SocialiteServiceProvider</code></pre></div></li>
+</ul>
+
+<p><em>App\Providers\SocialiteServiceProvider.php</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Providers;
+
+<span style="font-weight:bold">use</span> App\Crowdfunding\Providers\MembersProvider;
+<span style="font-weight:bold">use</span> Illuminate\Support\ServiceProvider;
+<span style="font-weight:bold">use</span> Laravel\Socialite\Contracts\Factory;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class WechatServiceProvider
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Providers
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">SocialiteServiceProvider</span> <span style="font-weight:bold">extends</span> ServiceProvider
+{
+    <span style="font-style:italic">/**
+</span><span style="font-style:italic">     * Register services.
+</span><span style="font-style:italic">     *
+</span><span style="font-style:italic">     * @return void
+</span><span style="font-style:italic">     */</span>
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> register()
+    {
+        <span style="font-style:italic">//
+</span><span style="font-style:italic"></span>    }
+
+
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> boot()
+    {
+        $this-&gt;app-&gt;make(Factory::class)-&gt;extend(<span style="font-style:italic">&#39;members&#39;</span>, <span style="font-weight:bold">function</span> ($app) {
+            $config = config(<span style="font-style:italic">&#39;services.members&#39;</span>);
+
+            <span style="font-weight:bold">return</span> <span style="font-weight:bold">new</span> MembersProvider($app[<span style="font-style:italic">&#39;request&#39;</span>], $config[<span style="font-style:italic">&#39;client_id&#39;</span>], $config[<span style="font-style:italic">&#39;client_secret&#39;</span>], $config[<span style="font-style:italic">&#39;redirect&#39;</span>]);
+        });
+
+
+    }
+}
+</code></pre></div>
+<p>然后在 <em>config/app.php</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">App\Providers\SocialiteServiceProvider::class,</pre></div>
+<p>最后在控制中使用：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+    ...
+    ...
+
+	<span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> login(LoginRequest $request)
+    { 
+        $driver = \Socialite::driver(<span style="font-style:italic">&#34;members&#34;</span>);
+        $response = $driver-&gt;getAccessTokenResponse($request-&gt;input(<span style="font-style:italic">&#34;code&#34;</span>));
+        $memberUser = $driver-&gt;getUserByToken(\Arr::get($response, <span style="font-style:italic">&#34;access_token&#34;</span>));
+              	
+      	<span style="font-style:italic"># 如此便得到了 A 项目中的个人用户信息
+</span><span style="font-style:italic"></span>      }
+   	
+</code></pre></div>
+<p>流程大同小异。可以参考微信授权登录。</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

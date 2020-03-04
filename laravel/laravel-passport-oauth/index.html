@@ -20,7 +20,7 @@ composer require laravel/passport php artisan migrate php artisan passport:insta
 前端域名 ： www.b.test
 后端域名 ： api.b.test
 前端：
-前端的人物是获取 code , 得到 code 之后可以直接请求 B 项目的后端。获取 code 的流程如下：
+前端的任务是获取 code , 得到 code 之后可以直接请求 B 项目的后端。获取 code 的流程如下：
  默认使用 passport 的路由，直接跳转到 A 项目的认证地址
  let url = &#34;api.a.test/oauth/authorize?client_id=CLIENT_ID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=*&#34; window.local.href = url   其中 client_id 是上面 A 项目分配的 CLIENT_ID，redirect_uri 是 我们自己在 A 项目中申请时提交的地址 REDIRECT_URI，用于获取 code 的地址。 response_type 固定为 code 。 scope 固定为 *。"/>
 
@@ -34,7 +34,7 @@ composer require laravel/passport php artisan migrate php artisan passport:insta
 前端域名 ： www.b.test
 后端域名 ： api.b.test
 前端：
-前端的人物是获取 code , 得到 code 之后可以直接请求 B 项目的后端。获取 code 的流程如下：
+前端的任务是获取 code , 得到 code 之后可以直接请求 B 项目的后端。获取 code 的流程如下：
  默认使用 passport 的路由，直接跳转到 A 项目的认证地址
  let url = &#34;api.a.test/oauth/authorize?client_id=CLIENT_ID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=*&#34; window.local.href = url   其中 client_id 是上面 A 项目分配的 CLIENT_ID，redirect_uri 是 我们自己在 A 项目中申请时提交的地址 REDIRECT_URI，用于获取 code 的地址。 response_type 固定为 code 。 scope 固定为 *。" />
 <meta property="og:type" content="article" />
@@ -160,7 +160,7 @@ php artisan passport:install
 
 <p>前端：</p>
 
-<p>前端的人物是获取 <code>code</code> , 得到 <code>code</code> 之后可以直接请求 <code>B</code> 项目的后端。获取 <code>code</code> 的流程如下：</p>
+<p>前端的任务是获取 <code>code</code> , 得到 <code>code</code> 之后可以直接请求 <code>B</code> 项目的后端。获取 <code>code</code> 的流程如下：</p>
 
 <blockquote>
 <p>默认使用 passport 的路由，直接跳转到 A 项目的认证地址</p>

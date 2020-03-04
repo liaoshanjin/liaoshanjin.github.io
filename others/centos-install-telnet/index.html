@@ -18,7 +18,7 @@ yum list | grep telnet yum list | grep xinetd 进行安装，客户端和服务�
 yum -y install telnet-server.x86_64 yum -y install telnet.x86_64 yum -y install xinetd.x86_64 查看是否已经安装 xinetd (若已经安装则不安装)：
 rpm -qa | grep xinetd  安装 xinetd 服务：
 yum install xinetd -y  telnet 服务默认是不开启的，修改文件 /etc/xinetd.d/telnet来开启服务：
- &gt; telnet` 文件如有则修改，若不存在，可自己 `vim` 创建修改： 修改 `disable = yes` 为 `disable = no &gt; ``` 修改后的 `telnet` 文件为： default: yes  description: The telnet server servestelnet sessions; it uses  unencrypted username/password pairs for authentication."/>
+telnet 文件如有则修改，若不存在，可自己 vim 创建修改： 修改 disable = yes 为 disable = no"/>
 
     <meta property="og:title" content="centos7 安装 telnet" />
 <meta property="og:description" content="今天在学 swoole 的时候因为需要使用到 telnet 。但是我的虚拟机并没有安装 telnet 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。
@@ -28,7 +28,7 @@ yum list | grep telnet yum list | grep xinetd 进行安装，客户端和服务�
 yum -y install telnet-server.x86_64 yum -y install telnet.x86_64 yum -y install xinetd.x86_64 查看是否已经安装 xinetd (若已经安装则不安装)：
 rpm -qa | grep xinetd  安装 xinetd 服务：
 yum install xinetd -y  telnet 服务默认是不开启的，修改文件 /etc/xinetd.d/telnet来开启服务：
- &gt; telnet` 文件如有则修改，若不存在，可自己 `vim` 创建修改： 修改 `disable = yes` 为 `disable = no &gt; ``` 修改后的 `telnet` 文件为： default: yes  description: The telnet server servestelnet sessions; it uses  unencrypted username/password pairs for authentication." />
+telnet 文件如有则修改，若不存在，可自己 vim 创建修改： 修改 disable = yes 为 disable = no" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liaoshanjin.github.io/others/centos-install-telnet/" />
 <meta property="article:published_time" content="2019-10-24T17:21:09+08:00" />
@@ -123,9 +123,7 @@ yum install xinetd -y  telnet 服务默认是不开启的，修改文件 /etc/xi
       <h1>centos7 安装 telnet</h1>
     </header>
 
-    
-
-<blockquote>
+    <blockquote>
 <p>今天在学 <code>swoole</code> 的时候因为需要使用到 <code>telnet</code> 。但是我的虚拟机并没有安装 <code>telnet</code> 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。</p>
 </blockquote>
 
@@ -147,48 +145,42 @@ yum -y install xinetd.x86_64</pre></div>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum install xinetd  -y </pre></div>
 <p><strong><code>telnet</code> 服务默认是不开启的，修改文件 <code>/etc/xinetd.d/telnet</code>来开启服务：</strong></p>
 
-<blockquote>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;   telnet` 文件如有则修改，若不存在，可自己 `vim` 创建修改： 修改 `disable = yes` 为 `disable = no
-&gt;   ```
+<p><code>telnet</code> 文件如有则修改，若不存在，可自己 <code>vim</code> 创建修改： 修改 <code>disable = yes</code> 为 <code>disable = no</code></p>
 
-修改后的 `telnet` 文件为：</pre></div>
-<h1 id="default-yes">default: yes</h1>
-</blockquote>
+<p>修改后的 <code>telnet</code> 文件为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># default: yes
 
-<h1 id="description-the-telnet-server-servestelnet-sessions-it-uses">description: The telnet server servestelnet sessions; it uses </h1>
+# description: The telnet server servestelnet sessions; it uses \
 
-<h1 id="unencrypted-username-password-pairs-for-authentication">unencrypted username/password pairs for authentication.</h1>
+# unencrypted username/password pairs for authentication.
+service telnet
+{  
+      flags           = REUSE  
+      socket_type     = stream  
+      wait            = no  
+      user            = root  
+      server          =/usr/sbin/in.telnetd  
+      log_on_failure  += USERID  
+      disable         = no   
+}</pre></div>
+<p><strong>安装后检查：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">rpm -qa | grep telnet
 
-<p>service telnet
-{<br />
-      flags           = REUSE<br />
-      socket_type     = stream<br />
-      wait            = no<br />
-      user            = root<br />
-      server          =/usr/sbin/in.telnetd<br />
-      log_on_failure  += USERID<br />
-      disable         = no<br />
-}</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**安装后检查：**</pre></div>
-<p>rpm -qa | grep telnet</p>
+rpm -qa | grep xinetd</pre></div>
+<p><strong>启动 <code>telnet</code> 和依赖的 <code>xinetd</code> 服务：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">service xinetd restart  
 
-<p>rpm -qa | grep xinetd</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**启动 `telnet` 和依赖的 `xinetd` 服务：**</pre></div>
-<p>service xinetd restart</p>
+systemctl restart  xinetd.service  </pre></div>
+<p><strong>查看启动：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">ps -ef | grep xinetd  </pre></div>
+<p><strong>使用 <code>talnet</code></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">telnet 127.0.0.1 9501</pre></div>
+<p><strong>设置服务开机启动：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">chkconfig --level 35 xinetd on
 
-<p>systemctl restart  xinetd.service</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**查看启动：**</pre></div>
-<p>ps -ef | grep xinetd</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**使用 `talnet`**</pre></div>
-<p>telnet 127.0.0.1 9501</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**设置服务开机启动：**</pre></div>
-<p>chkconfig &ndash;level 35 xinetd on</p>
-
-<p>systemctl enable xinetd.service</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**查看：**</pre></div>
-<p>chkconfig &ndash;list
-```</p>
-
+systemctl enable xinetd.service</pre></div>
+<p><strong>查看：</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">chkconfig --list</pre></div>
   </article>
 </section>
 

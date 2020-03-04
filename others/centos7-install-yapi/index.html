@@ -218,29 +218,22 @@ easy_install supervisor</pre></div>
 <p><strong>增加下面的内容，<code>wq</code> 保存。</strong></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[include]
 files = conf.d/*.conf</pre></div>
-<p>如果服务已启动，修改配置文件可用 <code>supervisorctl reload</code> 命令来使其生效</p>
+<p>如果服务已启动，修改配置文件可用 <code>supervisorctl reload</code> 命令来使其生效。</p>
 
-<blockquote>
-<p>如果上面的步骤出错</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;     error: &lt;class &#39;socket.error&#39;&gt;, [Errno 2] No such file or directory: file: /usr/lib64/python2.7/socket.py line: 224
-&gt;   ```
-&gt;
-&gt;   解决方法使用下面命令启动
-&gt;
-&gt;   ```
-&gt;     /usr/bin/python2 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
-&gt;   
-&gt;     supervisorctl update
-&gt;   
-&gt;     supervisorctl reload
-&gt;   ```
+<p>如果上面的步骤出错:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> error: &lt;class &#39;socket.error&#39;&gt;, [Errno 2] No such file or directory: file: /usr/lib64/python2.7/socket.py line: 224</pre></div>
+<p>解决方法使用下面命令启动:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> /usr/bin/python2 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
-**创建(上面填写内容中的)目录 `/etc/supervisor/conf.d/`**</pre></div>
-<p>mkdir -p /etc/supervisor/conf.d/</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**修改（创建）文件 `YApiGhost.conf`**</pre></div>
-<p>vim /etc/supervisor/conf.d/YApiGhost.conf</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">**增加下面（ Ypai 的配置）的内容，wq 保存。**</pre></div>
-<p>[program: YApiGhost]
+ supervisorctl update
+
+ supervisorctl reload</code></pre></div>
+<p><strong>创建(上面填写内容中的)目录 <code>/etc/supervisor/conf.d/</code></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mkdir -p /etc/supervisor/conf.d/</pre></div>
+<p><strong>修改（创建）文件 <code>YApiGhost.conf</code></strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">vim /etc/supervisor/conf.d/YApiGhost.conf</pre></div>
+<p><strong>增加下面（ Ypai 的配置）的内容，wq 保存。</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[program: YApiGhost]
 command=node vendors/server/app.js        ; 运行程序的命令
 directory=/home/git/my-yapi;             ; 命令执行的目录
 autorestart=true                         ; 程序意外退出是否自动重启
@@ -248,68 +241,71 @@ stderr_logfile=/var/log/YApiGhost.err.log     ; 错误日志文件
 stdout_logfile=/var/log/YApiGhost.out.log     ; 输出日志文件
 environment=ASPNETCORE_ENVIRONMENT=Production     ; 进程环境变量
 user=root         ; 进程执行的用户身份
-stopsignal=INT</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 启动
+stopsignal=INT</pre></div>
+<h3 id="启动">启动</h3>
 
-#### 根据 `supervisord.conf` 启动守护进程</pre></div>
-<p>supervisord -c /etc/supervisor/supervisord.conf</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;   如果报了以下错误</pre></div>
-<p>Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">这个错误的原因就是 `supervisor.sock` 这个文件会被系统自动删除或者其它原因不存在了，删除软连接就可以了。`supervisor.sock` 生成的位置可以去 `supervisor` 的配置文件中找到。
-
-&gt;   解决方法如下</pre></div>
-<p>unlink /var/run/supervisor.sock</p>
+<h4 id="根据-supervisord-conf-启动守护进程">根据 <code>supervisord.conf</code> 启动守护进程</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">supervisord -c /etc/supervisor/supervisord.conf</pre></div>
+<blockquote>
+<p>如果报了以下错误</p>
 </blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.</pre></div>
+<p>这个错误的原因就是 <code>supervisor.sock</code> 这个文件会被系统自动删除或者其它原因不存在了，删除软连接就可以了。<code>supervisor.sock</code> 生成的位置可以去 <code>supervisor</code> 的配置文件中找到。</p>
 
-<p>unlink /tmp/supervisor.sock</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#### 查看进程</pre></div>
-<p>ps -ef | grep YApiGhost</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 设置为开机启动
+<blockquote>
+<p>解决方法如下</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">unlink /var/run/supervisor.sock
 
-#### 修改文件 `supervisord.service`</pre></div>
-<p>vim /usr/lib/systemd/system/supervisord.service</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#### 添加下面的内容，`wq` 保存。</pre></div>
-<p>[Unit]
-Description=Supervisor daemon</p>
+unlink /tmp/supervisor.sock</pre></div>
+<h4 id="查看进程">查看进程</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">ps -ef | grep YApiGhost</pre></div>
+<h3 id="设置为开机启动">设置为开机启动</h3>
 
-<p>[Service]
+<h4 id="修改文件-supervisord-service">修改文件 <code>supervisord.service</code></h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">vim /usr/lib/systemd/system/supervisord.service</pre></div>
+<h4 id="添加下面的内容-wq-保存">添加下面的内容，<code>wq</code> 保存。</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[Unit]
+Description=Supervisor daemon
+
+[Service]
 Type=forking
 ExecStart=/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 ExecStop=/usr/bin/supervisorctl shutdown
 ExecReload=/usr/bin/supervisorctl reload
 KillMode=process
 Restart=on-failure
-RestartSec=42s</p>
+RestartSec=42s
 
-<p>[Install]
-WantedBy=multi-user.target</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#### 开机启动</pre></div>
-<p>systemctl enable supervisord</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">## Nginx 添加代理</pre></div>
-<p>cd  /usr/local/nginx/conf/vhost/</p>
+[Install]
+WantedBy=multi-user.target</pre></div>
+<h4 id="开机启动">开机启动</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">systemctl enable supervisord</pre></div>
+<h2 id="nginx-添加代理">Nginx 添加代理</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd  /usr/local/nginx/conf/vhost/
 
-<p>vim yapi.conf</p>
+vim yapi.conf
 
-<p>server {
+
+server {
     listen 80;
-    server_name yapi.liosamking.com;</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">location / {
-    proxy_pass http://127.0.0.1:3030;
+    server_name yapi.liosamking.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3030;
+    }
 }</pre></div>
-<p>}</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">## 如果在重启服务器之后发现 502 Bad Gateway
+<h2 id="如果在重启服务器之后发现-502-bad-gateway">如果在重启服务器之后发现 502 Bad Gateway</h2>
 
-因为原先存放程序的路径问题，supervisor无法读取到该程序</pre></div>
-<p>cat /etc/supervisor/supervisord.conf</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">找到</pre></div>
-<p>[unix_http_server]
-file=/tmp/supervisor.sock   ; the path to the socket file</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">删除 `/tmp/supervisor.sock`</pre></div>
-<p>unlink /tmp/supervisor.sock</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">重启</pre></div>
-<p>supervisorctl restart all
-```</p>
-
+<p>因为原先存放程序的路径问题，supervisor无法读取到该程序</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cat /etc/supervisor/supervisord.conf</pre></div>
+<p>找到</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[unix_http_server]
+file=/tmp/supervisor.sock   ; the path to the socket file</pre></div>
+<p>删除 <code>/tmp/supervisor.sock</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">unlink /tmp/supervisor.sock</pre></div>
+<p>重启</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">supervisorctl restart all</pre></div>
   </article>
 </section>
 

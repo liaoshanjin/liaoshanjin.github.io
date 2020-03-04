@@ -211,6 +211,8 @@ laravel-worker:laravel-worker_00    FATAL   Exited too quickly (process log may 
 laravel-worker:laravel-worker_01    FATAL   Exited too quickly (process log may have details)</code></pre></div>
 <p>如果没有成功执行队列，手动执行 <code>artisan</code> 命令，查看具体的报错信息。进入 <code>laravel</code> 项目根目录执行：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">php artisan queue:work redis --sleep=3 --tries=3</code></pre></div>
+<p>原文：<a href="https://baijunyao.com/article/190">白俊遥的博客</a></p>
+
   </article>
 </section>
 

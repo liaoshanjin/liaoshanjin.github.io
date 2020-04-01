@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Laravel 简洁的 filter 筛选"/>
+<meta name="twitter:description" content="项目开发中，后台的查询列表时必不可少的一个内容。以前字段少的时候，我个人的做法都是在控制器里面直接写条件：
+... $query = Model::query(); if($keyword = \request()-&gt;input(&#39;keyword&#39;)) { ... } if($date = \request()-&gt;input(&#39;date&#39;)) { ... } 对付一般的查询，这种方法其实挺有效的。而且个人也习惯了这种。但是如果出现以下情况，这种方法的弊端也是显而易见的：
+ 查询一个列表的时候筛选的字段很多，比如：标签、时间、用户、等等。 需要查询的列表很多。比如用户表有筛选查询，订单表、记录表、产品表。。。等等都需要查询。而且每张表查询的字段还不同。  就简单的两个例子来说，以上的需求就能让我写大量的重复的代码。那么如何高效简单简洁的解决这种问题呢？
+在这我以 帖子 Thread 为例：
+新建文件 Filter 基类文件： app\Filters\Filters.php
+&lt;?php namespace App\Filters; use Illuminate\Http\Request; /** * Class Filters * * @package App\Filters */ abstract class Filters { /** * @var \Illuminate\Database\Eloquent\Builder */ protected $builder; /** * @var \Illuminate\Http\Request */ protected $request; /** * @var array */ protected $filters = []; /** * Filters constructor."/>
+
+    <meta property="og:title" content="Laravel 简洁的 filter 筛选" />
+<meta property="og:description" content="项目开发中，后台的查询列表时必不可少的一个内容。以前字段少的时候，我个人的做法都是在控制器里面直接写条件：
+... $query = Model::query(); if($keyword = \request()-&gt;input(&#39;keyword&#39;)) { ... } if($date = \request()-&gt;input(&#39;date&#39;)) { ... } 对付一般的查询，这种方法其实挺有效的。而且个人也习惯了这种。但是如果出现以下情况，这种方法的弊端也是显而易见的：
+ 查询一个列表的时候筛选的字段很多，比如：标签、时间、用户、等等。 需要查询的列表很多。比如用户表有筛选查询，订单表、记录表、产品表。。。等等都需要查询。而且每张表查询的字段还不同。  就简单的两个例子来说，以上的需求就能让我写大量的重复的代码。那么如何高效简单简洁的解决这种问题呢？
+在这我以 帖子 Thread 为例：
+新建文件 Filter 基类文件： app\Filters\Filters.php
+&lt;?php namespace App\Filters; use Illuminate\Http\Request; /** * Class Filters * * @package App\Filters */ abstract class Filters { /** * @var \Illuminate\Database\Eloquent\Builder */ protected $builder; /** * @var \Illuminate\Http\Request */ protected $request; /** * @var array */ protected $filters = []; /** * Filters constructor." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-scope-filter/" />
+<meta property="article:published_time" content="2020-04-01T08:30:30+08:00" />
+<meta property="article:modified_time" content="2020-04-01T08:30:30+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/laravel/laravel-scope-filter/">
+    
+    <title>
+  Laravel 简洁的 filter 筛选 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-scope-filter/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/php/">PHP</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Laravel 简洁的 filter 筛选</h1>
+    </header>
+
+    <p>项目开发中，后台的查询列表时必不可少的一个内容。以前字段少的时候，我个人的做法都是在控制器里面直接写条件：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">...
+    $query = Model::query();
+    
+    if($keyword = \request()-&gt;input(&#39;keyword&#39;)) {
+        ...
+    }
+
+	if($date = \request()-&gt;input(&#39;date&#39;)) {
+        ...
+    }</code></pre></div>
+<p>对付一般的查询，这种方法其实挺有效的。而且个人也习惯了这种。但是如果出现以下情况，这种方法的弊端也是显而易见的：</p>
+
+<ol>
+<li>查询一个列表的时候筛选的字段很多，比如：标签、时间、用户、等等。</li>
+<li>需要查询的列表很多。比如用户表有筛选查询，订单表、记录表、产品表。。。等等都需要查询。而且每张表查询的字段还不同。</li>
+</ol>
+
+<p>就简单的两个例子来说，以上的需求就能让我写大量的重复的代码。那么如何高效简单简洁的解决这种问题呢？</p>
+
+<p>在这我以 帖子 <code>Thread</code> 为例：</p>
+
+<p>新建文件 <code>Filter</code> 基类文件： <em>app\Filters\Filters.php</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Filters;
+
+
+<span style="font-weight:bold">use</span> Illuminate\Http\Request;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class Filters
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Filters
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">abstract</span> <span style="font-weight:bold">class</span> <span style="font-weight:bold">Filters</span>
+{
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * @var \Illuminate\Database\Eloquent\Builder
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">protected</span> $builder;
+	
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * @var \Illuminate\Http\Request
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">protected</span> $request;
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * @var array
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">protected</span> $filters = [];
+	
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * Filters constructor.
+</span><span style="font-style:italic">	 *
+</span><span style="font-style:italic">	 * @param $request
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> __construct(Request $request)
+	{
+		$this-&gt;request = $request;
+	}
+	
+	
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * 本地作用域筛选
+</span><span style="font-style:italic">	 *
+</span><span style="font-style:italic">	 * @param $builder
+</span><span style="font-style:italic">	 *
+</span><span style="font-style:italic">	 * @return mixed
+</span><span style="font-style:italic">	 *
+</span><span style="font-style:italic">	 * @author   : stringer &lt;10******56@qq.com&gt;
+</span><span style="font-style:italic">	 * @datetime : 2020/03/06 11:15
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> apply($builder)
+	{
+		$this-&gt;builder = $builder;
+		
+		<span style="font-weight:bold">foreach</span> ($this-&gt;getFilters() <span style="font-weight:bold">as</span> $filter =&gt; $value) {
+			<span style="font-weight:bold">if</span> (method_exists($this, $filter)) {
+				$this-&gt;$filter($value);
+			}
+		}
+		
+		<span style="font-weight:bold">return</span> $this-&gt;builder;
+	}
+	
+	
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * 获取想要筛选的字段和值
+</span><span style="font-style:italic">	 *
+</span><span style="font-style:italic">	 * @return array
+</span><span style="font-style:italic">	 *
+</span><span style="font-style:italic">	 * @author   : stringer &lt;10******56@qq.com&gt;
+</span><span style="font-style:italic">	 * @datetime : 2020/03/06 11:13
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> getFilters()
+	{
+		<span style="font-weight:bold">return</span> $this-&gt;request-&gt;only	($this-&gt;filters);
+	}
+	
+	
+}
+</code></pre></div>
+<p>在这个方法中，我们定义了一个 <code>apply</code> 的方法。该方法的作用是，在模型的本地作用域中统一调用。</p>
+
+<p>新建一个 用于 筛选 <code>Thread</code> 的类文件 ： <em>app/Filters/ThreadsFilters.php</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App\Filters;
+
+<span style="font-weight:bold">use</span> App\User;
+
+<span style="font-style:italic">/**
+</span><span style="font-style:italic"> * Class ThreadsFilters
+</span><span style="font-style:italic"> *
+</span><span style="font-style:italic"> * @package App\Filters
+</span><span style="font-style:italic"> */</span>
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">ThreadsFilters</span> <span style="font-weight:bold">extends</span> Filters
+{
+	
+	<span style="font-style:italic">/**
+</span><span style="font-style:italic">	 * @var array
+</span><span style="font-style:italic">	 */</span>
+	<span style="font-weight:bold">protected</span> $filters = [<span style="font-style:italic">&#34;by&#34;</span>];
+	
+	
+	<span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> by($username)
+	{
+		$user = User::query()-&gt;where(<span style="font-style:italic">&#34;name&#34;</span>, $username)-&gt;firstOrFail();
+		
+		<span style="font-weight:bold">return</span> $this-&gt;builder-&gt;where(<span style="font-style:italic">&#34;user_id&#34;</span>, $user-&gt;id);
+	}
+	
+	
+}
+</code></pre></div>
+<p>在这个 <code>ModelFilters</code> 文件中，我们定义基类的 <code>filters</code> 属性，已经方法。</p>
+
+<p>接下来我们在 <code>Model</code> 的本地作用域中 使用到：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+
+<span style="font-weight:bold">namespace</span> App;
+
+<span style="font-weight:bold">use</span> App\Filters\Filters;
+<span style="font-weight:bold">use</span> Illuminate\Database\Eloquent\Model;
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">Thread</span> <span style="font-weight:bold">extends</span> Model
+{
+    ...
+    ...
+       
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> scopeFilter($query,Filters $filters)
+    {
+        <span style="font-weight:bold">return</span> $filters-&gt;apply($query);
+    }
+ 
+}    
+</code></pre></div>
+<p>关于<a href="https://learnku.com/docs/laravel/7.x/eloquent/1332#local-scopes">本地作用域</a>的用法可以查看文档。</p>
+
+<p>最后就是我们在控制器中使用模型中定义好的 <code>filter</code> 方法了：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="">&lt;?php</span>
+    
+    ...
+	...
+    
+    <span style="font-weight:bold">public</span> <span style="font-weight:bold">function</span> index(ThreadsFilters $filters)
+	{
+    	$query = Thread::query()-&gt;filter($filters)-&gt;get();
+    	....
+	}
+</code></pre></div>
+<p>如此我们便解决了以上的两个问题。</p>
+
+<p>如果单个列表查询的字段多，我们只需要在 <code>ModelsFilters</code> 中定义多个字段的筛选方法。</p>
+
+<p>如果有多个需要筛选的列表，我们只需要定义多个 <code>ModelsFilters</code> 文件。</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stringer">
+    <meta name="description" content="stringer 的个人博客">
+    <meta name="keywords" content="php,go,程序员">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ab 测试"/>
+<meta name="twitter:description" content="Apache ab测试 只要安装了 Apache 就能使用 ab 测试。 Apache 的下载地址： 摸我
+下载完解压即可。再 bin 目录下有个 ab.exe 的应用。
+使用例子：
+./ab.exe -c1000 -n1000 http://127.0.0.1:8080/ 响应：
+$ ./ab.exe -c1000 -n1000 http://127.0.0.1:8080/ This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt; Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/ Licensed to The Apache Software Foundation, http://www.apache.org/ Benchmarking 127.0.0.1 (be patient) Completed 100 requests Completed 200 requests Completed 300 requests Completed 400 requests Completed 500 requests Completed 600 requests Completed 700 requests Completed 800 requests Completed 900 requests Completed 1000 requests Finished 1000 requests Server Software:	#被测试服务器软件名称 Server Hostname: 127."/>
+
+    <meta property="og:title" content="ab 测试" />
+<meta property="og:description" content="Apache ab测试 只要安装了 Apache 就能使用 ab 测试。 Apache 的下载地址： 摸我
+下载完解压即可。再 bin 目录下有个 ab.exe 的应用。
+使用例子：
+./ab.exe -c1000 -n1000 http://127.0.0.1:8080/ 响应：
+$ ./ab.exe -c1000 -n1000 http://127.0.0.1:8080/ This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt; Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/ Licensed to The Apache Software Foundation, http://www.apache.org/ Benchmarking 127.0.0.1 (be patient) Completed 100 requests Completed 200 requests Completed 300 requests Completed 400 requests Completed 500 requests Completed 600 requests Completed 700 requests Completed 800 requests Completed 900 requests Completed 1000 requests Finished 1000 requests Server Software:	#被测试服务器软件名称 Server Hostname: 127." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/apache-ab-test/" />
+<meta property="article:published_time" content="2020-04-23T19:00:00+08:00" />
+<meta property="article:modified_time" content="2020-04-23T19:00:00+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/others/apache-ab-test/">
+    
+    <title>
+  ab 测试 · Stringer 的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/apache-ab-test/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://liaoshanjin.github.io/">
+      Stringer 的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/php/">PHP</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>ab 测试</h1>
+    </header>
+
+    
+
+<h3 id="apache-ab测试">Apache ab测试</h3>
+
+<p>只要安装了 Apache 就能使用 ab 测试。 Apache 的下载地址： <a href="http://httpd.apache.org/">摸我</a></p>
+
+<p>下载完解压即可。再 <em>bin</em> 目录下有个 ab.exe 的应用。</p>
+
+<p><img src="images/ab.jpg" alt="安装路径" /></p>
+
+<p>使用例子：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./ab.exe -c1000 -n1000 http://127.0.0.1:8080/</code></pre></div>
+<p>响应：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./ab.exe -c1000 -n1000 http://127.0.0.1:8080/
+This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt;
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:								<span style="font-style:italic">#被测试服务器软件名称</span>
+Server Hostname:        127.0.0.1				<span style="font-style:italic">#服务器主机名</span>
+Server Port:            8080					<span style="font-style:italic">#服务器端口</span>
+
+Document Path:          /						<span style="font-style:italic">#请求路径</span>
+Document Length:        21 bytes				<span style="font-style:italic">#响应数据长度</span>
+
+Concurrency Level:      1000					<span style="font-style:italic">#并发数量，即 -c 自定义</span>
+Time taken <span style="font-weight:bold">for</span> tests:   0.163 seconds			<span style="font-style:italic">#整个测试耗时</span>
+Complete requests:      1000					<span style="font-style:italic">#总共完成的请求数量</span>
+Failed requests:        0						<span style="font-style:italic">#失败次数</span>
+Total transferred:      144000 bytes			<span style="font-style:italic">#测试过程中产生的网络传输总量</span>
+HTML transferred:       21000 bytes				<span style="font-style:italic">#测试过程中产生的HTML传输量</span>
+Requests per second:    6141.83 [<span style="font-style:italic">#/sec] (mean)  #表示服务器每秒处理的请求数量，括号中的 mean 表示这是一个平均值</span>
+Time per request:       162.818 [ms] (mean)   	<span style="font-style:italic">#表示处理用户请求的平均响应时间，后面括号中的mean表示这是一个平均值</span>
+Time per request:       0.163 [ms] (mean, across all concurrent requests)  <span style="font-style:italic">#服务器处理每次请求的平均时间</span>
+Transfer rate:          863.69 [Kbytes/sec] received 	<span style="font-style:italic">#带宽传输速度</span>
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       1
+Processing:    45   87  22.9     87     126
+Waiting:        1   63  32.2     63     119
+Total:         46   87  22.9     87     126
+
+Percentage of the requests served within a certain time (ms)
+  50%     87
+  66%    100
+  75%    106
+  80%    111
+  90%    118
+  95%    122
+  98%    125
+  99%    125
+ 100%    126 (longest request)</code></pre></div>
+<p>以上是一个小小的 ab 测试。</p>
+
+<h4 id="基本使用">基本使用</h4>
+
+<p>使用命令：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ab [-参数] [请求地址]</code></pre></div>
+<p>请求地址比较特殊。不能直接是域名，如：<code>http://study.test</code> 需要再加一个斜线 <code>/</code> ，即：<code>http://study.test/</code></p>
+
+<p>可选的参数有：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-n 		requests    	<span style="font-style:italic">#执行的请求数，即一共发起多少请求。</span>
+-c 		concurrency     <span style="font-style:italic">#请求并发数。</span>
+-t 		timelimit       <span style="font-style:italic">#测试所进行的最大秒数。其内部隐含值是-n 50000，它可以使对服务器的测试限制在一个固定的总时间以内。默认时，没有时间限制。</span>
+-s 		timeout    		<span style="font-style:italic">#指定每个请求的超时时间，默认是30秒。</span>
+-b 		windowsize    	<span style="font-style:italic">#指定tcp窗口的大小，单位是字节。</span>
+-B 		address    		<span style="font-style:italic">#指定在发起连接时绑定的ip地址是什么。</span>
+-p 		postfile    	<span style="font-style:italic">#指定要POST的文件，同时要设置-T参数。</span>
+-u 		putfile    		<span style="font-style:italic">#指定要PUT的文件，同时要设置-T参数。</span>
+-T 		content-type    <span style="font-style:italic">#指定使用POST或PUT上传文本时的文本类型，默认是&#39;text/plain&#39;。</span>
+-v 		verbosity    	<span style="font-style:italic">#设置详细模式等级。</span>
+-w    					<span style="font-style:italic">#将结果输出到html的表中。</span>
+-i    					<span style="font-style:italic">#使用HEAD方式代替GET发起请求。</span>
+-y 		attributes    	<span style="font-style:italic">#以表格方式输出时，设置html表格tr属性。</span> 
+-z 		attributes    	<span style="font-style:italic">#以表格方式输出时，设置html表格th或td属性。</span>
+-C 		attribute    	<span style="font-style:italic">#添加cookie,比如&#39;Apache=1234&#39;。（可重复）</span>
+-H 		attribute    	<span style="font-style:italic">#为请求追加一个额外的头部，比如&#39;Accept-Encoding: gzip&#39;。（可重复）</span>
+-A 		attribute    	<span style="font-style:italic">#对服务器提供BASIC认证信任。用户名和密码由一个:隔开，并以base64编码形式发送。无论服务器是否需要(即,是否发送了401认证需求代码)，此字符串都会被发送。</span>
+-P 		attribute    	<span style="font-style:italic">#对一个中转代理提供BASIC认证信任。用户名和密码由一个:隔开，并以base64编码形式发送。无论服务器是否需要(即, 是否发送了401认证需求代码)，此字符串都会被发送。</span>
+-X 		proxy:port   	<span style="font-style:italic">#指定代理服务器的IP和端口。</span>
+-g 		filename     	<span style="font-style:italic">#把所有测试结果写入一个&#39;gnuplot&#39;或者TSV(以Tab分隔的)文件。此文件可以方便地导入到Gnuplot,IDL,Mathematica,Igor甚至Excel中。其中的第一行为标题。</span>
+-e 		filename     	<span style="font-style:italic">#产生一个以逗号分隔的(CSV)文件，其中包含了处理每个相应百分比的请求所需要(从1%到100%)的相应百分比的(以微妙为单位)时间。由于这种格式已经“二进制化”，所以比&#39;gnuplot&#39;格式更有用。</span>
+-Z 		ciphersuite  	<span style="font-style:italic">#指定SSL/TLS密码套件</span>
+-f 		protocol     	<span style="font-style:italic">#指定SSL/TLS协议(SSL3, TLS1, TLS1.1, TLS1.2 or ALL)</span>
+
+-V   	<span style="font-style:italic">#打印版本信息。</span>
+-k   	<span style="font-style:italic">#启用HTTP KeepAlive功能，即在一个HTTP会话中执行多个请求。默认时，不启用KeepAlive功能。</span>
+-d      <span style="font-style:italic">#不显示&#34;percentage served within XX [ms] table&#34;的消息(为以前的版本提供支持)。</span>
+-q      <span style="font-style:italic">#如果处理的请求数大于150，ab每处理大约10%或者100个请求时，会在stderr输出一个进度计数。此-q标记可以抑制这些信息。</span>
+-r      <span style="font-style:italic">#当收到错误时不要退出。</span>
+-h      <span style="font-style:italic">#输出帮助信息</span></code></pre></div>
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Enter a text here.</p>
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -1,133 +1,120 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.59.0" />
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-supervisor/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-supervisor/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
 
-    <meta name="author" content="Stringer">
-    <meta name="description" content="stringer 的个人博客">
-    <meta name="keywords" content="php,go,程序员">
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="为 Laravel 项目的队列安装 Supervisor 并配置"/>
-<meta name="twitter:description" content="Supervisor 简介 Supervisor 是用 Python 开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台 daemon，并监控进程状态，异常退出时能自动重启。
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "laravel",
+      "name" : "为 Laravel 项目的队列安装 Supervisor 并配置",
+      "headline" : "为 Laravel 项目的队列安装 Supervisor 并配置",
+      "description" : "Supervisor 简介 Supervisor 是用 Python 开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台 daemon，并监控进程状态，异常退出时能自动重启。\n准备 安装 Supervisor 前得先安装 Python。\n默认情况下，主流的 Linux 系统都有安装 Python。\npip 则是 Python 的一个包管理工具，和 PHP 的 composer 类似。但是系统默认没有安装 pip 。\npip 官网： pip 。 安装 pip :\nwget https:\/\/bootstrap.pypa.io\/get-pip.py python get-pip.py  安装配置 pip install supervisor mkdir \/etc\/supervisor echo_supervisord_conf \x26gt; \/etc\/supervisor\/supervisord.conf mkdir -p \/etc\/supervisor\/conf.d  修改 supervisord.conf 配置\nvim \/etc\/supervisor\/supervisord.conf  添加一下内容\n[include] files = \/etc\/supervisor\/conf.d\/*.conf  为我们的 Laravel 项目新建一个 配置文件： laravel-worker.conf\nvim \/etc\/supervisor\/conf.",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-03-04 13:00:00 \x2b0800 CST",
+      "dateModified" : "2020-03-04 13:00:00 \x2b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/laravel\/laravel-supervisor\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>为 Laravel 项目的队列安装 Supervisor 并配置 - 苦味糖的博客</title>
+  <meta property="og:title" content="为 Laravel 项目的队列安装 Supervisor 并配置 - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Supervisor 简介 Supervisor 是用 Python 开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台 daemon，并监控进程状态，异常退出时能自动重启。
 准备 安装 Supervisor 前得先安装 Python。
 默认情况下，主流的 Linux 系统都有安装 Python。
 pip 则是 Python 的一个包管理工具，和 PHP 的 composer 类似。但是系统默认没有安装 pip 。
 pip 官网： pip 。 安装 pip :
-wget https://bootstrap.pypa.io/get-pip.py python get-pip.py 安装配置 pip install supervisor mkdir /etc/supervisor echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf mkdir -p /etc/supervisor/conf.d 修改 supervisord.conf 配置
-vim /etc/supervisor/supervisord.conf 添加一下内容
-[include] files = /etc/supervisor/conf.d/*.conf 为我们的 Laravel 项目新建一个 配置文件： laravel-worker.conf
-vim /etc/supervisor/conf.d/laravel-worker.conf 添加如下内容:
-[program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /www/wooroot/project/artisan queue:work redis --sleep=3 --tries=3 autostart=true autorestart=true user=root numprocs=1 redirect_stderr=true stdout_logfile=/www/wooroot/project/storage/logs/workers."/>
-
-    <meta property="og:title" content="为 Laravel 项目的队列安装 Supervisor 并配置" />
-<meta property="og:description" content="Supervisor 简介 Supervisor 是用 Python 开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台 daemon，并监控进程状态，异常退出时能自动重启。
+wget https://bootstrap.pypa.io/get-pip.py python get-pip.py  安装配置 pip install supervisor mkdir /etc/supervisor echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf mkdir -p /etc/supervisor/conf.d  修改 supervisord.conf 配置
+vim /etc/supervisor/supervisord.conf  添加一下内容
+[include] files = /etc/supervisor/conf.d/*.conf  为我们的 Laravel 项目新建一个 配置文件： laravel-worker.conf
+vim /etc/supervisor/conf." />
+  <meta name="description" content="Supervisor 简介 Supervisor 是用 Python 开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台 daemon，并监控进程状态，异常退出时能自动重启。
 准备 安装 Supervisor 前得先安装 Python。
 默认情况下，主流的 Linux 系统都有安装 Python。
 pip 则是 Python 的一个包管理工具，和 PHP 的 composer 类似。但是系统默认没有安装 pip 。
 pip 官网： pip 。 安装 pip :
-wget https://bootstrap.pypa.io/get-pip.py python get-pip.py 安装配置 pip install supervisor mkdir /etc/supervisor echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf mkdir -p /etc/supervisor/conf.d 修改 supervisord.conf 配置
-vim /etc/supervisor/supervisord.conf 添加一下内容
-[include] files = /etc/supervisor/conf.d/*.conf 为我们的 Laravel 项目新建一个 配置文件： laravel-worker.conf
-vim /etc/supervisor/conf.d/laravel-worker.conf 添加如下内容:
-[program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /www/wooroot/project/artisan queue:work redis --sleep=3 --tries=3 autostart=true autorestart=true user=root numprocs=1 redirect_stderr=true stdout_logfile=/www/wooroot/project/storage/logs/workers." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-supervisor/" />
-<meta property="article:published_time" content="2020-03-04T13:00:00+08:00" />
-<meta property="article:modified_time" content="2020-03-04T13:00:00+08:00" />
+wget https://bootstrap.pypa.io/get-pip.py python get-pip.py  安装配置 pip install supervisor mkdir /etc/supervisor echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf mkdir -p /etc/supervisor/conf.d  修改 supervisord.conf 配置
+vim /etc/supervisor/supervisord.conf  添加一下内容
+[include] files = /etc/supervisor/conf.d/*.conf  为我们的 Laravel 项目新建一个 配置文件： laravel-worker.conf
+vim /etc/supervisor/conf." />
+  <meta property="og:locale" content="zh_CN" />
 
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
 
-    
-      <base href="https://liaoshanjin.github.io/laravel/laravel-supervisor/">
-    
-    <title>
-  为 Laravel 项目的队列安装 Supervisor 并配置 · Stringer 的博客
-</title>
+  
+</head>
 
-    
-      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-supervisor/">
-    
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">为 Laravel 项目的队列安装 Supervisor 并配置</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-03-04 13:00:00 CST">
+                04 Mar 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
 
-    
-      
-      
-      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
-    
-
-    
-
-    
-
-    
-      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
-    
-
-    
-    
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.59.0" />
-  </head>
-
-  <body class=" ">
-    <main class="wrapper">
-      <nav class="navigation">
-  <section class="container">
-    <a class="navigation-title" href="https://liaoshanjin.github.io/">
-      Stringer 的博客
-    </a>
-    <input type="checkbox" id="menu-toggle" />
-    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
-    <ul class="navigation-list">
-      
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/php/">PHP</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
-          </li>
-        
-      
-      
-    </ul>
-  </section>
-</nav>
-
-
-      <div class="content">
-        
-  <section class="container page">
-  <article>
-    <header>
-      <h1>为 Laravel 项目的队列安装 Supervisor 并配置</h1>
-    </header>
-
-    
+        <div class="post-content markdown-body">
+          
+          
 
 <h3 id="supervisor-简介">Supervisor 简介</h3>
 
@@ -142,26 +129,42 @@ vim /etc/supervisor/conf.d/laravel-worker.conf 添加如下内容:
 <p><code>pip</code> 则是 <code>Python</code> 的一个包管理工具，和 <code>PHP</code> 的 <code>composer</code> 类似。但是系统默认没有安装 <code>pip</code> 。</p>
 
 <p><code>pip</code> 官网： <a href="https://pypi.org/project/pip/">pip</a> 。 安装 <code>pip</code> :</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://bootstrap.pypa.io/get-pip.py
 
-python get-pip.py</code></pre></div>
+<pre><code class="language-bash">wget https://bootstrap.pypa.io/get-pip.py
+
+python get-pip.py
+</code></pre>
+
 <h3 id="安装配置">安装配置</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install supervisor
+
+<pre><code class="language-bash">pip install supervisor
 
 mkdir /etc/supervisor
 
 echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf
 
-mkdir -p /etc/supervisor/conf.d</code></pre></div>
+mkdir -p /etc/supervisor/conf.d
+</code></pre>
+
 <p>修改 <code>supervisord.conf</code> 配置</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/supervisor/supervisord.conf</code></pre></div>
+
+<pre><code class="language-bash">vim /etc/supervisor/supervisord.conf
+</code></pre>
+
 <p>添加一下内容</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[include]
-files = /etc/supervisor/conf.d/*.conf</code></pre></div>
+
+<pre><code class="language-bash">[include]
+files = /etc/supervisor/conf.d/*.conf
+</code></pre>
+
 <p>为我们的 <code>Laravel</code> 项目新建一个 配置文件： <em>laravel-worker.conf</em></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/supervisor/conf.d/laravel-worker.conf</code></pre></div>
+
+<pre><code class="language-bash">vim /etc/supervisor/conf.d/laravel-worker.conf
+</code></pre>
+
 <p>添加如下内容:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[program:laravel-worker]
+
+<pre><code class="language-bash">[program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
 command=php /www/wooroot/project/artisan queue:work redis --sleep=3 --tries=3
 autostart=true
@@ -169,7 +172,9 @@ autorestart=true
 user=root
 numprocs=1
 redirect_stderr=true
-stdout_logfile=/www/wooroot/project/storage/logs/workers.log</code></pre></div>
+stdout_logfile=/www/wooroot/project/storage/logs/workers.log
+</code></pre>
+
 <blockquote>
 <p>其中： <code>/www/wooroot/project</code> 指的是我们的项目绝对路径。</p>
 
@@ -179,64 +184,150 @@ stdout_logfile=/www/wooroot/project/storage/logs/workers.log</code></pre></div>
 </blockquote>
 
 <p>为 <code>supervistor</code> 的配置文件添加执行权限:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod -R +x /etc/supervisor/conf.d</code></pre></div>
+
+<pre><code class="language-bash">chmod -R +x /etc/supervisor/conf.d
+</code></pre>
+
 <p>启动 <code>supervisord</code> :</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">supervisord -c /etc/supervisor/supervisord.conf</code></pre></div>
+
+<pre><code class="language-bash">supervisord -c /etc/supervisor/supervisord.conf
+</code></pre>
+
 <p>如果出现如下错误：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.</pre></div>
+
+<pre><code>Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.
+</code></pre>
+
 <p>执行关闭命令：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">supervisorctl shutdown </code></pre></div>
+
+<pre><code class="language-bash">supervisorctl shutdown 
+</code></pre>
+
 <p>再尝试启动：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">supervisord -c /etc/supervisor/supervisord.conf</code></pre></div>
+
+<pre><code class="language-bash">supervisord -c /etc/supervisor/supervisord.conf
+</code></pre>
+
 <p>查看是否运行:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ps -ef | grep <span style="font-style:italic">&#39;supervisord&#39;</span></code></pre></div>
+
+<pre><code class="language-bash">ps -ef | grep 'supervisord'
+</code></pre>
+
 <p>依次运行如下命令，启动 <code>laravel-worker</code> :</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo supervisorctl reread
+
+<pre><code class="language-bash">sudo supervisorctl reread
 
 sudo supervisorctl update
 
-sudo supervisorctl start laravel-worker:*</code></pre></div>
+sudo supervisorctl start laravel-worker:*
+</code></pre>
+
 <p>如果报这类型的错误：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">laravel-worker:laravel-worker_00: ERROR (spawn error)
-laravel-worker:laravel-worker_01: ERROR (spawn error)</pre></div>
+
+<pre><code>laravel-worker:laravel-worker_00: ERROR (spawn error)
+laravel-worker:laravel-worker_01: ERROR (spawn error)
+</code></pre>
+
 <blockquote>
 <p>那就是 <code>Laravel</code> 项目中的代码有问题，或者是上面指定的 <code>stdout_logfile</code> 文件没有权限。</p>
 </blockquote>
 
 <p>执行 <code>supervisorctl</code> :</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">supervisorctl</code></pre></div>
+
+<pre><code class="language-bash">supervisorctl
+</code></pre>
+
 <p>如果输出类似下面这样的，则表示成功 :</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[root@lsj ~]<span style="font-style:italic"># php --ini</span>
+
+<pre><code class="language-bash">[root@lsj ~]# php --ini
 laravel-worker:laravel-worker_00    FATAL   Exited too quickly (process log may have details)
-laravel-worker:laravel-worker_01    FATAL   Exited too quickly (process log may have details)</code></pre></div>
+laravel-worker:laravel-worker_01    FATAL   Exited too quickly (process log may have details)
+</code></pre>
+
 <p>如果没有成功执行队列，手动执行 <code>artisan</code> 命令，查看具体的报错信息。进入 <code>laravel</code> 项目根目录执行：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">php artisan queue:work redis --sleep=3 --tries=3</code></pre></div>
+
+<pre><code class="language-bash">php artisan queue:work redis --sleep=3 --tries=3
+</code></pre>
+
 <p>原文：<a href="https://baijunyao.com/article/190">白俊遥的博客</a></p>
 
-  </article>
-</section>
+        </div>
 
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
 
       </div>
+    </div>
+  </article>
 
-      <footer class="footer">
-  <section class="container">
-    
-      <p>Enter a text here.</p>
-    
-     © 2020
-    
-       · 
-       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
-    
-    
-  </section>
-</footer>
+  <script src="/js/highlight.pack.js"></script>
 
-    </main>
 
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
     
+    
+  
+</script>
 
-  </body>
+  
+
+</body>
 
 </html>

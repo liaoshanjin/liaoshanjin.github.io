@@ -1,135 +1,122 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.59.0" />
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/others/centos7-install-gitlab/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/others/centos7-install-gitlab/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
 
-    <meta name="author" content="Stringer">
-    <meta name="description" content="stringer 的个人博客">
-    <meta name="keywords" content="php,go,程序员">
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="CentOS7 上安装 Gitlab"/>
-<meta name="twitter:description" content="环境准备 操作系统选的是 CentOS7， 配置是 2 G内存， 2 处理器
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "others",
+      "name" : "CentOS7 上安装 Gitlab",
+      "headline" : "CentOS7 上安装 Gitlab",
+      "description" : "环境准备 操作系统选的是 CentOS7， 配置是 2 G内存， 2 处理器\n更换阿里 yum  这步看个人的习惯\n  下载 wget\nyum install wget -y  备份默认的 yum\nmv \/etc\/yum.repos.d \/etc\/yum.repos.d.backup  设置新的 yum 目录\nmkdir \/etc\/yum.repos.d  下载阿里 yum 配置到该目录中\nwget -O \/etc\/yum.repos.d\/CentOS-Base.repo http:\/\/mirrors.aliyun.com\/repo\/Centos-7.repo  重建缓存\nyum clean all yum makecache  升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）\nyum install -y vim   获取 GitLab 汉化包  gitlab 汉化包的地址摸我\ngitlab 中文社区版的项目， v7-v8.8 是由 Larry Li 发起的 “GitLab 中文社区版项目”，从 v8.",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-03-02 20:00:00 \x2b0800 CST",
+      "dateModified" : "2020-03-02 20:00:00 \x2b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/others\/centos7-install-gitlab\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>CentOS7 上安装 Gitlab - 苦味糖的博客</title>
+  <meta property="og:title" content="CentOS7 上安装 Gitlab - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="环境准备 操作系统选的是 CentOS7， 配置是 2 G内存， 2 处理器
 更换阿里 yum  这步看个人的习惯
   下载 wget
-yum install wget -y 备份默认的 yum
-mv /etc/yum.repos.d /etc/yum.repos.d.backup 设置新的 yum 目录
-mkdir /etc/yum.repos.d 下载阿里 yum 配置到该目录中
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 重建缓存
-yum clean all yum makecache 升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）
-yum install -y vim  获取 GitLab 汉化包  gitlab 汉化包的地址摸我
-gitlab 中文社区版的项目， v7-v8.8 是由 Larry Li 发起的 “GitLab 中文社区版项目”，从 v8.9 之后，xhang 开始继续该汉化项目。
-以下操作我以在 /soft 目录下执行"/>
-
-    <meta property="og:title" content="CentOS7 上安装 Gitlab" />
-<meta property="og:description" content="环境准备 操作系统选的是 CentOS7， 配置是 2 G内存， 2 处理器
+yum install wget -y  备份默认的 yum
+mv /etc/yum.repos.d /etc/yum.repos.d.backup  设置新的 yum 目录
+mkdir /etc/yum.repos.d  下载阿里 yum 配置到该目录中
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo  重建缓存
+yum clean all yum makecache  升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）
+yum install -y vim   获取 GitLab 汉化包  gitlab 汉化包的地址摸我
+gitlab 中文社区版的项目， v7-v8.8 是由 Larry Li 发起的 “GitLab 中文社区版项目”，从 v8." />
+  <meta name="description" content="环境准备 操作系统选的是 CentOS7， 配置是 2 G内存， 2 处理器
 更换阿里 yum  这步看个人的习惯
   下载 wget
-yum install wget -y 备份默认的 yum
-mv /etc/yum.repos.d /etc/yum.repos.d.backup 设置新的 yum 目录
-mkdir /etc/yum.repos.d 下载阿里 yum 配置到该目录中
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 重建缓存
-yum clean all yum makecache 升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）
-yum install -y vim  获取 GitLab 汉化包  gitlab 汉化包的地址摸我
-gitlab 中文社区版的项目， v7-v8.8 是由 Larry Li 发起的 “GitLab 中文社区版项目”，从 v8.9 之后，xhang 开始继续该汉化项目。
-以下操作我以在 /soft 目录下执行" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://liaoshanjin.github.io/others/centos7-install-gitlab/" />
-<meta property="article:published_time" content="2020-03-02T20:00:00+08:00" />
-<meta property="article:modified_time" content="2020-03-02T20:00:00+08:00" />
+yum install wget -y  备份默认的 yum
+mv /etc/yum.repos.d /etc/yum.repos.d.backup  设置新的 yum 目录
+mkdir /etc/yum.repos.d  下载阿里 yum 配置到该目录中
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo  重建缓存
+yum clean all yum makecache  升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）
+yum install -y vim   获取 GitLab 汉化包  gitlab 汉化包的地址摸我
+gitlab 中文社区版的项目， v7-v8.8 是由 Larry Li 发起的 “GitLab 中文社区版项目”，从 v8." />
+  <meta property="og:locale" content="zh_CN" />
 
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
 
-    
-      <base href="https://liaoshanjin.github.io/others/centos7-install-gitlab/">
-    
-    <title>
-  CentOS7 上安装 Gitlab · Stringer 的博客
-</title>
+  
+</head>
 
-    
-      <link rel="canonical" href="https://liaoshanjin.github.io/others/centos7-install-gitlab/">
-    
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">CentOS7 上安装 Gitlab</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-03-02 20:00:00 CST">
+                02 Mar 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
 
-    
-      
-      
-      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
-    
-
-    
-
-    
-
-    
-      <link rel="stylesheet" href="https://liaoshanjin.github.io/css/custom.css" />
-    
-
-    
-    
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/img/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.59.0" />
-  </head>
-
-  <body class=" ">
-    <main class="wrapper">
-      <nav class="navigation">
-  <section class="container">
-    <a class="navigation-title" href="https://liaoshanjin.github.io/">
-      Stringer 的博客
-    </a>
-    <input type="checkbox" id="menu-toggle" />
-    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
-    <ul class="navigation-list">
-      
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/laravel/">Laravel</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/go/">GO</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/mysql/">MySQL</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/php/">PHP</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/others/">其他</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://liaoshanjin.github.io/about/">关于</a>
-          </li>
-        
-      
-      
-    </ul>
-  </section>
-</nav>
-
-
-      <div class="content">
-        
-  <section class="container page">
-  <article>
-    <header>
-      <h1>CentOS7 上安装 Gitlab</h1>
-    </header>
-
-    
+        <div class="post-content markdown-body">
+          
+          
 
 <h4 id="环境准备">环境准备</h4>
 
@@ -143,24 +130,36 @@ gitlab 中文社区版的项目， v7-v8.8 是由 Larry Li 发起的 “GitLab �
 
 <ul>
 <li><p>下载 <code>wget</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum install wget -y</pre></div></li>
+
+<pre><code>yum install wget -y
+</code></pre></li>
 
 <li><p>备份默认的 <code>yum</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mv /etc/yum.repos.d /etc/yum.repos.d.backup</pre></div></li>
+
+<pre><code>mv /etc/yum.repos.d /etc/yum.repos.d.backup
+</code></pre></li>
 
 <li><p>设置新的 <code>yum</code> 目录</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mkdir /etc/yum.repos.d</pre></div></li>
+
+<pre><code>mkdir /etc/yum.repos.d
+</code></pre></li>
 
 <li><p>下载阿里 <code>yum</code> 配置到该目录中</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</pre></div></li>
+
+<pre><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+</code></pre></li>
 
 <li><p>重建缓存</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum clean all
+
+<pre><code>yum clean all
     
-yum makecache</pre></div></li>
+yum makecache
+</code></pre></li>
 
 <li><p>升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum install -y vim</pre></div></li>
+
+<pre><code>yum install -y vim
+</code></pre></li>
 </ul>
 
 <h4 id="获取-gitlab-汉化包">获取 <code>GitLab</code> 汉化包</h4>
@@ -175,29 +174,47 @@ yum makecache</pre></div></li>
 
 <ul>
 <li><p>安装 <code>git</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum install -y git</pre></div></li>
+
+<pre><code>yum install -y git
+</code></pre></li>
 
 <li><p>获取汉化版的 <code>gitlab</code> 版本库</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">git clone https://gitlab.com/xhang/gitlab.git</pre></div>
+
+<pre><code>git clone https://gitlab.com/xhang/gitlab.git
+</code></pre>
+
 <p>如果想要指定版本的库，可以如下</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">git clone https://gitlab.com/xhang/gitlab.git -b 11-11-stable-zh</pre></div></li>
+
+<pre><code>git clone https://gitlab.com/xhang/gitlab.git -b 11-11-stable-zh
+</code></pre></li>
 
 <li><p>查看汉化版补丁的版本</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cat gitlab/VERSION</pre></div></li>
+
+<pre><code>cat gitlab/VERSION
+</code></pre></li>
 </ul>
 
 <h4 id="安装社区版的-gitlab">安装社区版的 <code>GitLab</code></h4>
 
 <h5 id="安装-gitlab-的依赖">安装 <code>GitLab</code> 的依赖</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">yum install -y curl openssh-server openssh-clients postfix cronie policycoreutils-python</pre></div>
+
+<pre><code>yum install -y curl openssh-server openssh-clients postfix cronie policycoreutils-python
+</code></pre>
+
 <h5 id="启动-postfix-并设置为开机启动">启动 <code>postfix</code> ， 并设置为开机启动</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">systemctl start postfix
 
-systemctl enable postfix</pre></div>
+<pre><code>systemctl start postfix
+
+systemctl enable postfix
+</code></pre>
+
 <h5 id="设置防火墙">设置防火墙</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">firewall-cmd --add-service=http --permanent
 
-firewall-cmd --reload</pre></div>
+<pre><code>firewall-cmd --add-service=http --permanent
+
+firewall-cmd --reload
+</code></pre>
+
 <h5 id="获取-gitlab-的-rpm-包">获取 <code>GitLab</code> 的 <code>rpm</code> 包</h5>
 
 <blockquote>
@@ -205,21 +222,42 @@ firewall-cmd --reload</pre></div>
 </blockquote>
 
 <p>下载：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.0.3-ce.0.el7.x86_64.rpm</pre></div>
-<h5 id="安装-rpm-包">安装 <code>rpm</code> 包</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">rpm -i gitlab-ce-12.0.3-ce.0.el7.x86_64.rpm</pre></div>
-<p>根据提示，继续执行指令配置 <code>gitlab</code> 。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gitlab-ctl reconfigure</pre></div>
-<h5 id="修改配置文件-gitlab-rb">修改配置文件 <code>gitlab.rb</code></h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">vim /etc/gitlab/gitlab.rb</pre></div>
-<p>将 <code>external_url</code> 变量的地址修改为 <code>gitlab</code> 所在 <code>centos</code> 的 <code>ip</code> 地址。例如：我现在是在虚拟机中安装，<code>IP</code> 为 <code>192.168.235.129</code>。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">external_url &#39;http://192.168.235.129&#39;</pre></div>
-<p>因为修改了配置文件，故需要重新加载配置内容。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gitlab-ctl reconfigure
 
-gitlab-ctl restart</pre></div>
+<pre><code>wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.0.3-ce.0.el7.x86_64.rpm
+</code></pre>
+
+<h5 id="安装-rpm-包">安装 <code>rpm</code> 包</h5>
+
+<pre><code>rpm -i gitlab-ce-12.0.3-ce.0.el7.x86_64.rpm
+</code></pre>
+
+<p>根据提示，继续执行指令配置 <code>gitlab</code> 。</p>
+
+<pre><code>gitlab-ctl reconfigure
+</code></pre>
+
+<h5 id="修改配置文件-gitlab-rb">修改配置文件 <code>gitlab.rb</code></h5>
+
+<pre><code>vim /etc/gitlab/gitlab.rb
+</code></pre>
+
+<p>将 <code>external_url</code> 变量的地址修改为 <code>gitlab</code> 所在 <code>centos</code> 的 <code>ip</code> 地址。例如：我现在是在虚拟机中安装，<code>IP</code> 为 <code>192.168.235.129</code>。</p>
+
+<pre><code>external_url 'http://192.168.235.129'
+</code></pre>
+
+<p>因为修改了配置文件，故需要重新加载配置内容。</p>
+
+<pre><code>gitlab-ctl reconfigure
+
+gitlab-ctl restart
+</code></pre>
+
 <h5 id="查看-gitlab-版本">查看 <code>gitlab</code> 版本</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">head -1 /opt/gitlab/version-manifest.txt</pre></div>
+
+<pre><code>head -1 /opt/gitlab/version-manifest.txt
+</code></pre>
+
 <h5 id="访问-英文版-gitlab">访问 英文版 <code>gitlab</code></h5>
 
 <p>此时我们可以打开 刚刚设置地址 <code>192.168.235.129</code> 能够访问英文版的 <code>gitlab</code> 了。此时会让我们设置密码，密码我们设置为 <code>12345678</code> 。然后进行登录，登录的是超级管理员， 账号 <code>root</code> ， 密码就是前面的 <code>12345678</code> 。</p>
@@ -227,47 +265,121 @@ gitlab-ctl restart</pre></div>
 <h4 id="覆盖汉化包">覆盖汉化包</h4>
 
 <h5 id="停止-gitlab-服务">停止 <code>GitLab</code> 服务</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gitlab-ctl stop</pre></div>
+
+<pre><code>gitlab-ctl stop
+</code></pre>
+
 <h5 id="切回-gitlab-汉化包所在的目录">切回 <code>gitlab</code> 汉化包所在的目录</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd /soft/gitlab</pre></div>
+
+<pre><code>cd /soft/gitlab
+</code></pre>
+
 <h5 id="比较汉化标签和原标签-导出-patch-用的-diff-文件到-root-下">比较汉化标签和原标签，导出 <code>patch</code> 用的 <code>diff</code> 文件到 <code>/root</code> 下</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">git diff v12.0.3 12-0-stable-zh &gt; ../12.0.3-zh.diff</pre></div>
+
+<pre><code>git diff v12.0.3 12-0-stable-zh &gt; ../12.0.3-zh.diff
+</code></pre>
+
 <h5 id="将-diff-文件作为补丁更新到-gitlab-中">将 <code>diff</code> 文件作为补丁更新到 <code>gitlab</code> 中</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd /soft
+
+<pre><code>cd /soft
 
 yum install patch -y
 
-patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 &lt; 12.0.3-zh.diff</pre></div>
-<h5 id="不用补丁直接强制">不用补丁直接强制</h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cp -rf /soft/gitlab/* /opt/gitlab/embedded/service/gitlab-rails/</pre></div>
-<h5 id="重新配置-gitlab">重新配置 <code>gitlab</code></h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gitlab-ctl reconfigure</pre></div>
-<h5 id="启动-gitlab">启动 <code>gitlab</code></h5>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gitlab-ctl start</pre></div>
-  </article>
-</section>
+patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 &lt; 12.0.3-zh.diff
+</code></pre>
 
+<h5 id="不用补丁直接强制">不用补丁直接强制</h5>
+
+<pre><code>cp -rf /soft/gitlab/* /opt/gitlab/embedded/service/gitlab-rails/
+</code></pre>
+
+<h5 id="重新配置-gitlab">重新配置 <code>gitlab</code></h5>
+
+<pre><code>gitlab-ctl reconfigure
+</code></pre>
+
+<h5 id="启动-gitlab">启动 <code>gitlab</code></h5>
+
+<pre><code>gitlab-ctl start
+</code></pre>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
 
       </div>
+    </div>
+  </article>
 
-      <footer class="footer">
-  <section class="container">
-    
-      <p>Enter a text here.</p>
-    
-     © 2020
-    
-       · 
-       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
-    
-    
-  </section>
-</footer>
+  <script src="/js/highlight.pack.js"></script>
 
-    </main>
 
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
     
+    
+  
+</script>
 
-  </body>
+  
+
+</body>
 
 </html>

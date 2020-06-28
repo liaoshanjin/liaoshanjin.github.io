@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.59.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-common-commands/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-common-commands/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "mysql",
+      "name" : "Mysql 常用命令整理",
+      "headline" : "Mysql 常用命令整理",
+      "description" : "目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引  二. 常用SQL语句  1. date_format日期转换 2. 联表查询  三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户  四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小  五. 重复数据处理   1. 根据单个字段查找表中重复记录 2.",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-06-27 18:20:00 \x2b0800 CST",
+      "dateModified" : "2020-06-27 18:20:00 \x2b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/mysql\/mysql-common-commands\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Mysql 常用命令整理 - 苦味糖的博客</title>
+  <meta property="og:title" content="Mysql 常用命令整理 - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引  二. 常用SQL语句  1. date_format日期转换 2. 联表查询  三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户  四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小  五. 重复数据处理   1. 根据单个字段查找表中重复记录 2." />
+  <meta name="description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引  二. 常用SQL语句  1. date_format日期转换 2. 联表查询  三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户  四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小  五. 重复数据处理   1. 根据单个字段查找表中重复记录 2." />
+  <meta property="og:locale" content="zh_CN" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Mysql 常用命令整理</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-06-27 18:20:00 CST">
+                27 Jun 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          
+
+<h1 id="目录">目录</h1>
+
+<ul>
+<li>一. <a href="#1">表操作</a>
+
+<ul>
+<li><a href="#1.1">1. 创建数据库</a></li>
+<li><a href="#1.2">2. 创建表</a></li>
+<li><a href="#1.3">3. 查看表结构</a></li>
+<li><a href="#1.4">4. 修改表名</a></li>
+<li><a href="#1.5">5. 添加字段</a></li>
+<li><a href="#1.6">6. 删除字段</a></li>
+<li><a href="#1.7">7. 修改字段属性</a></li>
+<li><a href="#1.8">8. 添加索引</a></li>
+<li><a href="#1.9">9. 删除索引</a></li>
+<li><a href="#1.10">10. 查看索引</a></li>
+</ul></li>
+<li><a href="#2">二. 常用SQL语句</a>
+
+<ul>
+<li><a href="#2.1">1. date_format日期转换</a></li>
+<li><a href="#2.2">2. 联表查询</a></li>
+</ul></li>
+<li><a href="#3">三. 用户管理与授权管理 </a>
+
+<ul>
+<li><a href="#3.1">1. 创建用户</a></li>
+<li><a href="#3.2">2. 查看用户信息</a></li>
+<li><a href="#3.3">3. 授权</a></li>
+<li><a href="#3.4">4. 查看用户授权信息</a></li>
+<li><a href="#3.5">5. 设置与更改用户密码</a></li>
+<li><a href="#3.6">6. 撤销用户权限</a></li>
+<li><a href="#3.7">7. 删除用户</a></li>
+</ul></li>
+<li><a href="#4">四. 空间统计命令 </a>
+
+<ul>
+<li><a href="#4.1">1. 查看各个数据库的数据大小</a></li>
+<li><a href="#4.2">2. 查看指定数据库下每个表的数据大小</a></li>
+<li><a href="#4.3">3. 查看指定数据库的某个表的数据大小</a></li>
+</ul></li>
+<li><a href="#5">五. 重复数据处理 </a>
+
+<ul>
+<li><a href="#5.1">1. 根据单个字段查找表中重复记录</a></li>
+<li><a href="#5.2">2. 根据单个字段查找表中重复记录，并删除保留1个</a></li>
+<li><a href="#5.3">3. 根据多个字段查找表中重复记录</a></li>
+<li><a href="#5.4">4. 根据多个字段查找表中重复记录，并删除保留1个</a></li>
+</ul></li>
+<li><a href="#6">六. 重复数据处理 </a>
+
+<ul>
+<li><a href="#6.1">1. 备份</a></li>
+<li><a href="#6.2">2. 恢复</a></li>
+</ul></li>
+</ul>
+
+<p><b><h1 id="1">一. 表操作</h1></b></p>
+
+<p><b><h2 id="1.1"> 1. 创建数据库</h2></b></p>
+
+<pre><code class="language-mysql">create database 数据库名称;
+</code></pre>
+
+<p><b><h2 id="1.2"> 2. 创建表</h2></b>
+例子：</p>
+
+<pre><code class="language-mysql">CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '昵称',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态是否激活 0:禁用  1:激活',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+</code></pre>
+
+<p><b><h2 id="1.3"> 3. 查看表结构</h2></b>
+第一种命令：</p>
+
+<pre><code class="language-mysql">DESC 表名称;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-powershell">mysql&gt; desc users;
++------------+------------------+------+-----+---------+----------------+
+| Field      | Type             | Null | Key | Default | Extra          |
++------------+------------------+------+-----+---------+----------------+
+| id         | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)      | NO   |     | NULL    |                |
+| avatar     | varchar(255)     | NO   |     | NULL    |                |
+| status     | tinyint(4)       | NO   |     | 1       |                |
+| created_at | timestamp        | YES  |     | NULL    |                |
+| updated_at | timestamp        | YES  |     | NULL    |                |
++------------+------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+</code></pre>
+
+<p>第二种命令：</p>
+
+<pre><code class="language-mysql">show create table 表名称;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-powershell">mysql&gt; show create table users;
++-------+-----------------------------------------------------------------------+
+| Table | Create Table    |
++-------+-----------------------------------------------------------------------+
+| users |  CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '昵称',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态是否激活 0:禁用  1:激活',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
++-------+-----------------------------------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre>
+
+<p><b><h2 id="1.4"> 4. 修改表名</h2></b></p>
+
+<pre><code class="language-mysql">alter table 表名 rename to 新的表名;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">alter table `users` rename to `user`;
+</code></pre>
+
+<p><b><h2 id="1.5"> 5. 添加字段</h2></b></p>
+
+<pre><code class="language-mysql">alter table 表名 add column 列名 属性;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">alter table `user` add column `full_name` varchar(30) not null default '匿名用户' comment '显示昵称';
+</code></pre>
+
+<p><b><h2 id="1.6"> 6. 删除字段</h2></b></p>
+
+<pre><code class="language-mysql">alter table 表名 drop column 列名;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">alter table `user` drop column `full_name`;
+</code></pre>
+
+<p><b><h2 id="1.7"> 7. 修改字段属性</h2></b></p>
+
+<pre><code class="language-mysql">alter table 表名 modify 列名 属性; 
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">alter table `user` modify `name` varchar(100) default &quot;游客&quot; not null comment &quot;用户昵称&quot;;
+</code></pre>
+
+<p><b><h2 id="1.8"> 8. 添加索引</h2></b></p>
+
+<pre><code class="language-mysql"># 添加普通索引
+ALTER TABLE 表名 ADD INDEX index_name (列名)；
+
+# 添加唯一索引
+ALTER TABLE 表名 ADD UNIQUE (列名)；
+
+# 添加主键索引
+ALTER TABLE 表名 ADD PRIMARY KEY (列名)；
+</code></pre>
+
+<p><b><h2 id="1.9"> 9. 删除索引</h2></b></p>
+
+<pre><code class="language-mysql">DROP INDEX 索引名称 ON 表名;
+
+ALTER TABLE 表名 DROP INDEX 索引名称
+
+ALTER TABLE 表名 DROP PRIMARY KEY
+</code></pre>
+
+<p><b><h2 id="1.10"> 10. 查看索引</h2></b></p>
+
+<pre><code class="language-mysql">show index from 表名;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; show index from user\G;
+*************************** 1. row ***************************
+        Table: user
+   Non_unique: 0
+     Key_name: PRIMARY
+ Seq_in_index: 1
+  Column_name: id
+    Collation: A
+  Cardinality: 0
+     Sub_part: NULL
+       Packed: NULL
+         Null:
+   Index_type: BTREE
+      Comment:
+Index_comment:
+1 row in set (0.00 sec)
+
+ERROR:
+No query specified
+</code></pre>
+
+<p><b><h1 id="2">二. 常用SQL语句</h1></b></p>
+
+<p><b><h2 id="2.1"> 1. date_format日期转换</h2></b>
+例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; select date_format(created_at, '%Y年%m月%d日') as mydate from user;
++-------------------+
+| mydate            |
++-------------------+
+| 2020年06月27日    |
++-------------------+
+1 row in set (0.00 sec)
+</code></pre>
+
+<p><b><h2 id="2.2"> 2. 联表查询</h2></b>
+例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; desc tags;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(20)      | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(255) | NO   |     | NULL    |                |
+| created_at | timestamp    | YES  |     | NULL    |                |
+| updated_at | timestamp    | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql&gt; desc videos;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| video_name | varchar(255) | NO   |     | NULL    |                |
+| tag_id     | int(11)      | NO   |     | NULL    |                |
+| created_at | timestamp    | YES  |     | NULL    |                |
+| updated_at | timestamp    | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql&gt; select a.id as tag_id,b.video_name,a.name as tag_name from tags as a join videos as b on a.id=b.tag_id limit 1\G;
+*************************** 1. row ***************************
+    tag_id: 2
+video_name: 金瓶梅
+  tag_name: 色情
+1 row in set (0.00 sec)
+</code></pre>
+
+<p><b><h1 id="3">三. 用户管理与授权管理</h1></b></p>
+
+<blockquote>
+<p>切换到 mysql 系统db ,执行命令 : <code>use mysql;</code></p>
+</blockquote>
+
+<p><b><h2 id="3.1"> 1. 创建用户</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">CREATE USER 'username '@'host' IDENTIFIED BY 'password'; 
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>username : 用户名</li>
+<li>host： 指定该用户在哪个主机上可以登录，如果是本机，可以用localhost，如果想让该用户可以从任意远程主机登录，可以使用通配符%</li>
+<li>password：用户的登录密码</li>
+</ul>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">CREATE USER 'kwt1'@'localhost' IDENTIFIED BY '123456';
+CREATE USER 'kwt2'@'192.168.1.111' IDENTIFIED BY '123456';
+CREATE USER 'kwt3'@'%' IDENTIFIED BY '123456';
+</code></pre>
+
+<p><b><h2 id="3.2"> 2. 查看用户信息</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">SELECT user, host FROM user;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; select user,host from user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| homestead        | %         |
+| homestead        | 0.0.0.0   |
+| root             | 0.0.0.0   |
+| debian-sys-maint | localhost |
+| kwt1             | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
++------------------+-----------+
+8 rows in set (0.00 sec)
+
+</code></pre>
+
+<p><b><h2 id="3.3"> 3. 授权</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">GRANT all privileges ON databasename.tablename TO 'username'@'host'；
+# 上面的授权命令无法给用户拥有授权的权限，如果想要让用户有授权的权限，可以使用如下命令：
+GRANT all privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
+
+
+# 刷新权限。使用这个命令使得权限生效
+flush privileges;
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>privileges：用户的操作权限，如SELECT、INSERT、UPDATE等，如果要授予所有权限则使用ALL。详细的权限信息可以查看mysql官网文档：<a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html">Privileges Provided by MySQL</a></li>
+<li>databasename：数据库名，如果要授予所有数据库的权限，可以使用*表示</li>
+<li>tablename：表名，如果要授予所有表的权限，可以使用*表示</li>
+</ul>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">GRANT SELECT,INSERT on study.user TO 'kwt1'@'localhost';
+
+GRANT ALL on *.* TO 'kwt1'@'localhost';
+</code></pre>
+
+<blockquote>
+<p>如果报错： ERROR 1133 (42000): Can&rsquo;t find any matching row in the user table
+说明找不到条件为: User = &lsquo;kwt1&rsquo; AND Host = &lsquo;localhost&rsquo; 的用户</p>
+</blockquote>
+
+<p><b><h2 id="3.4"> 4. 查看用户授权信息</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">show grants for 'username'@'host';
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; show grants for 'kwt1'@'localhost';
++------------------------------------------+
+| Grants for kwt1@localhost                |
++------------------------------------------+
+| GRANT USAGE ON *.* TO 'kwt1'@'localhost' |
++------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre>
+
+<p><b><h2 id="3.5"> 5. 设置与更改用户密码</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
+
+# 如果是当前登录用户：
+SET PASSWORD = PASSWORD('newpassword');
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>username：用户名</li>
+<li>host：登录的主机</li>
+<li>newpassword：新密码</li>
+</ul>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; SET PASSWORD FOR 'kwt1'@'localhost' = PASSWORD('secret');
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+</code></pre>
+
+<p><b><h2 id="3.6"> 6. 撤销用户权限</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">REVOKE privelege ON databasename.tablename FROM 'username'@'host';
+</code></pre>
+
+<p>说明： <a href="#3.3">同第三点授权部分</a></p>
+
+<p>可以通过查询用户授权信息后再撤销</p>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; REVOKE INSERT ON study.user FROM 'kwt1'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+</code></pre>
+
+<p><b><h2 id="3.7"> 7. 删除用户</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">DROP USER 'username'@'host'
+</code></pre>
+
+<p>说明： <a href="#3.3">同第三点授权部分</a></p>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; DROP USER 'kwt1'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+</code></pre>
+
+<p><b><h1 id="4">四. 空间统计命令</h1></b></p>
+
+<blockquote>
+<p>记得切换到系统数据库 <code>information_schema</code>。 切换命令： <code>use information_schema;</code></p>
+</blockquote>
+
+<p><b><h2 id="4.1"> 1. 查看各个数据库的数据大小</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">use information_schema;
+
+select table_schema,concat(round(sum(data_length)/1024/1024,2),'MB') as data from tables group by table_schema;
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; select table_schema,concat(round(sum(data_length)/1024/1024,2),'MB') as data from tables group by table_schema;
++--------------------+---------+
+| table_schema       | data    |
++--------------------+---------+
+| api.canteen        | 0.20MB  |
+| api.moa            | 66.09MB |
+| chat               | 0.06MB  |
+| information_schema | 0.16MB  |
+| laravel-shop       | 0.33MB  |
+| mysql              | 7.71MB  |
+| performance_schema | 0.00MB  |
+| study              | 0.05MB  |
+| sys                | 0.02MB  |
++--------------------+---------+
+9 rows in set (0.03 sec)
+</code></pre>
+
+<p><b><h2 id="4.2"> 2. 查看指定数据库下每个表的数据大小</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS,concat(round((DATA_LENGTH+INDEX_LENGTH)/1024/1024,2), 'MB') as data FROM TABLES WHERE TABLE_SCHEMA='数据库名';
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS,concat(round((DATA_LENGTH+INDEX_LENGTH)/1024/1024,2), 'MB') as data FROM TABLES WHERE TABLE_SCHEMA='study';
++------------+--------------------------+------------+--------+
+| TABLE_NAME | DATA_LENGTH+INDEX_LENGTH | TABLE_ROWS | data   |
++------------+--------------------------+------------+--------+
+| tags       |                    16384 |          3 | 0.02MB |
+| user       |                    16384 |          1 | 0.02MB |
+| videos     |                    16384 |          2 | 0.02MB |
++------------+--------------------------+------------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+
+<p><b><h2 id="4.3"> 3. 查看指定数据库的某个表的数据大小</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">SELECT
+	TABLE_NAME,
+	concat( round( sum( data_length / 1024 / 1024 ), 2 ), 'MB' ) AS DATA 
+FROM
+TABLES 
+WHERE
+	table_schema = '数据库名' 
+	AND table_name = '表名';
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-mysql">mysql&gt; select TABLE_NAME,concat(round(sum(data_length/1024/1024),2),'MB') as data from tables where table_schema='study' and table_name='user';  
++------------+--------+
+| TABLE_NAME | data   |
++------------+--------+
+| user       | 0.02MB |
++------------+--------+
+1 row in set (0.00 sec)
+</code></pre>
+
+<p><b><h1 id="5">五. 重复数据处理</h1></b>
+&gt; 切换到数据库: <code>study</code></p>
+
+<p><b><h2 id="5.1"> 1. 根据单个字段查找表中重复记录</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">SELECT
+	* 
+FROM
+	people 
+WHERE
+	peopleId IN (
+	SELECT
+		peopleId 
+	FROM
+		people 
+	GROUP BY
+		peopleId 
+HAVING
+	count( peopleId ) &gt; 1)
+</code></pre>
+
+<p><b><h2 id="5.2"> 2. 根据单个字段查找表中重复记录，并删除保留1个</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">DELETE 
+FROM
+	people 
+WHERE
+	peopleId IN ( SELECT peopleId FROM people GROUP BY peopleId HAVING count( peopleId ) &gt; 1 ) 
+	AND rowid NOT IN ( SELECT min( rowid ) FROM people GROUP BY peopleId HAVING count( peopleId )&gt; 1 )
+</code></pre>
+
+<p><b><h2 id="5.3"> 3. 根据多个字段查找表中重复记录</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">SELECT
+	* 
+FROM
+	vitae a 
+WHERE
+	( a.peopleId, a.seq ) IN (
+	SELECT
+		peopleId,
+		seq 
+	FROM
+		vitae 
+	GROUP BY
+		peopleId,
+		seq 
+	HAVING
+	count(*) &gt; 1 
+	)
+</code></pre>
+
+<p><b><h2 id="5.4"> 4. 根据多个字段查找表中重复记录，并删除保留1个</h2></b>
+命令：</p>
+
+<pre><code class="language-mysql">DELETE 
+FROM
+	vitae a 
+WHERE
+	( a.peopleId, a.seq ) IN ( SELECT peopleId, seq FROM vitae GROUP BY peopleId, seq HAVING count(*) &gt; 1 ) 
+	AND rowid NOT IN (
+	SELECT
+		min( rowid ) 
+	FROM
+		vitae 
+	GROUP BY
+		peopleId,
+		seq 
+HAVING
+	count(*)&gt; 1)
+</code></pre>
+
+<p><b><h1 id="6">六. 备份与恢复</h1></b>
+&gt; 注意：以下命令需要退出 mysql 的命令行。以我的环境 <code>homestead</code> 为例， 我选择在家目录执行。 执行： <code>cd ~</code> 。</p>
+
+<p>关于备份参数：</p>
+
+<pre><code> 1 -A --all-databases：导出全部数据库
+ 2 -Y --all-tablespaces：导出全部表空间
+ 3 -y --no-tablespaces：不导出任何表空间信息
+ 4 --add-drop-database每个数据库创建之前添加drop数据库语句。
+ 5 --add-drop-table每个数据表创建之前添加drop数据表语句。(默认为打开状态，使用--skip-add-drop-table取消选项)
+ 6 --add-locks在每个表导出之前增加LOCK TABLES并且之后UNLOCK TABLE。(默认为打开状态，使用--skip-add-locks取消选项)
+ 7 --comments附加注释信息。默认为打开，可以用--skip-comments取消
+ 8 --compact导出更少的输出信息(用于调试)。去掉注释和头尾等结构。可以使用选项：--skip-add-drop-table --skip-add-locks --skip-comments --skip-disable-keys
+ 9 -c --complete-insert：使用完整的insert语句(包含列名称)。这么做能提高插入效率，但是可能会受到max_allowed_packet参数的影响而导致插入失败。
+10 -C --compress：在客户端和服务器之间启用压缩传递所有信息
+11 -B--databases：导出几个数据库。参数后面所有名字参量都被看作数据库名。
+12 --debug输出debug信息，用于调试。默认值为：d:t:o,/tmp/
+13 --debug-info输出调试信息并退出
+14 --default-character-set设置默认字符集，默认值为utf8
+15 --delayed-insert采用延时插入方式（INSERT DELAYED）导出数据
+16 -E--events：导出事件。
+17 --master-data：在备份文件中写入备份时的binlog文件，在恢复进，增量数据从这个文件之后的日志开始恢复。值为1时，binlog文件名和位置没有注释，为2时，则在备份文件中将binlog的文件名和位置进行注释
+18 --flush-logs开始导出之前刷新日志。请注意：假如一次导出多个数据库(使用选项--databases或者--all-databases)，将会逐个数据库刷新日志。除使用--lock-all-tables或者--master-data外。在这种情况下，日志将会被刷新一次，相应的所以表同时被锁定。因此，如果打算同时导出和刷新日志应该使用--lock-all-tables 或者--master-data 和--flush-logs。
+19 --flush-privileges在导出mysql数据库之后，发出一条FLUSH PRIVILEGES 语句。为了正确恢复，该选项应该用于导出mysql数据库和依赖mysql数据库数据的任何时候。
+20 --force在导出过程中忽略出现的SQL错误。
+21 -h --host：需要导出的主机信息
+22 --ignore-table不导出指定表。指定忽略多个表时，需要重复多次，每次一个表。每个表必须同时指定数据库和表名。例如：--ignore-table=database.table1 --ignore-table=database.table2 ……
+23 -x --lock-all-tables：提交请求锁定所有数据库中的所有表，以保证数据的一致性。这是一个全局读锁，并且自动关闭--single-transaction 和--lock-tables 选项。
+24 -l --lock-tables：开始导出前，锁定所有表。用READ LOCAL锁定表以允许MyISAM表并行插入。对于支持事务的表例如InnoDB和BDB，--single-transaction是一个更好的选择，因为它根本不需要锁定表。请注意当导出多个数据库时，--lock-tables分别为每个数据库锁定表。因此，该选项不能保证导出文件中的表在数据库之间的逻辑一致性。不同数据库表的导出状态可以完全不同。
+25 --single-transaction：适合innodb事务数据库的备份。保证备份的一致性，原理是设定本次会话的隔离级别为Repeatable read，来保证本次会话（也就是dump）时，不会看到其它会话已经提交了的数据。
+26 -F：刷新binlog，如果binlog打开了，-F参数会在备份时自动刷新binlog进行切换。
+27 -n --no-create-db：只导出数据，而不添加CREATE DATABASE 语句。
+28 -t --no-create-info：只导出数据，而不添加CREATE TABLE 语句。
+29 -d --no-data：不导出任何数据，只导出数据库表结构。
+30 -p --password：连接数据库密码
+31 -P --port：连接数据库端口号
+32 -u --user：指定连接的用户名。
+</code></pre>
+
+<p><b><h2 id="6.1"> 1. 备份</h2></b></p>
+
+<p><b><h3>(1) 备份命令格式</h2></b></p>
+
+<pre><code class="language-mysql">mysqldump -h 服务器 -P端口 -u用户名 -p密码 数据库名 &gt; 备份文件.sql
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study &gt; study_database.sql;
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+vagrant@homestead:~$ ls
+code  laravel-ubuntu-init  study_database.sql
+vagrant@homestead:~$
+</code></pre>
+
+<p><b><h3>(2) 数据库压缩备份</h2></b></p>
+
+<pre><code class="language-mysql">mysqldump -h主机名 -P端口 -u用户名 -p密码 数据库名 | gzip &gt; backupfile.sql.gz
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study | gzip &gt; study_backup.sql.gz
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+vagrant@homestead:~$ ls
+code  laravel-ubuntu-init  study_backup.sql.gz  study_database.sql
+</code></pre>
+
+<p><b><h3>(3) 备份数据库某个(些)表</h2></b></p>
+
+<pre><code class="language-mysql">mysqldump -h主机名 -u用户名 -p密码 数据库名 表名称1 表名称2 &gt; backupfile.sql
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -uhomestead -psecret study user tags &gt; study_some_tables.sql;
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+vagrant@homestead:~$ ls
+code  laravel-ubuntu-init  study_backup.sql.gz  study_database.sql  study_some_tables.sql
+</code></pre>
+
+<p><b><h3>(4) 同时备份多个数据库</h2></b></p>
+
+<pre><code class="language-mysql">mysqldump -h主机名 -u用户名 -p密码 -B 数据库名字1 数据库名字2 数据库名字3 &gt; 备份文件.sql
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -uhomestead  -psecret -B study api.canteen &gt; databases.sql;
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+vagrant@homestead:~$ ls
+code  databases.sql  laravel-ubuntu-init
+</code></pre>
+
+<p><b><h3>(5) 同时备份多个数据库</h2></b></p>
+
+<pre><code class="language-mysql">mysqldump -A &gt; allbackupfile.sql
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -A &gt; allbackupfile.sql
+vagrant@homestead:~$ ls
+allbackupfile.sql  code  databases.sql  laravel-ubuntu-init
+</code></pre>
+
+<p><b><h2 id="6.2"> 1. 恢复</h2></b></p>
+
+<p><b><h3>(1) 还原数据库的命令</h2></b></p>
+
+<pre><code class="language-bash">mysql -h主机名 -u用户名 -p密码 数据库名字 &lt; 备份文件.sql
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysql -uhomestead -psecret study &lt; study_database.sql;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+</code></pre>
+
+<p><b><h3>(2) 还原压缩的数据库</h2></b></p>
+
+<pre><code class="language-bash">gunzip &lt; 备份文件.sql.gz | mysql -u用户名 -p密码 数据库名字
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ gunzip &lt; study_backup.sql.gz | mysql -uhomestead -psecret study;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+</code></pre>
+
+<p><b><h3>(3) 数据库复制</h2></b>
+&gt; 首先，在 mysql 里面需要有 <code>study</code> 和 <code>new_study</code> 两个数据库。</p>
+
+<pre><code class="language-bash"># 假设已存在数据库名为 old_db，想要复制一份到新的数据库，命名为new_db，命令如下：
+mysqldump old_db -u用户名 -p密码 --add-drop-table | mysql new_db -u用户名 -p密码
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">vagrant@homestead:~$ mysqldump study -uhomestead -psecret --add-drop-table | mysql new_study -uhomestead -psecret
+mysql: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+</code></pre>
+
+<p><b><h3>(4) source导入数据库</h2></b>
+&gt; 需要进入到数据库的命令行。</p>
+
+<pre><code class="language-bash">mysql&gt; source 文件的绝对路径.sql
+</code></pre>
+
+<p>例子：</p>
+
+<pre><code class="language-bash">mysql&gt; source /home/vagrant/study_database.sql
+</code></pre>
+
+<p><b><h3>(5) 恢复binlog文件</h2></b>
+例子:</p>
+
+<pre><code class="language-bash">mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
+</code></pre>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

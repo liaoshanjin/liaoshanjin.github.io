@@ -592,8 +592,11 @@ WHERE
 1 row in set (0.00 sec)
 </code></pre>
 
-<p><b><h1 id="5">五. 重复数据处理</h1></b>
-&gt; 切换到数据库: <code>study</code></p>
+<p><b><h1 id="5">五. 重复数据处理</h1></b></p>
+
+<blockquote>
+<p>切换到数据库: <code>study</code></p>
+</blockquote>
 
 <p><b><h2 id="5.1"> 1. 根据单个字段查找表中重复记录</h2></b>
 命令：</p>
@@ -667,8 +670,11 @@ HAVING
 	count(*)&gt; 1)
 </code></pre>
 
-<p><b><h1 id="6">六. 备份与恢复</h1></b>
-&gt; 注意：以下命令需要退出 mysql 的命令行。以我的环境 <code>homestead</code> 为例， 我选择在家目录执行。 执行： <code>cd ~</code> 。</p>
+<p><b><h1 id="6">六. 备份与恢复</h1></b></p>
+
+<blockquote>
+<p>注意：以下命令需要退出 mysql 的命令行。以我的环境 <code>homestead</code> 为例， 我选择在家目录执行。 执行： <code>cd ~</code> 。</p>
+</blockquote>
 
 <p>关于备份参数：</p>
 
@@ -797,8 +803,11 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 mysql: [Warning] Using a password on the command line interface can be insecure.
 </code></pre>
 
-<p><b><h3>(3) 数据库复制</h2></b>
-&gt; 首先，在 mysql 里面需要有 <code>study</code> 和 <code>new_study</code> 两个数据库。</p>
+<p><b><h3>(3) 数据库复制</h2></b></p>
+
+<blockquote>
+<p>首先，在 mysql 里面需要有 <code>study</code> 和 <code>new_study</code> 两个数据库。</p>
+</blockquote>
 
 <pre><code class="language-bash"># 假设已存在数据库名为 old_db，想要复制一份到新的数据库，命名为new_db，命令如下：
 mysqldump old_db -u用户名 -p密码 --add-drop-table | mysql new_db -u用户名 -p密码
@@ -827,6 +836,8 @@ mysqldump: [Warning] Using a password on the command line interface can be insec
 
 <pre><code class="language-bash">mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
 </code></pre>
+
+<p>转载自：<a href="https://shuwoom.com/?p=3225">MYSQL常用命令整理</a></p>
 
         </div>
 

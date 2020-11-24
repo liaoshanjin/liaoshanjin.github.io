@@ -1,225 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.0" />
+<html lang="cn">
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
-  <meta property="og:url" content="https://liaoshanjin.github.io/others/phpstorm-support-swoole/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/others/phpstorm-support-swoole/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="application/ld+json">
-  {
-      "@context" : "http://schema.org",
-      "@type" : "BlogPosting",
-      "mainEntityOfPage": {
-           "@type": "WebPage",
-           "@id": "https:\/\/liaoshanjin.github.io"
-      },
-      "articleSection" : "others",
-      "name" : "让 phpstorm 支持 swoole",
-      "headline" : "让 phpstorm 支持 swoole",
-      "description" : "千呼万唤始出来，终于打算静下来开始学习 swoole 了。作为一个新手，道路可能很艰辛，但是千万别放弃。也请大佬们别嘲笑。\n 作为开发者，如果 IDE 不能支持自动提示的话，显然很不适应。（大佬勿喷）。现在我们就来让我们的 PHPstorm 支持 swoole d的自动提示吧。\n在没有自动提示前，我们敲代码是这样子的：\nj接下来我们首先在自己的电脑上 git clone 一个 swoole-ide-helper\ngit clone https:\/\/github.com\/eaglewu\/swoole-ide-helper.git  然后我们打开 PHPstorm 左侧的项目 ，在 External Libarries 上右键选择 Configure PHP Include Paths ,然后选择我们上面克隆下来的 swoole-ide-helper 目录。\n或者也打开 PHPstorm 的 settings，在 Languages \x26amp;\x26amp; Frameworks =\x26gt; PHP , 在 Include Path 选项的右侧点击加号，选择我们上面克隆下来的 swoole-ide-helper 目录。\n,保存后我们来看一下效果\n接下来我们就能愉快的使用 swoole 来开发了。",
-      "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
-      "copyrightYear" : "2019",
-      "datePublished": "2019-10-24 17:19:20 \x2b0800 CST",
-      "dateModified" : "2019-10-24 17:19:20 \x2b0800 CST",
-      "url" : "https:\/\/liaoshanjin.github.io\/others\/phpstorm-support-swoole\/",
-      "keywords" : [  ]
-  }
-</script>
-<title>让 phpstorm 支持 swoole - 苦味糖的博客</title>
-  <meta property="og:title" content="让 phpstorm 支持 swoole - 苦味糖的博客" />
-  <meta property="og:type" content="article" />
-  <meta property="og:description" content="千呼万唤始出来，终于打算静下来开始学习 swoole 了。作为一个新手，道路可能很艰辛，但是千万别放弃。也请大佬们别嘲笑。
+    
+    
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="让 phpstorm 支持 swoole"/>
+<meta name="twitter:description" content="千呼万唤始出来，终于打算静下来开始学习 swoole 了。作为一个新手，道路可能很艰辛，但是千万别放弃。也请大佬们别嘲笑。
  作为开发者，如果 IDE 不能支持自动提示的话，显然很不适应。（大佬勿喷）。现在我们就来让我们的 PHPstorm 支持 swoole d的自动提示吧。
 在没有自动提示前，我们敲代码是这样子的：
 j接下来我们首先在自己的电脑上 git clone 一个 swoole-ide-helper
-git clone https://github.com/eaglewu/swoole-ide-helper.git  然后我们打开 PHPstorm 左侧的项目 ，在 External Libarries 上右键选择 Configure PHP Include Paths ,然后选择我们上面克隆下来的 swoole-ide-helper 目录。
+git clone https://github.com/eaglewu/swoole-ide-helper.git 然后我们打开 PHPstorm 左侧的项目 ，在 External Libarries 上右键选择 Configure PHP Include Paths ,然后选择我们上面克隆下来的 swoole-ide-helper 目录。
 或者也打开 PHPstorm 的 settings，在 Languages &amp;&amp; Frameworks =&gt; PHP , 在 Include Path 选项的右侧点击加号，选择我们上面克隆下来的 swoole-ide-helper 目录。
 ,保存后我们来看一下效果
-接下来我们就能愉快的使用 swoole 来开发了。" />
-  <meta name="description" content="千呼万唤始出来，终于打算静下来开始学习 swoole 了。作为一个新手，道路可能很艰辛，但是千万别放弃。也请大佬们别嘲笑。
+接下来我们就能愉快的使用 swoole 来开发了。"/>
+
+    <meta property="og:title" content="让 phpstorm 支持 swoole" />
+<meta property="og:description" content="千呼万唤始出来，终于打算静下来开始学习 swoole 了。作为一个新手，道路可能很艰辛，但是千万别放弃。也请大佬们别嘲笑。
  作为开发者，如果 IDE 不能支持自动提示的话，显然很不适应。（大佬勿喷）。现在我们就来让我们的 PHPstorm 支持 swoole d的自动提示吧。
 在没有自动提示前，我们敲代码是这样子的：
 j接下来我们首先在自己的电脑上 git clone 一个 swoole-ide-helper
-git clone https://github.com/eaglewu/swoole-ide-helper.git  然后我们打开 PHPstorm 左侧的项目 ，在 External Libarries 上右键选择 Configure PHP Include Paths ,然后选择我们上面克隆下来的 swoole-ide-helper 目录。
+git clone https://github.com/eaglewu/swoole-ide-helper.git 然后我们打开 PHPstorm 左侧的项目 ，在 External Libarries 上右键选择 Configure PHP Include Paths ,然后选择我们上面克隆下来的 swoole-ide-helper 目录。
 或者也打开 PHPstorm 的 settings，在 Languages &amp;&amp; Frameworks =&gt; PHP , 在 Include Path 选项的右侧点击加号，选择我们上面克隆下来的 swoole-ide-helper 目录。
 ,保存后我们来看一下效果
 接下来我们就能愉快的使用 swoole 来开发了。" />
-  <meta property="og:locale" content="zh_CN" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/phpstorm-support-swoole/" />
+<meta property="article:published_time" content="2019-10-24T17:19:20+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:19:20+08:00" />
 
-  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
-  <link rel="stylesheet" href="/css/github-markdown.css" />
-  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
-  <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
-  
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
-  
-  
 
-  
-</head>
+    
+      <base href="https://liaoshanjin.github.io/others/phpstorm-support-swoole/">
+    
+    <title>
+  让 phpstorm 支持 swoole · 苦味糖的博客
+</title>
 
-<body>
-  <article class="post " id="article">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="site-header">
-          
-<header>
-  <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
-  </div>
-</header>
-<div class="row end-xs">
-  
-  
-</div>
-<div class="header-line"></div>
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/phpstorm-support-swoole/">
+    
 
-        </div>
-        <header class="post-header">
-          <h1 class="post-title">让 phpstorm 支持 swoole</h1>
-          
-          <div class="row post-desc">
-            <div class="col-xs-6">
-              
-              <time class="post-date" datetime="2019-10-24 17:19:20 CST">
-                24 Oct 2019
-              </time>
-              
-            </div>
-            <div class="col-xs-6">
-              
-              <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
-              </div>
-              
-            </div>
-          </div>
-          
-        </header>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
 
-        <div class="post-content markdown-body">
-          
-          <blockquote>
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      苦味糖的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>让 phpstorm 支持 swoole</h1>
+    </header>
+
+    <blockquote>
 <p>千呼万唤始出来，终于打算静下来开始学习 <code>swoole</code> 了。作为一个新手，道路可能很艰辛，但是千万别放弃。也请大佬们别嘲笑。</p>
 </blockquote>
-
 <p>作为开发者，如果 <code>IDE</code> 不能支持自动提示的话，显然很不适应。（大佬勿喷）。现在我们就来让我们的 <code>PHPstorm</code> 支持 <code>swoole</code> d的自动提示吧。</p>
-
 <p>在没有自动提示前，我们敲代码是这样子的：</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole001.png" alt="img" /></p>
-
+<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole001.png" alt="img"></p>
 <p>j接下来我们首先在自己的电脑上 <code>git clone</code> 一个 <code>swoole-ide-helper</code></p>
-
 <pre><code>git clone https://github.com/eaglewu/swoole-ide-helper.git
-</code></pre>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole002.png" alt="img" /></p>
-
+</code></pre><p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole002.png" alt="img"></p>
 <p>然后我们打开 <code>PHPstorm</code> 左侧的项目 ，在 <code>External Libarries</code> 上右键选择 <code>Configure PHP Include Paths</code> ,然后选择我们上面克隆下来的 <code>swoole-ide-helper</code> 目录。</p>
-
 <p>或者也打开 <code>PHPstorm</code> 的 <code>settings</code>，在 <code>Languages &amp;&amp; Frameworks =&gt; PHP</code> , 在 <code>Include Path</code> 选项的右侧点击加号，选择我们上面克隆下来的 <code>swoole-ide-helper</code> 目录。</p>
-
-<p>,<img src="http://148.70.84.101/storage/article/2019/07/08//swoole003.png" alt="img" /></p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole004.png" alt="img" /></p>
-
+<p>,<img src="http://148.70.84.101/storage/article/2019/07/08//swoole003.png" alt="img"></p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole004.png" alt="img"></p>
 <p>保存后我们来看一下效果</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole005.png" alt="img" /></p>
-
+<p><img src="http://148.70.84.101/storage/article/2019/07/08//swoole005.png" alt="img"></p>
 <p>接下来我们就能愉快的使用 <code>swoole</code> 来开发了。</p>
 
-        </div>
+  </article>
+</section>
 
-        <div class="row middle-xs">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-
-        
-        
-
-        
-        
-        <div style="height: 50px;"></div>
-        
-        <div class="post-comments">
-          <div id="disqus_thread"></div>
-<script>
-  window.addEventListener("load", () => {
-    (function() {
-      
-      var d = document,
-        s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  });
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-        </div>
-        
-        
-
-        <div class="site-footer">
-  
-  <div class="site-footer-item">
-    <a href="/about/" target="_blank">关于我</a>
-  </div>
-  
-  <div class="site-footer-item">
-    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
-  </div>
-  
-  
-</div>
 
       </div>
-    </div>
-  </article>
 
-  <script src="/js/highlight.pack.js"></script>
-
-
-<script>
-  hljs.initHighlightingOnLoad();
-  
-  
-  
+      <footer class="footer">
+  <section class="container">
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
     
     
-  
-</script>
+  </section>
+</footer>
 
-  
+    </main>
 
-</body>
+    
+
+  </body>
 
 </html>

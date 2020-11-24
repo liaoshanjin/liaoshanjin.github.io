@@ -1,282 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.0" />
+<html lang="cn">
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
-  <meta property="og:url" content="https://liaoshanjin.github.io/others/win-swoole-config/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/others/win-swoole-config/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="application/ld+json">
-  {
-      "@context" : "http://schema.org",
-      "@type" : "BlogPosting",
-      "mainEntityOfPage": {
-           "@type": "WebPage",
-           "@id": "https:\/\/liaoshanjin.github.io"
-      },
-      "articleSection" : "others",
-      "name" : "在 Win 上配置 swoole 的开发环境",
-      "headline" : "在 Win 上配置 swoole 的开发环境",
-      "description" : "软件说明和准备 首先 window 电脑肯定是不支持 swoole 的，所以只能用虚拟机。虚拟机我装的是 VMware 。\n然后是 IDE 是 PHPstorm 。主要也是在 PHPstorm 上配置环境。\n首先我在我的虚拟机上安装 LNMP 的集成环境。并且配置了一个 swoole.test 的站点。然后以下操作都是在连接上虚拟机的服务器的操作。\nPHPstorm 配置 SFTP  用 phpstorm 打开一个空的项目\n 点击工具栏的 Tools =\x26gt; Deployment =\x26gt; Browser Remote Host :\n 点击 ... 进行配置 SFTP 。\n 输入虚拟机服务器的 IP ， SSH 端口， 账号密码等。\n 点击 mapping ，配置 Deployment Path ,这个目录将对应我们 windows 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。\n 勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。\n 此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 ssh 的终端。这样我们就能在 phpstorm 的终端使用操作服务器。点击 Tools =\x26gt; Start SSH session , 选择我们刚刚已经配置好的 SFTP 配置名。就可以开启一个 SSH 终端了：",
-      "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
-      "copyrightYear" : "2019",
-      "datePublished": "2019-10-24 17:14:17 \x2b0800 CST",
-      "dateModified" : "2019-10-24 17:14:17 \x2b0800 CST",
-      "url" : "https:\/\/liaoshanjin.github.io\/others\/win-swoole-config\/",
-      "keywords" : [  ]
-  }
-</script>
-<title>在 Win 上配置 swoole 的开发环境 - 苦味糖的博客</title>
-  <meta property="og:title" content="在 Win 上配置 swoole 的开发环境 - 苦味糖的博客" />
-  <meta property="og:type" content="article" />
-  <meta property="og:description" content="软件说明和准备 首先 window 电脑肯定是不支持 swoole 的，所以只能用虚拟机。虚拟机我装的是 VMware 。
+    
+    
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Win 上配置 swoole 的开发环境"/>
+<meta name="twitter:description" content="软件说明和准备 首先 window 电脑肯定是不支持 swoole 的，所以只能用虚拟机。虚拟机我装的是 VMware 。
 然后是 IDE 是 PHPstorm 。主要也是在 PHPstorm 上配置环境。
 首先我在我的虚拟机上安装 LNMP 的集成环境。并且配置了一个 swoole.test 的站点。然后以下操作都是在连接上虚拟机的服务器的操作。
-PHPstorm 配置 SFTP  用 phpstorm 打开一个空的项目
- 点击工具栏的 Tools =&gt; Deployment =&gt; Browser Remote Host :
- 点击 ... 进行配置 SFTP 。
- 输入虚拟机服务器的 IP ， SSH 端口， 账号密码等。
- 点击 mapping ，配置 Deployment Path ,这个目录将对应我们 windows 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。
- 勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。
- 此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 ssh 的终端。这样我们就能在 phpstorm 的终端使用操作服务器。点击 Tools =&gt; Start SSH session , 选择我们刚刚已经配置好的 SFTP 配置名。就可以开启一个 SSH 终端了：" />
-  <meta name="description" content="软件说明和准备 首先 window 电脑肯定是不支持 swoole 的，所以只能用虚拟机。虚拟机我装的是 VMware 。
+PHPstorm 配置 SFTP   用 phpstorm 打开一个空的项目
+  点击工具栏的 Tools =&gt; Deployment =&gt; Browser Remote Host :
+  点击 ... 进行配置 SFTP 。
+  输入虚拟机服务器的 IP ， SSH 端口， 账号密码等。
+  点击 mapping ，配置 Deployment Path ,这个目录将对应我们 windows 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。
+  勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。
+  此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 ssh 的终端。这样我们就能在 phpstorm 的终端使用操作服务器。点击 Tools =&gt; Start SSH session , 选择我们刚刚已经配置好的 SFTP 配置名。就可以开启一个 SSH 终端了："/>
+
+    <meta property="og:title" content="在 Win 上配置 swoole 的开发环境" />
+<meta property="og:description" content="软件说明和准备 首先 window 电脑肯定是不支持 swoole 的，所以只能用虚拟机。虚拟机我装的是 VMware 。
 然后是 IDE 是 PHPstorm 。主要也是在 PHPstorm 上配置环境。
 首先我在我的虚拟机上安装 LNMP 的集成环境。并且配置了一个 swoole.test 的站点。然后以下操作都是在连接上虚拟机的服务器的操作。
-PHPstorm 配置 SFTP  用 phpstorm 打开一个空的项目
- 点击工具栏的 Tools =&gt; Deployment =&gt; Browser Remote Host :
- 点击 ... 进行配置 SFTP 。
- 输入虚拟机服务器的 IP ， SSH 端口， 账号密码等。
- 点击 mapping ，配置 Deployment Path ,这个目录将对应我们 windows 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。
- 勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。
- 此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 ssh 的终端。这样我们就能在 phpstorm 的终端使用操作服务器。点击 Tools =&gt; Start SSH session , 选择我们刚刚已经配置好的 SFTP 配置名。就可以开启一个 SSH 终端了：" />
-  <meta property="og:locale" content="zh_CN" />
+PHPstorm 配置 SFTP   用 phpstorm 打开一个空的项目
+  点击工具栏的 Tools =&gt; Deployment =&gt; Browser Remote Host :
+  点击 ... 进行配置 SFTP 。
+  输入虚拟机服务器的 IP ， SSH 端口， 账号密码等。
+  点击 mapping ，配置 Deployment Path ,这个目录将对应我们 windows 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。
+  勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。
+  此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 ssh 的终端。这样我们就能在 phpstorm 的终端使用操作服务器。点击 Tools =&gt; Start SSH session , 选择我们刚刚已经配置好的 SFTP 配置名。就可以开启一个 SSH 终端了：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/win-swoole-config/" />
+<meta property="article:published_time" content="2019-10-24T17:14:17+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:14:17+08:00" />
 
-  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
-  <link rel="stylesheet" href="/css/github-markdown.css" />
-  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
-  <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
-  
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
-  
-  
 
-  
-</head>
+    
+      <base href="https://liaoshanjin.github.io/others/win-swoole-config/">
+    
+    <title>
+  在 Win 上配置 swoole 的开发环境 · 苦味糖的博客
+</title>
 
-<body>
-  <article class="post " id="article">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="site-header">
-          
-<header>
-  <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
-  </div>
-</header>
-<div class="row end-xs">
-  
-  
-</div>
-<div class="header-line"></div>
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/win-swoole-config/">
+    
 
-        </div>
-        <header class="post-header">
-          <h1 class="post-title">在 Win 上配置 swoole 的开发环境</h1>
-          
-          <div class="row post-desc">
-            <div class="col-xs-6">
-              
-              <time class="post-date" datetime="2019-10-24 17:14:17 CST">
-                24 Oct 2019
-              </time>
-              
-            </div>
-            <div class="col-xs-6">
-              
-              <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
-              </div>
-              
-            </div>
-          </div>
-          
-        </header>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
 
-        <div class="post-content markdown-body">
-          
-          
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
 
-<h4 id="软件说明和准备">软件说明和准备</h4>
+    
 
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      苦味糖的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>在 Win 上配置 swoole 的开发环境</h1>
+    </header>
+
+    <h4 id="软件说明和准备">软件说明和准备</h4>
 <p>首先 <code>window</code> 电脑肯定是不支持 <code>swoole</code> 的，所以只能用虚拟机。虚拟机我装的是 <code>VMware</code> 。</p>
-
 <p>然后是 <code>IDE</code> 是 <code>PHPstorm</code> 。主要也是在 <code>PHPstorm</code> 上配置环境。</p>
-
 <p>首先我在我的虚拟机上安装 <code>LNMP</code> 的集成环境。并且配置了一个 <code>swoole.test</code> 的站点。然后以下操作都是在连接上虚拟机的服务器的操作。</p>
-
 <h4 id="phpstorm-配置-sftp">PHPstorm 配置 SFTP</h4>
-
 <ul>
-<li><p>用 <code>phpstorm</code> 打开一个空的项目</p></li>
-
-<li><p>点击工具栏的 <code>Tools =&gt; Deployment =&gt; Browser Remote Host</code> :</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//001.jpeg" alt="img" /></p></li>
-
-<li><p>点击 <code>...</code> 进行配置 <code>SFTP</code> 。</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//002.png" alt="img" /></p></li>
-
-<li><p>输入虚拟机服务器的 <code>IP</code> ， <code>SSH</code> 端口， 账号密码等。</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//003.png" alt="img" /></p></li>
-
-<li><p>点击 <code>mapping</code> ，配置 <code>Deployment Path</code> ,这个目录将对应我们 <code>windows</code> 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/004.png" alt="img" /></p></li>
-
-<li><p>勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//005.png" alt="img" /></p></li>
-
-<li><p>此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 <code>ssh</code> 的终端。这样我们就能在 <code>phpstorm</code> 的终端使用操作服务器。点击 <code>Tools =&gt; Start SSH session</code> , 选择我们刚刚已经配置好的 <code>SFTP</code> 配置名。就可以开启一个 <code>SSH</code> 终端了：</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/006.png" alt="img" /></p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/007.png" alt="img" /></p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/008.png" alt="img" /></p></li>
-
-<li><p>接下来就可以在 <code>phpstorm</code> 中使用 <code>ssh</code> 终端操作服务器了。</p></li>
+<li>
+<p>用 <code>phpstorm</code> 打开一个空的项目</p>
+</li>
+<li>
+<p>点击工具栏的 <code>Tools =&gt; Deployment =&gt; Browser Remote Host</code> :</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//001.jpeg" alt="img"></p>
+</li>
+<li>
+<p>点击 <code>...</code> 进行配置 <code>SFTP</code> 。</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//002.png" alt="img"></p>
+</li>
+<li>
+<p>输入虚拟机服务器的 <code>IP</code> ， <code>SSH</code> 端口， 账号密码等。</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//003.png" alt="img"></p>
+</li>
+<li>
+<p>点击 <code>mapping</code> ，配置 <code>Deployment Path</code> ,这个目录将对应我们 <code>windows</code> 上现在的这个项目目录。相当于 项目中的文件，通过上传可直接上传到这个配置的目录。</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/004.png" alt="img"></p>
+</li>
+<li>
+<p>勾选自动上传。每次修改完代码会自动上传到我们的虚拟机服务器。</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//005.png" alt="img"></p>
+</li>
+<li>
+<p>此时我们已经可以和服务器的文件目录同步文件了。在本地修改过的文件可以自动上传到服务器中。服务器上修改的我们也可以手动下载下来。然后我们开始配置 <code>ssh</code> 的终端。这样我们就能在 <code>phpstorm</code> 的终端使用操作服务器。点击 <code>Tools =&gt; Start SSH session</code> , 选择我们刚刚已经配置好的 <code>SFTP</code> 配置名。就可以开启一个 <code>SSH</code> 终端了：</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/006.png" alt="img"></p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/007.png" alt="img"></p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/008.png" alt="img"></p>
+</li>
+<li>
+<p>接下来就可以在 <code>phpstorm</code> 中使用 <code>ssh</code> 终端操作服务器了。</p>
+</li>
 </ul>
-
 <h4 id="phpstorm-配置-php-环境">PHPstorm 配置 PHP 环境</h4>
-
 <p>如果想在 <code>phpstorm</code> 中运行服务器的 <code>php</code> 环境，该怎么做呢？</p>
-
 <ul>
-<li><p>首先确保虚拟机中有 <code>PHP</code> 环境。我这边已经装好了 <code>LNMP</code> 。没有问题。</p></li>
-
-<li><p><code>phpstorm</code> 中使用快捷键 <code>ctrl + shift + s</code> 打开设置</p></li>
-
-<li><p>点击 <code>Languages &amp; Frameworks =&gt; PHP</code>，选择 <code>php language level</code> , 选择 <code>CLI Interpreter</code></p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//009.jpeg" alt="img" /></p></li>
-
-<li><p>点击加号 <code>+ =&gt; From docker,Vagrant,VM</code>。 我们使用的是 <code>VM</code> 的方式。</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/010.jpeg" alt="img" /></p></li>
-
-<li><p>在之前我们已经配置好了一个 <code>SFTP</code> ，可以直接勾选。如果想替换，也可以使用其他的。</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/011.png" alt="img" /></p></li>
-
-<li><p>一路 <code>OK</code> 保存。</p></li>
-
-<li><p>新建一个 <code>index.php</code> ,写入一些内容用于测试。如果上面没有配置 <code>auto upload</code> 可以右键选择 <code>Deployment =&gt; Upload to x</code> 进行上传，如果有配置则略过这步。</p></li>
-
-<li><p>快捷键 <code>ctrl + shift + F10</code> ,即可运行成功</p>
-
-<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/012.png" alt="img" /></p></li>
+<li>
+<p>首先确保虚拟机中有 <code>PHP</code> 环境。我这边已经装好了 <code>LNMP</code> 。没有问题。</p>
+</li>
+<li>
+<p><code>phpstorm</code> 中使用快捷键 <code>ctrl + shift + s</code> 打开设置</p>
+</li>
+<li>
+<p>点击 <code>Languages &amp; Frameworks =&gt; PHP</code>，选择 <code>php language level</code> , 选择 <code>CLI Interpreter</code></p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp//009.jpeg" alt="img"></p>
+</li>
+<li>
+<p>点击加号 <code>+ =&gt; From docker,Vagrant,VM</code>。 我们使用的是 <code>VM</code> 的方式。</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/010.jpeg" alt="img"></p>
+</li>
+<li>
+<p>在之前我们已经配置好了一个 <code>SFTP</code> ，可以直接勾选。如果想替换，也可以使用其他的。</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/011.png" alt="img"></p>
+</li>
+<li>
+<p>一路 <code>OK</code> 保存。</p>
+</li>
+<li>
+<p>新建一个 <code>index.php</code> ,写入一些内容用于测试。如果上面没有配置 <code>auto upload</code> 可以右键选择 <code>Deployment =&gt; Upload to x</code> 进行上传，如果有配置则略过这步。</p>
+</li>
+<li>
+<p>快捷键 <code>ctrl + shift + F10</code> ,即可运行成功</p>
+<p><img src="http://148.70.84.101/storage/article/2019/07/06-sftp/012.png" alt="img"></p>
+</li>
 </ul>
-
 <h4 id="补充">补充</h4>
-
 <p>上面的运行 <code>php</code> 代码只建议用于调试 <code>php</code>,不建议用来开启 <code>swoole tcp</code> 服务器等,</p>
-
 <p>开启 <code>tcp</code> 服务器请使用上面的 <code>ssh</code> 终端,进行 <code>php server.php</code> 原生命令进行开启</p>
-
 <p>最后原文传送门： <a href="http://www.php20.cn/article/164">仙士可博客</a></p>
 
-        </div>
+  </article>
+</section>
 
-        <div class="row middle-xs">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-
-        
-        
-
-        
-        
-        <div style="height: 50px;"></div>
-        
-        <div class="post-comments">
-          <div id="disqus_thread"></div>
-<script>
-  window.addEventListener("load", () => {
-    (function() {
-      
-      var d = document,
-        s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  });
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-        </div>
-        
-        
-
-        <div class="site-footer">
-  
-  <div class="site-footer-item">
-    <a href="/about/" target="_blank">关于我</a>
-  </div>
-  
-  <div class="site-footer-item">
-    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
-  </div>
-  
-  
-</div>
 
       </div>
-    </div>
-  </article>
 
-  <script src="/js/highlight.pack.js"></script>
-
-
-<script>
-  hljs.initHighlightingOnLoad();
-  
-  
-  
+      <footer class="footer">
+  <section class="container">
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
     
     
-  
-</script>
+  </section>
+</footer>
 
-  
+    </main>
 
-</body>
+    
+
+  </body>
 
 </html>

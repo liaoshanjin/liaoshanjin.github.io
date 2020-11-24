@@ -3,17 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://liaoshanjin.github.io/mysql/</loc>
-    <lastmod>2020-06-27T20:20:00+08:00</lastmod>
+    <loc>https://liaoshanjin.github.io/docker/</loc>
+    <lastmod>2020-11-11T19:20:20+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liaoshanjin.github.io/mysql/mysql-study-first/</loc>
-    <lastmod>2020-06-27T20:20:00+08:00</lastmod>
+    <loc>https://liaoshanjin.github.io/docker/docker-nginx-upstrem/</loc>
+    <lastmod>2020-11-11T19:20:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://liaoshanjin.github.io/</loc>
+    <lastmod>2020-11-11T19:20:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liaoshanjin.github.io/mysql/</loc>
+    <lastmod>2020-07-11T20:20:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liaoshanjin.github.io/mysql/mysql-study-second/</loc>
+    <lastmod>2020-07-11T20:20:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liaoshanjin.github.io/mysql/mysql-study-first/</loc>
     <lastmod>2020-06-27T20:20:00+08:00</lastmod>
   </url>
   

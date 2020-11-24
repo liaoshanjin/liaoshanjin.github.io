@@ -1,110 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.0" />
+<html lang="cn">
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
-  <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-common-commands/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-common-commands/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="application/ld+json">
-  {
-      "@context" : "http://schema.org",
-      "@type" : "BlogPosting",
-      "mainEntityOfPage": {
-           "@type": "WebPage",
-           "@id": "https:\/\/liaoshanjin.github.io"
-      },
-      "articleSection" : "mysql",
-      "name" : "Mysql 常用命令整理",
-      "headline" : "Mysql 常用命令整理",
-      "description" : "目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引  二. 常用SQL语句  1. date_format日期转换 2. 联表查询  三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户  四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小  五. 重复数据处理   1. 根据单个字段查找表中重复记录 2.",
-      "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
-      "copyrightYear" : "2020",
-      "datePublished": "2020-06-27 18:20:00 \x2b0800 CST",
-      "dateModified" : "2020-06-27 18:20:00 \x2b0800 CST",
-      "url" : "https:\/\/liaoshanjin.github.io\/mysql\/mysql-common-commands\/",
-      "keywords" : [  ]
-  }
-</script>
-<title>Mysql 常用命令整理 - 苦味糖的博客</title>
-  <meta property="og:title" content="Mysql 常用命令整理 - 苦味糖的博客" />
-  <meta property="og:type" content="article" />
-  <meta property="og:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引  二. 常用SQL语句  1. date_format日期转换 2. 联表查询  三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户  四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小  五. 重复数据处理   1. 根据单个字段查找表中重复记录 2." />
-  <meta name="description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引  二. 常用SQL语句  1. date_format日期转换 2. 联表查询  三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户  四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小  五. 重复数据处理   1. 根据单个字段查找表中重复记录 2." />
-  <meta property="og:locale" content="zh_CN" />
+    
+    
+    
 
-  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
-  <link rel="stylesheet" href="/css/github-markdown.css" />
-  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
-  <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
-  
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
-  
-  
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql 常用命令整理"/>
+<meta name="twitter:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1."/>
 
-  
-</head>
+    <meta property="og:title" content="Mysql 常用命令整理" />
+<meta property="og:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-common-commands/" />
+<meta property="article:published_time" content="2020-06-27T18:20:00+08:00" />
+<meta property="article:modified_time" content="2020-06-27T18:20:00+08:00" />
 
-<body>
-  <article class="post " id="article">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="site-header">
-          
-<header>
-  <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
-  </div>
-</header>
-<div class="row end-xs">
-  
-  
-</div>
-<div class="header-line"></div>
 
-        </div>
-        <header class="post-header">
-          <h1 class="post-title">Mysql 常用命令整理</h1>
-          
-          <div class="row post-desc">
-            <div class="col-xs-6">
-              
-              <time class="post-date" datetime="2020-06-27 18:20:00 CST">
-                27 Jun 2020
-              </time>
-              
-            </div>
-            <div class="col-xs-6">
-              
-              <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
-              </div>
-              
-            </div>
-          </div>
-          
-        </header>
+    
+      <base href="https://liaoshanjin.github.io/mysql/mysql-common-commands/">
+    
+    <title>
+  Mysql 常用命令整理 · 苦味糖的博客
+</title>
 
-        <div class="post-content markdown-body">
-          
-          
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-common-commands/">
+    
 
-<h1 id="目录">目录</h1>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
 
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      苦味糖的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Mysql 常用命令整理</h1>
+    </header>
+
+    <h1 id="目录">目录</h1>
 <ul>
 <li>一. <a href="#1">表操作</a>
-
 <ul>
 <li><a href="#1.1">1. 创建数据库</a></li>
 <li><a href="#1.2">2. 创建表</a></li>
@@ -116,15 +95,15 @@
 <li><a href="#1.8">8. 添加索引</a></li>
 <li><a href="#1.9">9. 删除索引</a></li>
 <li><a href="#1.10">10. 查看索引</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#2">二. 常用SQL语句</a>
-
 <ul>
 <li><a href="#2.1">1. date_format日期转换</a></li>
 <li><a href="#2.2">2. 联表查询</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#3">三. 用户管理与授权管理 </a>
-
 <ul>
 <li><a href="#3.1">1. 创建用户</a></li>
 <li><a href="#3.2">2. 查看用户信息</a></li>
@@ -133,62 +112,51 @@
 <li><a href="#3.5">5. 设置与更改用户密码</a></li>
 <li><a href="#3.6">6. 撤销用户权限</a></li>
 <li><a href="#3.7">7. 删除用户</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#4">四. 空间统计命令 </a>
-
 <ul>
 <li><a href="#4.1">1. 查看各个数据库的数据大小</a></li>
 <li><a href="#4.2">2. 查看指定数据库下每个表的数据大小</a></li>
 <li><a href="#4.3">3. 查看指定数据库的某个表的数据大小</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#5">五. 重复数据处理 </a>
-
 <ul>
 <li><a href="#5.1">1. 根据单个字段查找表中重复记录</a></li>
 <li><a href="#5.2">2. 根据单个字段查找表中重复记录，并删除保留1个</a></li>
 <li><a href="#5.3">3. 根据多个字段查找表中重复记录</a></li>
 <li><a href="#5.4">4. 根据多个字段查找表中重复记录，并删除保留1个</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#6">六. 重复数据处理 </a>
-
 <ul>
 <li><a href="#6.1">1. 备份</a></li>
 <li><a href="#6.2">2. 恢复</a></li>
-</ul></li>
 </ul>
-
-<p><b><h1 id="1">一. 表操作</h1></b></p>
-
-<p><b><h2 id="1.1"> 1. 创建数据库</h2></b></p>
-
-<pre><code class="language-mysql">create database 数据库名称;
-</code></pre>
-
-<p><b><h2 id="1.2"> 2. 创建表</h2></b>
+</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->一. 表操作<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 创建数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">database</span> <span style="color:#960050;background-color:#1e0010">数据库名称</span>;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 2. 创建表<!-- raw HTML omitted --><!-- raw HTML omitted -->
 例子：</p>
-
-<pre><code class="language-mysql">CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '昵称',
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像',
-  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态是否激活 0:禁用  1:激活',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-</code></pre>
-
-<p><b><h2 id="1.3"> 3. 查看表结构</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span> (
+  <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,
+  <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8mb4_unicode_ci <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;昵称&#39;</span>,
+  <span style="color:#f92672">`</span>avatar<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">COLLATE</span> utf8mb4_unicode_ci <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;头像&#39;</span>,
+  <span style="color:#f92672">`</span>status<span style="color:#f92672">`</span> <span style="color:#66d9ef">tinyint</span>(<span style="color:#ae81ff">4</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;1&#39;</span> COMMENT <span style="color:#e6db74">&#39;状态是否激活 0:禁用  1:激活&#39;</span>,
+  <span style="color:#f92672">`</span>created_at<span style="color:#f92672">`</span> <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>updated_at<span style="color:#f92672">`</span> <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8mb4 <span style="color:#66d9ef">COLLATE</span><span style="color:#f92672">=</span>utf8mb4_unicode_ci;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 3. 查看表结构<!-- raw HTML omitted --><!-- raw HTML omitted -->
 第一种命令：</p>
-
-<pre><code class="language-mysql">DESC 表名称;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-powershell">mysql&gt; desc users;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">DESC</span> <span style="color:#960050;background-color:#1e0010">表名称</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">mysql&gt; desc users;
 +------------+------------------+------+-----+---------+----------------+
-| Field      | Type             | Null | Key | Default | Extra          |
+| Field      | Type             | Null | Key | <span style="color:#66d9ef">Default</span> | Extra          |
 +------------+------------------+------+-----+---------+----------------+
 | id         | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
 | name       | varchar(50)      | NO   |     | NULL    |                |
@@ -197,487 +165,345 @@
 | created_at | timestamp        | YES  |     | NULL    |                |
 | updated_at | timestamp        | YES  |     | NULL    |                |
 +------------+------------------+------+-----+---------+----------------+
-6 rows in set (0.00 sec)
+6 rows <span style="color:#66d9ef">in</span> set (0.00 sec)
 
-</code></pre>
-
-<p>第二种命令：</p>
-
-<pre><code class="language-mysql">show create table 表名称;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-powershell">mysql&gt; show create table users;
+</code></pre></div><p>第二种命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">show</span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名称</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">mysql&gt; show create table users;
 +-------+-----------------------------------------------------------------------+
 | Table | Create Table    |
 +-------+-----------------------------------------------------------------------+
 | users |  CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '昵称',
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像',
-  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态是否激活 0:禁用  1:激活',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT <span style="color:#e6db74">&#39;昵称&#39;</span>,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT <span style="color:#e6db74">&#39;头像&#39;</span>,
+  `status` tinyint(4) NOT NULL <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;1&#39;</span> COMMENT <span style="color:#e6db74">&#39;状态是否激活 0:禁用  1:激活&#39;</span>,
+  `created_at` timestamp NULL <span style="color:#66d9ef">DEFAULT</span> NULL,
+  `updated_at` timestamp NULL <span style="color:#66d9ef">DEFAULT</span> NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
+) ENGINE=InnoDB <span style="color:#66d9ef">DEFAULT</span> CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
 +-------+-----------------------------------------------------------------------+
-1 row in set (0.00 sec)
-</code></pre>
+1 row <span style="color:#66d9ef">in</span> set (0.00 sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 4. 修改表名<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">rename</span> <span style="color:#66d9ef">to</span> <span style="color:#960050;background-color:#1e0010">新的表名</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span> <span style="color:#66d9ef">rename</span> <span style="color:#66d9ef">to</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span>;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 5. 添加字段<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">add</span> <span style="color:#66d9ef">column</span> <span style="color:#960050;background-color:#1e0010">列名</span> <span style="color:#960050;background-color:#1e0010">属性</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">add</span> <span style="color:#66d9ef">column</span> <span style="color:#f92672">`</span>full_name<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">30</span>) <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#39;匿名用户&#39;</span> comment <span style="color:#e6db74">&#39;显示昵称&#39;</span>;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 6. 删除字段<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">column</span> <span style="color:#960050;background-color:#1e0010">列名</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">column</span> <span style="color:#f92672">`</span>full_name<span style="color:#f92672">`</span>;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 7. 修改字段属性<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名</span> modify <span style="color:#960050;background-color:#1e0010">列名</span> <span style="color:#960050;background-color:#1e0010">属性</span>; 
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span> modify <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#34;游客&#34;</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> comment <span style="color:#e6db74">&#34;用户昵称&#34;</span>;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 8. 添加索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 添加普通索引
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#a6e22e">index_name</span> (<span style="color:#960050;background-color:#1e0010">列名</span>)<span style="color:#960050;background-color:#1e0010">；</span>
 
-<p><b><h2 id="1.4"> 4. 修改表名</h2></b></p>
+<span style="color:#75715e"># 添加唯一索引
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">UNIQUE</span> (<span style="color:#960050;background-color:#1e0010">列名</span>)<span style="color:#960050;background-color:#1e0010">；</span>
 
-<pre><code class="language-mysql">alter table 表名 rename to 新的表名;
-</code></pre>
+<span style="color:#75715e"># 添加主键索引
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#960050;background-color:#1e0010">列名</span>)<span style="color:#960050;background-color:#1e0010">；</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 9. 删除索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#960050;background-color:#1e0010">索引名称</span> <span style="color:#66d9ef">ON</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
 
-<p>例子：</p>
+<span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#960050;background-color:#1e0010">索引名称</span>
 
-<pre><code class="language-mysql">alter table `users` rename to `user`;
-</code></pre>
-
-<p><b><h2 id="1.5"> 5. 添加字段</h2></b></p>
-
-<pre><code class="language-mysql">alter table 表名 add column 列名 属性;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">alter table `user` add column `full_name` varchar(30) not null default '匿名用户' comment '显示昵称';
-</code></pre>
-
-<p><b><h2 id="1.6"> 6. 删除字段</h2></b></p>
-
-<pre><code class="language-mysql">alter table 表名 drop column 列名;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">alter table `user` drop column `full_name`;
-</code></pre>
-
-<p><b><h2 id="1.7"> 7. 修改字段属性</h2></b></p>
-
-<pre><code class="language-mysql">alter table 表名 modify 列名 属性; 
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">alter table `user` modify `name` varchar(100) default &quot;游客&quot; not null comment &quot;用户昵称&quot;;
-</code></pre>
-
-<p><b><h2 id="1.8"> 8. 添加索引</h2></b></p>
-
-<pre><code class="language-mysql"># 添加普通索引
-ALTER TABLE 表名 ADD INDEX index_name (列名)；
-
-# 添加唯一索引
-ALTER TABLE 表名 ADD UNIQUE (列名)；
-
-# 添加主键索引
-ALTER TABLE 表名 ADD PRIMARY KEY (列名)；
-</code></pre>
-
-<p><b><h2 id="1.9"> 9. 删除索引</h2></b></p>
-
-<pre><code class="language-mysql">DROP INDEX 索引名称 ON 表名;
-
-ALTER TABLE 表名 DROP INDEX 索引名称
-
-ALTER TABLE 表名 DROP PRIMARY KEY
-</code></pre>
-
-<p><b><h2 id="1.10"> 10. 查看索引</h2></b></p>
-
-<pre><code class="language-mysql">show index from 表名;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; show index from user\G;
-*************************** 1. row ***************************
-        Table: user
-   Non_unique: 0
-     Key_name: PRIMARY
- Seq_in_index: 1
+<span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 10. 查看索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">show</span> <span style="color:#66d9ef">index</span> <span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">index</span> <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span><span style="color:#960050;background-color:#1e0010">\</span>G;
+<span style="color:#f92672">***************************</span> <span style="color:#ae81ff">1</span>. row <span style="color:#f92672">***************************</span>
+        <span style="color:#66d9ef">Table</span>: <span style="color:#66d9ef">user</span>
+   Non_unique: <span style="color:#ae81ff">0</span>
+     Key_name: <span style="color:#66d9ef">PRIMARY</span>
+ Seq_in_index: <span style="color:#ae81ff">1</span>
   Column_name: id
     Collation: A
-  Cardinality: 0
-     Sub_part: NULL
-       Packed: NULL
-         Null:
+  Cardinality: <span style="color:#ae81ff">0</span>
+     Sub_part: <span style="color:#66d9ef">NULL</span>
+       Packed: <span style="color:#66d9ef">NULL</span>
+         <span style="color:#66d9ef">Null</span>:
    Index_type: BTREE
       Comment:
 Index_comment:
-1 row in set (0.00 sec)
+<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
 
 ERROR:
 No query specified
-</code></pre>
-
-<p><b><h1 id="2">二. 常用SQL语句</h1></b></p>
-
-<p><b><h2 id="2.1"> 1. date_format日期转换</h2></b>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->二. 常用SQL语句<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. date_format日期转换<!-- raw HTML omitted --><!-- raw HTML omitted -->
 例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; select date_format(created_at, '%Y年%m月%d日') as mydate from user;
-+-------------------+
-| mydate            |
-+-------------------+
-| 2020年06月27日    |
-+-------------------+
-1 row in set (0.00 sec)
-</code></pre>
-
-<p><b><h2 id="2.2"> 2. 联表查询</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> <span style="color:#a6e22e">date_format</span>(created_at, <span style="color:#e6db74">&#39;%Y年%m月%d日&#39;</span>) <span style="color:#66d9ef">as</span> mydate <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span>;
+<span style="color:#f92672">+-------------------+</span>
+<span style="color:#f92672">|</span> mydate            <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">2020</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">06</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">27</span><span style="color:#960050;background-color:#1e0010">日</span>    <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------------------+</span>
+<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 2. 联表查询<!-- raw HTML omitted --><!-- raw HTML omitted -->
 例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">desc</span> tags;
+<span style="color:#f92672">+------------+--------------+------+-----+---------+----------------+</span>
+<span style="color:#f92672">|</span> Field      <span style="color:#f92672">|</span> Type         <span style="color:#f92672">|</span> <span style="color:#66d9ef">Null</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Key</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Default</span> <span style="color:#f92672">|</span> Extra          <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------------+------+-----+---------+----------------+</span>
+<span style="color:#f92672">|</span> id         <span style="color:#f92672">|</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">20</span>)      <span style="color:#f92672">|</span> NO   <span style="color:#f92672">|</span> PRI <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span> <span style="color:#66d9ef">auto_increment</span> <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> name       <span style="color:#f92672">|</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#f92672">|</span> NO   <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> created_at <span style="color:#f92672">|</span> <span style="color:#66d9ef">timestamp</span>    <span style="color:#f92672">|</span> YES  <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> updated_at <span style="color:#f92672">|</span> <span style="color:#66d9ef">timestamp</span>    <span style="color:#f92672">|</span> YES  <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------------+------+-----+---------+----------------+</span>
+<span style="color:#ae81ff">4</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
 
-<pre><code class="language-mysql">mysql&gt; desc tags;
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| id         | int(20)      | NO   | PRI | NULL    | auto_increment |
-| name       | varchar(255) | NO   |     | NULL    |                |
-| created_at | timestamp    | YES  |     | NULL    |                |
-| updated_at | timestamp    | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
+mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">desc</span> videos;
+<span style="color:#f92672">+------------+--------------+------+-----+---------+----------------+</span>
+<span style="color:#f92672">|</span> Field      <span style="color:#f92672">|</span> Type         <span style="color:#f92672">|</span> <span style="color:#66d9ef">Null</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Key</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Default</span> <span style="color:#f92672">|</span> Extra          <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------------+------+-----+---------+----------------+</span>
+<span style="color:#f92672">|</span> id         <span style="color:#f92672">|</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">11</span>)      <span style="color:#f92672">|</span> NO   <span style="color:#f92672">|</span> PRI <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span> <span style="color:#66d9ef">auto_increment</span> <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> video_name <span style="color:#f92672">|</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#f92672">|</span> NO   <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> tag_id     <span style="color:#f92672">|</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">11</span>)      <span style="color:#f92672">|</span> NO   <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> created_at <span style="color:#f92672">|</span> <span style="color:#66d9ef">timestamp</span>    <span style="color:#f92672">|</span> YES  <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> updated_at <span style="color:#f92672">|</span> <span style="color:#66d9ef">timestamp</span>    <span style="color:#f92672">|</span> YES  <span style="color:#f92672">|</span>     <span style="color:#f92672">|</span> <span style="color:#66d9ef">NULL</span>    <span style="color:#f92672">|</span>                <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------------+------+-----+---------+----------------+</span>
+<span style="color:#ae81ff">5</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
 
-mysql&gt; desc videos;
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
-| video_name | varchar(255) | NO   |     | NULL    |                |
-| tag_id     | int(11)      | NO   |     | NULL    |                |
-| created_at | timestamp    | YES  |     | NULL    |                |
-| updated_at | timestamp    | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
-5 rows in set (0.00 sec)
-
-mysql&gt; select a.id as tag_id,b.video_name,a.name as tag_name from tags as a join videos as b on a.id=b.tag_id limit 1\G;
-*************************** 1. row ***************************
-    tag_id: 2
-video_name: 金瓶梅
-  tag_name: 色情
-1 row in set (0.00 sec)
-</code></pre>
-
-<p><b><h1 id="3">三. 用户管理与授权管理</h1></b></p>
-
+mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> a.id <span style="color:#66d9ef">as</span> tag_id,b.video_name,a.name <span style="color:#66d9ef">as</span> tag_name <span style="color:#66d9ef">from</span> tags <span style="color:#66d9ef">as</span> a <span style="color:#66d9ef">join</span> videos <span style="color:#66d9ef">as</span> b <span style="color:#66d9ef">on</span> a.id<span style="color:#f92672">=</span>b.tag_id <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">\</span>G;
+<span style="color:#f92672">***************************</span> <span style="color:#ae81ff">1</span>. row <span style="color:#f92672">***************************</span>
+    tag_id: <span style="color:#ae81ff">2</span>
+video_name: <span style="color:#960050;background-color:#1e0010">金瓶梅</span>
+  tag_name: <span style="color:#960050;background-color:#1e0010">色情</span>
+<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->三. 用户管理与授权管理<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>切换到 mysql 系统db ,执行命令 : <code>use mysql;</code></p>
 </blockquote>
-
-<p><b><h2 id="3.1"> 1. 创建用户</h2></b>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 创建用户<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">CREATE USER 'username '@'host' IDENTIFIED BY 'password'; 
-</code></pre>
-
-<p>说明：</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;username &#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span> <span style="color:#66d9ef">IDENTIFIED</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#39;password&#39;</span>; 
+</code></pre></div><p>说明：</p>
 <ul>
 <li>username : 用户名</li>
 <li>host： 指定该用户在哪个主机上可以登录，如果是本机，可以用localhost，如果想让该用户可以从任意远程主机登录，可以使用通配符%</li>
 <li>password：用户的登录密码</li>
 </ul>
-
 <p>例子：</p>
-
-<pre><code class="language-mysql">CREATE USER 'kwt1'@'localhost' IDENTIFIED BY '123456';
-CREATE USER 'kwt2'@'192.168.1.111' IDENTIFIED BY '123456';
-CREATE USER 'kwt3'@'%' IDENTIFIED BY '123456';
-</code></pre>
-
-<p><b><h2 id="3.2"> 2. 查看用户信息</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span> <span style="color:#66d9ef">IDENTIFIED</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#39;123456&#39;</span>;
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;kwt2&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;192.168.1.111&#39;</span> <span style="color:#66d9ef">IDENTIFIED</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#39;123456&#39;</span>;
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;kwt3&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;%&#39;</span> <span style="color:#66d9ef">IDENTIFIED</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#39;123456&#39;</span>;
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 2. 查看用户信息<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">user</span>, host <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> <span style="color:#66d9ef">user</span>,host <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span>;
+<span style="color:#f92672">+------------------+-----------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">user</span>             <span style="color:#f92672">|</span> host      <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------------+-----------+</span>
+<span style="color:#f92672">|</span> homestead        <span style="color:#f92672">|</span> <span style="color:#f92672">%</span>         <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> homestead        <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>   <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> root             <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>   <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> debian<span style="color:#f92672">-</span>sys<span style="color:#f92672">-</span>maint <span style="color:#f92672">|</span> localhost <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> kwt1             <span style="color:#f92672">|</span> localhost <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql.session    <span style="color:#f92672">|</span> localhost <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql.sys        <span style="color:#f92672">|</span> localhost <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> root             <span style="color:#f92672">|</span> localhost <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------------+-----------+</span>
+<span style="color:#ae81ff">8</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
 
-<pre><code class="language-mysql">SELECT user, host FROM user;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; select user,host from user;
-+------------------+-----------+
-| user             | host      |
-+------------------+-----------+
-| homestead        | %         |
-| homestead        | 0.0.0.0   |
-| root             | 0.0.0.0   |
-| debian-sys-maint | localhost |
-| kwt1             | localhost |
-| mysql.session    | localhost |
-| mysql.sys        | localhost |
-| root             | localhost |
-+------------------+-----------+
-8 rows in set (0.00 sec)
-
-</code></pre>
-
-<p><b><h2 id="3.3"> 3. 授权</h2></b>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 3. 授权<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">all</span> <span style="color:#66d9ef">privileges</span> <span style="color:#66d9ef">ON</span> databasename.tablename <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;username&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 上面的授权命令无法给用户拥有授权的权限，如果想要让用户有授权的权限，可以使用如下命令：
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">all</span> <span style="color:#66d9ef">privileges</span> <span style="color:#66d9ef">ON</span> databasename.tablename <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;username&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span> <span style="color:#66d9ef">WITH</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">OPTION</span>;
 
-<pre><code class="language-mysql">GRANT all privileges ON databasename.tablename TO 'username'@'host'；
-# 上面的授权命令无法给用户拥有授权的权限，如果想要让用户有授权的权限，可以使用如下命令：
-GRANT all privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
 
-
-# 刷新权限。使用这个命令使得权限生效
-flush privileges;
-</code></pre>
-
-<p>说明：</p>
-
+<span style="color:#75715e"># 刷新权限。使用这个命令使得权限生效
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">flush</span> <span style="color:#66d9ef">privileges</span>;
+</code></pre></div><p>说明：</p>
 <ul>
 <li>privileges：用户的操作权限，如SELECT、INSERT、UPDATE等，如果要授予所有权限则使用ALL。详细的权限信息可以查看mysql官网文档：<a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html">Privileges Provided by MySQL</a></li>
 <li>databasename：数据库名，如果要授予所有数据库的权限，可以使用*表示</li>
 <li>tablename：表名，如果要授予所有表的权限，可以使用*表示</li>
 </ul>
-
 <p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">SELECT</span>,<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">on</span> study.<span style="color:#66d9ef">user</span> <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span>;
 
-<pre><code class="language-mysql">GRANT SELECT,INSERT on study.user TO 'kwt1'@'localhost';
-
-GRANT ALL on *.* TO 'kwt1'@'localhost';
-</code></pre>
-
-<blockquote>
+<span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">ALL</span> <span style="color:#66d9ef">on</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span>;
+</code></pre></div><blockquote>
 <p>如果报错： ERROR 1133 (42000): Can&rsquo;t find any matching row in the user table
 说明找不到条件为: User = &lsquo;kwt1&rsquo; AND Host = &lsquo;localhost&rsquo; 的用户</p>
 </blockquote>
-
-<p><b><h2 id="3.4"> 4. 查看用户授权信息</h2></b>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 4. 查看用户授权信息<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">show grants for 'username'@'host';
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; show grants for 'kwt1'@'localhost';
-+------------------------------------------+
-| Grants for kwt1@localhost                |
-+------------------------------------------+
-| GRANT USAGE ON *.* TO 'kwt1'@'localhost' |
-+------------------------------------------+
-1 row in set (0.00 sec)
-</code></pre>
-
-<p><b><h2 id="3.5"> 5. 设置与更改用户密码</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">show</span> grants <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;username&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> grants <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span>;
+<span style="color:#f92672">+------------------------------------------+</span>
+<span style="color:#f92672">|</span> Grants <span style="color:#66d9ef">for</span> kwt1<span style="color:#f92672">@</span>localhost                <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------------------------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">USAGE</span> <span style="color:#66d9ef">ON</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span> <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------------------------------------+</span>
+<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 5. 设置与更改用户密码<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SET</span> PASSWORD <span style="color:#66d9ef">FOR</span> <span style="color:#e6db74">&#39;username&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">PASSWORD</span>(<span style="color:#e6db74">&#39;newpassword&#39;</span>);
 
-<pre><code class="language-mysql">SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
-
-# 如果是当前登录用户：
-SET PASSWORD = PASSWORD('newpassword');
-</code></pre>
-
-<p>说明：</p>
-
+<span style="color:#75715e"># 如果是当前登录用户：
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SET</span> PASSWORD <span style="color:#f92672">=</span> <span style="color:#a6e22e">PASSWORD</span>(<span style="color:#e6db74">&#39;newpassword&#39;</span>);
+</code></pre></div><p>说明：</p>
 <ul>
 <li>username：用户名</li>
 <li>host：登录的主机</li>
 <li>newpassword：新密码</li>
 </ul>
-
 <p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; SET PASSWORD FOR 'kwt1'@'localhost' = PASSWORD('secret');
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-</code></pre>
-
-<p><b><h2 id="3.6"> 6. 撤销用户权限</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SET</span> PASSWORD <span style="color:#66d9ef">FOR</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">PASSWORD</span>(<span style="color:#e6db74">&#39;secret&#39;</span>);
+Query OK, <span style="color:#ae81ff">0</span> rows affected, <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">warning</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 6. 撤销用户权限<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">REVOKE privelege ON databasename.tablename FROM 'username'@'host';
-</code></pre>
-
-<p>说明： <a href="#3.3">同第三点授权部分</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">REVOKE</span> privelege <span style="color:#66d9ef">ON</span> databasename.tablename <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#39;username&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span>;
+</code></pre></div><p>说明： <a href="#3.3">同第三点授权部分</a></p>
 <p>可以通过查询用户授权信息后再撤销</p>
-
 <p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; REVOKE INSERT ON study.user FROM 'kwt1'@'localhost';
-Query OK, 0 rows affected (0.00 sec)
-</code></pre>
-
-<p><b><h2 id="3.7"> 7. 删除用户</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">REVOKE</span> <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">ON</span> study.<span style="color:#66d9ef">user</span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span>;
+Query OK, <span style="color:#ae81ff">0</span> rows <span style="color:#a6e22e">affected</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 7. 删除用户<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">DROP USER 'username'@'host'
-</code></pre>
-
-<p>说明： <a href="#3.3">同第三点授权部分</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;username&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;host&#39;</span>
+</code></pre></div><p>说明： <a href="#3.3">同第三点授权部分</a></p>
 <p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; DROP USER 'kwt1'@'localhost';
-Query OK, 0 rows affected (0.00 sec)
-</code></pre>
-
-<p><b><h1 id="4">四. 空间统计命令</h1></b></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;kwt1&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span>;
+Query OK, <span style="color:#ae81ff">0</span> rows <span style="color:#a6e22e">affected</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->四. 空间统计命令<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>记得切换到系统数据库 <code>information_schema</code>。 切换命令： <code>use information_schema;</code></p>
 </blockquote>
-
-<p><b><h2 id="4.1"> 1. 查看各个数据库的数据大小</h2></b>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 查看各个数据库的数据大小<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">use</span> information_schema;
 
-<pre><code class="language-mysql">use information_schema;
-
-select table_schema,concat(round(sum(data_length)/1024/1024,2),'MB') as data from tables group by table_schema;
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; select table_schema,concat(round(sum(data_length)/1024/1024,2),'MB') as data from tables group by table_schema;
-+--------------------+---------+
-| table_schema       | data    |
-+--------------------+---------+
-| api.canteen        | 0.20MB  |
-| api.moa            | 66.09MB |
-| chat               | 0.06MB  |
-| information_schema | 0.16MB  |
-| laravel-shop       | 0.33MB  |
-| mysql              | 7.71MB  |
-| performance_schema | 0.00MB  |
-| study              | 0.05MB  |
-| sys                | 0.02MB  |
-+--------------------+---------+
-9 rows in set (0.03 sec)
-</code></pre>
-
-<p><b><h2 id="4.2"> 2. 查看指定数据库下每个表的数据大小</h2></b>
+<span style="color:#66d9ef">select</span> table_schema,<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">sum</span>(data_length)<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">2</span>),<span style="color:#e6db74">&#39;MB&#39;</span>) <span style="color:#66d9ef">as</span> data <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">tables</span> <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> table_schema;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> table_schema,<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">sum</span>(data_length)<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">2</span>),<span style="color:#e6db74">&#39;MB&#39;</span>) <span style="color:#66d9ef">as</span> data <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">tables</span> <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> table_schema;
+<span style="color:#f92672">+--------------------+---------+</span>
+<span style="color:#f92672">|</span> table_schema       <span style="color:#f92672">|</span> data    <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+---------+</span>
+<span style="color:#f92672">|</span> api.canteen        <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">20</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> api.moa            <span style="color:#f92672">|</span> <span style="color:#ae81ff">66</span>.<span style="color:#ae81ff">09</span>MB <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> chat               <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">06</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> information_schema <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">16</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> laravel<span style="color:#f92672">-</span>shop       <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">33</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql              <span style="color:#f92672">|</span> <span style="color:#ae81ff">7</span>.<span style="color:#ae81ff">71</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> performance_schema <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> study              <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">05</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> sys                <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">02</span>MB  <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+---------+</span>
+<span style="color:#ae81ff">9</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">03</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 2. 查看指定数据库下每个表的数据大小<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS,concat(round((DATA_LENGTH+INDEX_LENGTH)/1024/1024,2), 'MB') as data FROM TABLES WHERE TABLE_SCHEMA='数据库名';
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS,concat(round((DATA_LENGTH+INDEX_LENGTH)/1024/1024,2), 'MB') as data FROM TABLES WHERE TABLE_SCHEMA='study';
-+------------+--------------------------+------------+--------+
-| TABLE_NAME | DATA_LENGTH+INDEX_LENGTH | TABLE_ROWS | data   |
-+------------+--------------------------+------------+--------+
-| tags       |                    16384 |          3 | 0.02MB |
-| user       |                    16384 |          1 | 0.02MB |
-| videos     |                    16384 |          2 | 0.02MB |
-+------------+--------------------------+------------+--------+
-3 rows in set (0.00 sec)
-</code></pre>
-
-<p><b><h2 id="4.3"> 3. 查看指定数据库的某个表的数据大小</h2></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> TABLE_NAME,DATA_LENGTH<span style="color:#f92672">+</span>INDEX_LENGTH,TABLE_ROWS,<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">round</span>((DATA_LENGTH<span style="color:#f92672">+</span>INDEX_LENGTH)<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#39;MB&#39;</span>) <span style="color:#66d9ef">as</span> data <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">TABLES</span> <span style="color:#66d9ef">WHERE</span> TABLE_SCHEMA<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;数据库名&#39;</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> TABLE_NAME,DATA_LENGTH<span style="color:#f92672">+</span>INDEX_LENGTH,TABLE_ROWS,<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">round</span>((DATA_LENGTH<span style="color:#f92672">+</span>INDEX_LENGTH)<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#39;MB&#39;</span>) <span style="color:#66d9ef">as</span> data <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">TABLES</span> <span style="color:#66d9ef">WHERE</span> TABLE_SCHEMA<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;study&#39;</span>;
+<span style="color:#f92672">+------------+--------------------------+------------+--------+</span>
+<span style="color:#f92672">|</span> TABLE_NAME <span style="color:#f92672">|</span> DATA_LENGTH<span style="color:#f92672">+</span>INDEX_LENGTH <span style="color:#f92672">|</span> TABLE_ROWS <span style="color:#f92672">|</span> data   <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------------------------+------------+--------+</span>
+<span style="color:#f92672">|</span> tags       <span style="color:#f92672">|</span>                    <span style="color:#ae81ff">16384</span> <span style="color:#f92672">|</span>          <span style="color:#ae81ff">3</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">02</span>MB <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">user</span>       <span style="color:#f92672">|</span>                    <span style="color:#ae81ff">16384</span> <span style="color:#f92672">|</span>          <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">02</span>MB <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> videos     <span style="color:#f92672">|</span>                    <span style="color:#ae81ff">16384</span> <span style="color:#f92672">|</span>          <span style="color:#ae81ff">2</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">02</span>MB <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------------------------+------------+--------+</span>
+<span style="color:#ae81ff">3</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 3. 查看指定数据库的某个表的数据大小<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">SELECT
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span>
 	TABLE_NAME,
-	concat( round( sum( data_length / 1024 / 1024 ), 2 ), 'MB' ) AS DATA 
-FROM
-TABLES 
-WHERE
-	table_schema = '数据库名' 
-	AND table_name = '表名';
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-mysql">mysql&gt; select TABLE_NAME,concat(round(sum(data_length/1024/1024),2),'MB') as data from tables where table_schema='study' and table_name='user';  
-+------------+--------+
-| TABLE_NAME | data   |
-+------------+--------+
-| user       | 0.02MB |
-+------------+--------+
-1 row in set (0.00 sec)
-</code></pre>
-
-<p><b><h1 id="5">五. 重复数据处理</h1></b></p>
-
+	<span style="color:#a6e22e">concat</span>( <span style="color:#a6e22e">round</span>( <span style="color:#a6e22e">sum</span>( data_length <span style="color:#f92672">/</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">1024</span> ), <span style="color:#ae81ff">2</span> ), <span style="color:#e6db74">&#39;MB&#39;</span> ) <span style="color:#66d9ef">AS</span> DATA 
+<span style="color:#66d9ef">FROM</span>
+<span style="color:#66d9ef">TABLES</span> 
+<span style="color:#66d9ef">WHERE</span>
+	table_schema <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;数据库名&#39;</span> 
+	<span style="color:#66d9ef">AND</span> table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;表名&#39;</span>;
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> TABLE_NAME,<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">sum</span>(data_length<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span>),<span style="color:#ae81ff">2</span>),<span style="color:#e6db74">&#39;MB&#39;</span>) <span style="color:#66d9ef">as</span> data <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">tables</span> <span style="color:#66d9ef">where</span> table_schema<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;study&#39;</span> <span style="color:#66d9ef">and</span> table_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;user&#39;</span>;  
+<span style="color:#f92672">+------------+--------+</span>
+<span style="color:#f92672">|</span> TABLE_NAME <span style="color:#f92672">|</span> data   <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">user</span>       <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">02</span>MB <span style="color:#f92672">|</span>
+<span style="color:#f92672">+------------+--------+</span>
+<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->五. 重复数据处理<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>切换到数据库: <code>study</code></p>
 </blockquote>
-
-<p><b><h2 id="5.1"> 1. 根据单个字段查找表中重复记录</h2></b>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 根据单个字段查找表中重复记录<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">SELECT
-	* 
-FROM
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span>
+	<span style="color:#f92672">*</span> 
+<span style="color:#66d9ef">FROM</span>
 	people 
-WHERE
-	peopleId IN (
-	SELECT
+<span style="color:#66d9ef">WHERE</span>
+	peopleId <span style="color:#66d9ef">IN</span> (
+	<span style="color:#66d9ef">SELECT</span>
 		peopleId 
-	FROM
+	<span style="color:#66d9ef">FROM</span>
 		people 
-	GROUP BY
+	<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>
 		peopleId 
-HAVING
-	count( peopleId ) &gt; 1)
-</code></pre>
-
-<p><b><h2 id="5.2"> 2. 根据单个字段查找表中重复记录，并删除保留1个</h2></b>
+<span style="color:#66d9ef">HAVING</span>
+	<span style="color:#a6e22e">count</span>( peopleId ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 2. 根据单个字段查找表中重复记录，并删除保留1个<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">DELETE 
-FROM
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">DELETE</span> 
+<span style="color:#66d9ef">FROM</span>
 	people 
-WHERE
-	peopleId IN ( SELECT peopleId FROM people GROUP BY peopleId HAVING count( peopleId ) &gt; 1 ) 
-	AND rowid NOT IN ( SELECT min( rowid ) FROM people GROUP BY peopleId HAVING count( peopleId )&gt; 1 )
-</code></pre>
-
-<p><b><h2 id="5.3"> 3. 根据多个字段查找表中重复记录</h2></b>
+<span style="color:#66d9ef">WHERE</span>
+	peopleId <span style="color:#66d9ef">IN</span> ( <span style="color:#66d9ef">SELECT</span> peopleId <span style="color:#66d9ef">FROM</span> people <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> peopleId <span style="color:#66d9ef">HAVING</span> <span style="color:#a6e22e">count</span>( peopleId ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) 
+	<span style="color:#66d9ef">AND</span> rowid <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">IN</span> ( <span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">min</span>( rowid ) <span style="color:#66d9ef">FROM</span> people <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> peopleId <span style="color:#66d9ef">HAVING</span> <span style="color:#a6e22e">count</span>( peopleId )<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> )
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 3. 根据多个字段查找表中重复记录<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">SELECT
-	* 
-FROM
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span>
+	<span style="color:#f92672">*</span> 
+<span style="color:#66d9ef">FROM</span>
 	vitae a 
-WHERE
-	( a.peopleId, a.seq ) IN (
-	SELECT
+<span style="color:#66d9ef">WHERE</span>
+	( a.peopleId, a.seq ) <span style="color:#66d9ef">IN</span> (
+	<span style="color:#66d9ef">SELECT</span>
 		peopleId,
 		seq 
-	FROM
+	<span style="color:#66d9ef">FROM</span>
 		vitae 
-	GROUP BY
+	<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>
 		peopleId,
 		seq 
-	HAVING
-	count(*) &gt; 1 
+	<span style="color:#66d9ef">HAVING</span>
+	<span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> 
 	)
-</code></pre>
-
-<p><b><h2 id="5.4"> 4. 根据多个字段查找表中重复记录，并删除保留1个</h2></b>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 4. 根据多个字段查找表中重复记录，并删除保留1个<!-- raw HTML omitted --><!-- raw HTML omitted -->
 命令：</p>
-
-<pre><code class="language-mysql">DELETE 
-FROM
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">DELETE</span> 
+<span style="color:#66d9ef">FROM</span>
 	vitae a 
-WHERE
-	( a.peopleId, a.seq ) IN ( SELECT peopleId, seq FROM vitae GROUP BY peopleId, seq HAVING count(*) &gt; 1 ) 
-	AND rowid NOT IN (
-	SELECT
-		min( rowid ) 
-	FROM
+<span style="color:#66d9ef">WHERE</span>
+	( a.peopleId, a.seq ) <span style="color:#66d9ef">IN</span> ( <span style="color:#66d9ef">SELECT</span> peopleId, seq <span style="color:#66d9ef">FROM</span> vitae <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> peopleId, seq <span style="color:#66d9ef">HAVING</span> <span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) 
+	<span style="color:#66d9ef">AND</span> rowid <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">IN</span> (
+	<span style="color:#66d9ef">SELECT</span>
+		<span style="color:#a6e22e">min</span>( rowid ) 
+	<span style="color:#66d9ef">FROM</span>
 		vitae 
-	GROUP BY
+	<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>
 		peopleId,
 		seq 
-HAVING
-	count(*)&gt; 1)
-</code></pre>
-
-<p><b><h1 id="6">六. 备份与恢复</h1></b></p>
-
+<span style="color:#66d9ef">HAVING</span>
+	<span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>)<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->六. 备份与恢复<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>注意：以下命令需要退出 mysql 的命令行。以我的环境 <code>homestead</code> 为例， 我选择在家目录执行。 执行： <code>cd ~</code> 。</p>
 </blockquote>
-
 <p>关于备份参数：</p>
-
 <pre><code> 1 -A --all-databases：导出全部数据库
  2 -Y --all-tablespaces：导出全部表空间
  3 -y --no-tablespaces：不导出任何表空间信息
@@ -710,212 +536,97 @@ HAVING
 30 -p --password：连接数据库密码
 31 -P --port：连接数据库端口号
 32 -u --user：指定连接的用户名。
-</code></pre>
-
-<p><b><h2 id="6.1"> 1. 备份</h2></b></p>
-
-<p><b><h3>(1) 备份命令格式</h2></b></p>
-
-<pre><code class="language-mysql">mysqldump -h 服务器 -P端口 -u用户名 -p密码 数据库名 &gt; 备份文件.sql
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study &gt; study_database.sql;
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 备份<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->(1) 备份命令格式<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h <span style="color:#960050;background-color:#1e0010">服务器</span> <span style="color:#f92672">-</span>P端口 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#960050;background-color:#1e0010">数据库名</span> <span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">备份文件</span>.<span style="color:#66d9ef">sql</span>
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study &gt; study_database.sql;
+mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  laravel-ubuntu-init  study_database.sql
 vagrant@homestead:~$
-</code></pre>
-
-<p><b><h3>(2) 数据库压缩备份</h2></b></p>
-
-<pre><code class="language-mysql">mysqldump -h主机名 -P端口 -u用户名 -p密码 数据库名 | gzip &gt; backupfile.sql.gz
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study | gzip &gt; study_backup.sql.gz
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(2) 数据库压缩备份<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h主机名 <span style="color:#f92672">-</span>P端口 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#960050;background-color:#1e0010">数据库名</span> <span style="color:#f92672">|</span> gzip <span style="color:#f92672">&gt;</span> backupfile.<span style="color:#66d9ef">sql</span>.gz
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study | gzip &gt; study_backup.sql.gz
+mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  laravel-ubuntu-init  study_backup.sql.gz  study_database.sql
-</code></pre>
-
-<p><b><h3>(3) 备份数据库某个(些)表</h2></b></p>
-
-<pre><code class="language-mysql">mysqldump -h主机名 -u用户名 -p密码 数据库名 表名称1 表名称2 &gt; backupfile.sql
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -uhomestead -psecret study user tags &gt; study_some_tables.sql;
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(3) 备份数据库某个(些)表<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h主机名 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#960050;background-color:#1e0010">数据库名</span> <span style="color:#960050;background-color:#1e0010">表名称</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">表名称</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&gt;</span> backupfile.<span style="color:#66d9ef">sql</span>
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -uhomestead -psecret study user tags &gt; study_some_tables.sql;
+mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  laravel-ubuntu-init  study_backup.sql.gz  study_database.sql  study_some_tables.sql
-</code></pre>
-
-<p><b><h3>(4) 同时备份多个数据库</h2></b></p>
-
-<pre><code class="language-mysql">mysqldump -h主机名 -u用户名 -p密码 -B 数据库名字1 数据库名字2 数据库名字3 &gt; 备份文件.sql
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -uhomestead  -psecret -B study api.canteen &gt; databases.sql;
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(4) 同时备份多个数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h主机名 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#f92672">-</span>B <span style="color:#960050;background-color:#1e0010">数据库名字</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">数据库名字</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">数据库名字</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">备份文件</span>.<span style="color:#66d9ef">sql</span>
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -uhomestead  -psecret -B study api.canteen &gt; databases.sql;
+mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  databases.sql  laravel-ubuntu-init
-</code></pre>
-
-<p><b><h3>(5) 同时备份多个数据库</h2></b></p>
-
-<pre><code class="language-mysql">mysqldump -A &gt; allbackupfile.sql
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysqldump -A &gt; allbackupfile.sql
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(5) 同时备份多个数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>A <span style="color:#f92672">&gt;</span> allbackupfile.<span style="color:#66d9ef">sql</span>
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -A &gt; allbackupfile.sql
 vagrant@homestead:~$ ls
 allbackupfile.sql  code  databases.sql  laravel-ubuntu-init
-</code></pre>
-
-<p><b><h2 id="6.2"> 1. 恢复</h2></b></p>
-
-<p><b><h3>(1) 还原数据库的命令</h2></b></p>
-
-<pre><code class="language-bash">mysql -h主机名 -u用户名 -p密码 数据库名字 &lt; 备份文件.sql
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysql -uhomestead -psecret study &lt; study_database.sql;
-mysql: [Warning] Using a password on the command line interface can be insecure.
-</code></pre>
-
-<p><b><h3>(2) 还原压缩的数据库</h2></b></p>
-
-<pre><code class="language-bash">gunzip &lt; 备份文件.sql.gz | mysql -u用户名 -p密码 数据库名字
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ gunzip &lt; study_backup.sql.gz | mysql -uhomestead -psecret study;
-mysql: [Warning] Using a password on the command line interface can be insecure.
-</code></pre>
-
-<p><b><h3>(3) 数据库复制</h2></b></p>
-
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 恢复<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->(1) 还原数据库的命令<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql -h主机名 -u用户名 -p密码 数据库名字 &lt; 备份文件.sql
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysql -uhomestead -psecret study &lt; study_database.sql;
+mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(2) 还原压缩的数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gunzip &lt; 备份文件.sql.gz | mysql -u用户名 -p密码 数据库名字
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ gunzip &lt; study_backup.sql.gz | mysql -uhomestead -psecret study;
+mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(3) 数据库复制<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>首先，在 mysql 里面需要有 <code>study</code> 和 <code>new_study</code> 两个数据库。</p>
 </blockquote>
-
-<pre><code class="language-bash"># 假设已存在数据库名为 old_db，想要复制一份到新的数据库，命名为new_db，命令如下：
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 假设已存在数据库名为 old_db，想要复制一份到新的数据库，命名为new_db，命令如下：</span>
 mysqldump old_db -u用户名 -p密码 --add-drop-table | mysql new_db -u用户名 -p密码
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">vagrant@homestead:~$ mysqldump study -uhomestead -psecret --add-drop-table | mysql new_study -uhomestead -psecret
-mysql: [Warning] Using a password on the command line interface can be insecure.
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
-</code></pre>
-
-<p><b><h3>(4) source导入数据库</h2></b>
-&gt; 需要进入到数据库的命令行。</p>
-
-<pre><code class="language-bash">mysql&gt; source 文件的绝对路径.sql
-</code></pre>
-
-<p>例子：</p>
-
-<pre><code class="language-bash">mysql&gt; source /home/vagrant/study_database.sql
-</code></pre>
-
-<p><b><h3>(5) 恢复binlog文件</h2></b>
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump study -uhomestead -psecret --add-drop-table | mysql new_study -uhomestead -psecret
+mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(4) source导入数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<blockquote>
+<p>需要进入到数据库的命令行。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; source 文件的绝对路径.sql
+</code></pre></div><p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; source /home/vagrant/study_database.sql
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(5) 恢复binlog文件<!-- raw HTML omitted --><!-- raw HTML omitted -->
 例子:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
+</code></pre></div><p>转载自：<a href="https://shuwoom.com/?p=3225">MYSQL常用命令整理</a></p>
 
-<pre><code class="language-bash">mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
-</code></pre>
+  </article>
+</section>
 
-<p>转载自：<a href="https://shuwoom.com/?p=3225">MYSQL常用命令整理</a></p>
-
-        </div>
-
-        <div class="row middle-xs">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-
-        
-        
-
-        
-        
-        <div style="height: 50px;"></div>
-        
-        <div class="post-comments">
-          <div id="disqus_thread"></div>
-<script>
-  window.addEventListener("load", () => {
-    (function() {
-      
-      var d = document,
-        s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  });
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-        </div>
-        
-        
-
-        <div class="site-footer">
-  
-  <div class="site-footer-item">
-    <a href="/about/" target="_blank">关于我</a>
-  </div>
-  
-  <div class="site-footer-item">
-    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
-  </div>
-  
-  
-</div>
 
       </div>
-    </div>
-  </article>
 
-  <script src="/js/highlight.pack.js"></script>
-
-
-<script>
-  hljs.initHighlightingOnLoad();
-  
-  
-  
+      <footer class="footer">
+  <section class="container">
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
     
     
-  
-</script>
+  </section>
+</footer>
 
-  
+    </main>
 
-</body>
+    
+
+  </body>
 
 </html>

@@ -1,311 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.0" />
+<html lang="cn">
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
-  <meta property="og:url" content="https://liaoshanjin.github.io/others/centos7-install-yapi/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/others/centos7-install-yapi/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="application/ld+json">
-  {
-      "@context" : "http://schema.org",
-      "@type" : "BlogPosting",
-      "mainEntityOfPage": {
-           "@type": "WebPage",
-           "@id": "https:\/\/liaoshanjin.github.io"
-      },
-      "articleSection" : "others",
-      "name" : "Centos7 安装 YApi",
-      "headline" : "Centos7 安装 YApi",
-      "description" : "安装 NodeJS 教程参考安装 gogs 教程\n准备 安装 MongoDB  使用的是yum 源安装软件\n 在 \/etc\/yum.repos.d 创建一个 mongodb-org-4.0.repo 源文件\nvim \/etc\/yum.repos.d\/mongodb-org-4.0.repo  添加以下内容： [mongodb-org-4.0] name=MongoDB Repository baseurl=https:\/\/repo.mongodb.org\/yum\/redhat\/$releasever\/mongodb-org\/4.0\/x86_64\/ gpgcheck=0 enabled=1 gpgkey=https:\/\/www.mongodb.org\/static\/pgp\/server-4.0.asc #这里可以修改 gpgcheck=0, 省去gpg验证  把服务器的包信息下载到本地电脑缓存起来 yum makecache  安装 MongoDB yum -y install mongodb-org  查看 Mongo 安装位置 whereis mongod  查看修改配置文件 ：\nvim \/etc\/mongod.conf  启动 mongodb ：\nsystemctl start mongod.service  停止 mongodb ：\nsystemctl stop mongod.service  查到mongodb的状态：",
-      "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
-      "copyrightYear" : "2019",
-      "datePublished": "2019-10-24 17:31:06 \x2b0800 CST",
-      "dateModified" : "2019-10-24 17:31:06 \x2b0800 CST",
-      "url" : "https:\/\/liaoshanjin.github.io\/others\/centos7-install-yapi\/",
-      "keywords" : [  ]
-  }
-</script>
-<title>Centos7 安装 YApi - 苦味糖的博客</title>
-  <meta property="og:title" content="Centos7 安装 YApi - 苦味糖的博客" />
-  <meta property="og:type" content="article" />
-  <meta property="og:description" content="安装 NodeJS 教程参考安装 gogs 教程
+    
+    
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos7 安装 YApi"/>
+<meta name="twitter:description" content="安装 NodeJS 教程参考安装 gogs 教程
 准备 安装 MongoDB  使用的是yum 源安装软件
  在 /etc/yum.repos.d 创建一个 mongodb-org-4.0.repo 源文件
-vim /etc/yum.repos.d/mongodb-org-4.0.repo  添加以下内容： [mongodb-org-4.0] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/ gpgcheck=0 enabled=1 gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc #这里可以修改 gpgcheck=0, 省去gpg验证  把服务器的包信息下载到本地电脑缓存起来 yum makecache  安装 MongoDB yum -y install mongodb-org  查看 Mongo 安装位置 whereis mongod  查看修改配置文件 ：
-vim /etc/mongod.conf  启动 mongodb ：
-systemctl start mongod.service  停止 mongodb ：
-systemctl stop mongod.service  查到mongodb的状态：" />
-  <meta name="description" content="安装 NodeJS 教程参考安装 gogs 教程
+vim /etc/yum.repos.d/mongodb-org-4.0.repo 添加以下内容： [mongodb-org-4.0] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/ gpgcheck=0 enabled=1 gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc #这里可以修改 gpgcheck=0, 省去gpg验证 把服务器的包信息下载到本地电脑缓存起来 yum makecache 安装 MongoDB yum -y install mongodb-org 查看 Mongo 安装位置 whereis mongod 查看修改配置文件 ：
+vim /etc/mongod.conf 启动 mongodb ：
+systemctl start mongod.service 停止 mongodb ：
+systemctl stop mongod.service 查到mongodb的状态：
+systemctl status mongod.service 停止防火墙
+systemctl stop firewalld.service 禁止防火墙开机启动
+systemctl disable firewalld."/>
+
+    <meta property="og:title" content="Centos7 安装 YApi" />
+<meta property="og:description" content="安装 NodeJS 教程参考安装 gogs 教程
 准备 安装 MongoDB  使用的是yum 源安装软件
  在 /etc/yum.repos.d 创建一个 mongodb-org-4.0.repo 源文件
-vim /etc/yum.repos.d/mongodb-org-4.0.repo  添加以下内容： [mongodb-org-4.0] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/ gpgcheck=0 enabled=1 gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc #这里可以修改 gpgcheck=0, 省去gpg验证  把服务器的包信息下载到本地电脑缓存起来 yum makecache  安装 MongoDB yum -y install mongodb-org  查看 Mongo 安装位置 whereis mongod  查看修改配置文件 ：
-vim /etc/mongod.conf  启动 mongodb ：
-systemctl start mongod.service  停止 mongodb ：
-systemctl stop mongod.service  查到mongodb的状态：" />
-  <meta property="og:locale" content="zh_CN" />
+vim /etc/yum.repos.d/mongodb-org-4.0.repo 添加以下内容： [mongodb-org-4.0] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/ gpgcheck=0 enabled=1 gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc #这里可以修改 gpgcheck=0, 省去gpg验证 把服务器的包信息下载到本地电脑缓存起来 yum makecache 安装 MongoDB yum -y install mongodb-org 查看 Mongo 安装位置 whereis mongod 查看修改配置文件 ：
+vim /etc/mongod.conf 启动 mongodb ：
+systemctl start mongod.service 停止 mongodb ：
+systemctl stop mongod.service 查到mongodb的状态：
+systemctl status mongod.service 停止防火墙
+systemctl stop firewalld.service 禁止防火墙开机启动
+systemctl disable firewalld." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/others/centos7-install-yapi/" />
+<meta property="article:published_time" content="2019-10-24T17:31:06+08:00" />
+<meta property="article:modified_time" content="2019-10-24T17:31:06+08:00" />
 
-  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
-  <link rel="stylesheet" href="/css/github-markdown.css" />
-  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
-  <link rel="stylesheet" href="/css/index.css">
-  <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
-  
-  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
-  
-  
 
-  
-</head>
+    
+      <base href="https://liaoshanjin.github.io/others/centos7-install-yapi/">
+    
+    <title>
+  Centos7 安装 YApi · 苦味糖的博客
+</title>
 
-<body>
-  <article class="post " id="article">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="site-header">
-          
-<header>
-  <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
-  </div>
-</header>
-<div class="row end-xs">
-  
-  
-</div>
-<div class="header-line"></div>
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/others/centos7-install-yapi/">
+    
 
-        </div>
-        <header class="post-header">
-          <h1 class="post-title">Centos7 安装 YApi</h1>
-          
-          <div class="row post-desc">
-            <div class="col-xs-6">
-              
-              <time class="post-date" datetime="2019-10-24 17:31:06 CST">
-                24 Oct 2019
-              </time>
-              
-            </div>
-            <div class="col-xs-6">
-              
-              <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
-              </div>
-              
-            </div>
-          </div>
-          
-        </header>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
 
-        <div class="post-content markdown-body">
-          
-          
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
 
-<h2 id="安装-nodejs">安装 NodeJS</h2>
+    
 
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      苦味糖的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Centos7 安装 YApi</h1>
+    </header>
+
+    <h2 id="安装-nodejs">安装 NodeJS</h2>
 <p>教程参考安装 gogs 教程</p>
-
 <h4 id="准备">准备</h4>
-
 <h2 id="安装-mongodb">安装 MongoDB</h2>
-
 <blockquote>
 <p>使用的是yum 源安装软件</p>
 </blockquote>
-
 <p><strong>在 <code>/etc/yum.repos.d</code> 创建一个 <code>mongodb-org-4.0.repo</code> 源文件</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim /etc/yum.repos.d/mongodb-org-4.0.repo
+</code></pre></div><h5 id="添加以下内容">添加以下内容：</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>mongodb-org-4.0<span style="color:#f92672">]</span>
+name<span style="color:#f92672">=</span>MongoDB Repository
+baseurl<span style="color:#f92672">=</span>https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+gpgcheck<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+enabled<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+gpgkey<span style="color:#f92672">=</span>https://www.mongodb.org/static/pgp/server-4.0.asc
 
-<pre><code class="language-shell">vim /etc/yum.repos.d/mongodb-org-4.0.repo
-</code></pre>
-
-<h5 id="添加以下内容">添加以下内容：</h5>
-
-<pre><code class="language-shell">[mongodb-org-4.0]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
-gpgcheck=0
-enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
-
-#这里可以修改 gpgcheck=0, 省去gpg验证
-</code></pre>
-
-<h5 id="把服务器的包信息下载到本地电脑缓存起来">把服务器的包信息下载到本地电脑缓存起来</h5>
-
-<pre><code class="language-shell">yum makecache
-</code></pre>
-
-<h5 id="安装-mongodb-1">安装 MongoDB</h5>
-
+<span style="color:#75715e">#这里可以修改 gpgcheck=0, 省去gpg验证</span>
+</code></pre></div><h5 id="把服务器的包信息下载到本地电脑缓存起来">把服务器的包信息下载到本地电脑缓存起来</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum makecache
+</code></pre></div><h5 id="安装-mongodb-1">安装 MongoDB</h5>
 <pre><code>yum -y install mongodb-org
-</code></pre>
-
-<h5 id="查看-mongo-安装位置">查看 Mongo 安装位置</h5>
-
+</code></pre><h5 id="查看-mongo-安装位置">查看 Mongo 安装位置</h5>
 <pre><code>whereis mongod
-</code></pre>
-
-<p><strong>查看修改配置文件 ：</strong></p>
-
+</code></pre><p><strong>查看修改配置文件 ：</strong></p>
 <pre><code>vim /etc/mongod.conf
-</code></pre>
-
-<p><strong>启动 mongodb ：</strong></p>
-
+</code></pre><p><strong>启动 mongodb ：</strong></p>
 <pre><code>systemctl start mongod.service
-</code></pre>
-
-<p><strong>停止 mongodb ：</strong></p>
-
+</code></pre><p><strong>停止 mongodb ：</strong></p>
 <pre><code>systemctl stop mongod.service
-</code></pre>
-
-<p><strong>查到mongodb的状态：</strong></p>
-
+</code></pre><p><strong>查到mongodb的状态：</strong></p>
 <pre><code>systemctl status mongod.service
-</code></pre>
-
-<p><strong>停止防火墙</strong></p>
-
+</code></pre><p><strong>停止防火墙</strong></p>
 <pre><code>systemctl stop firewalld.service
-</code></pre>
-
-<p><strong>禁止防火墙开机启动</strong></p>
-
+</code></pre><p><strong>禁止防火墙开机启动</strong></p>
 <pre><code>systemctl disable firewalld.service
-</code></pre>
-
-<p><strong>启动Mongo shell</strong></p>
-
-<pre><code class="language-shell">mongo
-</code></pre>
-
-<p><strong>查看数据库：</strong></p>
-
-<pre><code class="language-shell">show dbs
-</code></pre>
-
-<p><strong>设置 mongodb 远程访问</strong></p>
-
+</code></pre><p><strong>启动Mongo shell</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mongo
+</code></pre></div><p><strong>查看数据库：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">show dbs
+</code></pre></div><p><strong>设置 mongodb 远程访问</strong></p>
 <p>编辑 <code>mongod.conf</code> 注释 <strong>bindIp</strong> , 并重启 <code>mongodb</code> .</p>
-
-<pre><code class="language-shell">vim /etc/mongod.conf
-</code></pre>
-
-<p><strong>重启 <code>mongodb</code> 使修改生效：</strong></p>
-
-<pre><code class="language-shell">systemctl restart mongod.service
-</code></pre>
-
-<h4 id="重点-设置-mongodb-数据库及用户">重点，设置 mongodb 数据库及用户</h4>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim /etc/mongod.conf
+</code></pre></div><p><strong>重启 <code>mongodb</code> 使修改生效：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl restart mongod.service
+</code></pre></div><h4 id="重点设置-mongodb-数据库及用户">重点，设置 mongodb 数据库及用户</h4>
 <p><strong>先输入命令进入MongoDB：</strong></p>
-
 <pre><code>mongo
-</code></pre>
-
-<p><strong>进入想要加密码的数据库（以 Yapi_test 数据库为例）</strong></p>
-
+</code></pre><p><strong>进入想要加密码的数据库（以 Yapi_test 数据库为例）</strong></p>
 <pre><code>use  Yapi
-</code></pre>
-
-<p><strong>为单个数据库添加用户（用户名为 admin, 密码为 admin）</strong></p>
-
-<pre><code class="language-shell">db.createUser({user:&quot;admin&quot;,pwd:&quot;admin&quot;,roles:[{role:&quot;dbOwner&quot;, db:&quot;Yapi&quot;}]})
-</code></pre>
-
-<h2 id="安装-yapi">安装 YAPI</h2>
-
+</code></pre><p><strong>为单个数据库添加用户（用户名为 admin, 密码为 admin）</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">db.createUser<span style="color:#f92672">({</span>user:<span style="color:#e6db74">&#34;admin&#34;</span>,pwd:<span style="color:#e6db74">&#34;admin&#34;</span>,roles:<span style="color:#f92672">[{</span>role:<span style="color:#e6db74">&#34;dbOwner&#34;</span>, db:<span style="color:#e6db74">&#34;Yapi&#34;</span><span style="color:#f92672">}]})</span>
+</code></pre></div><h2 id="安装-yapi">安装 YAPI</h2>
 <pre><code>npm install -g yapi-cli --registry https://registry.npm.taobao.org
 
 yapi server
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>要保证安装端口 9090 可访问，记得在安全组打开</li>
 <li>设置 访问端口，例如设置 3030 ， 同样要在安全组打开</li>
 </ul>
-
 <p>进入安装目录执行 例如</p>
-
 <pre><code>cd /home/git/my-yapi
 
 node vendors/server/app.js
-</code></pre>
-
-<p>最后打开地址 <code>ip:3030</code></p>
-
+</code></pre><p>最后打开地址 <code>ip:3030</code></p>
 <h2 id="安装守护进程软件-supervisor">安装守护进程软件 <code>Supervisor</code></h2>
-
 <h3 id="安装">安装</h3>
-
 <pre><code>yum install python-setuptools -y
 
 easy_install supervisor
-</code></pre>
-
-<h3 id="修改配置">修改配置</h3>
-
+</code></pre><h3 id="修改配置">修改配置</h3>
 <p><strong>创建目录 <code>/etc/supervisor</code></strong></p>
-
 <pre><code>mkdir /etc/supervisor
-</code></pre>
-
-<p><strong>创建 <code>supervisord.conf</code> 模板文件</strong></p>
-
+</code></pre><p><strong>创建 <code>supervisord.conf</code> 模板文件</strong></p>
 <pre><code>echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf
-</code></pre>
-
-<p><strong>修改文件 <code>supervisord.conf</code></strong></p>
-
+</code></pre><p><strong>修改文件 <code>supervisord.conf</code></strong></p>
 <pre><code>vim /etc/supervisor/supervisord.conf
-</code></pre>
-
-<p><strong>增加下面的内容，<code>wq</code> 保存。</strong></p>
-
+</code></pre><p><strong>增加下面的内容，<code>wq</code> 保存。</strong></p>
 <pre><code>[include]
 files = conf.d/*.conf
-</code></pre>
-
-<p>如果服务已启动，修改配置文件可用 <code>supervisorctl reload</code> 命令来使其生效。</p>
-
+</code></pre><p>如果服务已启动，修改配置文件可用 <code>supervisorctl reload</code> 命令来使其生效。</p>
 <p>如果上面的步骤出错:</p>
-
 <pre><code> error: &lt;class 'socket.error'&gt;, [Errno 2] No such file or directory: file: /usr/lib64/python2.7/socket.py line: 224
-</code></pre>
-
-<p>解决方法使用下面命令启动:</p>
-
-<pre><code class="language-bash"> /usr/bin/python2 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+</code></pre><p>解决方法使用下面命令启动:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> /usr/bin/python2 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
  supervisorctl update
 
  supervisorctl reload
-</code></pre>
-
-<p><strong>创建(上面填写内容中的)目录 <code>/etc/supervisor/conf.d/</code></strong></p>
-
+</code></pre></div><p><strong>创建(上面填写内容中的)目录 <code>/etc/supervisor/conf.d/</code></strong></p>
 <pre><code>mkdir -p /etc/supervisor/conf.d/
-</code></pre>
-
-<p><strong>修改（创建）文件 <code>YApiGhost.conf</code></strong></p>
-
+</code></pre><p><strong>修改（创建）文件 <code>YApiGhost.conf</code></strong></p>
 <pre><code>vim /etc/supervisor/conf.d/YApiGhost.conf
-</code></pre>
-
-<p><strong>增加下面（ Ypai 的配置）的内容，wq 保存。</strong></p>
-
+</code></pre><p><strong>增加下面（ Ypai 的配置）的内容，wq 保存。</strong></p>
 <pre><code>[program: YApiGhost]
 command=node vendors/server/app.js        ; 运行程序的命令
 directory=/home/git/my-yapi;             ; 命令执行的目录
@@ -315,47 +202,26 @@ stdout_logfile=/var/log/YApiGhost.out.log     ; 输出日志文件
 environment=ASPNETCORE_ENVIRONMENT=Production     ; 进程环境变量
 user=root         ; 进程执行的用户身份
 stopsignal=INT
-</code></pre>
-
-<h3 id="启动">启动</h3>
-
-<h4 id="根据-supervisord-conf-启动守护进程">根据 <code>supervisord.conf</code> 启动守护进程</h4>
-
+</code></pre><h3 id="启动">启动</h3>
+<h4 id="根据-supervisordconf-启动守护进程">根据 <code>supervisord.conf</code> 启动守护进程</h4>
 <pre><code>supervisord -c /etc/supervisor/supervisord.conf
-</code></pre>
-
-<blockquote>
+</code></pre><blockquote>
 <p>如果报了以下错误</p>
 </blockquote>
-
 <pre><code> Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.
-</code></pre>
-
-<p>这个错误的原因就是 <code>supervisor.sock</code> 这个文件会被系统自动删除或者其它原因不存在了，删除软连接就可以了。<code>supervisor.sock</code> 生成的位置可以去 <code>supervisor</code> 的配置文件中找到。</p>
-
+</code></pre><p>这个错误的原因就是 <code>supervisor.sock</code> 这个文件会被系统自动删除或者其它原因不存在了，删除软连接就可以了。<code>supervisor.sock</code> 生成的位置可以去 <code>supervisor</code> 的配置文件中找到。</p>
 <blockquote>
 <p>解决方法如下</p>
 </blockquote>
-
 <pre><code>unlink /var/run/supervisor.sock
 
 unlink /tmp/supervisor.sock
-</code></pre>
-
-<h4 id="查看进程">查看进程</h4>
-
+</code></pre><h4 id="查看进程">查看进程</h4>
 <pre><code>ps -ef | grep YApiGhost
-</code></pre>
-
-<h3 id="设置为开机启动">设置为开机启动</h3>
-
-<h4 id="修改文件-supervisord-service">修改文件 <code>supervisord.service</code></h4>
-
+</code></pre><h3 id="设置为开机启动">设置为开机启动</h3>
+<h4 id="修改文件-supervisordservice">修改文件 <code>supervisord.service</code></h4>
 <pre><code>vim /usr/lib/systemd/system/supervisord.service
-</code></pre>
-
-<h4 id="添加下面的内容-wq-保存">添加下面的内容，<code>wq</code> 保存。</h4>
-
+</code></pre><h4 id="添加下面的内容wq-保存">添加下面的内容，<code>wq</code> 保存。</h4>
 <pre><code>[Unit]
 Description=Supervisor daemon
 
@@ -370,15 +236,9 @@ RestartSec=42s
 
 [Install]
 WantedBy=multi-user.target
-</code></pre>
-
-<h4 id="开机启动">开机启动</h4>
-
+</code></pre><h4 id="开机启动">开机启动</h4>
 <pre><code>systemctl enable supervisord
-</code></pre>
-
-<h2 id="nginx-添加代理">Nginx 添加代理</h2>
-
+</code></pre><h2 id="nginx-添加代理">Nginx 添加代理</h2>
 <pre><code>cd  /usr/local/nginx/conf/vhost/
 
 vim yapi.conf
@@ -392,108 +252,39 @@ server {
         proxy_pass http://127.0.0.1:3030;
     }
 }
-</code></pre>
-
-<h2 id="如果在重启服务器之后发现-502-bad-gateway">如果在重启服务器之后发现 502 Bad Gateway</h2>
-
+</code></pre><h2 id="如果在重启服务器之后发现-502-bad-gateway">如果在重启服务器之后发现 502 Bad Gateway</h2>
 <p>因为原先存放程序的路径问题，supervisor无法读取到该程序</p>
-
 <pre><code>cat /etc/supervisor/supervisord.conf
-</code></pre>
-
-<p>找到</p>
-
+</code></pre><p>找到</p>
 <pre><code>[unix_http_server]
 file=/tmp/supervisor.sock   ; the path to the socket file
-</code></pre>
-
-<p>删除 <code>/tmp/supervisor.sock</code></p>
-
+</code></pre><p>删除 <code>/tmp/supervisor.sock</code></p>
 <pre><code>unlink /tmp/supervisor.sock
-</code></pre>
-
-<p>重启</p>
-
+</code></pre><p>重启</p>
 <pre><code>supervisorctl restart all
 </code></pre>
+  </article>
+</section>
 
-        </div>
-
-        <div class="row middle-xs">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            
-          </div>
-        </div>
-
-        
-        
-
-        
-        
-        <div style="height: 50px;"></div>
-        
-        <div class="post-comments">
-          <div id="disqus_thread"></div>
-<script>
-  window.addEventListener("load", () => {
-    (function() {
-      
-      var d = document,
-        s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  });
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-        </div>
-        
-        
-
-        <div class="site-footer">
-  
-  <div class="site-footer-item">
-    <a href="/about/" target="_blank">关于我</a>
-  </div>
-  
-  <div class="site-footer-item">
-    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
-  </div>
-  
-  
-</div>
 
       </div>
-    </div>
-  </article>
 
-  <script src="/js/highlight.pack.js"></script>
-
-
-<script>
-  hljs.initHighlightingOnLoad();
-  
-  
-  
+      <footer class="footer">
+  <section class="container">
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
     
     
-  
-</script>
+  </section>
+</footer>
 
-  
+    </main>
 
-</body>
+    
+
+  </body>
 
 </html>

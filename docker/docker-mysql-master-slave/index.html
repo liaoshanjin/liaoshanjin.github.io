@@ -1,28 +1,44 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.75.1" />
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
 
-    
-    
-    
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="在 Docker 上搭建 MySQL 的主从复制"/>
-<meta name="twitter:description" content="安装 Docker 略过
-拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305
-docker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了
-启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307
-docker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31配置 主服务器配置： 进入 主服务器容器
-docker exec -it af3d7bea3bb0 /bin/bash 安装 vim
-apt-get update apt-get install vim -y 查看 MySQL 的配置文件：
-cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
-# 表示包含/etc/mysql/conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/conf.d/	# 表示包含/etc/mysql/mysql.conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/mysql.conf.d/ 这里我们把主从配置放到文件 /etc/mysql/conf.d/mysql.cnf"/>
-
-    <meta property="og:title" content="在 Docker 上搭建 MySQL 的主从复制" />
-<meta property="og:description" content="安装 Docker 略过
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "docker",
+      "name" : "在 Docker 上搭建 MySQL 的主从复制",
+      "headline" : "在 Docker 上搭建 MySQL 的主从复制",
+      "description" : "安装 Docker 略过\n拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305\ndocker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了\n启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307\ndocker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31\r配置 主服务器配置： 进入 主服务器容器\ndocker exec -it af3d7bea3bb0 \/bin\/bash 安装 vim\napt-get update apt-get install vim -y 查看 MySQL 的配置文件：\ncat \/etc\/mysql\/my.cnf \/etc\/mysql\/my.cnf 里面就两句：\n# 表示包含\/etc\/mysql\/conf.d\/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir \/etc\/mysql\/conf.d\/\t# 表示包含\/etc\/mysql\/mysql.conf.d\/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir \/etc\/mysql\/mysql.conf.d\/ 这里我们把主从配置放到文件 \/etc\/mysql\/conf.d\/mysql.cnf",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-11-11 19:20:20 \u002b0800 CST",
+      "dateModified" : "2020-11-11 19:20:20 \u002b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/docker\/docker-mysql-master-slave\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>在 Docker 上搭建 MySQL 的主从复制 - 苦味糖的博客</title>
+  <meta property="og:title" content="在 Docker 上搭建 MySQL 的主从复制 - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="安装 Docker 略过
 拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305
 docker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了
 启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307
@@ -31,73 +47,74 @@ docker exec -it af3d7bea3bb0 /bin/bash 安装 vim
 apt-get update apt-get install vim -y 查看 MySQL 的配置文件：
 cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
 # 表示包含/etc/mysql/conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/conf.d/	# 表示包含/etc/mysql/mysql.conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/mysql.conf.d/ 这里我们把主从配置放到文件 /etc/mysql/conf.d/mysql.cnf" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" />
-<meta property="article:published_time" content="2020-11-11T19:30:20+08:00" />
-<meta property="article:modified_time" content="2020-11-11T19:30:20+08:00" />
+  <meta name="description" content="安装 Docker 略过
+拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305
+docker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了
+启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307
+docker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31配置 主服务器配置： 进入 主服务器容器
+docker exec -it af3d7bea3bb0 /bin/bash 安装 vim
+apt-get update apt-get install vim -y 查看 MySQL 的配置文件：
+cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
+# 表示包含/etc/mysql/conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/conf.d/	# 表示包含/etc/mysql/mysql.conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/mysql.conf.d/ 这里我们把主从配置放到文件 /etc/mysql/conf.d/mysql.cnf" />
+  <meta property="og:locale" content="zh_CN" />
 
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
 
-    
-      <base href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/">
-    
-    <title>
-  在 Docker 上搭建 MySQL 的主从复制 · 苦味糖的博客
-</title>
+  
+</head>
 
-    
-      <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/">
-    
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">在 Docker 上搭建 MySQL 的主从复制</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-11-11 19:20:20 CST">
+                11 Nov 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
 
-    
-      
-      
-      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
-    
-
-    
-
-    
-
-    
-
-    
-    
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.75.1" />
-  </head>
-
-  <body class=" ">
-    <main class="wrapper">
-      <nav class="navigation">
-  <section class="container">
-    <a class="navigation-title" href="/">
-      苦味糖的博客
-    </a>
-    <input type="checkbox" id="menu-toggle" />
-    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
-    <ul class="navigation-list">
-      
-      
-    </ul>
-  </section>
-</nav>
-
-
-      <div class="content">
-        
-  <section class="container page">
-  <article>
-    <header>
-      <h1>在 Docker 上搭建 MySQL 的主从复制</h1>
-    </header>
-
-    <h3 id="安装-docker">安装 Docker</h3>
+        <div class="post-content markdown-body">
+          
+          <h3 id="安装-docker">安装 Docker</h3>
 <p>略过</p>
 <h3 id="拉取-mysql镜像">拉取 MySQL镜像</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker pull mysql:5.7.31
@@ -376,28 +393,83 @@ mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</s
 <li><a href="https://blog.csdn.net/weixin_39004901/article/details/100663108">MySQL 各种权限介绍</a></li>
 </ul>
 
-  </article>
-</section>
+        </div>
 
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
 
       </div>
+    </div>
+  </article>
 
-      <footer class="footer">
-  <section class="container">
-    
-     © 2020
-    
-       · 
-       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
-    
-    
-  </section>
-</footer>
+  <script src="/js/highlight.pack.js"></script>
 
-    </main>
 
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
     
+    
+  
+</script>
 
-  </body>
+  
+
+</body>
 
 </html>

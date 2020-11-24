@@ -10,14 +10,14 @@
     
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="在Docker上搭建Nginx的负载均衡"/>
+<meta name="twitter:title" content="在 Docker 上搭建 Nginx 的负载均衡"/>
 <meta name="twitter:description" content="负载均衡 当一台服务器的单位时间内的访问量越大时，服务器压力就越大，大到超过自身承受能力时，服务器就会崩溃。为了避免服务器崩溃，让用户有更好的体验，我们通过负载均衡的方式来分担服务器压力。
 我们可以建立很多很多服务器，组成一个服务器集群，当用户访问网站时，先访问一个中间服务器，在让这个中间服务器在服务器集群中选择一个压力较小的服务器，然后将该访问请求引入该服务器。如此以来，用户的每次访问，都会保证服务器集群中的每个服务器压力趋于平衡，分担了服务器压力，避免了服务器崩溃的情况。
 负载均衡是用反向代理的原理实现的。
  正向代理，代理的是用户。 反向代理，代理的是服务器  安装 Docker 略过
 拉取Nginx镜像 docker pull nginx 准备页面 # 创建两个 Nginx 访问目录 分别放两个 index.html 页面 和 配置 mkdir -p /docker/nginx/cluster-1/html mkdir -p /docker/nginx/cluster-1/conf mkdir -p /docker/nginx/cluster-2/html mkdir -p /docker/nginx/cluster-2/conf vim /docker/nginx/cluster-1/conf/default.conf server { listen 80; listen [::]:80; server_name localhost; #charset koi8-r;  #access_log /var/log/nginx/host.access.log main;  location / { root /usr/share/nginx/html; index index.html index.htm; } #error_page 404 /404.html;  # redirect server error pages to the static page /50x."/>
 
-    <meta property="og:title" content="在Docker上搭建Nginx的负载均衡" />
+    <meta property="og:title" content="在 Docker 上搭建 Nginx 的负载均衡" />
 <meta property="og:description" content="负载均衡 当一台服务器的单位时间内的访问量越大时，服务器压力就越大，大到超过自身承受能力时，服务器就会崩溃。为了避免服务器崩溃，让用户有更好的体验，我们通过负载均衡的方式来分担服务器压力。
 我们可以建立很多很多服务器，组成一个服务器集群，当用户访问网站时，先访问一个中间服务器，在让这个中间服务器在服务器集群中选择一个压力较小的服务器，然后将该访问请求引入该服务器。如此以来，用户的每次访问，都会保证服务器集群中的每个服务器压力趋于平衡，分担了服务器压力，避免了服务器崩溃的情况。
 负载均衡是用反向代理的原理实现的。
@@ -33,7 +33,7 @@
       <base href="https://liaoshanjin.github.io/docker/docker-nginx-upstrem/">
     
     <title>
-  在Docker上搭建Nginx的负载均衡 · 苦味糖的博客
+  在 Docker 上搭建 Nginx 的负载均衡 · 苦味糖的博客
 </title>
 
     
@@ -86,7 +86,7 @@
   <section class="container page">
   <article>
     <header>
-      <h1>在Docker上搭建Nginx的负载均衡</h1>
+      <h1>在 Docker 上搭建 Nginx 的负载均衡</h1>
     </header>
 
     <h3 id="负载均衡">负载均衡</h3>

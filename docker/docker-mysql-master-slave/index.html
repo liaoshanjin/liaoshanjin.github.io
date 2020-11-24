@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Docker 上搭建 MySQL 的主从复制"/>
+<meta name="twitter:description" content="安装 Docker 略过
+拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305
+docker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了
+启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307
+docker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31配置 主服务器配置： 进入 主服务器容器
+docker exec -it af3d7bea3bb0 /bin/bash 安装 vim
+apt-get update apt-get install vim -y 查看 MySQL 的配置文件：
+cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
+# 表示包含/etc/mysql/conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/conf.d/	# 表示包含/etc/mysql/mysql.conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/mysql.conf.d/ 这里我们把主从配置放到文件 /etc/mysql/conf.d/mysql.cnf"/>
+
+    <meta property="og:title" content="在 Docker 上搭建 MySQL 的主从复制" />
+<meta property="og:description" content="安装 Docker 略过
+拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305
+docker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了
+启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307
+docker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31配置 主服务器配置： 进入 主服务器容器
+docker exec -it af3d7bea3bb0 /bin/bash 安装 vim
+apt-get update apt-get install vim -y 查看 MySQL 的配置文件：
+cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
+# 表示包含/etc/mysql/conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/conf.d/	# 表示包含/etc/mysql/mysql.conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir /etc/mysql/mysql.conf.d/ 这里我们把主从配置放到文件 /etc/mysql/conf.d/mysql.cnf" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" />
+<meta property="article:published_time" content="2020-11-11T19:30:20+08:00" />
+<meta property="article:modified_time" content="2020-11-11T19:30:20+08:00" />
+
+
+    
+      <base href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/">
+    
+    <title>
+  在 Docker 上搭建 MySQL 的主从复制 · 苦味糖的博客
+</title>
+
+    
+      <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      苦味糖的博客
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>在 Docker 上搭建 MySQL 的主从复制</h1>
+    </header>
+
+    <h3 id="安装-docker">安装 Docker</h3>
+<p>略过</p>
+<h3 id="拉取-mysql镜像">拉取 MySQL镜像</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker pull mysql:5.7.31
+</code></pre></div><h3 id="启动主数据库">启动主数据库</h3>
+<p>启动第一个<code>MySQL</code> 容器，并且映射到本地端口 <code>3305</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>master -d mysql:5.7.31
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903001.png" alt="image-20200903145704295"></p>
+<p>可以看到主数据库就启动并且连接成功了</p>
+<p><img src="/images/docker/mysql/image-20200903002.png" alt="image-20200903150037483"></p>
+<h3 id="启动从数据库">启动从数据库</h3>
+<p>和启动主数据库一样，不同的是讲端口映射到 <code>3307</code></p>
+<pre><code>docker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31
+</code></pre><p><img src="/images/docker/mysql/image-20200903003.png" alt="image-20200903151105576"></p>
+<p><img src="/images/docker/mysql/image-20200903004.png" alt="image-20200903151316837"></p>
+<h3 id="配置">配置</h3>
+<h4 id="主服务器配置">主服务器配置：</h4>
+<p>进入 主服务器容器</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker exec -it af3d7bea3bb0 /bin/bash
+</code></pre></div><p>安装 <code>vim</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apt-get update
+
+apt-get install vim -y
+</code></pre></div><p>查看 <code>MySQL</code> 的配置文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/mysql/my.cnf
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903005.png" alt="image-20200903161959612"></p>
+<p><em>/etc/mysql/my.cnf</em> 里面就两句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 表示包含/etc/mysql/conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀</span>
+!includedir /etc/mysql/conf.d/		
+<span style="color:#75715e"># 表示包含/etc/mysql/mysql.conf.d/这个路径下面的配置文件，前提是必须以为.cnf为后缀</span>
+!includedir /etc/mysql/mysql.conf.d/
+</code></pre></div><p>这里我们把主从配置放到文件 <em>/etc/mysql/conf.d/mysql.cnf</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>mysqld<span style="color:#f92672">]</span>
+log-bin 	<span style="color:#f92672">=</span> mysql-bin  <span style="color:#75715e"># binlog文件存储路径, 默认存放位置为数据库文件所在目录下</span>
+server-id 	<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>  		 <span style="color:#75715e"># 服务器标识id,同一局域网内注意要唯一.通常主服务器id比从服务器小. </span>
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903006.png" alt="image-20200903171049534"></p>
+<blockquote>
+<p><code>bin-log</code> ： 二进制日志，也成为二进制日志，记录对数据发生或潜在发生更改的 <code>SQL</code> 语句，并以二进制的形式保存在磁盘中。可以用来查看数据库的变更历史（具体的时间点所有的 <code>SQL</code> 操作）、数据库增量备份和恢复（增量备份和基于时间点的恢复）、<code>MySQL</code> 的复制（主主数据库的复制、主从数据库的复制）。</p>
+<p><code>mysql</code> 的同步的数据中是包含 <code>server-id</code> 的，用于标识该语句最初是从哪个 <code>server</code> 写入的，所以 <code>server-id</code> 一定要有的。</p>
+</blockquote>
+<p>检查配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@c582e4cd3113:/# egrep <span style="color:#e6db74">&#34;log-bin|server-id&#34;</span> /etc/mysql/conf.d/mysql.cnf
+log-bin 	<span style="color:#f92672">=</span> mysql-bin
+server-id 	<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p>配置完主服务器，重启 <code>MySQL</code> 。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service mysql restart
+</code></pre></div><p>重启了 <code>MySQL</code> 使得主服务的容器也跟着停止，，重启主服务容器：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker start mysql-master
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903007.png" alt="image-20200903171529672"></p>
+<p>连接 <code>MySQL</code> 是发现错误：</p>
+<p><img src="/images/docker/mysql/image-20200903009.png" alt="image-20200904091513304"></p>
+<p>我们把配置从 <em>/etc/mysql/conf.d/mysql.cnf</em> 拿出来放到 <em>/etc/mysql/mysql.conf.d/mysqld.cnf</em> 试试</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+<span style="color:#75715e"># 最后一样添加</span>
+log-bin 	<span style="color:#f92672">=</span> mysql-bin
+server-id 	<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p>接着就是重启&hellip;.</p>
+<p><img src="/images/docker/mysql/image-20200903010.png" alt="image-20200904092211096"></p>
+<p>查看 <code>bin-log</code> 开启情况：</p>
+<pre><code>SHOW VARIABLES LIKE 'log_bin';
+</code></pre><p><img src="/images/docker/mysql/image-20200903011.png" alt="image-20200904092329104"></p>
+<p>创建一个 <code>slave</code> 的用户，并且授予 <code>REPLICATION SLAVE</code> 和 <code>REPLICATION CLIENT</code> 权限，用于在主从库之间同步数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- 创建 slave 用户
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> <span style="color:#e6db74">&#39;slave&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;%&#39;</span> IDENTIFIED <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#39;123456&#39;</span>;
+
+<span style="color:#75715e">-- 为 slave 用户授予权限
+</span><span style="color:#75715e">-- REPLICATION SLAVE  : 复制用户所需权限，否则无法请求主库变更推送。
+</span><span style="color:#75715e">-- REPLICATION CLIENT : 允许执行show master status,show slave status,show binary logs。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">GRANT</span> REPLICATION SLAVE, REPLICATION CLIENT <span style="color:#66d9ef">ON</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;slave&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;%&#39;</span>;
+
+
+<span style="color:#75715e">-- 以上两条也可以合并为一条
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">grant</span> replication slave, replication client <span style="color:#66d9ef">on</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">to</span> <span style="color:#e6db74">&#39;slave&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;%&#39;</span> identified <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#39;123456&#39;</span> 
+
+<span style="color:#75715e">-- 刷新系统用户权限
+</span><span style="color:#75715e"></span>flush <span style="color:#66d9ef">privileges</span>;
+
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903008.png" alt="image-20200903172032231"></p>
+<p>查询当前数据库账号：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; <span style="color:#66d9ef">select</span> user,host from mysql.user;
++---------------+-----------+
+| user          | host      |
++---------------+-----------+
+| root          | %         |
+| slave         | %         |
+| mysql.session | localhost |
+| mysql.sys     | localhost |
+| root          | localhost |
++---------------+-----------+
+<span style="color:#ae81ff">5</span> rows in set <span style="color:#f92672">(</span>0.00 sec<span style="color:#f92672">)</span>
+</code></pre></div><h4 id="从服务器配置">从服务器配置：</h4>
+<p>配置和主服务器大同小异，添加如下配置：</p>
+<p><em>/etc/mysql/mysql.conf.d/mysqld.cnf</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">log-bin <span style="color:#f92672">=</span> mysql-bin  
+server-id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</code></pre></div><p>检查配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@be587f48d92a:/etc/mysql/conf.d# egrep <span style="color:#e6db74">&#34;log-bin|server-id&#34;</span> /etc/mysql/mysql.conf.d/mysqld.cnf
+log-bin <span style="color:#f92672">=</span> mysql-bin  
+server-id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</code></pre></div><p>重启 <code>MySQL</code> 和 容器。</p>
+<p>进入输入框查看配置：</p>
+<p><img src="/images/docker/mysql/image-20200903012.png" alt="image-20200904092946858"></p>
+<h3 id="建立主从">建立主从</h3>
+<h4 id="查看主服务器状态">查看主服务器状态</h4>
+<p><img src="/images/docker/mysql/image-20200903013.png" alt="image-20200904093322192"></p>
+<p><code>File </code> 和 <code>Position</code> 字段的值后面将会用到，在后面的操作完成之前，需要保证 <code>Master</code> 库不能做任何操作，否则将会引起状态变化，<code>File</code> 和 <code>Position</code> 字段的值变化。</p>
+<h4 id="配置从库与服务器通信参数">配置从库与服务器通信参数</h4>
+<p>进入从服务器:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">change</span> master <span style="color:#66d9ef">to</span> master_host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;172.17.0.2&#39;</span>, master_user<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;slave&#39;</span>, master_password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;123456&#39;</span>, master_port<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span>, master_log_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mysql-bin.000001&#39;</span>, master_log_pos<span style="color:#f92672">=</span> <span style="color:#ae81ff">306</span>, master_connect_retry<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>;
+</code></pre></div><p>命令详细说明：</p>
+<ul>
+<li>
+<p><strong>change master to</strong> ： 命令用于 <code>slave</code> 配置连接 <code>master</code> 的信息</p>
+</li>
+<li>
+<p><strong>master_host</strong> ：  <code>Master</code> 的地址，指的是容器的独立 <code>ip</code></p>
+<p>可以通过下面命令 查询容器的 <code>ip</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker inspect --format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{{.NetworkSettings.IPAddress}}&#39;</span> 容器名称|容器id
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903014.png" alt="image-20200904094344887"></p>
+</li>
+<li>
+<p><strong>master_user</strong> : 用于数据同步的用户</p>
+</li>
+<li>
+<p><strong>master_password</strong> : 用于同步的用户的密码</p>
+</li>
+<li>
+<p><strong>master_port</strong> : <code>Master</code> 的端口号，指的是容器的端口号</p>
+</li>
+<li>
+<p><strong>master_log_file</strong> : 指定 <code>Slave</code> 从哪个日志文件开始复制数据，即上文中提到的 <code>File</code> 字段的值</p>
+</li>
+<li>
+<p><strong>master_log_file</strong> ： 从哪个 <code>Position</code> 开始读，即上文中提到的 <code>Position</code> 字段的值</p>
+</li>
+<li>
+<p><strong>master_connect_retry</strong> ： 如果连接失败，重试的时间间隔，单位是秒，默认是60秒</p>
+</li>
+</ul>
+<h4 id="查看服务器主从同步状态">查看服务器主从同步状态</h4>
+<p>进入从数据库 <code>(mysql-slave)</code> 终端</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">show</span> slave status <span style="color:#960050;background-color:#1e0010">\</span>G;
+</code></pre></div><p>结果如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> slave status <span style="color:#960050;background-color:#1e0010">\</span>G;
+<span style="color:#f92672">***************************</span> <span style="color:#ae81ff">1</span>. row <span style="color:#f92672">***************************</span>
+               Slave_IO_State: 
+                  Master_Host: <span style="color:#ae81ff">172</span>.<span style="color:#ae81ff">17</span>.<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">2</span>
+                  Master_User: slave
+                  Master_Port: <span style="color:#ae81ff">3306</span>
+                Connect_Retry: <span style="color:#ae81ff">30</span>
+              Master_Log_File: mysql<span style="color:#f92672">-</span>bin.<span style="color:#ae81ff">000001</span>
+          Read_Master_Log_Pos: <span style="color:#ae81ff">306</span>
+               Relay_Log_File: be587f48d92a<span style="color:#f92672">-</span>relay<span style="color:#f92672">-</span>bin.<span style="color:#ae81ff">000001</span>
+                Relay_Log_Pos: <span style="color:#ae81ff">4</span>
+        Relay_Master_Log_File: mysql<span style="color:#f92672">-</span>bin.<span style="color:#ae81ff">000001</span>
+             Slave_IO_Running: No
+            Slave_SQL_Running: No
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: 
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: <span style="color:#ae81ff">0</span>
+                   Last_Error: 
+                 Skip_Counter: <span style="color:#ae81ff">0</span>
+          Exec_Master_Log_Pos: <span style="color:#ae81ff">306</span>
+              Relay_Log_Space: <span style="color:#ae81ff">154</span>
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: <span style="color:#ae81ff">0</span>
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File: 
+           Master_SSL_CA_Path: 
+              Master_SSL_Cert: 
+            Master_SSL_Cipher: 
+               Master_SSL_Key: 
+        Seconds_Behind_Master: <span style="color:#66d9ef">NULL</span>
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: <span style="color:#ae81ff">0</span>
+                Last_IO_Error: 
+               Last_SQL_Errno: <span style="color:#ae81ff">0</span>
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Master_Server_Id: <span style="color:#ae81ff">0</span>
+                  Master_UUID: 
+             Master_Info_File: <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>mysql<span style="color:#f92672">/</span>master.info
+                    SQL_Delay: <span style="color:#ae81ff">0</span>
+          SQL_Remaining_Delay: <span style="color:#66d9ef">NULL</span>
+      Slave_SQL_Running_State: 
+           Master_Retry_Count: <span style="color:#ae81ff">86400</span>
+                  Master_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Master_SSL_Crl: 
+           Master_SSL_Crlpath: 
+           Retrieved_Gtid_Set: 
+            Executed_Gtid_Set: 
+                Auto_Position: <span style="color:#ae81ff">0</span>
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Master_TLS_Version: 
+<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+
+ERROR: 
+No query specified
+</code></pre></div><p>正常情况下 <strong>Slave_IO_Running</strong> 和 <strong>Slave_SQL_Running</strong> 都是No，因为我们还没有开启主从复制过程。</p>
+<p>使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">start slave;
+</code></pre></div><p>开启主从复制过程，然后再次查询主从同步状态</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">show</span> slave status <span style="color:#960050;background-color:#1e0010">\</span>G;
+</code></pre></div><p><img src="/images/docker/mysql/image-20200903015.png" alt="image-20200904102205280"></p>
+<p><strong>Slave_IO_Running</strong> 和 <strong>Slave_SQL_Running</strong> 都是 <strong>Yes</strong>，说明主从复制已经开启。此时可以测试数据同步是否成功。</p>
+<h3 id="测试是否配置成功">测试是否配置成功</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 进入主服务器：
+</span><span style="color:#75715e"></span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">databases</span>;
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">Database</span>           <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> information_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql              <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> performance_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> sys                <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#ae81ff">4</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+
+
+<span style="color:#75715e"># 进入从服务器终端：
+</span><span style="color:#75715e"></span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">databases</span>;
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">Database</span>           <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> information_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql              <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> performance_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> sys                <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#ae81ff">4</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">01</span> sec)
+
+
+<span style="color:#75715e"># 主服务器新建一个数据库 test_database：
+</span><span style="color:#75715e"></span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">database</span> test_database;
+Query OK, <span style="color:#ae81ff">1</span> row <span style="color:#a6e22e">affected</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+
+mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">databases</span>;
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">Database</span>           <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> information_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql              <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> performance_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> sys                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> test_database      <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#ae81ff">5</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+
+
+<span style="color:#75715e"># 查看从数据看是否同步
+</span><span style="color:#75715e"></span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">databases</span>;
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#66d9ef">Database</span>           <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#f92672">|</span> information_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> mysql              <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> performance_schema <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> sys                <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> test_database      <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------+</span>
+<span style="color:#ae81ff">5</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</code></pre></div><p>测试看到从数据库也多了一个 <code>test_database</code> 的数据库。这样数据库主从就算配置成功。</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/songwenjie/p/9371422.html">基于Docker的Mysql主从复制搭建</a></li>
+<li><a href="http://www.php20.cn/article/236">关于mysql集群主从服务器搭建</a></li>
+<li><a href="https://blog.csdn.net/weixin_39004901/article/details/100663108">MySQL 各种权限介绍</a></li>
+</ul>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2020
+    
+       · 
+       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

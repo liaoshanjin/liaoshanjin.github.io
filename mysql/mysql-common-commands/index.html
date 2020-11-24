@@ -1,87 +1,104 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.75.1" />
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-common-commands/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-common-commands/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
 
-    
-    
-    
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "mysql",
+      "name" : "Mysql 常用命令整理",
+      "headline" : "Mysql 常用命令整理",
+      "description" : "目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1.",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-06-27 18:20:00 \u002b0800 CST",
+      "dateModified" : "2020-06-27 18:20:00 \u002b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/mysql\/mysql-common-commands\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Mysql 常用命令整理 - 苦味糖的博客</title>
+  <meta property="og:title" content="Mysql 常用命令整理 - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1." />
+  <meta name="description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1." />
+  <meta property="og:locale" content="zh_CN" />
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Mysql 常用命令整理"/>
-<meta name="twitter:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1."/>
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
 
-    <meta property="og:title" content="Mysql 常用命令整理" />
-<meta property="og:description" content="目录  一. 表操作  1. 创建数据库 2. 创建表 3. 查看表结构 4. 修改表名 5. 添加字段 6. 删除字段 7. 修改字段属性 8. 添加索引 9. 删除索引 10. 查看索引   二. 常用SQL语句  1. date_format日期转换 2. 联表查询   三. 用户管理与授权管理   1. 创建用户 2. 查看用户信息 3. 授权 4. 查看用户授权信息 5. 设置与更改用户密码 6. 撤销用户权限 7. 删除用户   四. 空间统计命令   1. 查看各个数据库的数据大小 2. 查看指定数据库下每个表的数据大小 3. 查看指定数据库的某个表的数据大小   五. 重复数据处理   1." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-common-commands/" />
-<meta property="article:published_time" content="2020-06-27T18:20:00+08:00" />
-<meta property="article:modified_time" content="2020-06-27T18:20:00+08:00" />
+  
+</head>
 
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
 
-    
-      <base href="https://liaoshanjin.github.io/mysql/mysql-common-commands/">
-    
-    <title>
-  Mysql 常用命令整理 · 苦味糖的博客
-</title>
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Mysql 常用命令整理</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-06-27 18:20:00 CST">
+                27 Jun 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
 
-    
-      <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-common-commands/">
-    
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
-
-    
-      
-      
-      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
-    
-
-    
-
-    
-
-    
-
-    
-    
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.75.1" />
-  </head>
-
-  <body class=" ">
-    <main class="wrapper">
-      <nav class="navigation">
-  <section class="container">
-    <a class="navigation-title" href="/">
-      苦味糖的博客
-    </a>
-    <input type="checkbox" id="menu-toggle" />
-    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
-    <ul class="navigation-list">
-      
-      
-    </ul>
-  </section>
-</nav>
-
-
-      <div class="content">
-        
-  <section class="container page">
-  <article>
-    <header>
-      <h1>Mysql 常用命令整理</h1>
-    </header>
-
-    <h1 id="目录">目录</h1>
+        <div class="post-content markdown-body">
+          
+          <h1 id="目录">目录</h1>
 <ul>
 <li>一. <a href="#1">表操作</a>
 <ul>
@@ -605,28 +622,83 @@ mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
 </code></pre></div><p>转载自：<a href="https://shuwoom.com/?p=3225">MYSQL常用命令整理</a></p>
 
-  </article>
-</section>
+        </div>
 
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
 
       </div>
+    </div>
+  </article>
 
-      <footer class="footer">
-  <section class="container">
-    
-     © 2020
-    
-       · 
-       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
-    
-    
-  </section>
-</footer>
+  <script src="/js/highlight.pack.js"></script>
 
-    </main>
 
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
     
+    
+  
+</script>
 
-  </body>
+  
+
+</body>
 
 </html>

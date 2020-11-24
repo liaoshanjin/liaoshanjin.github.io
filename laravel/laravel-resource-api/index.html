@@ -1,97 +1,114 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.75.1" />
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-resource-api/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-resource-api/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
 
-    
-    
-    
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用 Laravel 的 API资源开发接口"/>
-<meta name="twitter:description" content="API 资源介绍 在使用 Laravel 开发接口的时候，很多时候我们需要使用到 transform 层，转换一下，我们想要显示给客户端的数据。
-在 Laravel5.5 之前的版本中，我们可以使用 league/fractal 包解决。典型的就是 dingo/api 了。
-但是在 Laravel5.5 以及之后的版本中， Laravel 框架自带了 Api 资源 ，接下来我们就来使用这个资源开发。
-新建资源 新建资源很简单。我们只需要使用 Laravel 框架的脚手架就能完成。
-php artisan make:resource RoleResource 就能在目录下看到文件 app\Http\Resources\RoleResource.php。
-&lt;?php namespace App\Http\Resources; use Illuminate\Http\Resources\Json\JsonResource; class RoleResource extends JsonResource { /** * Transform the resource into an array. * * @param \Illuminate\Http\Request $request * @return array */ public function toArray($request) { return parent::toArray($request); } } 使用资源 新建好了资源，接下来我们该怎么使用呢？和 league/fractal 差不多，当我们查询的数据是一个 item 时，我们使用 new 一个资源。"/>
-
-    <meta property="og:title" content="使用 Laravel 的 API资源开发接口" />
-<meta property="og:description" content="API 资源介绍 在使用 Laravel 开发接口的时候，很多时候我们需要使用到 transform 层，转换一下，我们想要显示给客户端的数据。
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "laravel",
+      "name" : "使用 Laravel 的 API资源开发接口",
+      "headline" : "使用 Laravel 的 API资源开发接口",
+      "description" : "API 资源介绍 在使用 Laravel 开发接口的时候，很多时候我们需要使用到 transform 层，转换一下，我们想要显示给客户端的数据。\n在 Laravel5.5 之前的版本中，我们可以使用 league\/fractal 包解决。典型的就是 dingo\/api 了。\n但是在 Laravel5.5 以及之后的版本中， Laravel 框架自带了 Api 资源 ，接下来我们就来使用这个资源开发。\n新建资源 新建资源很简单。我们只需要使用 Laravel 框架的脚手架就能完成。\nphp artisan make:resource RoleResource 就能在目录下看到文件 app\\Http\\Resources\\RoleResource.php。\n\u0026lt;?php namespace App\\Http\\Resources; use Illuminate\\Http\\Resources\\Json\\JsonResource; class RoleResource extends JsonResource { \/** * Transform the resource into an array. * * @param \\Illuminate\\Http\\Request $request * @return array *\/ public function toArray($request) { return parent::toArray($request); } } 使用资源 新建好了资源，接下来我们该怎么使用呢？和 league\/fractal 差不多，当我们查询的数据是一个 item 时，我们使用 new 一个资源。",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2019",
+      "datePublished": "2019-10-24 17:05:26 \u002b0800 CST",
+      "dateModified" : "2019-10-24 17:05:26 \u002b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/laravel\/laravel-resource-api\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>使用 Laravel 的 API资源开发接口 - 苦味糖的博客</title>
+  <meta property="og:title" content="使用 Laravel 的 API资源开发接口 - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="API 资源介绍 在使用 Laravel 开发接口的时候，很多时候我们需要使用到 transform 层，转换一下，我们想要显示给客户端的数据。
 在 Laravel5.5 之前的版本中，我们可以使用 league/fractal 包解决。典型的就是 dingo/api 了。
 但是在 Laravel5.5 以及之后的版本中， Laravel 框架自带了 Api 资源 ，接下来我们就来使用这个资源开发。
 新建资源 新建资源很简单。我们只需要使用 Laravel 框架的脚手架就能完成。
 php artisan make:resource RoleResource 就能在目录下看到文件 app\Http\Resources\RoleResource.php。
 &lt;?php namespace App\Http\Resources; use Illuminate\Http\Resources\Json\JsonResource; class RoleResource extends JsonResource { /** * Transform the resource into an array. * * @param \Illuminate\Http\Request $request * @return array */ public function toArray($request) { return parent::toArray($request); } } 使用资源 新建好了资源，接下来我们该怎么使用呢？和 league/fractal 差不多，当我们查询的数据是一个 item 时，我们使用 new 一个资源。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://liaoshanjin.github.io/laravel/laravel-resource-api/" />
-<meta property="article:published_time" content="2019-10-24T17:05:26+08:00" />
-<meta property="article:modified_time" content="2019-10-24T17:05:26+08:00" />
+  <meta name="description" content="API 资源介绍 在使用 Laravel 开发接口的时候，很多时候我们需要使用到 transform 层，转换一下，我们想要显示给客户端的数据。
+在 Laravel5.5 之前的版本中，我们可以使用 league/fractal 包解决。典型的就是 dingo/api 了。
+但是在 Laravel5.5 以及之后的版本中， Laravel 框架自带了 Api 资源 ，接下来我们就来使用这个资源开发。
+新建资源 新建资源很简单。我们只需要使用 Laravel 框架的脚手架就能完成。
+php artisan make:resource RoleResource 就能在目录下看到文件 app\Http\Resources\RoleResource.php。
+&lt;?php namespace App\Http\Resources; use Illuminate\Http\Resources\Json\JsonResource; class RoleResource extends JsonResource { /** * Transform the resource into an array. * * @param \Illuminate\Http\Request $request * @return array */ public function toArray($request) { return parent::toArray($request); } } 使用资源 新建好了资源，接下来我们该怎么使用呢？和 league/fractal 差不多，当我们查询的数据是一个 item 时，我们使用 new 一个资源。" />
+  <meta property="og:locale" content="zh_CN" />
 
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
 
-    
-      <base href="https://liaoshanjin.github.io/laravel/laravel-resource-api/">
-    
-    <title>
-  使用 Laravel 的 API资源开发接口 · 苦味糖的博客
-</title>
+  
+</head>
 
-    
-      <link rel="canonical" href="https://liaoshanjin.github.io/laravel/laravel-resource-api/">
-    
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">使用 Laravel 的 API资源开发接口</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2019-10-24 17:05:26 CST">
+                24 Oct 2019
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
 
-    
-      
-      
-      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
-    
-
-    
-
-    
-
-    
-
-    
-    
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.75.1" />
-  </head>
-
-  <body class=" ">
-    <main class="wrapper">
-      <nav class="navigation">
-  <section class="container">
-    <a class="navigation-title" href="/">
-      苦味糖的博客
-    </a>
-    <input type="checkbox" id="menu-toggle" />
-    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
-    <ul class="navigation-list">
-      
-      
-    </ul>
-  </section>
-</nav>
-
-
-      <div class="content">
-        
-  <section class="container page">
-  <article>
-    <header>
-      <h1>使用 Laravel 的 API资源开发接口</h1>
-    </header>
-
-    <h5 id="api-资源介绍">API 资源介绍</h5>
+        <div class="post-content markdown-body">
+          
+          <h5 id="api-资源介绍">API 资源介绍</h5>
 <p>在使用 <code>Laravel</code> 开发接口的时候，很多时候我们需要使用到 <code>transform</code> 层，转换一下，我们想要显示给客户端的数据。</p>
 <p>在 <code>Laravel5.5</code> 之前的版本中，我们可以使用 <code>league/fractal</code> 包解决。典型的就是 <code>dingo/api</code> 了。</p>
 <p>但是在 <code>Laravel5.5</code> 以及之后的版本中， <code>Laravel</code> 框架自带了 <code>Api 资源</code> ，接下来我们就来使用这个资源开发。</p>
@@ -228,28 +245,83 @@ class Resource extends JsonResource
 <p>其实用法不仅仅如此。我们还可以在 <code>RoleResource</code> 重构 <code>collection</code> 或者 <code>__construct</code> 方法，在里面 <code>loadMissing</code> 更多关联。更多的用法大家可以一起探索。</p>
 <p>最后，特别感谢 <code>Overtrue</code> 大神。这边也是从他的开源项目 <a href="https://yike.io/">一刻</a>的源代码中看到的。</p>
 
-  </article>
-</section>
+        </div>
 
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
 
       </div>
+    </div>
+  </article>
 
-      <footer class="footer">
-  <section class="container">
-    
-     © 2020
-    
-       · 
-       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
-    
-    
-  </section>
-</footer>
+  <script src="/js/highlight.pack.js"></script>
 
-    </main>
 
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
     
+    
+  
+</script>
 
-  </body>
+  
+
+</body>
 
 </html>

@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.75.1" />
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="苦味糖" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-study-first/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-study-first/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
 
-    
-    
-    
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MYSQL性能优化学习之 -- 数据库设计"/>
-<meta name="twitter:description" content="目录  一. 数据库设计 二. 范式和反范式 三. 缓存表和汇总表 四. 计数器表 五. 小结  一. 数据库设计1.数据类型优缺点分析 数据类型的选择要遵循的总体原则 更小的通常更好一般情况下，应该尽量选择使用可以正确存储数据的最小数据类型。更小的数据类型通常更快，因为它们站用更小的磁盘、内存和CPU缓存，并且处理时需要的CPU周期也更少。
-简单就好简单数据类型的操作通常需要更少的CPU周期。 例如，整形比字符串操作代价更低，因为字符集和校对规则（排序规则）使字符串比整形比较更复杂。这里有两个例子：一个是应该使用MySQL内建的类型而不是字符串来存储日期和时间，另一个是应该使用整形存储IP地址。
-尽量避免NULL通常情况下最好指定列为NOT NULL，除非真的需要存储NULL值。因为查询中包含可以NULL的列，对MySQL来说更难优化，因为可为NULL的列使得索引、统计索引和值比较都更为复杂。同时，可为NULL的列被索引时，每个索引记录需要一个额外的字节。一般，把可为NULL的列改为NOT NULL带来的提升比较少。
-（1）整数类型TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT分别使用8、16、24、32、64位存储空间，它们可以存储的值的范围从-2(N-1)到2(N-1)-1，其中N是存储空间的位数。
-（2）实数类型FLOAT使用4个字节、DOUBLE使用8个字节、DECIMAL使用9个字节。因为需要额外的空间和计算开销，所以应该尽量只在对小数进行精确计算时才使用DECIMAL。
-（3）字符串类型这里主要讲CHAR和VARCHAR。
-VARCHAR类型用于存储可变长字符串，是最常见的字符串类型。它比定常更省空间，因为它仅使用必要的空间。但是VARCHAR需要使用1或2个额外字节记录字符串的长度。VARCHAR节省了存储空间，所以对性能也有帮助。
-以下情况使用VARCAHR是合适的：字符串列的最大长度比平均长度大很多；列的更新很少，所以碎片不是问题；使用了像UTF-8这样复杂的字符集，每个字符都是使用不同的字节数进行存储。
-注意，在使用VARCHAR时最好的策略时只分配真正需要的空间。因为更长的列会消耗更多的内粗，MYSQL通常会分配固定大小的内存块来保存内部值。尤其是使用内存临时表进行排序或操作时特别糟糕，在利用磁盘临时表进行排序时也同样糟糕。
-（4）BLOD和TEXT类型BLOD和TEXT都是为存储很大的数据而设计的字符串数据类型，分别采用二进制和字符方式存储。
-MYSQL对BLOD 和TEXT列进行排序与其他类型是不同的；它只对每个列的最前max_sort_length字节而不是整个字符串做排序。如果只需要排序前面一小部分字符，则可以减少max_sort_length的配置，或者使用ORDER BY SUBSTRING(column,length)。
-MYSQL不能将BLOD和TEXT列全部长度的字符串进行索引，也不能使用这些索引消除排序。
-（5）日期和时间类型MYSQL提供两种类似的日期类型：DATETIME和TIMESTAMP。
-DATETIME这个类型能保存更大范围的值，从1001年到9999年，精度为秒，与时区无关。使用8个字节的存储空间。
-TIMESTAMP类型保存了从1970年1月1日（格林尼治时间）以来的描述，它和UNIX时间戳相同。TIMESTAMP只使用4个字节的存储空间，因此它的范围比DATETIME小得多，只能表示从1970年到2038年。
-如果在多个时区存储和访问数据，TIMESTAMP和DATETIME得行为将很不一样。前者提供得值跟时区有关系，后者则保留文本表示得日期和时间。
-除了特殊行为之外，通常也应该尽量使用TIMESTAMP，因为它比DATETIME空间效率更高。
-（6）位数据类型MYSQL把BIT当作字符串类型，而不是数字类型。我们应该谨慎使用BIT类型，对于大部分应用，最好避免使用这种类型。如果想在一个bit得存储空间中存储一个true/false值，另一个方法时拆个年间一个可以为空的CHAR(0)列，该列可以保存空值或者长度为零的字符串
-如果需要保存很多true/false值，可以考虑合并这些列到一个SET数据类型，它在MYSQL内部时以一系列打包的位的集合来表示的。这样就有效地利用了存储空间，并且MYSQL有像FIND_IN_SET()和FIELD()这样的函数，方便地在查询中使用。
-它主要的缺点时改变列的定义代价高：需要ALTER TABLE，这对大表来说是非常昂贵的操作。一般来说，也无法再SET列上通过索引查找。
-2.如何选择标识符(identifier)的数据类型 当选择标识列的类型时，不仅仅需要考虑存储类型，还需要考虑MySQL对这种类型怎么执行计算和比较。
-一旦选定了一种个类型，要确保在所有关联表中都是用同样的类型。类型之间需要精确匹配，混用不同数据类型可能导致性能问题，即使没有性能影响，在比较操作时隐式类型转换也可能导致很难发现的错误。
-在可以满足值的范围需要，并且预留未来增长空间的前提下，应该选择最小的数据类型。如有一个province_id列存储中国各省份名字，这个就不需要几千或几百万的个值，所以不需要INT，使用TINYINT就足够存储了，而且比INT节省了3个字节。如果这个值作为其他表的外键，3个字节可能导致很大的性能差异。
-整数通常是标识列最好的选择，因为他们很快且可以使用AUTO_INCREMENT。同时，如果可能，应该避免使用字符串类型作为标识列，因为他们很消耗空间，并且通常比数字类型慢。
-对于完全“ 随机 ”的字符串也需要多加注意，例如MD5()、SHA1()产生的字符串。这些函数生成的新值会任意分布在很大的空间内，这回导致INSERT以及一些SELECT语句变得很慢，因为：
- 插入值会随机地写到索引的不同位置（索引是按顺序存储），所以使得INSERT语句更慢。这会导致页分裂、磁盘随机访问，以及对于聚簇存储引擎产生聚簇索引碎片。 SELECT语句会变得更慢，因为逻辑上相邻的行为会分布在磁盘和内存的不同地方。 随机值导致缓存对所有类型的查询语句效果都很差，因为会使得缓存赖以工作的访问局部性原理失效。如果整个数据集都一样的“热”，那么缓存任何一部分特定数据到内存都没有好处；如果工作集比内存大，缓存将会有很多刷新和不命中。  二. 范式和反范式对于任何给定的数据通常都有多种表示方法，从完全的范式化到完全的反范式化，以及两者的这种。在范式化数据库中，每个事实数据会出现并只出现一次。相反，在反范式化的数据库中，信息是冗余的，可能会存储在多个地方。
-1. 范式的优点和缺点 当为性能问题寻求帮助时，经常会被建议对schema进行范式化设计，尤其是写密集的场景。这通常是个好建议，因为范式化能带来一下好处：
- 范式化的更新操作通常比反范式化要快 当数据较好地范式化时，就只有很少或者没有重复数据，所有只需要修改更少的数据 范式化的表通常更小，可以更好地放在内存里，所以执行操作会更快 很少有多余的数据意味着检索列表时更少需要DISTINCT或者GROUP BY语句  但是范式化设计的schema的缺点通常需要关联。稍微复杂一些的查询语句在符合范式的schema上都可能需要至少一次关联，也许更多。这不但代价昂贵，也可能使一些索引策略无效
-2. 反范式化的优点和缺点 反范式化的schema因为所有数据都在一张表中，可以很好地避免关联。"/>
-
-    <meta property="og:title" content="MYSQL性能优化学习之 -- 数据库设计" />
-<meta property="og:description" content="目录  一. 数据库设计 二. 范式和反范式 三. 缓存表和汇总表 四. 计数器表 五. 小结  一. 数据库设计1.数据类型优缺点分析 数据类型的选择要遵循的总体原则 更小的通常更好一般情况下，应该尽量选择使用可以正确存储数据的最小数据类型。更小的数据类型通常更快，因为它们站用更小的磁盘、内存和CPU缓存，并且处理时需要的CPU周期也更少。
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "mysql",
+      "name" : "MYSQL性能优化学习之 -- 数据库设计",
+      "headline" : "MYSQL性能优化学习之 -- 数据库设计",
+      "description" : "目录  一. 数据库设计 二. 范式和反范式 三. 缓存表和汇总表 四. 计数器表 五. 小结  一. 数据库设计1.数据类型优缺点分析 数据类型的选择要遵循的总体原则 更小的通常更好一般情况下，应该尽量选择使用可以正确存储数据的最小数据类型。更小的数据类型通常更快，因为它们站用更小的磁盘、内存和CPU缓存，并且处理时需要的CPU周期也更少。\n简单就好简单数据类型的操作通常需要更少的CPU周期。 例如，整形比字符串操作代价更低，因为字符集和校对规则（排序规则）使字符串比整形比较更复杂。这里有两个例子：一个是应该使用MySQL内建的类型而不是字符串来存储日期和时间，另一个是应该使用整形存储IP地址。\n尽量避免NULL通常情况下最好指定列为NOT NULL，除非真的需要存储NULL值。因为查询中包含可以NULL的列，对MySQL来说更难优化，因为可为NULL的列使得索引、统计索引和值比较都更为复杂。同时，可为NULL的列被索引时，每个索引记录需要一个额外的字节。一般，把可为NULL的列改为NOT NULL带来的提升比较少。\n（1）整数类型TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT分别使用8、16、24、32、64位存储空间，它们可以存储的值的范围从-2(N-1)到2(N-1)-1，其中N是存储空间的位数。\n（2）实数类型FLOAT使用4个字节、DOUBLE使用8个字节、DECIMAL使用9个字节。因为需要额外的空间和计算开销，所以应该尽量只在对小数进行精确计算时才使用DECIMAL。\n（3）字符串类型这里主要讲CHAR和VARCHAR。\nVARCHAR类型用于存储可变长字符串，是最常见的字符串类型。它比定常更省空间，因为它仅使用必要的空间。但是VARCHAR需要使用1或2个额外字节记录字符串的长度。VARCHAR节省了存储空间，所以对性能也有帮助。\n以下情况使用VARCAHR是合适的：字符串列的最大长度比平均长度大很多；列的更新很少，所以碎片不是问题；使用了像UTF-8这样复杂的字符集，每个字符都是使用不同的字节数进行存储。\n注意，在使用VARCHAR时最好的策略时只分配真正需要的空间。因为更长的列会消耗更多的内粗，MYSQL通常会分配固定大小的内存块来保存内部值。尤其是使用内存临时表进行排序或操作时特别糟糕，在利用磁盘临时表进行排序时也同样糟糕。\n（4）BLOD和TEXT类型BLOD和TEXT都是为存储很大的数据而设计的字符串数据类型，分别采用二进制和字符方式存储。\nMYSQL对BLOD 和TEXT列进行排序与其他类型是不同的；它只对每个列的最前max_sort_length字节而不是整个字符串做排序。如果只需要排序前面一小部分字符，则可以减少max_sort_length的配置，或者使用ORDER BY SUBSTRING(column,length)。\nMYSQL不能将BLOD和TEXT列全部长度的字符串进行索引，也不能使用这些索引消除排序。\n（5）日期和时间类型MYSQL提供两种类似的日期类型：DATETIME和TIMESTAMP。\nDATETIME这个类型能保存更大范围的值，从1001年到9999年，精度为秒，与时区无关。使用8个字节的存储空间。\nTIMESTAMP类型保存了从1970年1月1日（格林尼治时间）以来的描述，它和UNIX时间戳相同。TIMESTAMP只使用4个字节的存储空间，因此它的范围比DATETIME小得多，只能表示从1970年到2038年。\n如果在多个时区存储和访问数据，TIMESTAMP和DATETIME得行为将很不一样。前者提供得值跟时区有关系，后者则保留文本表示得日期和时间。\n除了特殊行为之外，通常也应该尽量使用TIMESTAMP，因为它比DATETIME空间效率更高。\n（6）位数据类型MYSQL把BIT当作字符串类型，而不是数字类型。我们应该谨慎使用BIT类型，对于大部分应用，最好避免使用这种类型。如果想在一个bit得存储空间中存储一个true\/false值，另一个方法时拆个年间一个可以为空的CHAR(0)列，该列可以保存空值或者长度为零的字符串\n如果需要保存很多true\/false值，可以考虑合并这些列到一个SET数据类型，它在MYSQL内部时以一系列打包的位的集合来表示的。这样就有效地利用了存储空间，并且MYSQL有像FIND_IN_SET()和FIELD()这样的函数，方便地在查询中使用。\n它主要的缺点时改变列的定义代价高：需要ALTER TABLE，这对大表来说是非常昂贵的操作。一般来说，也无法再SET列上通过索引查找。\n2.如何选择标识符(identifier)的数据类型 当选择标识列的类型时，不仅仅需要考虑存储类型，还需要考虑MySQL对这种类型怎么执行计算和比较。\n一旦选定了一种个类型，要确保在所有关联表中都是用同样的类型。类型之间需要精确匹配，混用不同数据类型可能导致性能问题，即使没有性能影响，在比较操作时隐式类型转换也可能导致很难发现的错误。\n在可以满足值的范围需要，并且预留未来增长空间的前提下，应该选择最小的数据类型。如有一个province_id列存储中国各省份名字，这个就不需要几千或几百万的个值，所以不需要INT，使用TINYINT就足够存储了，而且比INT节省了3个字节。如果这个值作为其他表的外键，3个字节可能导致很大的性能差异。\n整数通常是标识列最好的选择，因为他们很快且可以使用AUTO_INCREMENT。同时，如果可能，应该避免使用字符串类型作为标识列，因为他们很消耗空间，并且通常比数字类型慢。\n对于完全“ 随机 ”的字符串也需要多加注意，例如MD5()、SHA1()产生的字符串。这些函数生成的新值会任意分布在很大的空间内，这回导致INSERT以及一些SELECT语句变得很慢，因为：\n 插入值会随机地写到索引的不同位置（索引是按顺序存储），所以使得INSERT语句更慢。这会导致页分裂、磁盘随机访问，以及对于聚簇存储引擎产生聚簇索引碎片。 SELECT语句会变得更慢，因为逻辑上相邻的行为会分布在磁盘和内存的不同地方。 随机值导致缓存对所有类型的查询语句效果都很差，因为会使得缓存赖以工作的访问局部性原理失效。如果整个数据集都一样的“热”，那么缓存任何一部分特定数据到内存都没有好处；如果工作集比内存大，缓存将会有很多刷新和不命中。  二. 范式和反范式对于任何给定的数据通常都有多种表示方法，从完全的范式化到完全的反范式化，以及两者的这种。在范式化数据库中，每个事实数据会出现并只出现一次。相反，在反范式化的数据库中，信息是冗余的，可能会存储在多个地方。\n1. 范式的优点和缺点 当为性能问题寻求帮助时，经常会被建议对schema进行范式化设计，尤其是写密集的场景。这通常是个好建议，因为范式化能带来一下好处：\n 范式化的更新操作通常比反范式化要快 当数据较好地范式化时，就只有很少或者没有重复数据，所有只需要修改更少的数据 范式化的表通常更小，可以更好地放在内存里，所以执行操作会更快 很少有多余的数据意味着检索列表时更少需要DISTINCT或者GROUP BY语句  但是范式化设计的schema的缺点通常需要关联。稍微复杂一些的查询语句在符合范式的schema上都可能需要至少一次关联，也许更多。这不但代价昂贵，也可能使一些索引策略无效\n2. 反范式化的优点和缺点 反范式化的schema因为所有数据都在一张表中，可以很好地避免关联。",
+      "inLanguage" : "en-US",
+      "author" : "苦味糖",
+      "creator" : "苦味糖",
+      "publisher": "苦味糖",
+      "accountablePerson" : "苦味糖",
+      "copyrightHolder" : "苦味糖",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-06-27 20:20:00 \u002b0800 CST",
+      "dateModified" : "2020-06-27 20:20:00 \u002b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/mysql\/mysql-study-first\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>MYSQL性能优化学习之 -- 数据库设计 - 苦味糖的博客</title>
+  <meta property="og:title" content="MYSQL性能优化学习之 -- 数据库设计 - 苦味糖的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="目录  一. 数据库设计 二. 范式和反范式 三. 缓存表和汇总表 四. 计数器表 五. 小结  一. 数据库设计1.数据类型优缺点分析 数据类型的选择要遵循的总体原则 更小的通常更好一般情况下，应该尽量选择使用可以正确存储数据的最小数据类型。更小的数据类型通常更快，因为它们站用更小的磁盘、内存和CPU缓存，并且处理时需要的CPU周期也更少。
 简单就好简单数据类型的操作通常需要更少的CPU周期。 例如，整形比字符串操作代价更低，因为字符集和校对规则（排序规则）使字符串比整形比较更复杂。这里有两个例子：一个是应该使用MySQL内建的类型而不是字符串来存储日期和时间，另一个是应该使用整形存储IP地址。
 尽量避免NULL通常情况下最好指定列为NOT NULL，除非真的需要存储NULL值。因为查询中包含可以NULL的列，对MySQL来说更难优化，因为可为NULL的列使得索引、统计索引和值比较都更为复杂。同时，可为NULL的列被索引时，每个索引记录需要一个额外的字节。一般，把可为NULL的列改为NOT NULL带来的提升比较少。
 （1）整数类型TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT分别使用8、16、24、32、64位存储空间，它们可以存储的值的范围从-2(N-1)到2(N-1)-1，其中N是存储空间的位数。
@@ -71,73 +67,94 @@ TIMESTAMP类型保存了从1970年1月1日（格林尼治时间）以来的描�
 1. 范式的优点和缺点 当为性能问题寻求帮助时，经常会被建议对schema进行范式化设计，尤其是写密集的场景。这通常是个好建议，因为范式化能带来一下好处：
  范式化的更新操作通常比反范式化要快 当数据较好地范式化时，就只有很少或者没有重复数据，所有只需要修改更少的数据 范式化的表通常更小，可以更好地放在内存里，所以执行操作会更快 很少有多余的数据意味着检索列表时更少需要DISTINCT或者GROUP BY语句  但是范式化设计的schema的缺点通常需要关联。稍微复杂一些的查询语句在符合范式的schema上都可能需要至少一次关联，也许更多。这不但代价昂贵，也可能使一些索引策略无效
 2. 反范式化的优点和缺点 反范式化的schema因为所有数据都在一张表中，可以很好地避免关联。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-study-first/" />
-<meta property="article:published_time" content="2020-06-27T20:20:00+08:00" />
-<meta property="article:modified_time" content="2020-06-27T20:20:00+08:00" />
+  <meta name="description" content="目录  一. 数据库设计 二. 范式和反范式 三. 缓存表和汇总表 四. 计数器表 五. 小结  一. 数据库设计1.数据类型优缺点分析 数据类型的选择要遵循的总体原则 更小的通常更好一般情况下，应该尽量选择使用可以正确存储数据的最小数据类型。更小的数据类型通常更快，因为它们站用更小的磁盘、内存和CPU缓存，并且处理时需要的CPU周期也更少。
+简单就好简单数据类型的操作通常需要更少的CPU周期。 例如，整形比字符串操作代价更低，因为字符集和校对规则（排序规则）使字符串比整形比较更复杂。这里有两个例子：一个是应该使用MySQL内建的类型而不是字符串来存储日期和时间，另一个是应该使用整形存储IP地址。
+尽量避免NULL通常情况下最好指定列为NOT NULL，除非真的需要存储NULL值。因为查询中包含可以NULL的列，对MySQL来说更难优化，因为可为NULL的列使得索引、统计索引和值比较都更为复杂。同时，可为NULL的列被索引时，每个索引记录需要一个额外的字节。一般，把可为NULL的列改为NOT NULL带来的提升比较少。
+（1）整数类型TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT分别使用8、16、24、32、64位存储空间，它们可以存储的值的范围从-2(N-1)到2(N-1)-1，其中N是存储空间的位数。
+（2）实数类型FLOAT使用4个字节、DOUBLE使用8个字节、DECIMAL使用9个字节。因为需要额外的空间和计算开销，所以应该尽量只在对小数进行精确计算时才使用DECIMAL。
+（3）字符串类型这里主要讲CHAR和VARCHAR。
+VARCHAR类型用于存储可变长字符串，是最常见的字符串类型。它比定常更省空间，因为它仅使用必要的空间。但是VARCHAR需要使用1或2个额外字节记录字符串的长度。VARCHAR节省了存储空间，所以对性能也有帮助。
+以下情况使用VARCAHR是合适的：字符串列的最大长度比平均长度大很多；列的更新很少，所以碎片不是问题；使用了像UTF-8这样复杂的字符集，每个字符都是使用不同的字节数进行存储。
+注意，在使用VARCHAR时最好的策略时只分配真正需要的空间。因为更长的列会消耗更多的内粗，MYSQL通常会分配固定大小的内存块来保存内部值。尤其是使用内存临时表进行排序或操作时特别糟糕，在利用磁盘临时表进行排序时也同样糟糕。
+（4）BLOD和TEXT类型BLOD和TEXT都是为存储很大的数据而设计的字符串数据类型，分别采用二进制和字符方式存储。
+MYSQL对BLOD 和TEXT列进行排序与其他类型是不同的；它只对每个列的最前max_sort_length字节而不是整个字符串做排序。如果只需要排序前面一小部分字符，则可以减少max_sort_length的配置，或者使用ORDER BY SUBSTRING(column,length)。
+MYSQL不能将BLOD和TEXT列全部长度的字符串进行索引，也不能使用这些索引消除排序。
+（5）日期和时间类型MYSQL提供两种类似的日期类型：DATETIME和TIMESTAMP。
+DATETIME这个类型能保存更大范围的值，从1001年到9999年，精度为秒，与时区无关。使用8个字节的存储空间。
+TIMESTAMP类型保存了从1970年1月1日（格林尼治时间）以来的描述，它和UNIX时间戳相同。TIMESTAMP只使用4个字节的存储空间，因此它的范围比DATETIME小得多，只能表示从1970年到2038年。
+如果在多个时区存储和访问数据，TIMESTAMP和DATETIME得行为将很不一样。前者提供得值跟时区有关系，后者则保留文本表示得日期和时间。
+除了特殊行为之外，通常也应该尽量使用TIMESTAMP，因为它比DATETIME空间效率更高。
+（6）位数据类型MYSQL把BIT当作字符串类型，而不是数字类型。我们应该谨慎使用BIT类型，对于大部分应用，最好避免使用这种类型。如果想在一个bit得存储空间中存储一个true/false值，另一个方法时拆个年间一个可以为空的CHAR(0)列，该列可以保存空值或者长度为零的字符串
+如果需要保存很多true/false值，可以考虑合并这些列到一个SET数据类型，它在MYSQL内部时以一系列打包的位的集合来表示的。这样就有效地利用了存储空间，并且MYSQL有像FIND_IN_SET()和FIELD()这样的函数，方便地在查询中使用。
+它主要的缺点时改变列的定义代价高：需要ALTER TABLE，这对大表来说是非常昂贵的操作。一般来说，也无法再SET列上通过索引查找。
+2.如何选择标识符(identifier)的数据类型 当选择标识列的类型时，不仅仅需要考虑存储类型，还需要考虑MySQL对这种类型怎么执行计算和比较。
+一旦选定了一种个类型，要确保在所有关联表中都是用同样的类型。类型之间需要精确匹配，混用不同数据类型可能导致性能问题，即使没有性能影响，在比较操作时隐式类型转换也可能导致很难发现的错误。
+在可以满足值的范围需要，并且预留未来增长空间的前提下，应该选择最小的数据类型。如有一个province_id列存储中国各省份名字，这个就不需要几千或几百万的个值，所以不需要INT，使用TINYINT就足够存储了，而且比INT节省了3个字节。如果这个值作为其他表的外键，3个字节可能导致很大的性能差异。
+整数通常是标识列最好的选择，因为他们很快且可以使用AUTO_INCREMENT。同时，如果可能，应该避免使用字符串类型作为标识列，因为他们很消耗空间，并且通常比数字类型慢。
+对于完全“ 随机 ”的字符串也需要多加注意，例如MD5()、SHA1()产生的字符串。这些函数生成的新值会任意分布在很大的空间内，这回导致INSERT以及一些SELECT语句变得很慢，因为：
+ 插入值会随机地写到索引的不同位置（索引是按顺序存储），所以使得INSERT语句更慢。这会导致页分裂、磁盘随机访问，以及对于聚簇存储引擎产生聚簇索引碎片。 SELECT语句会变得更慢，因为逻辑上相邻的行为会分布在磁盘和内存的不同地方。 随机值导致缓存对所有类型的查询语句效果都很差，因为会使得缓存赖以工作的访问局部性原理失效。如果整个数据集都一样的“热”，那么缓存任何一部分特定数据到内存都没有好处；如果工作集比内存大，缓存将会有很多刷新和不命中。  二. 范式和反范式对于任何给定的数据通常都有多种表示方法，从完全的范式化到完全的反范式化，以及两者的这种。在范式化数据库中，每个事实数据会出现并只出现一次。相反，在反范式化的数据库中，信息是冗余的，可能会存储在多个地方。
+1. 范式的优点和缺点 当为性能问题寻求帮助时，经常会被建议对schema进行范式化设计，尤其是写密集的场景。这通常是个好建议，因为范式化能带来一下好处：
+ 范式化的更新操作通常比反范式化要快 当数据较好地范式化时，就只有很少或者没有重复数据，所有只需要修改更少的数据 范式化的表通常更小，可以更好地放在内存里，所以执行操作会更快 很少有多余的数据意味着检索列表时更少需要DISTINCT或者GROUP BY语句  但是范式化设计的schema的缺点通常需要关联。稍微复杂一些的查询语句在符合范式的schema上都可能需要至少一次关联，也许更多。这不但代价昂贵，也可能使一些索引策略无效
+2. 反范式化的优点和缺点 反范式化的schema因为所有数据都在一张表中，可以很好地避免关联。" />
+  <meta property="og:locale" content="zh_CN" />
 
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="苦味糖的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
 
-    
-      <base href="https://liaoshanjin.github.io/mysql/mysql-study-first/">
-    
-    <title>
-  MYSQL性能优化学习之 -- 数据库设计 · 苦味糖的博客
-</title>
+  
+</head>
 
-    
-      <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-study-first/">
-    
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">苦味糖的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MYSQL性能优化学习之 -- 数据库设计</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-06-27 20:20:00 CST">
+                27 Jun 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
 
-    
-      
-      
-      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
-    
-
-    
-
-    
-
-    
-
-    
-    
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://liaoshanjin.github.io/images/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.75.1" />
-  </head>
-
-  <body class=" ">
-    <main class="wrapper">
-      <nav class="navigation">
-  <section class="container">
-    <a class="navigation-title" href="/">
-      苦味糖的博客
-    </a>
-    <input type="checkbox" id="menu-toggle" />
-    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
-    <ul class="navigation-list">
-      
-      
-    </ul>
-  </section>
-</nav>
-
-
-      <div class="content">
-        
-  <section class="container page">
-  <article>
-    <header>
-      <h1>MYSQL性能优化学习之 -- 数据库设计</h1>
-    </header>
-
-    <h2 id="目录">目录</h2>
+        <div class="post-content markdown-body">
+          
+          <h2 id="目录">目录</h2>
 <ul>
 <li>一. <a href="#1">数据库设计</a></li>
 <li>二. <a href="#2">范式和反范式</a></li>
@@ -245,28 +262,83 @@ TIMESTAMP类型保存了从1970年1月1日（格林尼治时间）以来的描�
 </ul>
 <p>文章转载自：<a href="https://shuwoom.com/?p=2563">MYSQL性能优化学习笔记-(1)数据库设计</a></p>
 
-  </article>
-</section>
+        </div>
 
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
 
       </div>
+    </div>
+  </article>
 
-      <footer class="footer">
-  <section class="container">
-    
-     © 2020
-    
-       · 
-       <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
-    
-    
-  </section>
-</footer>
+  <script src="/js/highlight.pack.js"></script>
 
-    </main>
 
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
     
+    
+  
+</script>
 
-  </body>
+  
+
+</body>
 
 </html>

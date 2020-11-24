@@ -23,12 +23,17 @@
   </url>
   
   <url>
-    <loc>https://liaoshanjin.github.io/mysql/</loc>
+    <loc>https://liaoshanjin.github.io/mysql/study-explain/</loc>
     <lastmod>2020-10-24T20:20:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://liaoshanjin.github.io/mysql/study-explain/</loc>
+    <loc>https://liaoshanjin.github.io/mysql/study-slow-query-log/</loc>
+    <lastmod>2020-10-24T20:20:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://liaoshanjin.github.io/mysql/</loc>
     <lastmod>2020-10-24T20:20:00+08:00</lastmod>
   </url>
   

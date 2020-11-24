@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/docker/docker-nginx-upstrem/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-nginx-upstrem/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-nginx-upstrem/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : "在 Docker 上搭建 Nginx 的负载均衡",
       "description" : "负载均衡 当一台服务器的单位时间内的访问量越大时，服务器压力就越大，大到超过自身承受能力时，服务器就会崩溃。为了避免服务器崩溃，让用户有更好的体验，我们通过负载均衡的方式来分担服务器压力。\n我们可以建立很多很多服务器，组成一个服务器集群，当用户访问网站时，先访问一个中间服务器，在让这个中间服务器在服务器集群中选择一个压力较小的服务器，然后将该访问请求引入该服务器。如此以来，用户的每次访问，都会保证服务器集群中的每个服务器压力趋于平衡，分担了服务器压力，避免了服务器崩溃的情况。\n负载均衡是用反向代理的原理实现的。\n 正向代理，代理的是用户。 反向代理，代理的是服务器  安装 Docker 略过\n拉取Nginx镜像 docker pull nginx 准备页面 # 创建两个 Nginx 访问目录 分别放两个 index.html 页面 和 配置 mkdir -p \/docker\/nginx\/cluster-1\/html mkdir -p \/docker\/nginx\/cluster-1\/conf mkdir -p \/docker\/nginx\/cluster-2\/html mkdir -p \/docker\/nginx\/cluster-2\/conf vim \/docker\/nginx\/cluster-1\/conf\/default.conf server { listen 80; listen [::]:80; server_name localhost; #charset koi8-r;  #access_log \/var\/log\/nginx\/host.access.log main;  location \/ { root \/usr\/share\/nginx\/html; index index.html index.htm; } #error_page 404 \/404.html;  # redirect server error pages to the static page \/50x.",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2020",
       "datePublished": "2020-11-11 19:20:20 \u002b0800 CST",
       "dateModified" : "2020-11-11 19:20:20 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>在 Docker 上搭建 Nginx 的负载均衡 - 苦味糖的博客</title>
-  <meta property="og:title" content="在 Docker 上搭建 Nginx 的负载均衡 - 苦味糖的博客" />
+<title>在 Docker 上搭建 Nginx 的负载均衡 - 特污兔的博客</title>
+  <meta property="og:title" content="在 Docker 上搭建 Nginx 的负载均衡 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="负载均衡 当一台服务器的单位时间内的访问量越大时，服务器压力就越大，大到超过自身承受能力时，服务器就会崩溃。为了避免服务器崩溃，让用户有更好的体验，我们通过负载均衡的方式来分担服务器压力。
 我们可以建立很多很多服务器，组成一个服务器集群，当用户访问网站时，先访问一个中间服务器，在让这个中间服务器在服务器集群中选择一个压力较小的服务器，然后将该访问请求引入该服务器。如此以来，用户的每次访问，都会保证服务器集群中的每个服务器压力趋于平衡，分担了服务器压力，避免了服务器崩溃的情况。
@@ -55,7 +55,7 @@
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -72,7 +72,7 @@
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -96,7 +96,7 @@
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -315,7 +315,7 @@ vim /docker/nginx/cluster-1/conf/default.conf
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

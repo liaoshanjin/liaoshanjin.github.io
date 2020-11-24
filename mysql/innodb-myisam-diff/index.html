@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/mysql/innodb-myisam-diff/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/innodb-myisam-diff/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/innodb-myisam-diff/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : "MySQL 引擎 InnoDB 和 MyISAM 的区别",
       "description" : "InnoDB 和 MyISAM 是最常见的两种数据库引擎。在表现方面也是各有自己的优劣。其中最大的区别：InnoDB 支持事务处理，而 MyISAM 不支持。\nMyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。\n以下是一些细节和更具体的差别。\n InnoDB 不支持 FULLTEXT 类型的索引 InnoDB 中不保存表的具体行数，也就是说执行 select count(*) from table 时，InnoDB 要扫描一遍整个表来计算有多少行。但是 MyISAM 只要简单的读出保存好的行数即可。注意的是，当 count(*) 语句包含 where 条件时，两种引擎的操作是一样的。 对于 AUTO_INCREMENT 类型的字段，InnoDB 中必须包含只有该字段的索引。但是在 MyISAM 表中，可以和其他字段一起建立联合索引。 DELETE FROM TABLE 时， InnoDB 不会重新建立表，而是一行一行的删除。 LOAD TABLE FROM MASTER 操作对于 InnoDB 是不起作用的。解决方法首先把 InnoDB 表改成 MyISAM 表，导入数据后在改成 InnoDB ，但是对于使用的额外的 InnoDB 特性 （例如外键）的表不适用。  另外， InnoDB 表的行锁也不是绝对的，例如在执行一个 SQL 不能确定要扫描的范围， InnoDB 表同样会锁全表， 例如 update table set num = 1 where name like \u0026quot;%aaa%\u0026quot;",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2019",
       "datePublished": "2019-10-24 17:16:13 \u002b0800 CST",
       "dateModified" : "2019-10-24 17:16:13 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>MySQL 引擎 InnoDB 和 MyISAM 的区别 - 苦味糖的博客</title>
-  <meta property="og:title" content="MySQL 引擎 InnoDB 和 MyISAM 的区别 - 苦味糖的博客" />
+<title>MySQL 引擎 InnoDB 和 MyISAM 的区别 - 特污兔的博客</title>
+  <meta property="og:title" content="MySQL 引擎 InnoDB 和 MyISAM 的区别 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="InnoDB 和 MyISAM 是最常见的两种数据库引擎。在表现方面也是各有自己的优劣。其中最大的区别：InnoDB 支持事务处理，而 MyISAM 不支持。
 MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
@@ -53,7 +53,7 @@ MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -70,7 +70,7 @@ MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -94,7 +94,7 @@ MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -158,7 +158,7 @@ MyISAM 引擎强调的是性能，其执行速度比 InnoDB 快。
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

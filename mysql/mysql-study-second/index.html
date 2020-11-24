@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-study-second/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-study-second/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-study-second/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -21,13 +21,13 @@
       "articleSection" : "mysql",
       "name" : "MYSQL性能优化学习之 -- 索引优化",
       "headline" : "MYSQL性能优化学习之 -- 索引优化",
-      "description" : "目录  一. 前言 二. 索引基础  1. 索引类型  B-Tree索引 哈希索引 空间数据索引 全文索引   2. 索引的优点 3. 高性能的索引策略  独立的列 前缀索引和索引选择性 多列索引 选择合适的索引顺序 聚簇索引 覆盖索引 使用索引扫描来做排序 冗余和重复索引 未使用的索引 索引和锁   4. 维护索引和表  更新索引统计信息 减少索引和数据的碎片     三. 总结  一. 前言索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。\n索引对于良好的性能非常关键。尤其是当表中的数据量越来越大时，索引对性能的影响愈发重要。在数据量较小且负载较低时，不恰当的索引对性能的影响可能还不明显，但当数据量逐渐增大时，性能则会急剧下降。\n索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高几个数量级，“最优”的索引有时比“好的”索引性能要好两个数量级。创建一个真正“最优”索引经常需要重写查询，这个会在下一篇文章介绍。\n二. 索引基础mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：\nselect * name from study.users where age = 18; 如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。\n索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。",
+      "description" : "一. 前言 索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。\n索引对于良好的性能非常关键。尤其是当表中的数据量越来越大时，索引对性能的影响愈发重要。在数据量较小且负载较低时，不恰当的索引对性能的影响可能还不明显，但当数据量逐渐增大时，性能则会急剧下降。\n索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高几个数量级，“最优”的索引有时比“好的”索引性能要好两个数量级。创建一个真正“最优”索引经常需要重写查询，这个会在下一篇文章介绍。\n二. 索引基础 mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：\nselect name from study.users where age = 18; 如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。\n索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。\n1. 索引类型 在 mysql 中，索引是在存储引擎层而不是服务器层实现的。\n(1) B-Tree 索引 一般没有特别指明类型，多半都是说 B-Tree 索引。\n存储引擎以不同的方式使用 B-Tree 索引，性能也各有不同，各有优劣。例如，MyISAM 使用前缀压缩技术使得索引更小，但 InnoDB 则按照原数据格式进行存储。MyISAM 索引通过数据的物理位置引用被索引的行，而 InnoDB 则根据主键引用被索引的行。\nB-Tree 通常意味着所有的值都是按顺序存储的。下图展示了 B-Tree 索引的抽象表示，大致反映了 InnoDB 索引是如何工作的。\nB-Tree 索引能够加快访问数据的速度，因为存储引擎不再需要进行全表扫描来获取需要的数据，取而代之的是从索引的根节点开始进行搜索。\nB-Tree 对索引列是顺序组织存储的，所以很适合查找范围数据。\n假如有如下数据表：\nCREATE TABLE People( last_name varchar(50) not null, first_name varchar(50) not null, dob date not null, gender enim(\u0026#39;m\u0026#39;, \u0026#39;f\u0026#39;) not null, key(last_name, first_name,dob) ); 对表中的每一行数据，索引包含了 last_name、first_name 和 dob 列的值，下图展示了该索引是如何组织数据存储的。",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2020",
       "datePublished": "2020-07-11 20:20:00 \u002b0800 CST",
       "dateModified" : "2020-07-11 20:20:00 \u002b0800 CST",
@@ -35,21 +35,37 @@
       "keywords" : [  ]
   }
 </script>
-<title>MYSQL性能优化学习之 -- 索引优化 - 苦味糖的博客</title>
-  <meta property="og:title" content="MYSQL性能优化学习之 -- 索引优化 - 苦味糖的博客" />
+<title>MYSQL性能优化学习之 -- 索引优化 - 特污兔的博客</title>
+  <meta property="og:title" content="MYSQL性能优化学习之 -- 索引优化 - 特污兔的博客" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="目录  一. 前言 二. 索引基础  1. 索引类型  B-Tree索引 哈希索引 空间数据索引 全文索引   2. 索引的优点 3. 高性能的索引策略  独立的列 前缀索引和索引选择性 多列索引 选择合适的索引顺序 聚簇索引 覆盖索引 使用索引扫描来做排序 冗余和重复索引 未使用的索引 索引和锁   4. 维护索引和表  更新索引统计信息 减少索引和数据的碎片     三. 总结  一. 前言索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。
+  <meta property="og:description" content="一. 前言 索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。
 索引对于良好的性能非常关键。尤其是当表中的数据量越来越大时，索引对性能的影响愈发重要。在数据量较小且负载较低时，不恰当的索引对性能的影响可能还不明显，但当数据量逐渐增大时，性能则会急剧下降。
 索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高几个数量级，“最优”的索引有时比“好的”索引性能要好两个数量级。创建一个真正“最优”索引经常需要重写查询，这个会在下一篇文章介绍。
-二. 索引基础mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：
-select * name from study.users where age = 18; 如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。
-索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。" />
-  <meta name="description" content="目录  一. 前言 二. 索引基础  1. 索引类型  B-Tree索引 哈希索引 空间数据索引 全文索引   2. 索引的优点 3. 高性能的索引策略  独立的列 前缀索引和索引选择性 多列索引 选择合适的索引顺序 聚簇索引 覆盖索引 使用索引扫描来做排序 冗余和重复索引 未使用的索引 索引和锁   4. 维护索引和表  更新索引统计信息 减少索引和数据的碎片     三. 总结  一. 前言索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。
+二. 索引基础 mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：
+select name from study.users where age = 18; 如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。
+索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。
+1. 索引类型 在 mysql 中，索引是在存储引擎层而不是服务器层实现的。
+(1) B-Tree 索引 一般没有特别指明类型，多半都是说 B-Tree 索引。
+存储引擎以不同的方式使用 B-Tree 索引，性能也各有不同，各有优劣。例如，MyISAM 使用前缀压缩技术使得索引更小，但 InnoDB 则按照原数据格式进行存储。MyISAM 索引通过数据的物理位置引用被索引的行，而 InnoDB 则根据主键引用被索引的行。
+B-Tree 通常意味着所有的值都是按顺序存储的。下图展示了 B-Tree 索引的抽象表示，大致反映了 InnoDB 索引是如何工作的。
+B-Tree 索引能够加快访问数据的速度，因为存储引擎不再需要进行全表扫描来获取需要的数据，取而代之的是从索引的根节点开始进行搜索。
+B-Tree 对索引列是顺序组织存储的，所以很适合查找范围数据。
+假如有如下数据表：
+CREATE TABLE People( last_name varchar(50) not null, first_name varchar(50) not null, dob date not null, gender enim(&#39;m&#39;, &#39;f&#39;) not null, key(last_name, first_name,dob) ); 对表中的每一行数据，索引包含了 last_name、first_name 和 dob 列的值，下图展示了该索引是如何组织数据存储的。" />
+  <meta name="description" content="一. 前言 索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。
 索引对于良好的性能非常关键。尤其是当表中的数据量越来越大时，索引对性能的影响愈发重要。在数据量较小且负载较低时，不恰当的索引对性能的影响可能还不明显，但当数据量逐渐增大时，性能则会急剧下降。
 索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高几个数量级，“最优”的索引有时比“好的”索引性能要好两个数量级。创建一个真正“最优”索引经常需要重写查询，这个会在下一篇文章介绍。
-二. 索引基础mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：
-select * name from study.users where age = 18; 如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。
-索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。" />
+二. 索引基础 mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：
+select name from study.users where age = 18; 如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。
+索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。
+1. 索引类型 在 mysql 中，索引是在存储引擎层而不是服务器层实现的。
+(1) B-Tree 索引 一般没有特别指明类型，多半都是说 B-Tree 索引。
+存储引擎以不同的方式使用 B-Tree 索引，性能也各有不同，各有优劣。例如，MyISAM 使用前缀压缩技术使得索引更小，但 InnoDB 则按照原数据格式进行存储。MyISAM 索引通过数据的物理位置引用被索引的行，而 InnoDB 则根据主键引用被索引的行。
+B-Tree 通常意味着所有的值都是按顺序存储的。下图展示了 B-Tree 索引的抽象表示，大致反映了 InnoDB 索引是如何工作的。
+B-Tree 索引能够加快访问数据的速度，因为存储引擎不再需要进行全表扫描来获取需要的数据，取而代之的是从索引的根节点开始进行搜索。
+B-Tree 对索引列是顺序组织存储的，所以很适合查找范围数据。
+假如有如下数据表：
+CREATE TABLE People( last_name varchar(50) not null, first_name varchar(50) not null, dob date not null, gender enim(&#39;m&#39;, &#39;f&#39;) not null, key(last_name, first_name,dob) ); 对表中的每一行数据，索引包含了 last_name、first_name 和 dob 列的值，下图展示了该索引是如何组织数据存储的。" />
   <meta property="og:locale" content="zh_CN" />
 
   <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
@@ -57,7 +73,7 @@ select * name from study.users where age = 18; 如果在 age 列上建有索引�
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -74,7 +90,7 @@ select * name from study.users where age = 18; 如果在 age 列上建有索引�
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -98,7 +114,7 @@ select * name from study.users where age = 18; 如果在 age 列上建有索引�
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -108,72 +124,34 @@ select * name from study.users where age = 18; 如果在 age 列上建有索引�
 
         <div class="post-content markdown-body">
           
-          <h2 id="目录">目录</h2>
-<ul>
-<li>一. <a href="#1">前言</a></li>
-<li>二. <a href="#2">索引基础</a>
-<ul>
-<li><a href="#2.1">1. 索引类型</a>
-<ul>
-<li><a href="#2.1.1">B-Tree索引</a></li>
-<li><a href="#2.1.2">哈希索引</a></li>
-<li><a href="#2.1.3">空间数据索引</a></li>
-<li><a href="#2.1.4">全文索引</a></li>
-</ul>
-</li>
-<li><a href="#2.2">2. 索引的优点</a></li>
-<li><a href="#2.3">3. 高性能的索引策略</a>
-<ul>
-<li><a href="#2.3.1">独立的列</a></li>
-<li><a href="#2.3.2">前缀索引和索引选择性</a></li>
-<li><a href="#2.3.3">多列索引</a></li>
-<li><a href="#2.3.4">选择合适的索引顺序</a></li>
-<li><a href="#2.3.5">聚簇索引</a></li>
-<li><a href="#2.3.6">覆盖索引</a></li>
-<li><a href="#2.3.7">使用索引扫描来做排序</a></li>
-<li><a href="#2.3.8">冗余和重复索引</a></li>
-<li><a href="#2.3.9">未使用的索引</a></li>
-<li><a href="#2.3.10">索引和锁</a></li>
-</ul>
-</li>
-<li><a href="#2.4">4. 维护索引和表</a>
-<ul>
-<li><a href="#2.4.1">更新索引统计信息</a></li>
-<li><a href="#2.4.2">减少索引和数据的碎片</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>三. <a href="#3">总结</a></li>
-</ul>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->一. 前言<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+          <h2 id="一-前言">一. 前言</h2>
 <p>索引是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能。</p>
 <p>索引对于良好的性能非常关键。尤其是当表中的数据量越来越大时，索引对性能的影响愈发重要。在数据量较小且负载较低时，不恰当的索引对性能的影响可能还不明显，但当数据量逐渐增大时，性能则会急剧下降。</p>
 <p>索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高几个数量级，“最优”的索引有时比“好的”索引性能要好两个数量级。创建一个真正“最优”索引经常需要重写查询，这个会在下一篇文章介绍。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->二. 索引基础<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="二-索引基础">二. 索引基础</h2>
 <p>mysql在使用索引时，现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。例如要运行下面的查询：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> name <span style="color:#66d9ef">from</span> study.users <span style="color:#66d9ef">where</span> age <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;   
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> name <span style="color:#66d9ef">from</span> study.users <span style="color:#66d9ef">where</span> age <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;   
 </code></pre></div><p>如果在 age 列上建有索引，则 mysql 将使用索引找到 age 为18的行。</p>
 <p>索引可以包含一个或多个列的值。如果索引包含多个列，那么列的顺序也十分重要，因为 mysql 只能高效地使用索引的最左前缀列。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 索引类型<!-- raw HTML omitted --><!-- raw HTML omitted -->
-在 mysql 中，索引是在存储引擎层而不是服务器层实现的。
-<!-- raw HTML omitted --><!-- raw HTML omitted --> (1)  B-Tree 索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="1-索引类型">1. 索引类型</h3>
+<p>在 mysql 中，索引是在存储引擎层而不是服务器层实现的。</p>
+<h4 id="1--b-tree-索引">(1)  B-Tree 索引</h4>
 <p>一般没有特别指明类型，多半都是说 B-Tree 索引。</p>
 <p>存储引擎以不同的方式使用 B-Tree 索引，性能也各有不同，各有优劣。例如，MyISAM 使用前缀压缩技术使得索引更小，但 InnoDB 则按照原数据格式进行存储。MyISAM 索引通过数据的物理位置引用被索引的行，而 InnoDB 则根据主键引用被索引的行。</p>
 <p>B-Tree 通常意味着所有的值都是按顺序存储的。下图展示了 B-Tree 索引的抽象表示，大致反映了 InnoDB 索引是如何工作的。</p>
-<p><img src="/images/mysql/image-10.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-01.png" alt="图片"></p>
 <p>B-Tree 索引能够加快访问数据的速度，因为存储引擎不再需要进行全表扫描来获取需要的数据，取而代之的是从索引的根节点开始进行搜索。</p>
 <p>B-Tree 对索引列是顺序组织存储的，所以很适合查找范围数据。</p>
 <p>假如有如下数据表：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> People(
-    last_name varchar(<span style="color:#ae81ff">50</span>)   <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
-    first_name varchar(<span style="color:#ae81ff">50</span>)  <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
-    dob date                <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
-    gender enim(<span style="color:#e6db74">&#39;m&#39;</span>, <span style="color:#e6db74">&#39;f&#39;</span>)   <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">People</span>(
+    last_name <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>)   <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+    first_name <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>)  <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+    dob <span style="color:#66d9ef">date</span>                <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+    gender <span style="color:#a6e22e">enim</span>(<span style="color:#e6db74">&#39;m&#39;</span>, <span style="color:#e6db74">&#39;f&#39;</span>)   <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
     <span style="color:#66d9ef">key</span>(last_name, first_name,dob)
 );
 </code></pre></div><p>对表中的每一行数据，索引包含了 last_name、first_name 和 dob 列的值，下图展示了该索引是如何组织数据存储的。</p>
-<p><img src="/images/mysql/image-11.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-02.png" alt="图片"></p>
 <p>B-Tree 索引适用于全键值、键值范围或键前缀查找。其中键前缀查找只适用于根据最左前缀查找。其对如下类型的查询有效。</p>
 <ul>
 <li>全值匹配</li>
@@ -190,26 +168,26 @@ select * name from study.users where age = 18; 如果在 age 列上建有索引�
 <li>不能跳过索引中的列</li>
 <li>如果查询中有某个列的范围查询，则其右边所有列都无法使用索引优化查找。例如：where last_name=’smith’ and first_name like’J%’ and dob=’1976’。由于 LIKE 是一个范围查询，则 dob 无法使用索引。</li>
 </ul>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (2)  哈希索引<!-- raw HTML omitted --><!-- raw HTML omitted -->
-哈希索引基于哈希表实现，只有精确匹配索引所有列的查询才有效。对于每一行数据，存储引擎都会对所有的索引列计算一个哈希码，哈希码是一个较小的值，并且不同键值的行计算出来的哈希码也不一样。哈希索引将所有的哈希码存储在索引中，同时在哈希表中保存指向每个数据行的指针。</p>
+<h4 id="2--哈希索引">(2)  哈希索引</h4>
+<p>哈希索引基于哈希表实现，只有精确匹配索引所有列的查询才有效。对于每一行数据，存储引擎都会对所有的索引列计算一个哈希码，哈希码是一个较小的值，并且不同键值的行计算出来的哈希码也不一样。哈希索引将所有的哈希码存储在索引中，同时在哈希表中保存指向每个数据行的指针。</p>
 <p>在 mysql 中，只有 Memory 引擎显示支持哈希索引，这也是 Memory 引擎表的默认索引类型。</p>
 <p>下面看一个例子。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> testhash(
-    fname VARCHAR(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-    lname VARCHAR(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-    <span style="color:#66d9ef">key</span> <span style="color:#66d9ef">USING</span> HASH(fname)
-) ENGINE<span style="color:#f92672">=</span>MEMORY;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">testhash</span>(
+    fname <span style="color:#66d9ef">VARCHAR</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+    lname <span style="color:#66d9ef">VARCHAR</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+    <span style="color:#66d9ef">key</span> <span style="color:#66d9ef">USING</span> <span style="color:#a6e22e">HASH</span>(fname)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>MEMORY;
 </code></pre></div><p>表中包含如下数据：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; <span style="color:#66d9ef">select</span> * from testhash;
-+-------+-----------+
-| fname | lname     |
-+-------+-----------+
-| Arjen | Lentz     |
-| Baron | Schwartz  |
-| Peter | Zaitsev   |
-| Vadim | Tkachenko |
-+-------+-----------+
-<span style="color:#ae81ff">4</span> rows in set <span style="color:#f92672">(</span>0.00 sec<span style="color:#f92672">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> testhash;
+<span style="color:#f92672">+-------+-----------+</span>
+<span style="color:#f92672">|</span> fname <span style="color:#f92672">|</span> lname     <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------+-----------+</span>
+<span style="color:#f92672">|</span> Arjen <span style="color:#f92672">|</span> Lentz     <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> Baron <span style="color:#f92672">|</span> Schwartz  <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> Peter <span style="color:#f92672">|</span> Zaitsev   <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> Vadim <span style="color:#f92672">|</span> Tkachenko <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------+-----------+</span>
+<span style="color:#ae81ff">4</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
 </code></pre></div><p>假设索引使用假象的哈希函数 <code>f()</code>，它返回下面的值：</p>
 <pre><code>f('Arjen') = 2323
 f('Baron') = 7437
@@ -230,11 +208,11 @@ f('Vadim') = 2458
 <li>当出现哈希冲突的时候，存储引擎必须遍历链表中的所有的行指针，逐行进行比较，直到找到所有符合条件的行</li>
 <li>如果哈希冲突很多的话，一些索引维护操作的代价也会很高</li>
 </ul>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (3)  空间数据索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="3--空间数据索引">(3)  空间数据索引</h4>
 <p>MyISAM 表支持空间索引，可以用作地理数据存储。空间索引会从所有维度来索引数据。查询时，可以有效地使用任意维度来组合查询。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (4)  全文索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="4--全文索引">(4)  全文索引</h4>
 <p>全文索引是一种特殊类型的索引，它查找的是文本中的关键词，而不是直接比较索引中的值。全文索引更类似于搜索引擎做的事情，而不是简单的 WHERE 条件匹配。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 2. 索引的优点<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="2-索引的优点">2. 索引的优点</h3>
 <p>最常见的 B-Tree 索引，按照顺序存储数据，所有 MySQL 可以用来做 ODER BY 和 GROUP BY 操作。因为数据是有序的，所以 B-Tree 也就会将相关的列值都存储在一起。最后，因为索引中存储了实际的值，所以某些查询只使用索引就能够完成全部查询。</p>
 <p>总结下来，索引有如下三个优点：</p>
 <ul>
@@ -242,40 +220,70 @@ f('Vadim') = 2458
 <li>索引可以帮助服务器避免排序和临时表</li>
 <li>索引可以将所及 I/O 变为顺序 I/O</li>
 </ul>
-<p><!-- raw HTML omitted -->如何评价一个索引是否适合某个查询（三星系统）：<!-- raw HTML omitted --></p>
+<p><strong>如何评价一个索引是否适合某个查询（三星系统）：</strong></p>
 <p>判断标准：索引将相关的记录放到一起则获得一星；如果索引中的数据顺序和查找中的排列顺序一致则获得二星；如果索引中的列包含了查询中需要的全部列则获得三星。</p>
 <p>对于非常小的表，大部分情况下简单的全表扫描更高效。对于中型到大型的表，索引就非常有效。但对于特大型的表，建立和使用索引的代价将随之增长。这种情况下需要一种技术可以直接区分出查询需要的一组数据，而不是一条记录一条记录地查询。例如可以使用分区技术。</p>
 <p>如果表的数量特别多，可以建立一个元数据信息表（块级别元数据技术），用来查询需要用到的某些特性。例如执行哪些需要聚合多个应用分布在多个表的数据的查询，则需要记录“哪个用户的信息存储在哪个表中”的元数据，这样在查询时就可以直接忽略哪些不包含指定用户信息的表。对于大型系统，这是一个常用的技巧。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 3. 高性能的索引策略<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="3-高性能的索引策略">3. 高性能的索引策略</h3>
 <p>正确地创建和使用索引是实现高性能查询的基础。</p>
 <p>高效地选择和使用索引有很多种方式，其中有些是针对特殊案例的优化方法，有些则是针对特定行为的优化。使用哪个索引，以及如何评估选择不同索引的性能影响的技巧，则需要持续不断地学习。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (1)  独立的列<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="1--独立的列">(1)  独立的列</h4>
 <p>如果查询中的列不是独立的，则 MySQL 就不会使用索引。“独立的列”是指索引列不能是表达式的 一部分，也不能是函数的参数。</p>
 <p>例如，下面这个查询就无法使用 actor_id 列的索引：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> actor_id <span style="color:#66d9ef">FROM</span> sakila.actor <span style="color:#66d9ef">WHERE</span> actor_id <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> (2)  前缀索引和索引选择性<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> actor_id <span style="color:#66d9ef">FROM</span> sakila.actor <span style="color:#66d9ef">WHERE</span> actor_id <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</code></pre></div><h4 id="2--前缀索引和索引选择性">(2)  前缀索引和索引选择性</h4>
 <p>有时候需要索引很长的字符列，这会让索引变得大且慢。一个策略是使用模拟哈希索引。但是这样还不够，还可以做些什么呢？</p>
 <p>通常可以索引开始的部分字符，这样可以大大节约索引空间，从而提高索引效率。但这样也会降低索引的选择性。</p>
 <p>索引的选择性是指，不重复的索引值（也称为基数）和数据表的记录总数（#T）的比值，范围从 1/#T 到 1 之间。索引的选择性越高则查询效率越高，因为选择性高的索引可以让 MySQL 在查找时过滤更多的行。唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。</p>
 <p>一般情况下某个列前缀的选择性也是足够高的，足以满足查询性能。对于 BLOB、TEXT 或者很长的 VARCHAR 类型的列，必须使用前缀索引，因为 MySQL 不允许索引这些列的完整长度。</p>
 <p>这里的诀窍在于要选择足够长的前缀以保证较高的选择性，同时又不能太长（节约空间）。</p>
 <p>举例，如下表 city_demo，字段是 VARCHAR(50) ，我们需要对其设置前缀索引：</p>
-<p><img src="/images/mysql/image-12.png" alt="图片"></p>
-<p>完整列的选择性如下：</p>
-<p><img src="/images/mysql/image-13.png" alt="图片"></p>
-<p>我们通过计算不同前缀长度的选择性，选择尽量接近0.0312的前缀长度，基本就可用了。</p>
-<p><img src="/images/mysql/image-14.png" alt="图片"></p>
-<p>查询显示当前缀长度达到7的时候，再增加前缀长度，选择性提升的幅度已经很小。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">as</span> cnt, city
+    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">FROM</span> sakila.city_demo <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> city <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> cnt <span style="color:#66d9ef">DESC</span> <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+<span style="color:#f92672">+-------+----------------+</span>
+<span style="color:#f92672">|</span> cnt   <span style="color:#f92672">|</span> city           <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------+----------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">65</span>    <span style="color:#f92672">|</span> London         <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">49</span>    <span style="color:#f92672">|</span> Hiroshima      <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">48</span>    <span style="color:#f92672">|</span> Teboksary      <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">48</span>    <span style="color:#f92672">|</span> Pak Kret       <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">48</span>    <span style="color:#f92672">|</span> Yaound         <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">47</span>    <span style="color:#f92672">|</span> Tel Aviv0Jaffa <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">47</span>    <span style="color:#f92672">|</span> Shimoya        <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">45</span>    <span style="color:#f92672">|</span> Cabuyao        <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">45</span>    <span style="color:#f92672">|</span> Callao         <span style="color:#f92672">|</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">45</span>    <span style="color:#f92672">|</span> Bislig         <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------+----------------+</span>
+</code></pre></div><p>完整列的选择性如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> city)<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> sakila.city_demo;
+<span style="color:#f92672">+--------------------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> city)<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>)  <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------------------+</span>
+<span style="color:#f92672">|</span>                        <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0312</span>  <span style="color:#f92672">|</span>
+<span style="color:#f92672">+--------------------------------+</span>
+</code></pre></div><p>我们通过计算不同前缀长度的选择性，选择尽量接近0.0312的前缀长度，基本就可用了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">LEFT</span>(city, <span style="color:#ae81ff">3</span>))<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sel3,
+    <span style="color:#f92672">-&gt;</span>        <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">LEFT</span>(city, <span style="color:#ae81ff">4</span>))<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sel4,
+    <span style="color:#f92672">-&gt;</span>        <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">LEFT</span>(city, <span style="color:#ae81ff">5</span>))<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sel5,
+    <span style="color:#f92672">-&gt;</span>        <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">LEFT</span>(city, <span style="color:#ae81ff">6</span>))<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sel6,
+    <span style="color:#f92672">-&gt;</span>        <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">LEFT</span>(city, <span style="color:#ae81ff">7</span>))<span style="color:#f92672">/</span><span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sel7,
+    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">FROM</span> sakila.city_demo;
+<span style="color:#f92672">+-------------------------------------------------+</span>
+<span style="color:#f92672">|</span> sel3    <span style="color:#f92672">|</span> sel4    <span style="color:#f92672">|</span> sel5    <span style="color:#f92672">|</span> sel6    <span style="color:#f92672">|</span> sel7    <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------------------------------------------------+</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0239</span>  <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0293</span>  <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0305</span>  <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0309</span>  <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0310</span>  <span style="color:#f92672">|</span>
+<span style="color:#f92672">+-------------------------------------------------+</span>
+</code></pre></div><p>查询显示当前缀长度达到7的时候，再增加前缀长度，选择性提升的幅度已经很小。</p>
 <p>下面演示如何创建前缀索引：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> sakila.city_demo <span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">KEY</span> (city(<span style="color:#ae81ff">7</span>));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> sakila.city_demo <span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#a6e22e">city</span>(<span style="color:#ae81ff">7</span>));
 </code></pre></div><p>前缀索引是一种能使索引更小、更快的有效办法，但是它的缺点也很明显：无法做 ORDER BY 和 GROUP BY ，也无法使用前缀索引做覆盖扫描。</p>
 <p>一个比较常见的场景是针对很长的十六进制唯一 ID 使用前缀索引。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (3)  多列索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="3--多列索引">(3)  多列索引</h4>
 <p>多列索引使用的一个常见错误就是，为每个列创建独立的索引，这个做法是非常错误的。这种索引策略，最好的情况下也只能是“一星”索引，其性能比起真正最优的索引可能差几个数量级。有时如果无法设计一个“三星”索引，那么不如忽略掉 WHERE 字句，集中精力优化索引列的顺序，或者创建一个全覆盖索引。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> t (
-    c1 INT,
-    c2 INT,
-    c3 INT,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">t</span> (
+    c1 <span style="color:#66d9ef">INT</span>,
+    c2 <span style="color:#66d9ef">INT</span>,
+    c3 <span style="color:#66d9ef">INT</span>,
     <span style="color:#66d9ef">KEY</span>(c1),
     <span style="color:#66d9ef">KEY</span>(c2),
     <span style="color:#66d9ef">KEY</span>(c3),
@@ -283,32 +291,32 @@ f('Vadim') = 2458
 </code></pre></div><p>在多个列上建立独立的单列索引大部分情况下并不能提高 MySQL 的查询性能。</p>
 <p>在 MySQL5.0 和更新的版本中，引入了一种叫“索引合并”的策略，一定程度上可以使用表上的多个单列索引来定位指定的行。</p>
 <p>如下，actor_id 和 film_id 是 file_actor 表上两个独立的索引。在 MySQL5.0 和新版本中，查询能够同时使用这两个单列索引进行扫描，并将结果进行合并。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> film_id, actor_id <span style="color:#66d9ef">FROM</span> sakila.film_actor <span style="color:#66d9ef">WHERE</span> actor_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">OR</span> film_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> film_id, actor_id <span style="color:#66d9ef">FROM</span> sakila.film_actor <span style="color:#66d9ef">WHERE</span> actor_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">OR</span> film_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 </code></pre></div><p>索引合并策略有时候是一种优化的结果，但实际上更多时候说明了表上的索引建的很糟糕：</p>
 <ul>
 <li>当出现服务器对多个索引做相交操作是（通常有多个 AND 条件），通常意味着需要一个包含所有相关列的多列索引，而不是多个独立的单列索引。</li>
 <li>当服务器需要对多个索引做联合操作是（通常有多个 OR 条件），通常需要耗费大量 CPU 和内存资源在算法的缓存、排序和合并操作上。特别是当其中有些索引的选择性不高，需要合并扫描返回的大量数据的时候。</li>
 </ul>
 <p>如果在 EXPLAIN 中看到有索引合并，应该好好检查一下查询和表的结构，看是不是已经是最优的。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (4)  选择合适的索引顺序<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="4--选择合适的索引顺序">(4)  选择合适的索引顺序</h4>
 <p>正确的顺序依赖于使用该索引的查询，并且同时需要考虑如何更好地满足排序和分组的需要。</p>
 <p>在一个多列 B-Tree 索引中，索引列的顺序意味着索引首先按照最左列进行排序，其次是第二列，等等。所以，索引可以按照升序或者降序进行扫描，以满足精确符合列顺序的 ORDER BY、GROUP BY 和 DISTINCT 等字句的查询需求。</p>
 <p>当不需要考虑排序和分组时，将选择性最高的列放在前面通常是很好的。</p>
 <p>以下面的查询为例：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> payment <span style="color:#66d9ef">WHERE</span> staff_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">AND</span> customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">584</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> payment <span style="color:#66d9ef">WHERE</span> staff_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">AND</span> customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">584</span>;
 </code></pre></div><p>这里应该是创建(staff_id, customer_id)索引还是应该颠倒一下顺序？可以通过跑一些查询来确定这个表中的值的分布情况，并确定哪个列的选择性高。</p>
 <p>看看各个 WHERE 条件的分支对应的数据基数有多大：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; SELECT SUM<span style="color:#f92672">(</span>staff_id <span style="color:#f92672">=</span> 2<span style="color:#f92672">)</span>, SUM<span style="color:#f92672">(</span>customer_id <span style="color:#f92672">=</span> 584<span style="color:#f92672">)</span> FROM payment<span style="color:#ae81ff">\G</span>;
-*************************** 1. row ***************************
-     SUM<span style="color:#f92672">(</span>staff_id <span style="color:#f92672">=</span> 2<span style="color:#f92672">)</span> : <span style="color:#ae81ff">7992</span>
-SUM<span style="color:#f92672">(</span>customer_id <span style="color:#f92672">=</span> 584<span style="color:#f92672">)</span> : <span style="color:#ae81ff">30</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">SUM</span>(staff_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>), <span style="color:#a6e22e">SUM</span>(customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">584</span>) <span style="color:#66d9ef">FROM</span> payment<span style="color:#960050;background-color:#1e0010">\</span>G;
+<span style="color:#f92672">***************************</span> <span style="color:#ae81ff">1</span>. row <span style="color:#f92672">***************************</span>
+     <span style="color:#a6e22e">SUM</span>(staff_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) : <span style="color:#ae81ff">7992</span>
+<span style="color:#a6e22e">SUM</span>(customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">584</span>) : <span style="color:#ae81ff">30</span>
 </code></pre></div><p>根据前面的经验法则，应该将索引 customer_id 放到前面，因为对应条件值的 customer_id 数量更小。</p>
 <p>这个方法有一个需要注意的地方，查询的结果非常依赖于选定的具体值，可能对其他一些条件的查询不公平。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (5)  聚簇索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="5--聚簇索引">(5)  聚簇索引</h4>
 <p>聚簇索引并不是一种单独的索引类型，而是一种数据存储方式。InnoDB 的聚簇索引实际上在同一个结构中保存了 B-Tree 索引和数据行。</p>
 <p>当表有聚簇索引时，它的数据行实际上存放在索引的叶子页中。“聚簇“表示数据行和相邻的键值紧凑地存储在一起。</p>
 <p>下图展示了聚簇索引中的记录是如何存放的。注意到，叶子页包含了行的全部数据但是节点只包含了索引列。</p>
-<p><img src="/images/mysql/image-15.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-03.png" alt="图片"></p>
 <p>InnoDB 将通过主键聚集数据，这也就是说上图中的”被索引的列“就是主键列。</p>
 <p>聚集的数据有一些重要的优点：</p>
 <ul>
@@ -328,8 +336,8 @@ SUM<span style="color:#f92672">(</span>customer_id <span style="color:#f92672">=
 </ul>
 <p>这意味着通过二级索引查找行，存储引擎需要找到二级索引的叶子节点获得对应的主键值，然后根据这个值去聚簇索引中查到对应的行。这里做了重复的工作：两次 B-Tree 查找而不是一次。</p>
 <p>InnoDB 的二级索引和聚簇索引很不同。InnoDB 二级索引的叶子节点中存储的不是”行指针“，而是主键值，并一次作为指向行的”指针“。这样的策略减少了当出现行移动或者数据页分裂时二级索引的维护工作。使用主键值做指针会让二级索引占用更多的空间，换来的好处是，InnoDB 在移动行时无需更新二级索引中的这个”指针“。</p>
-<p><img src="/images/mysql/image-16.png" alt="图片"></p>
-<p><!-- raw HTML omitted -->在InnoDB表中按主键顺序插入行<!-- raw HTML omitted --></p>
+<p><img src="/images/mysql/study-second/image-04.png" alt="图片"></p>
+<p><strong>在InnoDB表中按主键顺序插入行</strong></p>
 <p>如果正在使用 InnoDB 表并且没有什么数据需要聚集，那么可以定义一个代理作为主键，这种主键的数据应该和应用无关，最简单的方式是使用 AUTO_INCREMENT 自增列。这样可以保证数据行是按顺序写入，对于根据主键做关联操作的性能也会更好。</p>
 <p>最好避免随机的（不连续且值分布范围非常大）聚簇索引，特别是针对 I/O 密集型的应用。</p>
 <p>例如，从性能角度考虑，使用 UUID 来作为聚簇索引则会很糟糕：它使得聚簇索引的插入变得完全随机，这是最坏的情况，使得数据没有任何聚集特性。由于主键字段更长，以及页分裂和碎片，从而导致 UUID 主键插入行不仅花费的时间更长，而且索引占用的空间更大。</p>
@@ -339,12 +347,12 @@ SUM<span style="color:#f92672">(</span>customer_id <span style="color:#f92672">=
 <li>因为写入是乱序的，InnoDB 不得不频繁地做页分裂操作，以便新的行分配空间。页分裂会导致移动大量数据，一次插入最少需要修改三个页而不是一个页。</li>
 <li>由于频繁的页分裂，页会变得稀疏并被不规则地填充，所以最终数据会有碎片。</li>
 </ul>
-<p><img src="/images/mysql/image-17.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-05.png" alt="图片"></p>
 <p>把这些随机值载入到聚簇索引以后，也许需要做一次 OPTIMIZE TABLE 来重建表并优化页的填充。</p>
 <p>从这个案例可以看出，使用 InnoDB 时应该尽可能地按逐渐顺序插入数据并且尽可能地使用单调增加的聚簇键的值来插入新行。</p>
-<p><!-- raw HTML omitted -->那么顺序的主键什么时候会造成更坏的结果？<!-- raw HTML omitted --></p>
+<p><strong>那么顺序的主键什么时候会造成更坏的结果？</strong></p>
 <p>对于高并发工作负载，在 InnoDB 中按逐渐顺序插入可能会造成明显的争用。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (6)  覆盖索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="6--覆盖索引">(6)  覆盖索引</h4>
 <p>索引确实是一种查找数据的高效方式，但是 MySQL 也可以使用索引来直接获取列的数据，这样就不再需要读取数据行。如果一个索引包含所有需要查询的字段的值，我们就称之为”覆盖索引“。</p>
 <p>覆盖索引是非常有用的工具，能极大地提高性能。考虑一下如果查询只需要扫描索引而无须回表，会带来多少好处：</p>
 <ul>
@@ -356,62 +364,68 @@ SUM<span style="color:#f92672">(</span>customer_id <span style="color:#f92672">=
 <p>在所有这些场景中，在索引中满足查询的成本一般比查询行要小得多。</p>
 <p>覆盖索引必须要存储索引列的值，只能使用 B-Tree 索引做覆盖索引。</p>
 <p>当发起一个被覆盖索引的查询时，在 EXPLAIN 的 Extra 列可以看到 ”Using index” 的信息。如下，表 sakila.inventory 有一个多列索引(story_id,film_id)。MySQL 如果只需访问这两列，就可以使用这个索引做覆盖索引：</p>
-<p><img src="/images/mysql/image-18.png" alt="图片"></p>
-<p><!-- raw HTML omitted -->延迟关联<!-- raw HTML omitted -->
-下图的查询索引无法覆盖，有两个原因：</p>
+<p><img src="/images/mysql/study-second/image-06.png" alt="图片"></p>
+<p><strong>延迟关联</strong></p>
+<p>下图的查询索引无法覆盖，有两个原因：</p>
 <ul>
 <li>没有任何索引能够覆盖这个查询，因为查询从表中选择了所有的列，而没有任何索引覆盖了所有的列。</li>
 <li>MySQL 不能在索引中执行LIKE操作。</li>
 </ul>
-<p><img src="/images/mysql/image-19.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-07.png" alt="图片"></p>
 <p>上面的问题，需要重写查询并巧妙设计索引。先将索引扩展至覆盖三个数据列(artist,title,prod_id)，然后如下方式重写查询：</p>
-<p><img src="/images/mysql/image-20.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-08.png" alt="图片"></p>
 <p>这种方式叫做延迟关联，因为延迟了对列的访问。在查询的第一阶段 MySQL 可以使用覆盖索引，在 FROM 子句的子查询中找到匹配的 prod_id，然后根据这些 prod_id 值在外层查询匹配获取需要的所有列值。虽然无法使用索引覆盖整个查询，但总算比完全无法利用索引覆盖的好。</p>
 <p>这样的优化效果取决于 WHERE 条件匹配返回的行数。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (7)  使用索引扫描来做排序<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="7--使用索引扫描来做排序">(7)  使用索引扫描来做排序</h4>
 <p>MySQL 有两种方式可以生成有序的结果：通过排序操作或者按索引顺序扫描。如果 EXPLAIN 出来的 type 列的值为 ”index“ ，则说明 MySQL 使用索引扫描来做排序。</p>
 <p>扫描索引本身是很快的，因为只需要从一条索引记录移动到紧接着的小一条记录。但如果索引不能覆盖查询所需的全部列，那就不得不每扫描一条索引记录就都回表查询一次对应的行。这基本上都是随机 I/O ，因此按索引顺序读取数据的速度通常比顺序地全表扫描的慢，尤其是在 I/O 密集型的工作负载时。</p>
 <p>只有当索引的列顺序和 ORDER BY 字句的顺序完全一致，并且所有列的排序方向都一样时，MySQL 才能够使用索引来对结果做排序。如果查询需要关联多张表，则只有当 ORDER BY 子句引用的字段全部为第一个表时，才能使用索引做排序。ORDER BY 子句和查找型的限制是一样的：需要满足索引的最左前缀的要求；否则，MySQL 都需要执行排序操作，而无法利用索引排序。</p>
 <p>如下所示，rental 在列(rental_date,inventory_id,customer_id)上有名为 rental_date 的索引。</p>
-<p><img src="/images/mysql/image-21.png" alt="图片"></p>
+<p><img src="/images/mysql/study-second/image-09.png" alt="图片"></p>
 <p>MySQL 可以使用 rental_date 索引为下面的查询做排序，从EXPLAIN中可以看到没有出现文件排序(filesort)操作：</p>
-<p><img src="/images/mysql/image-22.png" alt="图片"></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (8)  冗余和重复索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="/images/mysql/study-second/image-10.png" alt="图片"></p>
+<h4 id="8--冗余和重复索引">(8)  冗余和重复索引</h4>
 <p>MySQL 允许在相同列上创建多个索引，无论是有意的还是无意的。MySQL 需要单独维护重复的索引，并且优化器在优化查询的时候也需要逐个地进行考虑，这会影响性能。</p>
 <p>重复索引是指在相同的列上按照相同的顺序创建的相同类型的索引。应该避免这样创建重复索引，发现以后也应该立即移除。如下图所示：</p>
-<p><img src="/images/mysql/image-23.png" alt="图片"></p>
-<p>冗余索引和重复索引有一些不同。如果创建了索引(A,B)，再创建索引(A)就是冗余索引，因为这这是前一个索引的前缀索引。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">TEST</span> (
+    ID <span style="color:#66d9ef">INT</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+    A  <span style="color:#66d9ef">INT</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+    B  <span style="color:#66d9ef">INT</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+    <span style="color:#66d9ef">UNIQUE</span>(ID),
+    <span style="color:#66d9ef">INDEX</span>(ID)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB;
+</code></pre></div><p>冗余索引和重复索引有一些不同。如果创建了索引(A,B)，再创建索引(A)就是冗余索引，因为这这是前一个索引的前缀索引。</p>
 <p>一般来说，表中的索引越多插入速度会越慢。增加新索引将会导致 INSERNT、UPDATE、DELETE 等操作的速度变慢，特别是新增索引以后导致达到了内存瓶颈的时候。</p>
 <p>对于冗余索引和重复索引，可以通过 Toolkit 中的 pt-duplicate-key-checker 工具分析表结构来找出冗余和重复的索引。对于大型服务器来说，使用外部的工具可能更合适些；如果服务器上有大量的数据或者大量的表，查询 INFORMATION_SCHEMA 表可能会导致性能问题。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (9)  未使用的索引<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="9--未使用的索引">(9)  未使用的索引</h4>
 <p>除了冗余索引和重复索引，可能还会有一些服务器永远用不上的索引。这些索引完全是累赘，可以考虑删除。有两个工具可以帮助定位未使用的索引。最简单的有效的方法是在 Percona Server 或者在 MariaDB 中先打开 userstates 服务器变量，然后让服务器正常运行一段时间，再通过查询 INFORMATION_SCHEMA.INDEX_STATICS 就能查询到每个索引的使用频率。</p>
 <p>另外也可以使用Percona Toolkit中的pt-index-usage，该工具可以读取查询日志，并对日志中的每条查询进行EXPLAIN操作，然后打印出关于索引和查询的报告。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (10)  索引和锁<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="10--索引和锁">(10)  索引和锁</h4>
 <p>索引可以让查询锁定更少的行。如果你的查询从不访问那些不需要的行，那么就会锁定更少的行，从两个方面来看这对性能都有好处。首先，虽然 InnoDB 的行锁效率很高，内存使用也很少，但是锁定行的时候仍然会带来额外开销；其次，锁定超过需要的行会增加锁征用并减少并发性。</p>
 <p>InnoDB 只有在访问行的时候才会对其加锁，而索引能够减少 InnoDB 访问的行数，从而减少锁的数量。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> 4. 维护索引和表<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="4-维护索引和表">4. 维护索引和表</h3>
 <p>即使正确的类型创建了表并加上了合适的索引，工作也没有结束：还需要维护表和索引来确保它们能正常工作。维护表主要有三个目的：找到并修复损坏的表、怀虎准确的索引统计信息、减少碎片。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (1)  更新索引统计信息<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="1--更新索引统计信息">(1)  更新索引统计信息</h4>
 <p>如果存储引擎向优化器提供的扫描行数信息是不准确的数据，或者执行计划本身太复杂以致无法准确地获取各个阶段匹配的行数，那么优化其会使用索引统计信息来估算扫描行数。MySQL 优化器使用的是基于成本的模型，而衡量成本的主要指标就是一个查询需要扫描多少行。如果表没有统计信息，或者统计信息不准确，优化器很有可能做出错误的决定。可以通过运行 ANALYZE TABLE 来重新统计信息解决这个问题。</p>
 <p>InnoDB 在打开某些 INFORMATION_SCHEMA 表，或者使用 SHOW TABLES STATUS和SHOW INDEX，亦或在 MySQL 客户端开启自动补全功能的时候都会促发索引统计信息的更新。如果服务器上有大量的数据，这可能就是个很严重的问题，尤其是当 I/O 比较慢的时候。索引信息更新时会导致大量的所，并给服务器带来额外的压力。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --> (2)  减少索引和数据的碎片<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="2--减少索引和数据的碎片">(2)  减少索引和数据的碎片</h4>
 <p>B-Tree 索引可能会碎片化，这会降低查询的效率。碎片化的索引可能会以很差或者无序的方式存储在磁盘上。</p>
 <p>根据设计，B-Tree 需要随机磁盘访问才能定位到叶子节点，所以随机访问是不可避免的。然而，如果叶子页在物理分布上是顺序且紧密的，那么查询的性能就会更好。否则，对于范围查询、索引覆盖扫描等操作来说，速度可能会降低很多倍；对于覆盖扫描这一点更加明显。</p>
 <p>表的数据存储也可能碎片化。其主要有三种类型：</p>
 <ul>
-<li><!-- raw HTML omitted -->行碎片<!-- raw HTML omitted --></li>
+<li><strong>行碎片</strong></li>
 </ul>
 <p>这种碎片指的是数据行被存储为多个地方的多个片段中。即使查询只从索引中访问一行记录，行碎片也会导致性能下降。</p>
 <ul>
-<li><!-- raw HTML omitted -->行间碎片<!-- raw HTML omitted --></li>
+<li><strong>行间碎片</strong></li>
 </ul>
 <p>行间碎片是指逻辑上顺序的页，或者行在磁盘上不是顺序存储的。行间碎片对诸如全表扫描和聚簇索引扫描之类的操作有很大影响，因为这些操作原本就能够从磁盘上是顺序存储的数据中获益。</p>
 <ul>
-<li><!-- raw HTML omitted -->剩余空间碎片<!-- raw HTML omitted --></li>
+<li><strong>剩余空间碎片</strong></li>
 </ul>
 <p>剩余空间碎片是指数据页中有大量的空余空间。这会导致服务器读取大量不需要的数据，从而造成浪费。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->三. 总结<!-- raw HTML omitted --><!-- raw HTML omitted -->
-在选择索引和编写利用这些索引的查询时，有如下三个原则使用需要记住：</p>
+<h2 id="三-总结">三. 总结</h2>
+<p>在选择索引和编写利用这些索引的查询时，有如下三个原则使用需要记住：</p>
 <ul>
 <li>单行访问是很慢的。使用索引可以创建位置引用以提升效率。</li>
 <li>按顺序访问数据是很快的，这有两个原因。第一，顺序 I/O 不需要多次磁盘寻到，所以比随机 I/O 要快得多（特别是对机械硬盘）。第二，如果服务器能够按需顺序读取数据，那么就不再需要额外的排序操作，并且 GROUP BY 查询也无需再做排序和将行按组进行聚合计算了。</li>
@@ -448,7 +462,7 @@ SUM<span style="color:#f92672">(</span>customer_id <span style="color:#f92672">=
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

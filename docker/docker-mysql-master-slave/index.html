@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/docker/docker-mysql-master-slave/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : "在 Docker 上搭建 MySQL 的主从复制",
       "description" : "安装 Docker 略过\n拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305\ndocker run -p 3305:3306 --name mysql-master -e MYSQL_ROOT_PASSWORD=master -d mysql:5.7.31 可以看到主数据库就启动并且连接成功了\n启动从数据库 和启动主数据库一样，不同的是讲端口映射到 3307\ndocker run -p 3307:3306 --name mysql-slave -e MYSQL_ROOT_PASSWORD=slave -d mysql:5.7.31\r配置 主服务器配置： 进入 主服务器容器\ndocker exec -it af3d7bea3bb0 \/bin\/bash 安装 vim\napt-get update apt-get install vim -y 查看 MySQL 的配置文件：\ncat \/etc\/mysql\/my.cnf \/etc\/mysql\/my.cnf 里面就两句：\n# 表示包含\/etc\/mysql\/conf.d\/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir \/etc\/mysql\/conf.d\/\t# 表示包含\/etc\/mysql\/mysql.conf.d\/这个路径下面的配置文件，前提是必须以为.cnf为后缀 !includedir \/etc\/mysql\/mysql.conf.d\/ 这里我们把主从配置放到文件 \/etc\/mysql\/conf.d\/mysql.cnf",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2020",
       "datePublished": "2020-11-11 19:20:20 \u002b0800 CST",
       "dateModified" : "2020-11-11 19:20:20 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>在 Docker 上搭建 MySQL 的主从复制 - 苦味糖的博客</title>
-  <meta property="og:title" content="在 Docker 上搭建 MySQL 的主从复制 - 苦味糖的博客" />
+<title>在 Docker 上搭建 MySQL 的主从复制 - 特污兔的博客</title>
+  <meta property="og:title" content="在 Docker 上搭建 MySQL 的主从复制 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="安装 Docker 略过
 拉取 MySQL镜像 docker pull mysql:5.7.31 启动主数据库 启动第一个MySQL 容器，并且映射到本地端口 3305
@@ -63,7 +63,7 @@ cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -80,7 +80,7 @@ cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -104,7 +104,7 @@ cat /etc/mysql/my.cnf /etc/mysql/my.cnf 里面就两句：
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -421,7 +421,7 @@ mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">show</s
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

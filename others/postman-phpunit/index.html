@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/others/postman-phpunit/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/others/postman-phpunit/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/others/postman-phpunit/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : "PostMan 自动化测试",
       "description" : "第三方黑盒测试 第三方黑盒测试的好处是可以最大程度测试 整套系统，我们的 API 接口，从 PHP 代码解析开始，以下涉及因素都会影响到接口的可用性：\n 软件代码级别的错误； 程序使用的第三方软件发生错误，如：Redis 缓存和队列系统、MySQL 数据库等； API 服务器上的系统软件，如 Nginx 、Cron 等； API 服务器上的物理问题，如硬盘坏了； 域名解析问题，如 DNS 解析出错；  代码级别的自动化测试，能测试的范围有限。而第三方黑盒测试，模拟的是真实用户的请求，将 API 服务器看成 完全的系统，系统里任何一个部件坏了，都能被检测出来。并且这种测试方法与服务器端环境彻底解耦，后期维护成本较低。\nPostMan 自动化测试 PostMan 为我们提供了自动化测试的功能，类似于 Laravel 的接口测试，PostMan 可以请求接口，并且断言响应结果和响应数据，接下来我们以 发布话题 和 话题列表 两个接口为例，进行自动化测试。\n测试添加权限 打开 添加权限 接口，可以看到有个 Tests 的选项卡，点击该选项卡会出现一个空白区域，在这里我们可以添加一些断言，判断请求结果。\n填入如下内容：\npm.test(\u0026quot;响应状态码正确\u0026quot;, function(){ pm.response.to.have.status(201); }); pm.test(\u0026quot;接口响应数据正确\u0026quot;, function() { pm.expect(pm.response.text()).to.include(\u0026quot;name\u0026quot;); pm.expect(pm.response.text()).to.include(\u0026quot;display_name\u0026quot;); pm.expect(pm.response.text()).to.include(\u0026quot;description\u0026quot;); }); PostMan 为我们提供了 pm.test 方法，相当于一个测试用例，第一个参数是执行正确后的提示文字，第二个参数是个闭包，执行我们的断言。\n第一个测试用户我们判断响应的状态码，pm.response.to.have.status(201); 断言响应结果的状态码是 201。\n第二个测试用户，我们判断响应数据，通过 pm.expect(pm.response.text()).to.include(\u0026quot;\u0026quot;); 断言响应数据中一定会包含某个字段。\n点击 Send 进行调试。\n切换到 Test Results，可以看到两个测试用例均通过了。",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2019",
       "datePublished": "2019-10-24 17:01:46 \u002b0800 CST",
       "dateModified" : "2019-10-24 17:01:46 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>PostMan 自动化测试 - 苦味糖的博客</title>
-  <meta property="og:title" content="PostMan 自动化测试 - 苦味糖的博客" />
+<title>PostMan 自动化测试 - 特污兔的博客</title>
+  <meta property="og:title" content="PostMan 自动化测试 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="第三方黑盒测试 第三方黑盒测试的好处是可以最大程度测试 整套系统，我们的 API 接口，从 PHP 代码解析开始，以下涉及因素都会影响到接口的可用性：
  软件代码级别的错误； 程序使用的第三方软件发生错误，如：Redis 缓存和队列系统、MySQL 数据库等； API 服务器上的系统软件，如 Nginx 、Cron 等； API 服务器上的物理问题，如硬盘坏了； 域名解析问题，如 DNS 解析出错；  代码级别的自动化测试，能测试的范围有限。而第三方黑盒测试，模拟的是真实用户的请求，将 API 服务器看成 完全的系统，系统里任何一个部件坏了，都能被检测出来。并且这种测试方法与服务器端环境彻底解耦，后期维护成本较低。
@@ -65,7 +65,7 @@ pm.test(&quot;响应状态码正确&quot;, function(){ pm.response.to.have.statu
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -82,7 +82,7 @@ pm.test(&quot;响应状态码正确&quot;, function(){ pm.response.to.have.statu
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -106,7 +106,7 @@ pm.test(&quot;响应状态码正确&quot;, function(){ pm.response.to.have.statu
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -201,7 +201,7 @@ pm.test(&quot;接口响应数据正确&quot;, function() {
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

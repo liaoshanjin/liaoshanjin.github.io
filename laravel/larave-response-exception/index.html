@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/laravel/larave-response-exception/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/laravel/larave-response-exception/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/laravel/larave-response-exception/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : "自定义接口 response 和 异常",
       "description" : "封装返回的统一消息 接口主流返回 json 格式，其中包含 http状态码，status请求状态，data请求资源结果等等。需要我们有一个 API 接口全局都能有统一的格式和对应的数据处理。\n在 app\/Api\/Helpers 目录 (不存在目录自己新建) 下新建 ApiResponse.php 填入如下内容\n\u0026lt;?php namespace App\\Api\\Helpers; use Symfony\\Component\\HttpFoundation\\Response as HttpBaseResponse; \/** * Trait ApiResponse * * @package App\\Api\\Helpers *\/ trait ApiResponse { \/** * @var int *\/ protected $httpCode = HttpBaseResponse::HTTP_OK; \/** * 设置 Http 的状态码 * * @param $code * * @return $this *\/ public function setHttpCode($code) { $this-\u0026gt;httpCode = $code; return $this; } \/** * 获取 Http 状态码 * * @return int *\/ public function getHttpCode() { return $this-\u0026gt;httpCode; } \/** * 最基础的一个返回 json * * @param $data * @param array $header * * @return \\Illuminate\\Http\\JsonResponse *\/ public function baseResponse($data, $header = []) { return \\Response::json($data, $this-\u0026gt;getHttpCode(), $header); } \/** * 定义返回的格式 * * @param array $data * @param $messageStatus * @param null $httpCode * * @return \\Illuminate\\Http\\JsonResponse *\/ public function status(array $data, $messageStatus, $httpCode = null) { if ( !",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2019",
       "datePublished": "2019-10-24 17:09:10 \u002b0800 CST",
       "dateModified" : "2019-10-24 17:09:10 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>自定义接口 response 和 异常 - 苦味糖的博客</title>
-  <meta property="og:title" content="自定义接口 response 和 异常 - 苦味糖的博客" />
+<title>自定义接口 response 和 异常 - 特污兔的博客</title>
+  <meta property="og:title" content="自定义接口 response 和 异常 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="封装返回的统一消息 接口主流返回 json 格式，其中包含 http状态码，status请求状态，data请求资源结果等等。需要我们有一个 API 接口全局都能有统一的格式和对应的数据处理。
 在 app/Api/Helpers 目录 (不存在目录自己新建) 下新建 ApiResponse.php 填入如下内容
@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -68,7 +68,7 @@
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -92,7 +92,7 @@
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -514,7 +514,7 @@
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

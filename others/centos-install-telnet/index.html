@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/others/centos-install-telnet/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/others/centos-install-telnet/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/others/centos-install-telnet/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : "centos7 安装 telnet",
       "description" : "今天在学 swoole 的时候因为需要使用到 telnet 。但是我的虚拟机并没有安装 telnet 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。\n 首先检查是否安装 telnet\nrpm -qa | grep telnet 在安装 Telnet 前先检查系统是否安装了 telnet-server 和 xinetd\nyum list | grep telnet yum list | grep xinetd 进行安装，客户端和服务器端：\nyum -y install telnet-server.x86_64 yum -y install telnet.x86_64 yum -y install xinetd.x86_64 查看是否已经安装 xinetd (若已经安装则不安装)：\nrpm -qa | grep xinetd 安装 xinetd 服务：\nyum install xinetd -y telnet 服务默认是不开启的，修改文件 \/etc\/xinetd.d\/telnet来开启服务：\ntelnet 文件如有则修改，若不存在，可自己 vim 创建修改： 修改 disable = yes 为 disable = no",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2019",
       "datePublished": "2019-10-24 17:21:09 \u002b0800 CST",
       "dateModified" : "2019-10-24 17:21:09 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title>centos7 安装 telnet - 苦味糖的博客</title>
-  <meta property="og:title" content="centos7 安装 telnet - 苦味糖的博客" />
+<title>centos7 安装 telnet - 特污兔的博客</title>
+  <meta property="og:title" content="centos7 安装 telnet - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="今天在学 swoole 的时候因为需要使用到 telnet 。但是我的虚拟机并没有安装 telnet 。于是安装网上的教程安装，发现大部分的教程并不全面。最后还是装好了。特此记录一下。
  首先检查是否安装 telnet
@@ -61,7 +61,7 @@ telnet 文件如有则修改，若不存在，可自己 vim 创建修改： 修�
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -78,7 +78,7 @@ telnet 文件如有则修改，若不存在，可自己 vim 创建修改： 修�
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -102,7 +102,7 @@ telnet 文件如有则修改，若不存在，可自己 vim 创建修改： 修�
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -196,7 +196,7 @@ systemctl enable xinetd.service
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

@@ -6,9 +6,9 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="苦味糖" />
+  <meta name="author" content="特污兔" />
   <meta property="og:url" content="https://liaoshanjin.github.io/laravel/backup-sql/" />
-  <link rel="canonical" href="https://liaoshanjin.github.io/laravel/backup-sql/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="苦味糖的博客">
+  <link rel="canonical" href="https://liaoshanjin.github.io/laravel/backup-sql/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
 
   <script type="application/ld+json">
   {
@@ -23,11 +23,11 @@
       "headline" : " 备份管理后台数据",
       "description" : "我们在管理后台配置的菜单、权限都是保存在数据库里的，没有办法像代码文件一样提交到 Git 版本库中，因此我们需要把开发环境中配置好的后台信息导出成 SQL 文件，然后把 SQL 文件提交到 Git 版本库中。\n 执行导出 因为这是一个一次性的工作，没有必要专门写代码来处理导入和导出，所以我们选择直接用 mysqldump 这个命令行程序来导出数据库中的数据，从成本上来说比较合适：\nmysqldump -t laravel-shop admin_menu admin_permissions admin_role_menu admin_role_permissions admin_role_users admin_roles admin_user_permissions admin_users \u0026gt; database\/admin.sql 命令解析：\n -t 选项代表不导出数据表结构，这些表的结构我们会通过 Laravel 的 migration 迁移文件来创建； laravel-shop 代表我们要导出的数据库名称，后面则是要导出的表列表； \u0026gt; database\/admin.sql 把导出的内容保存到 database\/admin.sql 文件中。   在 Homestead 环境中我们执行 Mysql 相关的命令都不需要账号密码，因为 Homestead 都已经帮我们配置好了。在线上执行 Mysql 命令时则需要在命令行里通过 -u 和 -p 参数指明账号密码，如： mysqldump -uroot -p123456 laravel-shop \u0026gt; database\/admin.sql\n ​\n使用 bash 备份 新建一个 bash 文件 back_database.",
       "inLanguage" : "en-US",
-      "author" : "苦味糖",
-      "creator" : "苦味糖",
-      "publisher": "苦味糖",
-      "accountablePerson" : "苦味糖",
-      "copyrightHolder" : "苦味糖",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
       "copyrightYear" : "2019",
       "datePublished": "2019-10-24 17:25:23 \u002b0800 CST",
       "dateModified" : "2019-10-24 17:25:23 \u002b0800 CST",
@@ -35,8 +35,8 @@
       "keywords" : [  ]
   }
 </script>
-<title> 备份管理后台数据 - 苦味糖的博客</title>
-  <meta property="og:title" content=" 备份管理后台数据 - 苦味糖的博客" />
+<title> 备份管理后台数据 - 特污兔的博客</title>
+  <meta property="og:title" content=" 备份管理后台数据 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="我们在管理后台配置的菜单、权限都是保存在数据库里的，没有办法像代码文件一样提交到 Git 版本库中，因此我们需要把开发环境中配置好的后台信息导出成 SQL 文件，然后把 SQL 文件提交到 Git 版本库中。
  执行导出 因为这是一个一次性的工作，没有必要专门写代码来处理导入和导出，所以我们选择直接用 mysqldump 这个命令行程序来导出数据库中的数据，从成本上来说比较合适：
@@ -57,7 +57,7 @@ mysqldump -t laravel-shop admin_menu admin_permissions admin_role_menu admin_rol
   <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
   <link rel="stylesheet" href="/css/index.css">
   <link href="/index.xml" rel="alternate" type="application/rss+xml"
-    title="苦味糖的博客">
+    title="特污兔的博客">
   
   <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
   
@@ -74,7 +74,7 @@ mysqldump -t laravel-shop admin_menu admin_permissions admin_role_menu admin_rol
           
 <header>
   <div class="signatures site-title">
-    <a href="/">苦味糖的博客</a>
+    <a href="/">Stringer的博客</a>
   </div>
 </header>
 <div class="row end-xs">
@@ -98,7 +98,7 @@ mysqldump -t laravel-shop admin_menu admin_permissions admin_role_menu admin_rol
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="https://liaoshanjin.github.io/">@苦味糖</a>
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
               </div>
               
             </div>
@@ -167,7 +167,7 @@ mysqldump --host=&quot;${DB_HOST}&quot; --port=${DB_PORT} --user=&quot;${DB_USER
       
       var d = document,
         s = d.createElement("script");
-      s.src = "https://苦味糖.disqus.com/embed.js";
+      s.src = "https://特污兔.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();

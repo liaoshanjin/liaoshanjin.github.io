@@ -21,7 +21,7 @@
       "articleSection" : "mysql",
       "name" : "MYSQL 学习之 -- 慢查询",
       "headline" : "MYSQL 学习之 -- 慢查询",
-      "description" : "增加用户 格式：\ngrant 权限 on 数据库.* to 用户名@登录主机 identified by \u0026#39;密码\u0026#39; 如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：\ngrant select,insert,update,delete on *.* to user1@localhost Identified by \u0026#34;password1\u0026#34;; 如果你不想 user1 有密码，可以再打一个命令将密码去掉:\ngrant select,insert,update,delete on *.* to user1@localhost identified by \u0026#34;\u0026#34;; 新增主库访问账号 slave, 密码为 slave , 只允许通过 192.168.. 的 ip 连接：\ngrant replication slave on *.* to \u0026#39;slave\u0026#39;@\u0026#39;192.168.%.%\u0026#39; identified by \u0026#39;slave\u0026#39; 分配所有权限\n-- all privileges 所有权限 grant all privileges on 数据库名.数据表名 to 用户名@域名 identified by \u0026#39;密码\u0026#39;; MySQL 慢查询日志 假数据 新建一张测试表 views :",
+      "description" : "增加用户 格式：\ngrant 权限 on 数据库.* to 用户名@登录主机 identified by \u0027密码\u0027\r如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：\ngrant select,insert,update,delete on *.* to user1@localhost Identified by \u0026quot;password1\u0026quot;;\r如果你不想 user1 有密码，可以再打一个命令将密码去掉:\ngrant select,insert,update,delete on *.* to user1@localhost identified by \u0026quot;\u0026quot;;\r新增主库访问账号 slave, 密码为 slave , 只允许通过 192.168.. 的 ip 连接：\ngrant replication slave on *.* to \u0027slave\u0027@\u0027192.168.%.%\u0027 identified by \u0027slave\u0027\r分配所有权限\n-- all privileges 所有权限\rgrant all privileges on 数据库名.数据表名 to 用户名@域名 identified by \u0027密码\u0027; MySQL 慢查询日志 假数据 新建一张测试表 views :",
       "inLanguage" : "en-US",
       "author" : "特污兔",
       "creator" : "特污兔",
@@ -39,17 +39,17 @@
   <meta property="og:title" content="MYSQL 学习之 -- 慢查询 - 特污兔的博客" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="增加用户 格式：
-grant 权限 on 数据库.* to 用户名@登录主机 identified by &#39;密码&#39; 如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：
-grant select,insert,update,delete on *.* to user1@localhost Identified by &#34;password1&#34;; 如果你不想 user1 有密码，可以再打一个命令将密码去掉:
-grant select,insert,update,delete on *.* to user1@localhost identified by &#34;&#34;; 新增主库访问账号 slave, 密码为 slave , 只允许通过 192.168.. 的 ip 连接：
-grant replication slave on *.* to &#39;slave&#39;@&#39;192.168.%.%&#39; identified by &#39;slave&#39; 分配所有权限
--- all privileges 所有权限 grant all privileges on 数据库名.数据表名 to 用户名@域名 identified by &#39;密码&#39;; MySQL 慢查询日志 假数据 新建一张测试表 views :" />
+grant 权限 on 数据库.* to 用户名@登录主机 identified by &#39;密码&#39;如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：
+grant select,insert,update,delete on *.* to user1@localhost Identified by &quot;password1&quot;;如果你不想 user1 有密码，可以再打一个命令将密码去掉:
+grant select,insert,update,delete on *.* to user1@localhost identified by &quot;&quot;;新增主库访问账号 slave, 密码为 slave , 只允许通过 192.168.. 的 ip 连接：
+grant replication slave on *.* to &#39;slave&#39;@&#39;192.168.%.%&#39; identified by &#39;slave&#39;分配所有权限
+-- all privileges 所有权限grant all privileges on 数据库名.数据表名 to 用户名@域名 identified by &#39;密码&#39;; MySQL 慢查询日志 假数据 新建一张测试表 views :" />
   <meta name="description" content="增加用户 格式：
-grant 权限 on 数据库.* to 用户名@登录主机 identified by &#39;密码&#39; 如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：
-grant select,insert,update,delete on *.* to user1@localhost Identified by &#34;password1&#34;; 如果你不想 user1 有密码，可以再打一个命令将密码去掉:
-grant select,insert,update,delete on *.* to user1@localhost identified by &#34;&#34;; 新增主库访问账号 slave, 密码为 slave , 只允许通过 192.168.. 的 ip 连接：
-grant replication slave on *.* to &#39;slave&#39;@&#39;192.168.%.%&#39; identified by &#39;slave&#39; 分配所有权限
--- all privileges 所有权限 grant all privileges on 数据库名.数据表名 to 用户名@域名 identified by &#39;密码&#39;; MySQL 慢查询日志 假数据 新建一张测试表 views :" />
+grant 权限 on 数据库.* to 用户名@登录主机 identified by &#39;密码&#39;如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：
+grant select,insert,update,delete on *.* to user1@localhost Identified by &quot;password1&quot;;如果你不想 user1 有密码，可以再打一个命令将密码去掉:
+grant select,insert,update,delete on *.* to user1@localhost identified by &quot;&quot;;新增主库访问账号 slave, 密码为 slave , 只允许通过 192.168.. 的 ip 连接：
+grant replication slave on *.* to &#39;slave&#39;@&#39;192.168.%.%&#39; identified by &#39;slave&#39;分配所有权限
+-- all privileges 所有权限grant all privileges on 数据库名.数据表名 to 用户名@域名 identified by &#39;密码&#39;; MySQL 慢查询日志 假数据 新建一张测试表 views :" />
   <meta property="og:locale" content="zh_CN" />
 
   <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
@@ -110,97 +110,97 @@ grant replication slave on *.* to &#39;slave&#39;@&#39;192.168.%.%&#39; identifi
           
           <h4 id="增加用户">增加用户</h4>
 <p>格式：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">grant</span> <span style="color:#960050;background-color:#1e0010">权限</span> <span style="color:#66d9ef">on</span> <span style="color:#960050;background-color:#1e0010">数据库</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">to</span> <span style="color:#960050;background-color:#1e0010">用户名</span><span style="color:#f92672">@</span><span style="color:#960050;background-color:#1e0010">登录主机</span> <span style="color:#66d9ef">identified</span> <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#39;密码&#39;</span>
-</code></pre></div><p>如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">grant</span> <span style="color:#66d9ef">select</span>,<span style="color:#66d9ef">insert</span>,<span style="color:#66d9ef">update</span>,<span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">on</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">to</span> user1<span style="color:#f92672">@</span>localhost <span style="color:#66d9ef">Identified</span> <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#34;password1&#34;</span>;
-</code></pre></div><p>如果你不想 user1 有密码，可以再打一个命令将密码去掉:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">grant</span> <span style="color:#66d9ef">select</span>,<span style="color:#66d9ef">insert</span>,<span style="color:#66d9ef">update</span>,<span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">on</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">to</span> user1<span style="color:#f92672">@</span>localhost <span style="color:#66d9ef">identified</span> <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</code></pre></div><p>新增主库访问账号  slave, 密码为 slave , 只允许通过 192.168.<em>.</em>  的 ip 连接：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">grant</span> replication slave <span style="color:#66d9ef">on</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">to</span> <span style="color:#e6db74">&#39;slave&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;192.168.%.%&#39;</span> <span style="color:#66d9ef">identified</span> <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#39;slave&#39;</span>
-</code></pre></div><p>分配所有权限</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e">-- all privileges 所有权限
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">grant</span> <span style="color:#66d9ef">all</span> <span style="color:#66d9ef">privileges</span> <span style="color:#66d9ef">on</span> <span style="color:#960050;background-color:#1e0010">数据库名</span>.<span style="color:#960050;background-color:#1e0010">数据表名</span> <span style="color:#66d9ef">to</span> <span style="color:#960050;background-color:#1e0010">用户名</span><span style="color:#f92672">@</span><span style="color:#960050;background-color:#1e0010">域名</span> <span style="color:#66d9ef">identified</span> <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#39;密码&#39;</span>;   
-</code></pre></div><h4 id="mysql-慢查询日志">MySQL 慢查询日志</h4>
+<pre><code>grant 权限 on 数据库.* to 用户名@登录主机 identified by '密码'
+</code></pre><p>如，增加一个用户 user1 密码为 password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以 root 用户连入 mysql，然后键入以下命令：</p>
+<pre><code>grant select,insert,update,delete on *.* to user1@localhost Identified by &quot;password1&quot;;
+</code></pre><p>如果你不想 user1 有密码，可以再打一个命令将密码去掉:</p>
+<pre><code>grant select,insert,update,delete on *.* to user1@localhost identified by &quot;&quot;;
+</code></pre><p>新增主库访问账号  slave, 密码为 slave , 只允许通过 192.168.<em>.</em>  的 ip 连接：</p>
+<pre><code>grant replication slave on *.* to 'slave'@'192.168.%.%' identified by 'slave'
+</code></pre><p>分配所有权限</p>
+<pre><code>-- all privileges 所有权限
+grant all privileges on 数据库名.数据表名 to 用户名@域名 identified by '密码';   
+</code></pre><h4 id="mysql-慢查询日志">MySQL 慢查询日志</h4>
 <h4 id="假数据">假数据</h4>
 <p>新建一张测试表 <code>views</code> :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>views<span style="color:#f92672">`</span> (
-  <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#f92672">`</span>type<span style="color:#f92672">`</span> <span style="color:#66d9ef">tinyint</span>(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#f92672">`</span>model<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">CHARACTER</span> <span style="color:#66d9ef">SET</span> latin1 <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#f92672">`</span>status<span style="color:#f92672">`</span> <span style="color:#66d9ef">tinyint</span>(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#f92672">`</span>created_at<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
-) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8mb4;
-</code></pre></div><p>随便插入几条数据，然后使用 <strong>蠕虫复制</strong> 生成大量假数据</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> views <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> views;
-</code></pre></div><p>多执行了几次就变成一千多万条数据了。</p>
+<pre><code>CREATE TABLE `views` (
+  `id` int(11) NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `model` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+</code></pre><p>随便插入几条数据，然后使用 <strong>蠕虫复制</strong> 生成大量假数据</p>
+<pre><code>INSERT INTO views SELECT * FROM views;
+</code></pre><p>多执行了几次就变成一千多万条数据了。</p>
 <h4 id="慢查询日志设置">慢查询日志设置</h4>
 <h5 id="查看慢查询日志开启情况">查看慢查询日志开启情况</h5>
 <p>查看是否开启慢查询日志</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SHOW</span> VARIABLES <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#34;slow_query_log&#34;</span>;
-<span style="color:#f92672">+----------------+-------+</span>
-<span style="color:#f92672">|</span> Variable_name  <span style="color:#f92672">|</span> Value <span style="color:#f92672">|</span>
-<span style="color:#f92672">+----------------+-------+</span>
-<span style="color:#f92672">|</span> slow_query_log <span style="color:#f92672">|</span> <span style="color:#66d9ef">ON</span>    <span style="color:#f92672">|</span>
-<span style="color:#f92672">+----------------+-------+</span>
-<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
-</code></pre></div><p>临时开启慢查询日志(如果需要长时间开启，需要更改 <code>MySQL</code> 配置文件)：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SET</span> GLOBAL slow_query_log <span style="color:#f92672">=</span> <span style="color:#66d9ef">ON</span>;
-</code></pre></div><p>如果想关闭：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SET</span> GLOBAL slow_query_log <span style="color:#f92672">=</span> OFF;
-</code></pre></div><h5 id="查看慢查询日志时间阙值">查看慢查询日志时间阙值</h5>
+<pre><code>mysql&gt; SHOW VARIABLES LIKE &quot;slow_query_log&quot;;
++----------------+-------+
+| Variable_name  | Value |
++----------------+-------+
+| slow_query_log | ON    |
++----------------+-------+
+1 row in set (0.00 sec)
+</code></pre><p>临时开启慢查询日志(如果需要长时间开启，需要更改 <code>MySQL</code> 配置文件)：</p>
+<pre><code>SET GLOBAL slow_query_log = ON;
+</code></pre><p>如果想关闭：</p>
+<pre><code>SET GLOBAL slow_query_log = OFF;
+</code></pre><h5 id="查看慢查询日志时间阙值">查看慢查询日志时间阙值</h5>
 <p>临时设置慢查询时间临界点，查询时间高于这个临界点的都会被记录到慢查询日志中：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SHOW</span> VARIABLES <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#34;long_query_time&#34;</span>;
-<span style="color:#f92672">+-----------------+----------+</span>
-<span style="color:#f92672">|</span> Variable_name   <span style="color:#f92672">|</span> Value    <span style="color:#f92672">|</span>
-<span style="color:#f92672">+-----------------+----------+</span>
-<span style="color:#f92672">|</span> long_query_time <span style="color:#f92672">|</span> <span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">000000</span> <span style="color:#f92672">|</span>
-<span style="color:#f92672">+-----------------+----------+</span>
-<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
-</code></pre></div><p>默认情况下， <code>long_query_time</code> 的值是 10，意味着如果一条 <code>SQL</code> 的执行时间超过 10 秒就会被记录到慢查询日志中。我们将时间改下一点， 改成 5 秒：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SET</span> long_query_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
-</code></pre></div><h5 id="查看慢查询日志存储文件">查看慢查询日志存储文件</h5>
+<pre><code>mysql&gt; SHOW VARIABLES LIKE &quot;long_query_time&quot;;
++-----------------+----------+
+| Variable_name   | Value    |
++-----------------+----------+
+| long_query_time | 5.000000 |
++-----------------+----------+
+1 row in set (0.00 sec)
+</code></pre><p>默认情况下， <code>long_query_time</code> 的值是 10，意味着如果一条 <code>SQL</code> 的执行时间超过 10 秒就会被记录到慢查询日志中。我们将时间改下一点， 改成 5 秒：</p>
+<pre><code>SET long_query_time = 5
+</code></pre><h5 id="查看慢查询日志存储文件">查看慢查询日志存储文件</h5>
 <p>首先查看存储方式：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SHOW</span> VARIABLES <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#34;log_output&#34;</span>;
-<span style="color:#f92672">+---------------+-------+</span>
-<span style="color:#f92672">|</span> Variable_name <span style="color:#f92672">|</span> Value <span style="color:#f92672">|</span>
-<span style="color:#f92672">+---------------+-------+</span>
-<span style="color:#f92672">|</span> log_output    <span style="color:#f92672">|</span> FILE  <span style="color:#f92672">|</span>
-<span style="color:#f92672">+---------------+-------+</span>
-<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">01</span> sec)
-</code></pre></div><p>如果查询的结果不是 <code>FILE</code>， 比如是： <code>NONE</code>  我们就设置为 <code>FILE</code> :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SET</span> GLOBAL log_output <span style="color:#f92672">=</span> FILE;
-</code></pre></div><p>之后查看文件所在目录：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SHOW</span> VARIABLES <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#34;slow_query_log_file&#34;</span>;
-<span style="color:#f92672">+---------------------+--------------------------------------+</span>
-<span style="color:#f92672">|</span> Variable_name       <span style="color:#f92672">|</span> Value                                <span style="color:#f92672">|</span>
-<span style="color:#f92672">+---------------------+--------------------------------------+</span>
-<span style="color:#f92672">|</span> slow_query_log_file <span style="color:#f92672">|</span> <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>mysql<span style="color:#f92672">/</span><span style="color:#ae81ff">6637</span>b6202206<span style="color:#f92672">-</span>slow.log <span style="color:#f92672">|</span>
-<span style="color:#f92672">+---------------------+--------------------------------------+</span>
-<span style="color:#ae81ff">1</span> row <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
-</code></pre></div><p>可以看到记录慢查询日志的文件为 ： <em>/var/lib/mysql/6637b6202206-slow.log</em></p>
+<pre><code>mysql&gt; SHOW VARIABLES LIKE &quot;log_output&quot;;
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| log_output    | FILE  |
++---------------+-------+
+1 row in set (0.01 sec)
+</code></pre><p>如果查询的结果不是 <code>FILE</code>， 比如是： <code>NONE</code>  我们就设置为 <code>FILE</code> :</p>
+<pre><code>SET GLOBAL log_output = FILE;
+</code></pre><p>之后查看文件所在目录：</p>
+<pre><code>mysql&gt; SHOW VARIABLES LIKE &quot;slow_query_log_file&quot;;
++---------------------+--------------------------------------+
+| Variable_name       | Value                                |
++---------------------+--------------------------------------+
+| slow_query_log_file | /var/lib/mysql/6637b6202206-slow.log |
++---------------------+--------------------------------------+
+1 row in set (0.00 sec)
+</code></pre><p>可以看到记录慢查询日志的文件为 ： <em>/var/lib/mysql/6637b6202206-slow.log</em></p>
 <h5 id="查看所有配置">查看所有配置</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SHOW</span> VARIABLES <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#34;%quer%&#34;</span>;
-<span style="color:#f92672">+----------------------------------------+--------------------------------------+</span>
-<span style="color:#f92672">|</span> Variable_name                          <span style="color:#f92672">|</span> Value                                <span style="color:#f92672">|</span>
-<span style="color:#f92672">+----------------------------------------+--------------------------------------+</span>
-<span style="color:#f92672">|</span> binlog_rows_query_log_events           <span style="color:#f92672">|</span> OFF                                  <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> ft_query_expansion_limit               <span style="color:#f92672">|</span> <span style="color:#ae81ff">20</span>                                   <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> have_query_cache                       <span style="color:#f92672">|</span> YES                                  <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> log_queries_not_using_indexes          <span style="color:#f92672">|</span> OFF                                  <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> log_throttle_queries_not_using_indexes <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span>                                    <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> long_query_time                        <span style="color:#f92672">|</span> <span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">000000</span>                             <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_alloc_block_size                 <span style="color:#f92672">|</span> <span style="color:#ae81ff">8192</span>                                 <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_cache_limit                      <span style="color:#f92672">|</span> <span style="color:#ae81ff">1048576</span>                              <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_cache_min_res_unit               <span style="color:#f92672">|</span> <span style="color:#ae81ff">4096</span>                                 <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_cache_size                       <span style="color:#f92672">|</span> <span style="color:#ae81ff">1048576</span>                              <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_cache_type                       <span style="color:#f92672">|</span> OFF                                  <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_cache_wlock_invalidate           <span style="color:#f92672">|</span> OFF                                  <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> query_prealloc_size                    <span style="color:#f92672">|</span> <span style="color:#ae81ff">8192</span>                                 <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> slow_query_log                         <span style="color:#f92672">|</span> <span style="color:#66d9ef">ON</span>                                   <span style="color:#f92672">|</span>
-<span style="color:#f92672">|</span> slow_query_log_file                    <span style="color:#f92672">|</span> <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>mysql<span style="color:#f92672">/</span><span style="color:#ae81ff">6637</span>b6202206<span style="color:#f92672">-</span>slow.log <span style="color:#f92672">|</span>
-<span style="color:#f92672">+----------------------------------------+--------------------------------------+</span>
-<span style="color:#ae81ff">15</span> rows <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">01</span> sec)
-</code></pre></div><p>参数说明：</p>
+<pre><code>mysql&gt; SHOW VARIABLES LIKE &quot;%quer%&quot;;
++----------------------------------------+--------------------------------------+
+| Variable_name                          | Value                                |
++----------------------------------------+--------------------------------------+
+| binlog_rows_query_log_events           | OFF                                  |
+| ft_query_expansion_limit               | 20                                   |
+| have_query_cache                       | YES                                  |
+| log_queries_not_using_indexes          | OFF                                  |
+| log_throttle_queries_not_using_indexes | 0                                    |
+| long_query_time                        | 5.000000                             |
+| query_alloc_block_size                 | 8192                                 |
+| query_cache_limit                      | 1048576                              |
+| query_cache_min_res_unit               | 4096                                 |
+| query_cache_size                       | 1048576                              |
+| query_cache_type                       | OFF                                  |
+| query_cache_wlock_invalidate           | OFF                                  |
+| query_prealloc_size                    | 8192                                 |
+| slow_query_log                         | ON                                   |
+| slow_query_log_file                    | /var/lib/mysql/6637b6202206-slow.log |
++----------------------------------------+--------------------------------------+
+15 rows in set (0.01 sec)
+</code></pre><p>参数说明：</p>
 <ul>
 <li><strong>slow_query_log</strong>    是否开启了慢查询日志</li>
 <li><strong>slow_query_log_file</strong>   慢查询日志文件路径</li>
@@ -209,33 +209,33 @@ grant replication slave on *.* to &#39;slave&#39;@&#39;192.168.%.%&#39; identifi
 </ul>
 <h4 id="使用慢查询日志">使用慢查询日志</h4>
 <p>因为上面的数据我插入了一千多万条，所以随便执行一条查询 ：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> views <span style="color:#66d9ef">WHERE</span> type<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
-</code></pre></div><p>查看日志文件 :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cat  /var/lib/mysql/6637b6202206-slow.log
-</code></pre></div><p>日志如下，执行时间 17.4 秒 ：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># Time: 2020-09-18T06:11:00.141889Z
-</span><span style="color:#75715e"># User@Host: root[root] @ localhost []  Id:    10
-</span><span style="color:#75715e"># Query_time: 17.407058  Lock_time: 0.000617 Rows_sent: 8388608  Rows_examined: 12582912
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">timestamp</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1600409460</span>;
-<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> views <span style="color:#66d9ef">WHERE</span> type<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
-</code></pre></div><h4 id="慢查询日志分析">慢查询日志分析</h4>
+<pre><code>SELECT * FROM views WHERE type=2;
+</code></pre><p>查看日志文件 :</p>
+<pre><code>cat  /var/lib/mysql/6637b6202206-slow.log
+</code></pre><p>日志如下，执行时间 17.4 秒 ：</p>
+<pre><code># Time: 2020-09-18T06:11:00.141889Z
+# User@Host: root[root] @ localhost []  Id:    10
+# Query_time: 17.407058  Lock_time: 0.000617 Rows_sent: 8388608  Rows_examined: 12582912
+SET timestamp=1600409460;
+SELECT * FROM views WHERE type=2;
+</code></pre><h4 id="慢查询日志分析">慢查询日志分析</h4>
 <p>通过查看慢查询日志可以发现，很乱，数据量大的时候，可能一天会产生几个 G 的日志，根本没有办法去清晰明了的分析。所以，这里，我们采用工具进行分析。</p>
 <h5 id="使用-mysqldumpslow-进行分析">使用 mysqldumpslow 进行分析</h5>
 <p><code>mysqldumpslow</code> 是 <code>mysql</code> 安装后就自带的工具，用于分析慢查询日志</p>
 <p>显示出慢查询日志中最慢的三条 <code>SQL</code> :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@6637b6202206:/# mysqldumpslow -t <span style="color:#ae81ff">3</span> /var/lib/mysql/6637b6202206-slow.log 
+<pre><code>root@6637b6202206:/# mysqldumpslow -t 3 /var/lib/mysql/6637b6202206-slow.log 
 
 Reading mysql slow query log from /var/lib/mysql/6637b6202206-slow.log
-Count: <span style="color:#ae81ff">1</span>  Time<span style="color:#f92672">=</span>167.86s <span style="color:#f92672">(</span>167s<span style="color:#f92672">)</span>  Lock<span style="color:#f92672">=</span>0.00s <span style="color:#f92672">(</span>0s<span style="color:#f92672">)</span>  Rows<span style="color:#f92672">=</span>6291456.0 <span style="color:#f92672">(</span>6291456<span style="color:#f92672">)</span>, root<span style="color:#f92672">[</span>root<span style="color:#f92672">]</span>@<span style="color:#f92672">[</span>192.168.142.1<span style="color:#f92672">]</span>
-  SELECT * FROM views WHERE status <span style="color:#f92672">=</span> N
+Count: 1  Time=167.86s (167s)  Lock=0.00s (0s)  Rows=6291456.0 (6291456), root[root]@[192.168.142.1]
+  SELECT * FROM views WHERE status = N
 
-Count: <span style="color:#ae81ff">1</span>  Time<span style="color:#f92672">=</span>17.41s <span style="color:#f92672">(</span>17s<span style="color:#f92672">)</span>  Lock<span style="color:#f92672">=</span>0.00s <span style="color:#f92672">(</span>0s<span style="color:#f92672">)</span>  Rows<span style="color:#f92672">=</span>8388608.0 <span style="color:#f92672">(</span>8388608<span style="color:#f92672">)</span>, root<span style="color:#f92672">[</span>root<span style="color:#f92672">]</span>@localhost
-  SELECT * FROM views WHERE type<span style="color:#f92672">=</span>N
+Count: 1  Time=17.41s (17s)  Lock=0.00s (0s)  Rows=8388608.0 (8388608), root[root]@localhost
+  SELECT * FROM views WHERE type=N
 
-Count: <span style="color:#ae81ff">1</span>  Time<span style="color:#f92672">=</span>10.94s <span style="color:#f92672">(</span>10s<span style="color:#f92672">)</span>  Lock<span style="color:#f92672">=</span>0.00s <span style="color:#f92672">(</span>0s<span style="color:#f92672">)</span>  Rows<span style="color:#f92672">=</span>2097152.0 <span style="color:#f92672">(</span>2097152<span style="color:#f92672">)</span>, root<span style="color:#f92672">[</span>root<span style="color:#f92672">]</span>@<span style="color:#f92672">[</span>192.168.142.1<span style="color:#f92672">]</span>
-  SELECT * FROM views WHERE model <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;S&#39;</span>
+Count: 1  Time=10.94s (10s)  Lock=0.00s (0s)  Rows=2097152.0 (2097152), root[root]@[192.168.142.1]
+  SELECT * FROM views WHERE model = 'S'
   
-</code></pre></div><p><code>mysqldumpslow</code> 工具还有其他的参数， 这边的 <code>-t</code> 表示想要查询的条数。</p>
+</code></pre><p><code>mysqldumpslow</code> 工具还有其他的参数， 这边的 <code>-t</code> 表示想要查询的条数。</p>
 
         </div>
 

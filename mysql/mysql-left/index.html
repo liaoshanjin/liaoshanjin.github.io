@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.75.1" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="特污兔" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-left/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-left/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "mysql",
+      "name" : "MYSQL 最左匹配",
+      "headline" : "MYSQL 最左匹配",
+      "description" : "最左原则 先利用 docker 安装一个干净的 MySQL\ndocker run -d -e MYSQL_ROOT_PASSWORD=root --name mysql -v \/root\/app\/mysql\/data:\/var\/lib\/mysql -p 3306:3306 mysql\r常见的一个问题，在 MySQL 的查询中，加入建立 三个字段建立联合索引，那么查询使用其中的2个字断，能否命中索引？\n创建测试表 users\nCREATE TABLE `users` (\r`id` int NOT NULL AUTO_INCREMENT,\r`age` int NOT NULL,\r`phone` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,\r`gender` tinyint(1) NOT NULL DEFAULT \u00271\u0027,\r`name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,\rPRIMARY KEY (`id`),\rKEY `index_age_phone_gender` (`age`,`phone`,`gender`) USING BTREE\r) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;\r插入三条数据：\nINSERT INTO users ( age, phone, gender, NAME )\rVALUES\r( 18, 18270691676, 1, \u0026quot;张三\u0026quot; ),\r( 18, 18270691670, 0, \u0026quot;李四\u0026quot; ),\r( 21, 18270691671, 2, \u0026quot;王五\u0026quot; );\r使用三个字段作为查询条件：",
+      "inLanguage" : "en-US",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-03-13 20:20:00 \u002b0800 CST",
+      "dateModified" : "2021-03-13 20:20:00 \u002b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/mysql\/mysql-left\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>MYSQL 最左匹配 - 特污兔的博客</title>
+  <meta property="og:title" content="MYSQL 最左匹配 - 特污兔的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="最左原则 先利用 docker 安装一个干净的 MySQL
+docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysql -v /root/app/mysql/data:/var/lib/mysql -p 3306:3306 mysql常见的一个问题，在 MySQL 的查询中，加入建立 三个字段建立联合索引，那么查询使用其中的2个字断，能否命中索引？
+创建测试表 users
+CREATE TABLE `users` (`id` int NOT NULL AUTO_INCREMENT,`age` int NOT NULL,`phone` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,`gender` tinyint(1) NOT NULL DEFAULT &#39;1&#39;,`name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,PRIMARY KEY (`id`),KEY `index_age_phone_gender` (`age`,`phone`,`gender`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;插入三条数据：
+INSERT INTO users ( age, phone, gender, NAME )VALUES( 18, 18270691676, 1, &quot;张三&quot; ),( 18, 18270691670, 0, &quot;李四&quot; ),( 21, 18270691671, 2, &quot;王五&quot; );使用三个字段作为查询条件：" />
+  <meta name="description" content="最左原则 先利用 docker 安装一个干净的 MySQL
+docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysql -v /root/app/mysql/data:/var/lib/mysql -p 3306:3306 mysql常见的一个问题，在 MySQL 的查询中，加入建立 三个字段建立联合索引，那么查询使用其中的2个字断，能否命中索引？
+创建测试表 users
+CREATE TABLE `users` (`id` int NOT NULL AUTO_INCREMENT,`age` int NOT NULL,`phone` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,`gender` tinyint(1) NOT NULL DEFAULT &#39;1&#39;,`name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,PRIMARY KEY (`id`),KEY `index_age_phone_gender` (`age`,`phone`,`gender`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;插入三条数据：
+INSERT INTO users ( age, phone, gender, NAME )VALUES( 18, 18270691676, 1, &quot;张三&quot; ),( 18, 18270691670, 0, &quot;李四&quot; ),( 21, 18270691671, 2, &quot;王五&quot; );使用三个字段作为查询条件：" />
+  <meta property="og:locale" content="zh_CN" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="特污兔的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">Stringer的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MYSQL 最左匹配</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2021-03-13 20:20:00 CST">
+                13 Mar 2021
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="最左原则">最左原则</h2>
+<p>先利用 docker 安装一个干净的 MySQL</p>
+<pre><code>docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysql -v /root/app/mysql/data:/var/lib/mysql -p 3306:3306 mysql
+</code></pre><p>常见的一个问题，在 MySQL 的查询中，加入建立 三个字段建立联合索引，那么查询使用其中的2个字断，能否命中索引？</p>
+<p>创建测试表 <code>users</code></p>
+<pre><code>CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `age` int NOT NULL,
+  `phone` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` tinyint(1) NOT NULL DEFAULT '1',
+  `name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_age_phone_gender` (`age`,`phone`,`gender`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+</code></pre><p>插入三条数据：</p>
+<pre><code>INSERT INTO users ( age, phone, gender, NAME )
+VALUES
+  	( 18, 18270691676, 1, &quot;张三&quot; ),
+	( 18, 18270691670, 0, &quot;李四&quot; ),
+	( 21, 18270691671, 2, &quot;王五&quot; );
+</code></pre><p>使用三个字段作为查询条件：</p>
+<pre><code>EXPLAIN SELECT * FROM users WHERE age=18 AND phone = 18270691670 and gender = 0;
+</code></pre><p><img src="/images/mysql/left/001.png" alt="image-20210304165102587"></p>
+<p>可以看到名字索引。</p>
+<p>尝试查询两个字段：</p>
+<pre><code>EXPLAIN	SELECT * FROM users WHERE age=18 AND phone = 18270691670;
+
+EXPLAIN	SELECT * FROM users WHERE age=18 AND gender = 0;
+
+EXPLAIN	SELECT * FROM users WHERE phone = 18270691670 and gender = 0;
+
+EXPLAIN	SELECT * FROM users WHERE phone = 18270691670 and age = 21;
+</code></pre><p><img src="/images/mysql/left/002.jpg" alt="image-20210304165102587"></p>
+<p>只有在使用查询条件缺少 <code>age</code> 的时候没有命中索引。</p>
+<p>尝试查询一个字段：</p>
+<pre><code>EXPLAIN	SELECT * FROM users WHERE age = 18;
+
+EXPLAIN	SELECT * FROM users WHERE phone = 18270691670;
+
+EXPLAIN	SELECT * FROM users WHERE gender = 2;
+</code></pre><p><img src="/images/mysql/left/003.png" alt="image-20210304165102587"></p>
+<p>可以看到只有 在 <code>age</code> 作为查询条件的时候有命中索引。</p>
+<p>综合我们可以总结，组合索引，只要带上 <code>age</code> 就能命中索引。这便是组合索引的 <strong>最左原则</strong> 。</p>
+<p><strong>就是只从最左面的开始组合，并不是所有只要含有这三列存在的字段的查询都会用到该组合索引。</strong></p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://特污兔.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

@@ -21,7 +21,7 @@
       "articleSection" : "mysql",
       "name" : "MYSQL 学习之 -- Explain",
       "headline" : "MYSQL 学习之 -- Explain",
-      "description" : "为什么要使用 Explain 慢查询记录了一些执行时间比较久的 SQL 语句，找出这些 SQL 语句并不意味着完事了，这时我们常常用到explain 这个命令来查看一个这些 SQL 语句的执行计划。\n查看该 SQL 语句有没有使用上了索引，有没有做全表扫描，这都可以通过 explain 命令来查看。所以我们深入了解 MySQL 的基于开销的优化器，还可以获得很多可能被优化器考虑到的访问策略的细节，以及当运行 SQL 语句时哪种策略预计会被优化器采用。\nExplain 的作用 通过 explain \u002b SQL 语句，可以分析出以下内容\n① 表的读取顺序\t【对应 id】\n② 数据读取操作的操作类型 【对于 select_type】\n③ 哪些索引可以使用\t【对应 possible_keys】\n④ 哪些索引被实际使用\t【对应 key】\n⑤ 表直接的引用\t【对应 ref】\n⑥ 每张表有多少行被优化器查询\t【对应 rows 】\n如何使用 Explain 使用：\n-- explain sql 查询语句 explain SQL -- 例如 explain select nickname from admin_users where username = \u0026#39;stringer\u0026#39;; 结果：",
+      "description" : "为什么要使用 Explain 慢查询记录了一些执行时间比较久的 SQL 语句，找出这些 SQL 语句并不意味着完事了，这时我们常常用到explain 这个命令来查看一个这些 SQL 语句的执行计划。\n查看该 SQL 语句有没有使用上了索引，有没有做全表扫描，这都可以通过 explain 命令来查看。所以我们深入了解 MySQL 的基于开销的优化器，还可以获得很多可能被优化器考虑到的访问策略的细节，以及当运行 SQL 语句时哪种策略预计会被优化器采用。\nExplain 的作用 通过 explain \u002b SQL 语句，可以分析出以下内容\n① 表的读取顺序\t【对应 id】\n② 数据读取操作的操作类型 【对于 select_type】\n③ 哪些索引可以使用\t【对应 possible_keys】\n④ 哪些索引被实际使用\t【对应 key】\n⑤ 表直接的引用\t【对应 ref】\n⑥ 每张表有多少行被优化器查询\t【对应 rows 】\n如何使用 Explain 使用：\n-- explain sql 查询语句\rexplain SQL\r-- 例如\rexplain select nickname from admin_users where username = \u0027stringer\u0027;\r结果：",
       "inLanguage" : "en-US",
       "author" : "特污兔",
       "creator" : "特污兔",
@@ -48,7 +48,7 @@ Explain 的作用 通过 explain &#43; SQL 语句，可以分析出以下内容
 ⑤ 表直接的引用	【对应 ref】
 ⑥ 每张表有多少行被优化器查询	【对应 rows 】
 如何使用 Explain 使用：
--- explain sql 查询语句 explain SQL -- 例如 explain select nickname from admin_users where username = &#39;stringer&#39;; 结果：" />
+-- explain sql 查询语句explain SQL-- 例如explain select nickname from admin_users where username = &#39;stringer&#39;;结果：" />
   <meta name="description" content="为什么要使用 Explain 慢查询记录了一些执行时间比较久的 SQL 语句，找出这些 SQL 语句并不意味着完事了，这时我们常常用到explain 这个命令来查看一个这些 SQL 语句的执行计划。
 查看该 SQL 语句有没有使用上了索引，有没有做全表扫描，这都可以通过 explain 命令来查看。所以我们深入了解 MySQL 的基于开销的优化器，还可以获得很多可能被优化器考虑到的访问策略的细节，以及当运行 SQL 语句时哪种策略预计会被优化器采用。
 Explain 的作用 通过 explain &#43; SQL 语句，可以分析出以下内容
@@ -59,7 +59,7 @@ Explain 的作用 通过 explain &#43; SQL 语句，可以分析出以下内容
 ⑤ 表直接的引用	【对应 ref】
 ⑥ 每张表有多少行被优化器查询	【对应 rows 】
 如何使用 Explain 使用：
--- explain sql 查询语句 explain SQL -- 例如 explain select nickname from admin_users where username = &#39;stringer&#39;; 结果：" />
+-- explain sql 查询语句explain SQL-- 例如explain select nickname from admin_users where username = &#39;stringer&#39;;结果：" />
   <meta property="og:locale" content="zh_CN" />
 
   <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
@@ -131,12 +131,12 @@ Explain 的作用 通过 explain &#43; SQL 语句，可以分析出以下内容
 <p>⑥  每张表有多少行被优化器查询	  【对应 <code>rows</code> 】</p>
 <h4 id="如何使用-explain">如何使用 Explain</h4>
 <p>使用：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e">-- explain sql 查询语句
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">explain</span> <span style="color:#66d9ef">SQL</span>
+<pre><code>-- explain sql 查询语句
+explain SQL
 
-<span style="color:#75715e">-- 例如
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">explain</span> <span style="color:#66d9ef">select</span> nickname <span style="color:#66d9ef">from</span> admin_users <span style="color:#66d9ef">where</span> username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;stringer&#39;</span>;
-</code></pre></div><p>结果：</p>
+-- 例如
+explain select nickname from admin_users where username = 'stringer';
+</code></pre><p>结果：</p>
 <p><!-- raw HTML omitted --></p>
 <p><code>expain</code> 出来的信息有 12 列，分别是: <code>id</code>、<code>select_type</code>、<code>table</code>、<code>partitions</code>、 <code>type</code>、<code>possible_keys</code>、<code>key</code>、<code>key_len</code>、<code>ref</code>、<code>rows</code>、<code>filtered</code> 、<code>Extra</code></p>
 <h4 id="具体释义">具体释义</h4>
@@ -145,34 +145,34 @@ Explain 的作用 通过 explain &#43; SQL 语句，可以分析出以下内容
 <hr>
 <h6 id="id-相同"><code>id</code> 相同，</h6>
 <p>执行顺序从上到下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">SELECT</span>
-	t3.<span style="color:#f92672">*</span> 
-<span style="color:#66d9ef">FROM</span>
+<pre><code>EXPLAIN SELECT
+	t3.* 
+FROM
 	t1,t2,t3 
-<span style="color:#66d9ef">WHERE</span>
-	t1.id <span style="color:#f92672">=</span> t2.t1_id <span style="color:#66d9ef">AND</span> t2.id <span style="color:#f92672">=</span> t3.t2_id <span style="color:#66d9ef">AND</span> t1.NAME <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;金庸&#39;</span>
-</code></pre></div><p><img src="/images/mysql/explain/image-20200918-001.png" alt="image-20200918154021664"></p>
+WHERE
+	t1.id = t2.t1_id AND t2.id = t3.t2_id AND t1.NAME = '金庸'
+</code></pre><p><img src="/images/mysql/explain/image-20200918-001.png" alt="image-20200918154021664"></p>
 <p><code>id</code> 相同 (都是1)，执行顺序从上到下，搭配 <code>table</code> 列进行观察可知，执行顺序为 <code>t1 -&gt; t2 -&gt; t3</code>。</p>
 <hr>
 <h6 id="id-不同"><code>id</code> 不同，</h6>
 <p>如果是子查询，<code>id</code> 的序号会递增，<code>id </code>值越大执行优先级越高。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">SELECT</span>
-	<span style="color:#f92672">*</span> 
-<span style="color:#66d9ef">FROM</span>
+<pre><code>EXPLAIN SELECT
+	* 
+FROM
 	t1 
-<span style="color:#66d9ef">WHERE</span>
-	id <span style="color:#f92672">=</span> ( <span style="color:#66d9ef">SELECT</span> t1_id <span style="color:#66d9ef">FROM</span> t2 <span style="color:#66d9ef">WHERE</span> id <span style="color:#f92672">=</span> ( <span style="color:#66d9ef">SELECT</span> t2_id <span style="color:#66d9ef">FROM</span> t3 <span style="color:#66d9ef">WHERE</span> t3.id <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> ) )
-</code></pre></div><p><img src="/images/mysql/explain/image-20200918-002.png" alt="image-20200918155628515"></p>
+WHERE
+	id = ( SELECT t1_id FROM t2 WHERE id = ( SELECT t2_id FROM t3 WHERE t3.id = 4 ) )
+</code></pre><p><img src="/images/mysql/explain/image-20200918-002.png" alt="image-20200918155628515"></p>
 <p>如果是子查询 <code>id</code> 的序号会递增，<code>id</code> 值越大执行优先级越高，搭配 <code>table</code> 列可知，执行顺序为 <code>t1 -&gt; t2 -&gt; t3</code>。</p>
 <hr>
 <h6 id="id-相同不同都存在"><code>id</code> 相同不同都存在</h6>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">SELECT</span>
-	<span style="color:#f92672">*</span> 
-<span style="color:#66d9ef">FROM</span>
+<pre><code>EXPLAIN SELECT
+	* 
+FROM
 	t1 
-<span style="color:#66d9ef">WHERE</span>
-	t1.id <span style="color:#f92672">=</span> ( <span style="color:#66d9ef">SELECT</span> t2.t1_id <span style="color:#66d9ef">AS</span> id <span style="color:#66d9ef">FROM</span> t2, t3 <span style="color:#66d9ef">WHERE</span> t2.id <span style="color:#f92672">=</span> t3.t2_id <span style="color:#66d9ef">AND</span> t3.t3_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;降龙十八掌&#39;</span> );
-</code></pre></div><p><img src="/images/mysql/explain/image-20200918-003.png" alt="image-20200918162709799"></p>
+WHERE
+	t1.id = ( SELECT t2.t1_id AS id FROM t2, t3 WHERE t2.id = t3.t2_id AND t3.t3_name = '降龙十八掌' );
+</code></pre><p><img src="/images/mysql/explain/image-20200918-003.png" alt="image-20200918162709799"></p>
 <p><code>id</code> 如果相同，可认为是同一组，执行顺序从上到下。在所有组中，<code>id</code> 值越大执行优先级越高。所以执行顺序为<code>t3 -&gt; t2 -&gt; NULL</code></p>
 <p><strong>总结：<code>id</code> 的值表示 <code>select</code> 子语句或表的执行顺序，<code>id</code> 相同，执行顺序从上到下，<code>id</code> 不同，值越大的执行优先级越高。</strong></p>
 <h5 id="二select_type-列">二、select_type 列</h5>
@@ -206,39 +206,39 @@ Explain 的作用 通过 explain &#43; SQL 语句，可以分析出以下内容
 <p>const、system: 当MySQL对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中，MySQL就能将该查询转换为一个常量，system是const类型的特例，当查询的表只有一行的情况下，使用system</p>
 <p>NULL: MySQL在优化过程中分解语句，执行时甚至不用访问表或索引，例如从一个索引列里选取最小值可以通过单独索引查找完成。</p>
 <p>创建两张表 <code>users</code> 和 <code>departments</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e">-- 创建 users 表
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span> (
-  <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,
-  <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#f92672">`</span>dep_id<span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#f92672">`</span>no<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>),
-  <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>no<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>no<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
-  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>user_name<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>)
-) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">AUTO_INCREMENT</span><span style="color:#f92672">=</span><span style="color:#ae81ff">8</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8;
+<pre><code>-- 创建 users 表
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `dep_id` int(11) NOT NULL,
+  `no` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `no` (`no`) USING BTREE,
+  KEY `user_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
-<span style="color:#75715e">-- 插入数据
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;jack&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;001&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;tom&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;002&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;tonny&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;003&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;mary&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;004&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;rose&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;005&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;luffy&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;006&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>(name,dep_id) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;outman&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;007&#39;</span>);
+-- 插入数据
+INSERT INTO `users`(name,dep_id) VALUES ('jack', '1', '001');
+INSERT INTO `users`(name,dep_id) VALUES ('tom', '1', '002');
+INSERT INTO `users`(name,dep_id) VALUES ('tonny', '1', '003');
+INSERT INTO `users`(name,dep_id) VALUES ('mary', '2', '004');
+INSERT INTO `users`(name,dep_id) VALUES ('rose', '2', '005');
+INSERT INTO `users`(name,dep_id) VALUES ('luffy', '3', '006');
+INSERT INTO `users`(name,dep_id) VALUES ('outman', '4', '007');
 
-<span style="color:#75715e">-- 创建 departments 表 
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>departments<span style="color:#f92672">`</span> (
-  <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,
-  <span style="color:#f92672">`</span>dep_name<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-  <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>)
-) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8;
+-- 创建 departments 表 
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dep_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<span style="color:#75715e">-- 插入数据
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>departments<span style="color:#f92672">`</span>(dep_name) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;研发&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>departments<span style="color:#f92672">`</span>(dep_name) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;测试&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>departments<span style="color:#f92672">`</span>(dep_name) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;运维&#39;</span>);
-<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>departments<span style="color:#f92672">`</span>(dep_name) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;经理&#39;</span>);
-</code></pre></div><h6 id="const-system">const、 system</h6>
+-- 插入数据
+INSERT INTO `departments`(dep_name) VALUES ('研发');
+INSERT INTO `departments`(dep_name) VALUES ('测试');
+INSERT INTO `departments`(dep_name) VALUES ('运维');
+INSERT INTO `departments`(dep_name) VALUES ('经理');
+</code></pre><h6 id="const-system">const、 system</h6>
 <p>表中最多有一个匹配行，<code>const</code> 用于比较 <code>primary key</code> 或者 <code>unique</code> 索引。因为只匹配一行数据，所以很快</p>
 <p><img src="/images/mysql/explain/image-20200918-007.png" alt="image-20200918173839841"></p>
 <h6 id="eq_ref">eq_ref</h6>

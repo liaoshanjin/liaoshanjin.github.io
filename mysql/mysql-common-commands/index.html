@@ -557,70 +557,70 @@ Query OK, <span style="color:#ae81ff">0</span> rows <span style="color:#a6e22e">
 <p><!-- raw HTML omitted --><!-- raw HTML omitted -->(1) 备份命令格式<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h <span style="color:#960050;background-color:#1e0010">服务器</span> <span style="color:#f92672">-</span>P端口 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#960050;background-color:#1e0010">数据库名</span> <span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">备份文件</span>.<span style="color:#66d9ef">sql</span>
 </code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study &gt; study_database.sql;
-mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+<pre><code>vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study &gt; study_database.sql;
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  laravel-ubuntu-init  study_database.sql
 vagrant@homestead:~$
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(2) 数据库压缩备份<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(2) 数据库压缩备份<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h主机名 <span style="color:#f92672">-</span>P端口 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#960050;background-color:#1e0010">数据库名</span> <span style="color:#f92672">|</span> gzip <span style="color:#f92672">&gt;</span> backupfile.<span style="color:#66d9ef">sql</span>.gz
 </code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study | gzip &gt; study_backup.sql.gz
-mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+<pre><code>vagrant@homestead:~$ mysqldump -hlocalhost -uhomestead -psecret  study | gzip &gt; study_backup.sql.gz
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  laravel-ubuntu-init  study_backup.sql.gz  study_database.sql
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(3) 备份数据库某个(些)表<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(3) 备份数据库某个(些)表<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h主机名 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#960050;background-color:#1e0010">数据库名</span> <span style="color:#960050;background-color:#1e0010">表名称</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">表名称</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&gt;</span> backupfile.<span style="color:#66d9ef">sql</span>
 </code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -uhomestead -psecret study user tags &gt; study_some_tables.sql;
-mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+<pre><code>vagrant@homestead:~$ mysqldump -uhomestead -psecret study user tags &gt; study_some_tables.sql;
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  laravel-ubuntu-init  study_backup.sql.gz  study_database.sql  study_some_tables.sql
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(4) 同时备份多个数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(4) 同时备份多个数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>h主机名 <span style="color:#f92672">-</span>u用户名 <span style="color:#f92672">-</span>p密码 <span style="color:#f92672">-</span>B <span style="color:#960050;background-color:#1e0010">数据库名字</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">数据库名字</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">数据库名字</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">备份文件</span>.<span style="color:#66d9ef">sql</span>
 </code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -uhomestead  -psecret -B study api.canteen &gt; databases.sql;
-mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+<pre><code>vagrant@homestead:~$ mysqldump -uhomestead  -psecret -B study api.canteen &gt; databases.sql;
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
 vagrant@homestead:~$ ls
 code  databases.sql  laravel-ubuntu-init
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(5) 同时备份多个数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(5) 同时备份多个数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">mysqldump <span style="color:#f92672">-</span>A <span style="color:#f92672">&gt;</span> allbackupfile.<span style="color:#66d9ef">sql</span>
 </code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump -A &gt; allbackupfile.sql
+<pre><code>vagrant@homestead:~$ mysqldump -A &gt; allbackupfile.sql
 vagrant@homestead:~$ ls
 allbackupfile.sql  code  databases.sql  laravel-ubuntu-init
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 恢复<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --> 1. 恢复<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted -->(1) 还原数据库的命令<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql -h主机名 -u用户名 -p密码 数据库名字 &lt; 备份文件.sql
-</code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysql -uhomestead -psecret study &lt; study_database.sql;
-mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(2) 还原压缩的数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gunzip &lt; 备份文件.sql.gz | mysql -u用户名 -p密码 数据库名字
-</code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ gunzip &lt; study_backup.sql.gz | mysql -uhomestead -psecret study;
-mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(3) 数据库复制<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre><code>mysql -h主机名 -u用户名 -p密码 数据库名字 &lt; 备份文件.sql
+</code></pre><p>例子：</p>
+<pre><code>vagrant@homestead:~$ mysql -uhomestead -psecret study &lt; study_database.sql;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(2) 还原压缩的数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre><code>gunzip &lt; 备份文件.sql.gz | mysql -u用户名 -p密码 数据库名字
+</code></pre><p>例子：</p>
+<pre><code>vagrant@homestead:~$ gunzip &lt; study_backup.sql.gz | mysql -uhomestead -psecret study;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(3) 数据库复制<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>首先，在 mysql 里面需要有 <code>study</code> 和 <code>new_study</code> 两个数据库。</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 假设已存在数据库名为 old_db，想要复制一份到新的数据库，命名为new_db，命令如下：</span>
+<pre><code># 假设已存在数据库名为 old_db，想要复制一份到新的数据库，命名为new_db，命令如下：
 mysqldump old_db -u用户名 -p密码 --add-drop-table | mysql new_db -u用户名 -p密码
-</code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vagrant@homestead:~$ mysqldump study -uhomestead -psecret --add-drop-table | mysql new_study -uhomestead -psecret
-mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
-mysqldump: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(4) source导入数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p>例子：</p>
+<pre><code>vagrant@homestead:~$ mysqldump study -uhomestead -psecret --add-drop-table | mysql new_study -uhomestead -psecret
+mysql: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(4) source导入数据库<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <blockquote>
 <p>需要进入到数据库的命令行。</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; source 文件的绝对路径.sql
-</code></pre></div><p>例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql&gt; source /home/vagrant/study_database.sql
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(5) 恢复binlog文件<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<pre><code>mysql&gt; source 文件的绝对路径.sql
+</code></pre><p>例子：</p>
+<pre><code>mysql&gt; source /home/vagrant/study_database.sql
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->(5) 恢复binlog文件<!-- raw HTML omitted --><!-- raw HTML omitted -->
 例子:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
-</code></pre></div><p>转载自：<a href="https://shuwoom.com/?p=3225">MYSQL常用命令整理</a></p>
+<pre><code>mysqlbinlog bin-log.000002 |mysql -hx.x.x.x -utest2 -p123  -P3310  
+</code></pre><p>转载自：<a href="https://shuwoom.com/?p=3225">MYSQL常用命令整理</a></p>
 
         </div>
 

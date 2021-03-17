@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.75.1" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="特污兔" />
+  <meta property="og:url" content="https://liaoshanjin.github.io/mysql/mysql-tree/" />
+  <link rel="canonical" href="https://liaoshanjin.github.io/mysql/mysql-tree/" /><link rel="alternate" type="application/atom+xml" href="https://liaoshanjin.github.ioindex.xml" title="特污兔的博客">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liaoshanjin.github.io"
+      },
+      "articleSection" : "mysql",
+      "name" : "MYSQL 二叉树",
+      "headline" : "MYSQL 二叉树",
+      "description" : "二叉树 (Binary Search Trees) 二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”和“右子树”。\n二叉树常被用于实现二叉查找树和二叉堆。\n二叉树有如下特性：\n 每个节点最多有两个子树的树结构 左子树和右子树是有顺序的，次序不能任意颠倒。左子树的值要小于父结点，右子树的值要大于父结点。  尝试将一组数字 【 35 27 48 12 29 38 55 】插入到数结构中：\n这就是一棵二叉树啦！经通过一系列的插入操作之后，原本无序的一组数已经变成一个有序的结构了，并且这个树满足了上面提到的两个二叉树的特性！\n但是将排好序的同样数字在使用二叉树插入会怎么样呢？\n由于是排好顺序，新插入的数据总是比已存在的结点数据都要大，所以每次都会往结点的右边插入。最终导致这棵树严重偏科！！！\n上图就是最坏的情况，也就是一棵树退化为一个线性链表了，这样查找效率自然就低了，完全没有发挥树的优势了呢！\n为了较大发挥二叉树的查找效率，让二叉树不再偏科，保持各科平衡，所以有了平衡二叉树！\n平衡二叉树 (AVL Trees) 平衡二叉树是一种特殊的二叉树，所以他满足前面说到的二叉树的两个特性。\n同时还有一个特性：\n 平衡二叉搜索树的任何结点的左子树和右子树高度最多相差1。并且左右两个子树都是一棵平衡二叉树。  我们同样用排好序的那组数字使用平衡二叉树插入：\n可以看到当插入第三个数的时候，此时根节点的右子树高度为2， 而左子树的高度为零。\n因为不满足平衡二叉树的特性而将根节点左旋转。\n继续新增两个数 35 38。同样当 29 的右子树高度为 2，左子树高度为 0 的时候，将 29 左旋转\n继续插入两个数 48 55 。插入 48 的时候，此时根节点右子树的高度为 4 ，而左子树的高度为2. 相差大于1。所以将根节点左旋转。\n插入数字 55 的时候， 数字 38 的右子树高度为 2 ，而左子树高度为 0，相差大于1.所以讲 38 左旋转\n这棵树始终满足平衡二叉树的几个特性而保持平衡！这样我们的树也不会退化为线性链表了！\n我们需要查找一个数的时候就能沿着树根一直往下找，这样的查找效率和二分法查找是一样的呢！",
+      "inLanguage" : "en-US",
+      "author" : "特污兔",
+      "creator" : "特污兔",
+      "publisher": "特污兔",
+      "accountablePerson" : "特污兔",
+      "copyrightHolder" : "特污兔",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-03-14 20:20:00 \u002b0800 CST",
+      "dateModified" : "2021-03-14 20:20:00 \u002b0800 CST",
+      "url" : "https:\/\/liaoshanjin.github.io\/mysql\/mysql-tree\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>MYSQL 二叉树 - 特污兔的博客</title>
+  <meta property="og:title" content="MYSQL 二叉树 - 特污兔的博客" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="二叉树 (Binary Search Trees) 二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”和“右子树”。
+二叉树常被用于实现二叉查找树和二叉堆。
+二叉树有如下特性：
+ 每个节点最多有两个子树的树结构 左子树和右子树是有顺序的，次序不能任意颠倒。左子树的值要小于父结点，右子树的值要大于父结点。  尝试将一组数字 【 35 27 48 12 29 38 55 】插入到数结构中：
+这就是一棵二叉树啦！经通过一系列的插入操作之后，原本无序的一组数已经变成一个有序的结构了，并且这个树满足了上面提到的两个二叉树的特性！
+但是将排好序的同样数字在使用二叉树插入会怎么样呢？
+由于是排好顺序，新插入的数据总是比已存在的结点数据都要大，所以每次都会往结点的右边插入。最终导致这棵树严重偏科！！！
+上图就是最坏的情况，也就是一棵树退化为一个线性链表了，这样查找效率自然就低了，完全没有发挥树的优势了呢！
+为了较大发挥二叉树的查找效率，让二叉树不再偏科，保持各科平衡，所以有了平衡二叉树！
+平衡二叉树 (AVL Trees) 平衡二叉树是一种特殊的二叉树，所以他满足前面说到的二叉树的两个特性。
+同时还有一个特性：
+ 平衡二叉搜索树的任何结点的左子树和右子树高度最多相差1。并且左右两个子树都是一棵平衡二叉树。  我们同样用排好序的那组数字使用平衡二叉树插入：
+可以看到当插入第三个数的时候，此时根节点的右子树高度为2， 而左子树的高度为零。
+因为不满足平衡二叉树的特性而将根节点左旋转。
+继续新增两个数 35 38。同样当 29 的右子树高度为 2，左子树高度为 0 的时候，将 29 左旋转
+继续插入两个数 48 55 。插入 48 的时候，此时根节点右子树的高度为 4 ，而左子树的高度为2. 相差大于1。所以将根节点左旋转。
+插入数字 55 的时候， 数字 38 的右子树高度为 2 ，而左子树高度为 0，相差大于1.所以讲 38 左旋转
+这棵树始终满足平衡二叉树的几个特性而保持平衡！这样我们的树也不会退化为线性链表了！
+我们需要查找一个数的时候就能沿着树根一直往下找，这样的查找效率和二分法查找是一样的呢！" />
+  <meta name="description" content="二叉树 (Binary Search Trees) 二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”和“右子树”。
+二叉树常被用于实现二叉查找树和二叉堆。
+二叉树有如下特性：
+ 每个节点最多有两个子树的树结构 左子树和右子树是有顺序的，次序不能任意颠倒。左子树的值要小于父结点，右子树的值要大于父结点。  尝试将一组数字 【 35 27 48 12 29 38 55 】插入到数结构中：
+这就是一棵二叉树啦！经通过一系列的插入操作之后，原本无序的一组数已经变成一个有序的结构了，并且这个树满足了上面提到的两个二叉树的特性！
+但是将排好序的同样数字在使用二叉树插入会怎么样呢？
+由于是排好顺序，新插入的数据总是比已存在的结点数据都要大，所以每次都会往结点的右边插入。最终导致这棵树严重偏科！！！
+上图就是最坏的情况，也就是一棵树退化为一个线性链表了，这样查找效率自然就低了，完全没有发挥树的优势了呢！
+为了较大发挥二叉树的查找效率，让二叉树不再偏科，保持各科平衡，所以有了平衡二叉树！
+平衡二叉树 (AVL Trees) 平衡二叉树是一种特殊的二叉树，所以他满足前面说到的二叉树的两个特性。
+同时还有一个特性：
+ 平衡二叉搜索树的任何结点的左子树和右子树高度最多相差1。并且左右两个子树都是一棵平衡二叉树。  我们同样用排好序的那组数字使用平衡二叉树插入：
+可以看到当插入第三个数的时候，此时根节点的右子树高度为2， 而左子树的高度为零。
+因为不满足平衡二叉树的特性而将根节点左旋转。
+继续新增两个数 35 38。同样当 29 的右子树高度为 2，左子树高度为 0 的时候，将 29 左旋转
+继续插入两个数 48 55 。插入 48 的时候，此时根节点右子树的高度为 4 ，而左子树的高度为2. 相差大于1。所以将根节点左旋转。
+插入数字 55 的时候， 数字 38 的右子树高度为 2 ，而左子树高度为 0，相差大于1.所以讲 38 左旋转
+这棵树始终满足平衡二叉树的几个特性而保持平衡！这样我们的树也不会退化为线性链表了！
+我们需要查找一个数的时候就能沿着树根一直往下找，这样的查找效率和二分法查找是一样的呢！" />
+  <meta property="og:locale" content="zh_CN" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet" href="/css/github-markdown.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="特污兔的博客">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker|Bree+Serif" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="signatures site-title">
+    <a href="/">Stringer的博客</a>
+  </div>
+</header>
+<div class="row end-xs">
+  
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">MYSQL 二叉树</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2021-03-14 20:20:00 CST">
+                14 Mar 2021
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://liaoshanjin.github.io/">@特污兔</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="二叉树-binary-search-trees">二叉树 (Binary Search Trees)</h2>
+<p>二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”和“右子树”。</p>
+<p>二叉树常被用于实现二叉查找树和二叉堆。</p>
+<p>二叉树有如下特性：</p>
+<ul>
+<li>每个节点最多有两个子树的树结构</li>
+<li>左子树和右子树是有顺序的，次序不能任意颠倒。左子树的值要小于父结点，右子树的值要大于父结点。</li>
+</ul>
+<p>尝试将一组数字  【 35 27 48 12 29 38 55 】插入到数结构中：</p>
+<p><img src="/images/mysql/tree/20210305/001.gif" alt="001"></p>
+<p>这就是一棵二叉树啦！经通过一系列的插入操作之后，原本无序的一组数已经变成一个有序的结构了，并且这个树满足了上面提到的两个二叉树的特性！</p>
+<p>但是将排好序的同样数字在使用二叉树插入会怎么样呢？</p>
+<p><img src="/images/mysql/tree/20210305/002.gif" alt="002"></p>
+<p>由于是排好顺序，新插入的数据总是比已存在的结点数据都要大，所以每次都会往结点的右边插入。最终导致这棵树严重偏科！！！</p>
+<p>上图就是最坏的情况，也就是一棵树退化为一个线性链表了，这样查找效率自然就低了，完全没有发挥树的优势了呢！</p>
+<p>为了较大发挥二叉树的查找效率，让二叉树不再偏科，保持各科平衡，所以有了平衡二叉树！</p>
+<h2 id="平衡二叉树-avl-trees">平衡二叉树 (AVL Trees)</h2>
+<p>平衡二叉树是一种特殊的二叉树，所以他满足前面说到的二叉树的两个特性。</p>
+<p>同时还有一个特性：</p>
+<ul>
+<li>平衡二叉搜索树的任何结点的左子树和右子树高度最多相差1。并且左右两个子树都是一棵平衡二叉树。</li>
+</ul>
+<p>我们同样用排好序的那组数字使用平衡二叉树插入：</p>
+<p><img src="/images/mysql/tree/20210305/003.gif" alt="003"></p>
+<p>可以看到当插入第三个数的时候，此时根节点的右子树高度为2， 而左子树的高度为零。</p>
+<p>因为不满足平衡二叉树的特性而将根节点左旋转。</p>
+<p><img src="/images/mysql/tree/20210305/004.gif" alt="004"></p>
+<p>继续新增两个数 35 38。同样当 29 的右子树高度为 2，左子树高度为 0 的时候，将 29 左旋转</p>
+<p><img src="/images/mysql/tree/20210305/005.gif" alt="005"></p>
+<p>继续插入两个数 48 55 。插入 48 的时候，此时根节点右子树的高度为 4 ，而左子树的高度为2. 相差大于1。所以将根节点左旋转。</p>
+<p>插入数字 55 的时候， 数字 38 的右子树高度为 2 ，而左子树高度为 0，相差大于1.所以讲 38 左旋转</p>
+<p>这棵树始终满足平衡二叉树的几个特性而保持平衡！这样我们的树也不会退化为线性链表了！</p>
+<p>我们需要查找一个数的时候就能沿着树根一直往下找，这样的查找效率和二分法查找是一样的呢！</p>
+<p>一颗平衡二叉树能容纳多少的结点呢？</p>
+<p>这跟树的高度是有关系的，假设树的高度为 h，那每一层最多容纳的结点数量为 2^(n-1)。</p>
+<p>整棵树最多容纳节点数 2^0+2^1+2^2+&hellip;+2^(h-1)。</p>
+<p>这样计算，100w数据树的高度大概在20左右，那也就是说从有着100w条数据的平衡二叉树中找一个数据，最坏的情况下需要20次查找。</p>
+<p>如果是内存操作，效率也是很高的！但是数据库中的数据基本都是放在磁盘中的，每读取一个二叉树的结点就是一次磁盘IO，这样找一条数据如果要经过20次磁盘的IO？那性能就成了一个很大的问题了！那是不是可以把这棵树压缩一下，让每一层能够容纳更多的节点呢？</p>
+<h2 id="b-树-b-tree">B-树 （B-Tree）</h2>
+<p>B 数是一种多路平衡查找数，它的每一个节点最多包含 <em>m</em> 个孩子（ <em>m</em> 大于等于 2）。 <em>m</em> 被称为 B 树的阶，<em>m</em> 的大小取决于磁盘块的大小。</p>
+<p>一个 <em>m</em> 阶的 B 树有如下特性：</p>
+<p>元素：</p>
+<ol>
+<li>每个节点最多有 <em>m-1</em> 个元素</li>
+<li>根节点最少可以只有 1 个元素</li>
+<li>除了根结点和叶子节点之外的结点，至少有 <code>floor(m/2)</code> 个元素 【向下取整】</li>
+<li>节点中的元素都是左小右大排列。左节点的值 小于等于该元素，右节点大于等于该元素</li>
+</ol>
+<p>节点：</p>
+<ol>
+<li>每个节点最多 m 个子节点</li>
+<li>除了根节点和叶子节点外，每个结点最少有 <em>ceil (m/2 )</em> 个子结点。【向上取整】</li>
+<li>如果根结点不是叶子结点，那根结点至少包含两个子结点。</li>
+<li>所有的叶子结点都位于同一层。</li>
+</ol>
+<h3 id="b-树插入">B 树插入</h3>
+<p>规则：</p>
+<p>判断当前节点元素的个数是否小于等于m-1，如果满足，直接插入即可，如果不满足，将节点的中间的key将这个节点分为左右两部分，中间的节点放到父节点中即可。</p>
+<p>举例将 1 到 15  插入一个 3 阶的 B 树为例：</p>
+<ul>
+<li>每个节点最多有 2 个元素</li>
+<li>根节点最少可以只有 1 个元素</li>
+<li>除了根结点和叶子节点之外的结点，至少有 1个元素 【向下取整】</li>
+<li>每个节点最多 3 个子节点</li>
+<li>除了根节点和叶子节点外，每个结点最少有 2 个子结点。【向上取整】</li>
+</ul>
+<p><img src="/images/mysql/tree/20210306/001.gif" alt="001"></p>
+<p>插入数字 1 ，作为根节点</p>
+<p>插入数字 2 ，因为每个节点最多可以放两个元素，所以 数字 2 也在根节点。 并且按左小右大排序。</p>
+<p>插入数字 3，根节点超过两个元素，进行裂变。将节点的中间值放到父节点，左右两边分别做左子树和右子树。</p>
+<p><img src="/images/mysql/tree/20210306/002.gif" alt="002"></p>
+<p>插入数字 4 ，因为每个节点能放两个，所以 数字 5 放在叶子节点。</p>
+<p>插入数组 5 ， 此时叶子节点 的元素为 4 5 6 ， 超过三个数，将中间数 5 放到父节点。父节点只有一个元素，所以数字5 直接放在 父节点。</p>
+<p>插入数字 6 ，类似插入数组 3</p>
+<p><img src="/images/mysql/tree/20210306/003.gif" alt="003"></p>
+<p>插入数字 7 ，此时叶子节点的数字为 5 6 7 ，将 6 放到父节点 。父节点数字为 2 4 6，将中间数字 4 放到父节点 。同时子节点树超过四个，增加高度。</p>
+<p>插入数组 8 ，直接放到叶子节点</p>
+<p>插入数字 9 ，放到叶子节点，但是单数元素超过 2 个， 将中间数 8 放到父节点</p>
+<p>插入数字10，直接放到叶子节点</p>
+<p><img src="/images/mysql/tree/20210306/004.gif" alt="004"></p>
+<p>插入数字11，叶子节点 9 10 11 ，将 10 放到父节点， 父节点为 6 8 10 。裂变这个节点，将 8 在往上提，又因为每个节点最多 3 个子节点，</p>
+<p><img src="/images/mysql/tree/20210306/005.gif" alt="005"></p>
+<p>插入数字 12 、13、14 很好理解。</p>
+<p>插入数字15 ，参考数字 7 ，根节点的元素超过三个，增加高度。</p>
+<h3 id="b树查找">B树查找</h3>
+<p><img src="/images/mysql/tree/20210306/006.gif" alt="006"></p>
+<p>如图在B树种找到 20</p>
+<p>第一次和根节点元素 10 比较，大于根节点，</p>
+<p>第二次和根节点的右子树的节点元素 11 ， 25 比较。在区间内 。</p>
+<p>第三次直接在节点内查询可以找到</p>
+<p>可以发现当节点和元素都比较小的时候，B数查询的次数没有比二叉树少。</p>
+<p>可是相比磁盘的 <em>IO</em> 速度，内存中执行的速度可以忽略。所以只要树的高度足够低， <em>IO</em> 的次数足够少，就可以提高查找的性能。</p>
+<p>相比之下节点内的元素多一些也没有关系，仅仅是多了几次内存交互，只要不超过磁盘页的大小即可，这就是B树的优势之一。</p>
+<h3 id="b树删除">B树删除</h3>
+<p><img src="/images/mysql/tree/20210306/007.gif" alt="006"></p>
+<p>比较复杂。</p>
+<h2 id="btree">B+Tree</h2>
+<p>B+Tree 是在 B-树 基础上的一种优化，使其更适合实现外存储索引结构。B+Tree 与 B-Tree 的结构很像。</p>
+<h3 id="相当点">相当点：</h3>
+<ul>
+<li>根节点至少一个元素</li>
+<li>非根节点元素范围：<em>m/2 &lt;= k &lt;= m-1</em></li>
+</ul>
+<h3 id="不同点"><strong>不同点</strong>：</h3>
+<ul>
+<li>有两种类型的节点：内部结点（也称索引结点）和叶子结点。内部节点就是非叶子节点，内部节点不存储数据，只存储索引；数据都存储在叶子节点。</li>
+<li>内部结点中的元素都按照从小到大的顺序排列，对于内部结点中的一个元素，左树中的所有元素都小于它，右子树中的元素都大于等于它。叶子结点中的记录也按照元素的大小排列。</li>
+<li>每个叶子结点都存有相邻叶子结点的指针，叶子结点本身依关键字的大小自小而大顺序链接。</li>
+<li>父节点存有右孩子的第一个元素的索引。</li>
+</ul>
+<h3 id="btree-插入规则">B+Tree 插入规则</h3>
+<p>当节点元素数量大于 <em>m-1</em> 的时候，按中间元素分裂成左右两部分，中间元素分裂到父节点当做索引存储，但是，本身中间元素还是分裂右边这一部分的</p>
+<p>如：</p>
+<p><img src="/images/mysql/tree/20210306/008.gif" alt="008"></p>
+<p><img src="/images/mysql/tree/20210306/009.gif" alt="009"></p>
+<h2 id="b-tree-和-btree的优缺点">B-Tree 和 B+Tree的优缺点</h2>
+<ul>
+<li><em>B-Tree</em> 的非叶子节点有保存数据，查找到即可返回。 而 <em>B+Tree</em> 的数据一定在叶子节点。需要查询的次数就可能更多。所以在同样高度的树中， <em>B-Tree</em> 查找的效率可能会更高。</li>
+<li><em>B+Tree</em> 的数据在叶子节点，同时节点之间有指针连接。在查找大于或小于某个元素的时候，只需要找到该元素，然后沿着链表遍历即可。 而 <em>B-Tree</em> 还需要遍历该元素节点的根节点去搜索</li>
+<li><em>B-Tree</em> 的数据存储在节点中, <em>B+Tree</em> 只存信息，而节点的大小是有限的。所以同样大小的节点，<em>B-Tree</em> 能存储的数据就会更少。存储同样总量的数据，<em>B-Tree</em> 的高度可能会更高， 磁盘 <em>I/O</em> 的次数也就更多，影响查询效率。</li>
+</ul>
+<p>综上比较，在关系型数据库中，都是选择 <em>B+Tree</em> 的数据结构来存储数据。 如： <em>MySQL</em> 、<em>SqlServer</em>、<em>Oracle</em> &hellip;</p>
+<h2 id="索引存储方式">索引存储方式</h2>
+<h3 id="聚簇索引">聚簇索引</h3>
+<blockquote>
+<p>也称为 聚集索引，主键索引</p>
+</blockquote>
+<ul>
+<li>如果表设置了主键，则主键就是聚簇索引</li>
+<li>如果表没有主键，则会默认第一个 <em>NOT NULL</em>，且唯一（<em>UNIQUE</em>）的列作为聚簇索引</li>
+<li>以上都没有，则会默认创建一个隐藏的 <em>row_id</em> 作为聚簇索引</li>
+<li>叶子节点存储的是整行数据。 这也是为何用主键（聚簇索引）进行查询时会较快的原因（减少回表查询）</li>
+</ul>
+<h3 id="非聚簇索引">非聚簇索引</h3>
+<blockquote>
+<p>也有叫 普通索引，二级索引，辅助索引</p>
+</blockquote>
+<ul>
+<li>叶子节点存储的数据是主键值</li>
+</ul>
+<blockquote>
+<p><em>myIsam</em> 是非聚集索引，辅助索引和主索引都是存的数据的指针</p>
+</blockquote>
+<h2 id="覆盖索引">覆盖索引</h2>
+<p>如果一个索引中包含了所需要查询的字段的值，我们就称为“覆盖索引”</p>
+<p>新建一个学生表：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>students<span style="color:#f92672">`</span> (
+  <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,
+  <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8mb4_general_ci <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>no<span style="color:#f92672">`</span> <span style="color:#66d9ef">smallint</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>gender<span style="color:#f92672">`</span> <span style="color:#66d9ef">tinyint</span>(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>),
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index_name<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">AUTO_INCREMENT</span><span style="color:#f92672">=</span><span style="color:#ae81ff">5</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8mb4 <span style="color:#66d9ef">COLLATE</span><span style="color:#f92672">=</span>utf8mb4_general_ci;
+
+<span style="color:#75715e">-- id 是聚簇索引， name 是非聚簇索引
+</span></code></pre></div><p>插入一些数据：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> students ( name, <span style="color:#66d9ef">no</span>, gender)
+<span style="color:#66d9ef">VALUES</span>
+  	(<span style="color:#e6db74">&#34;张三&#34;</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>),
+  	(<span style="color:#e6db74">&#34;李四&#34;</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">2</span>),
+  	(<span style="color:#e6db74">&#34;王五&#34;</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">2</span>),
+  	(<span style="color:#e6db74">&#34;赵六&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">1</span>);
+</code></pre></div><p>聚簇索引存储结构：</p>
+<p><img src="/images/mysql/tree/20210306/010.jpg" alt="010"></p>
+<p>而非聚簇索引的叶子节点存储的是聚簇索引的值。</p>
+<p>如果查询条件为主键（聚簇索引），则只需扫描一次 <em>B+</em> 树即可通过聚簇索引定位到要查找的行记录数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#75715e">-- 查询条件为主键
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> student <span style="color:#66d9ef">where</span> id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</code></pre></div><p>如果查询条件为普通索引（非聚簇索引），需要扫描两次 <em>B+</em> 树，第一次扫描通过普通索引定位到聚簇索引的值，然后第二次扫描通过聚簇索引的值定位到要查找的行记录数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- 查询条件为普通索引
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> student <span style="color:#66d9ef">where</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;张三&#39;</span>;
+<span style="color:#75715e">-- 先通过普通索引【name = &#39;张三&#39;】 找到主键值 【id = 1】
+</span><span style="color:#75715e">-- 在通过聚集索引【id = 1】定位到行记录数据
+</span></code></pre></div><h3 id="回表">回表</h3>
+<p>通过普通索引定位到聚簇索引的值，然后第二次扫描通过聚簇索引的值定位到要查找的行记录数据。回到主键索引树搜索的过程，我们称为回表。</p>
+<h3 id="覆盖索引-1">覆盖索引</h3>
+<p>查询的列被所建的普通索引所覆盖，无需回表。用大白话解释就是，要查的数据直接可以从索引树上就能取得，无需回表查找。</p>
+<blockquote>
+<p>不是所有类型的索引都可以成为覆盖索引。覆盖索引必须要存储索引的列，而哈希索引、空间索引和全文索引等都不存储索引列的值，所以 <em>MySQL</em> 只能使用 <em>B-Tree</em> 索引做覆盖索引</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- 覆盖索引例子
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id,name <span style="color:#66d9ef">from</span> students <span style="color:#66d9ef">where</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;李四&#39;</span>;
+</code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        <div class="post-comments">
+          <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://特污兔.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+        </div>
+        
+        
+
+        <div class="site-footer">
+  
+  <div class="site-footer-item">
+    <a href="/about/" target="_blank">关于我</a>
+  </div>
+  
+  <div class="site-footer-item">
+    <a href="https://github.com/liaoshanjin" target="_blank">Github</a>
+  </div>
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script src="/js/highlight.pack.js"></script>
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

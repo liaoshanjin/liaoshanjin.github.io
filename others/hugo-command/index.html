@@ -21,7 +21,7 @@
       "articleSection" : "others",
       "name" : "hugo 常用命令",
       "headline" : "hugo 常用命令",
-      "description" : "Hugo 常用命令 hugo server -D -t theme_name -b url_name -D 等价于 --buildDrafts -t 主题名称(theme_name) -b 基础路由(url_name) 基于以上，如果我们想在本地已经搭建有 hugo 环境，做一下操作：\n启动 hugo 服务，浏览本地的博客：\nhugo server -D -t theme_name hugo server -D -t hugo-coder 在添加问博客，想生成静态文件，上传到 github :\nhugo --theme=hugo-coder --baseUrl=\u0026#34;https:\/\/liaoshanjin.github.io\u0026#34; --buildDrafts hugo --theme=yinyang -b=\u0026#34;https:\/\/liaoshanjin.github.io\u0026#34; -D ",
+      "description" : "Hugo 常用命令 hugo server -D -t theme_name -b url_name\r-D 等价于 --buildDrafts\r-t 主题名称(theme_name)\r-b 基础路由(url_name)\r基于以上，如果我们想在本地已经搭建有 hugo 环境，做一下操作：\n启动 hugo 服务，浏览本地的博客：\nhugo server -D -t theme_name\rhugo server -D -t hugo-coder\r# 启动当前主题\rhugo server -D -t yinyang\r在添加问博客，想生成静态文件，上传到 github :\nhugo --theme=hugo-coder --baseUrl=\u0026quot;https:\/\/liaoshanjin.github.io\u0026quot; --buildDrafts\rhugo --theme=yinyang -b=\u0026quot;https:\/\/liaoshanjin.github.io\u0026quot; -D\r",
       "inLanguage" : "en-US",
       "author" : "特污兔",
       "creator" : "特污兔",
@@ -38,14 +38,14 @@
 <title>hugo 常用命令 - 特污兔的博客</title>
   <meta property="og:title" content="hugo 常用命令 - 特污兔的博客" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="Hugo 常用命令 hugo server -D -t theme_name -b url_name -D 等价于 --buildDrafts -t 主题名称(theme_name) -b 基础路由(url_name) 基于以上，如果我们想在本地已经搭建有 hugo 环境，做一下操作：
+  <meta property="og:description" content="Hugo 常用命令 hugo server -D -t theme_name -b url_name-D 等价于 --buildDrafts-t 主题名称(theme_name)-b 基础路由(url_name)基于以上，如果我们想在本地已经搭建有 hugo 环境，做一下操作：
 启动 hugo 服务，浏览本地的博客：
-hugo server -D -t theme_name hugo server -D -t hugo-coder 在添加问博客，想生成静态文件，上传到 github :
-hugo --theme=hugo-coder --baseUrl=&#34;https://liaoshanjin.github.io&#34; --buildDrafts hugo --theme=yinyang -b=&#34;https://liaoshanjin.github.io&#34; -D " />
-  <meta name="description" content="Hugo 常用命令 hugo server -D -t theme_name -b url_name -D 等价于 --buildDrafts -t 主题名称(theme_name) -b 基础路由(url_name) 基于以上，如果我们想在本地已经搭建有 hugo 环境，做一下操作：
+hugo server -D -t theme_namehugo server -D -t hugo-coder# 启动当前主题hugo server -D -t yinyang在添加问博客，想生成静态文件，上传到 github :
+hugo --theme=hugo-coder --baseUrl=&quot;https://liaoshanjin.github.io&quot; --buildDraftshugo --theme=yinyang -b=&quot;https://liaoshanjin.github.io&quot; -D" />
+  <meta name="description" content="Hugo 常用命令 hugo server -D -t theme_name -b url_name-D 等价于 --buildDrafts-t 主题名称(theme_name)-b 基础路由(url_name)基于以上，如果我们想在本地已经搭建有 hugo 环境，做一下操作：
 启动 hugo 服务，浏览本地的博客：
-hugo server -D -t theme_name hugo server -D -t hugo-coder 在添加问博客，想生成静态文件，上传到 github :
-hugo --theme=hugo-coder --baseUrl=&#34;https://liaoshanjin.github.io&#34; --buildDrafts hugo --theme=yinyang -b=&#34;https://liaoshanjin.github.io&#34; -D " />
+hugo server -D -t theme_namehugo server -D -t hugo-coder# 启动当前主题hugo server -D -t yinyang在添加问博客，想生成静态文件，上传到 github :
+hugo --theme=hugo-coder --baseUrl=&quot;https://liaoshanjin.github.io&quot; --buildDraftshugo --theme=yinyang -b=&quot;https://liaoshanjin.github.io&quot; -D" />
   <meta property="og:locale" content="zh_CN" />
 
   <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
@@ -105,22 +105,25 @@ hugo --theme=hugo-coder --baseUrl=&#34;https://liaoshanjin.github.io&#34; --buil
         <div class="post-content markdown-body">
           
           <h3 id="hugo-常用命令">Hugo 常用命令</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server -D  -t theme_name -b url_name
+<pre><code>hugo server -D  -t theme_name -b url_name
 
 -D 等价于 --buildDrafts
--t 主题名称<span style="color:#f92672">(</span>theme_name<span style="color:#f92672">)</span>
--b 基础路由<span style="color:#f92672">(</span>url_name<span style="color:#f92672">)</span>
-</code></pre></div><p>基于以上，如果我们想在本地已经搭建有 <code>hugo</code> 环境，做一下操作：</p>
+-t 主题名称(theme_name)
+-b 基础路由(url_name)
+</code></pre><p>基于以上，如果我们想在本地已经搭建有 <code>hugo</code> 环境，做一下操作：</p>
 <p>启动 <code>hugo</code> 服务，浏览本地的博客：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server -D -t theme_name
+<pre><code>hugo server -D -t theme_name
 
 hugo server -D -t hugo-coder
-</code></pre></div><p>在添加问博客，想生成静态文件，上传到 <code>github</code> :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo --theme<span style="color:#f92672">=</span>hugo-coder --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://liaoshanjin.github.io&#34;</span> --buildDrafts
+
+# 启动当前主题
+hugo server -D -t yinyang
+</code></pre><p>在添加问博客，想生成静态文件，上传到 <code>github</code> :</p>
+<pre><code>hugo --theme=hugo-coder --baseUrl=&quot;https://liaoshanjin.github.io&quot; --buildDrafts
 
 
-hugo --theme<span style="color:#f92672">=</span>yinyang -b<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://liaoshanjin.github.io&#34;</span> -D
-</code></pre></div>
+hugo --theme=yinyang -b=&quot;https://liaoshanjin.github.io&quot; -D
+</code></pre>
         </div>
 
         <div class="row middle-xs">

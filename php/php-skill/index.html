@@ -19,9 +19,9 @@
            "@id": "https:\/\/liaoshanjin.github.io"
       },
       "articleSection" : "php",
-      "name" : "PHP 中的一些小技巧",
-      "headline" : "PHP 中的一些小技巧",
-      "description" : "目录  一. 将秒数转换成时分秒格式 二. Linux 修改主机名 三. 如何快速的找到 php.ini 文件位置   一. 将秒数转换成时分秒格式$time = 900; \/\/秒 return (new \\DateTime(\u0026#39;@0\u0026#39;)) -\u0026gt;diff(new \\DateTime(\u0026#34;@$time\u0026#34;)) -\u0026gt;format(\u0026#39;%H:%I:%S\u0026#39;); 二. Linux 修改主机名hostnamectl set-hostname lsj 退出 ssh 后重新登录生效\n一. 将秒数转换成时分秒格式php --ini 示例：\n[root@lsj ~]# php --ini Configuration File (php.ini) Path: \/usr\/local\/php\/etc Loaded Configuration File: \/usr\/local\/php\/etc\/php.ini Scan for additional .ini files in: \/usr\/local\/php\/conf.d Additional .ini files parsed: (none) ",
+      "name" : "一些小技巧",
+      "headline" : "一些小技巧",
+      "description" : "目录  一. 将秒数转换成时分秒格式 二. Linux 修改主机名 三. 如何快速的找到 php.ini 文件位置  四. 快速生成6位由数字字母组成的字符串  五. 从GitHub克隆加速   一. 将秒数转换成时分秒格式$time = 900; \/\/秒 return (new \\DateTime(\u0026#39;@0\u0026#39;)) -\u0026gt;diff(new \\DateTime(\u0026#34;@$time\u0026#34;)) -\u0026gt;format(\u0026#39;%H:%I:%S\u0026#39;); 二. Linux 修改主机名hostnamectl set-hostname lsj\r退出 ssh 后重新登录生效\n三. 快速获取 PHP 配置文件位置php --ini\r示例：\n[root@lsj ~]# php --ini\rConfiguration File (php.ini) Path: \/usr\/local\/php\/etc\rLoaded Configuration File: \/usr\/local\/php\/etc\/php.ini\rScan for additional .ini files in: \/usr\/local\/php\/conf.d\rAdditional .ini files parsed: (none)\r四. 快速生成6位由数字字母组成的字符串function rand_str() { static $max; $max = $max ?",
       "inLanguage" : "en-US",
       "author" : "特污兔",
       "creator" : "特污兔",
@@ -35,15 +35,15 @@
       "keywords" : [  ]
   }
 </script>
-<title>PHP 中的一些小技巧 - 特污兔的博客</title>
-  <meta property="og:title" content="PHP 中的一些小技巧 - 特污兔的博客" />
+<title>一些小技巧 - 特污兔的博客</title>
+  <meta property="og:title" content="一些小技巧 - 特污兔的博客" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="目录  一. 将秒数转换成时分秒格式 二. Linux 修改主机名 三. 如何快速的找到 php.ini 文件位置   一. 将秒数转换成时分秒格式$time = 900; //秒 return (new \DateTime(&#39;@0&#39;)) -&gt;diff(new \DateTime(&#34;@$time&#34;)) -&gt;format(&#39;%H:%I:%S&#39;); 二. Linux 修改主机名hostnamectl set-hostname lsj 退出 ssh 后重新登录生效
-一. 将秒数转换成时分秒格式php --ini 示例：
-[root@lsj ~]# php --ini Configuration File (php.ini) Path: /usr/local/php/etc Loaded Configuration File: /usr/local/php/etc/php.ini Scan for additional .ini files in: /usr/local/php/conf.d Additional .ini files parsed: (none) " />
-  <meta name="description" content="目录  一. 将秒数转换成时分秒格式 二. Linux 修改主机名 三. 如何快速的找到 php.ini 文件位置   一. 将秒数转换成时分秒格式$time = 900; //秒 return (new \DateTime(&#39;@0&#39;)) -&gt;diff(new \DateTime(&#34;@$time&#34;)) -&gt;format(&#39;%H:%I:%S&#39;); 二. Linux 修改主机名hostnamectl set-hostname lsj 退出 ssh 后重新登录生效
-一. 将秒数转换成时分秒格式php --ini 示例：
-[root@lsj ~]# php --ini Configuration File (php.ini) Path: /usr/local/php/etc Loaded Configuration File: /usr/local/php/etc/php.ini Scan for additional .ini files in: /usr/local/php/conf.d Additional .ini files parsed: (none) " />
+  <meta property="og:description" content="目录  一. 将秒数转换成时分秒格式 二. Linux 修改主机名 三. 如何快速的找到 php.ini 文件位置  四. 快速生成6位由数字字母组成的字符串  五. 从GitHub克隆加速   一. 将秒数转换成时分秒格式$time = 900; //秒 return (new \DateTime(&#39;@0&#39;)) -&gt;diff(new \DateTime(&#34;@$time&#34;)) -&gt;format(&#39;%H:%I:%S&#39;); 二. Linux 修改主机名hostnamectl set-hostname lsj退出 ssh 后重新登录生效
+三. 快速获取 PHP 配置文件位置php --ini示例：
+[root@lsj ~]# php --iniConfiguration File (php.ini) Path: /usr/local/php/etcLoaded Configuration File: /usr/local/php/etc/php.iniScan for additional .ini files in: /usr/local/php/conf.dAdditional .ini files parsed: (none)四. 快速生成6位由数字字母组成的字符串function rand_str() { static $max; $max = $max ?" />
+  <meta name="description" content="目录  一. 将秒数转换成时分秒格式 二. Linux 修改主机名 三. 如何快速的找到 php.ini 文件位置  四. 快速生成6位由数字字母组成的字符串  五. 从GitHub克隆加速   一. 将秒数转换成时分秒格式$time = 900; //秒 return (new \DateTime(&#39;@0&#39;)) -&gt;diff(new \DateTime(&#34;@$time&#34;)) -&gt;format(&#39;%H:%I:%S&#39;); 二. Linux 修改主机名hostnamectl set-hostname lsj退出 ssh 后重新登录生效
+三. 快速获取 PHP 配置文件位置php --ini示例：
+[root@lsj ~]# php --iniConfiguration File (php.ini) Path: /usr/local/php/etcLoaded Configuration File: /usr/local/php/etc/php.iniScan for additional .ini files in: /usr/local/php/conf.dAdditional .ini files parsed: (none)四. 快速生成6位由数字字母组成的字符串function rand_str() { static $max; $max = $max ?" />
   <meta property="og:locale" content="zh_CN" />
 
   <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
@@ -79,7 +79,7 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">PHP 中的一些小技巧</h1>
+          <h1 class="post-title">一些小技巧</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
@@ -107,22 +107,42 @@
 <li><a href="#1">一. 将秒数转换成时分秒格式</a></li>
 <li><a href="#2">二. Linux 修改主机名</a></li>
 <li><a href="#3">三. 如何快速的找到 <em>php.ini</em> 文件位置 </a></li>
+<li><a href="#4">四. 快速生成6位由数字字母组成的字符串 </a></li>
+<li><a href="#5">五. 从GitHub克隆加速 </a></li>
 </ul>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted -->一. 将秒数转换成时分秒格式<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$time <span style="color:#f92672">=</span> <span style="color:#ae81ff">900</span>; <span style="color:#75715e">//秒
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\DateTime</span>(<span style="color:#e6db74">&#39;@0&#39;</span>)) <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diff</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\DateTime</span>(<span style="color:#e6db74">&#34;@</span><span style="color:#e6db74">$time</span><span style="color:#e6db74">&#34;</span>)) <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#39;%H:%I:%S&#39;</span>);
 </code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->二. Linux 修改主机名<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hostnamectl set-hostname lsj
-</code></pre></div><p>退出 <code>ssh</code> 后重新登录生效</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->一. 将秒数转换成时分秒格式<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">php --ini
-</code></pre></div><p>示例：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>root@lsj ~<span style="color:#f92672">]</span><span style="color:#75715e"># php --ini</span>
-Configuration File <span style="color:#f92672">(</span>php.ini<span style="color:#f92672">)</span> Path: /usr/local/php/etc
+<pre><code>hostnamectl set-hostname lsj
+</code></pre><p>退出 <code>ssh</code> 后重新登录生效</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->三. 快速获取 PHP 配置文件位置<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre><code>php --ini
+</code></pre><p>示例：</p>
+<pre><code>[root@lsj ~]# php --ini
+Configuration File (php.ini) Path: /usr/local/php/etc
 Loaded Configuration File:         /usr/local/php/etc/php.ini
-Scan <span style="color:#66d9ef">for</span> additional .ini files in: /usr/local/php/conf.d
-Additional .ini files parsed:      <span style="color:#f92672">(</span>none<span style="color:#f92672">)</span>
-</code></pre></div>
+Scan for additional .ini files in: /usr/local/php/conf.d
+Additional .ini files parsed:      (none)
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->四. 快速生成6位由数字字母组成的字符串<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">rand_str</span>()
+{
+    <span style="color:#66d9ef">static</span> $max;
+    $max <span style="color:#f92672">=</span> $max <span style="color:#f92672">?</span> $max <span style="color:#f92672">:</span> <span style="color:#a6e22e">\base_convert</span>(<span style="color:#e6db74">&#39;zzzzzz&#39;</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">10</span>);
+    <span style="color:#66d9ef">try</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">\strtoupper</span>(<span style="color:#a6e22e">\str_pad</span>(<span style="color:#a6e22e">\base_convert</span>(<span style="color:#a6e22e">\random_int</span>(<span style="color:#ae81ff">0</span>, $max), <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">36</span>), <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#a6e22e">STR_PAD_LEFT</span>));
+    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">\Exception</span> $e) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    }
+} 
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->五. 从GitHub克隆加速<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>从 GitHub clone 一个项目有时候非常慢。我们可以借用 <a href="https://gitclone.com/">GitClone</a> :</p>
+<pre><code># 比如我要克隆 https://github.com/koel/koel  这个项目
+git clone https://gitclone.com/github.com/koel/koel.git
+
+# 格式：
+git clone https://gitclone.com/github.com/作者/项目
+</code></pre>
         </div>
 
         <div class="row middle-xs">

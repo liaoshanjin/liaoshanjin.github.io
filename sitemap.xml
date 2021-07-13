@@ -1,218 +1,135 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://liaoshanjin.github.io/mysql/mysql-tree/</loc>
-    <lastmod>2021-03-14T20:20:00+08:00</lastmod>
-  </url>
-  
   <url>
     <loc>https://liaoshanjin.github.io/mysql/</loc>
-    <lastmod>2021-03-14T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-07-10T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://liaoshanjin.github.io/mysql/navicat-premium15/</loc>
+    <lastmod>2021-07-10T20:20:00+08:00</lastmod>
+  </url><url>
     <loc>https://liaoshanjin.github.io/</loc>
+    <lastmod>2021-07-10T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://liaoshanjin.github.io/mysql/mysql-tree/</loc>
     <lastmod>2021-03-14T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/mysql-left/</loc>
     <lastmod>2021-03-13T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/docker/</loc>
     <lastmod>2020-11-11T19:20:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/docker/docker-mysql-master-slave/</loc>
     <lastmod>2020-11-11T19:20:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/docker/docker-nginx-upstrem/</loc>
     <lastmod>2020-11-11T19:20:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/study-explain/</loc>
     <lastmod>2020-10-24T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/study-slow-query-log/</loc>
     <lastmod>2020-10-24T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/mysql-study-second/</loc>
     <lastmod>2020-07-11T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/mysql-study-first/</loc>
     <lastmod>2020-06-27T20:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/mysql-common-commands/</loc>
     <lastmod>2020-06-27T18:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/go/</loc>
     <lastmod>2020-05-25T19:20:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/go/go-environment/</loc>
     <lastmod>2020-05-25T19:20:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/php/php-principle/</loc>
     <lastmod>2020-05-18T15:15:09+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/php/</loc>
     <lastmod>2020-05-18T15:15:09+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/apache-ab-test/</loc>
     <lastmod>2020-04-23T19:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/</loc>
     <lastmod>2020-04-23T19:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/laravel-scope-filter/</loc>
     <lastmod>2020-04-01T08:30:30+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/</loc>
     <lastmod>2020-04-01T08:30:30+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/laravel-supervisor/</loc>
     <lastmod>2020-03-04T13:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/centos7-install-gitlab/</loc>
     <lastmod>2020-03-02T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/php/php-skill/</loc>
     <lastmod>2020-01-11T15:15:09+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/laravel-passport-oauth/</loc>
     <lastmod>2020-01-10T20:29:57+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/hugo-command/</loc>
     <lastmod>2020-01-01T15:07:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/centos7-install-yapi/</loc>
     <lastmod>2019-10-24T17:31:06+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/centos7-install-gogs/</loc>
     <lastmod>2019-10-24T17:30:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/centos7-install-blog/</loc>
     <lastmod>2019-10-24T17:29:09+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/phpstorm-close-func-tip/</loc>
     <lastmod>2019-10-24T17:27:09+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/backup-sql/</loc>
     <lastmod>2019-10-24T17:25:23+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/centos-install-telnet/</loc>
     <lastmod>2019-10-24T17:21:09+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/phpstorm-support-swoole/</loc>
     <lastmod>2019-10-24T17:19:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/phpstorm-personal/</loc>
     <lastmod>2019-10-24T17:17:31+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/mysql/innodb-myisam-diff/</loc>
     <lastmod>2019-10-24T17:16:13+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/win-swoole-config/</loc>
     <lastmod>2019-10-24T17:14:17+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/larave-response-exception/</loc>
     <lastmod>2019-10-24T17:09:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/homestead-too-full/</loc>
     <lastmod>2019-10-24T17:07:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/laravel-resource-api/</loc>
     <lastmod>2019-10-24T17:05:26+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/others/postman-phpunit/</loc>
     <lastmod>2019-10-24T17:01:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/laravel/laravel-unit/</loc>
     <lastmod>2019-10-24T16:29:57+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/about/</loc>
     <lastmod>2019-10-24T11:36:29+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://liaoshanjin.github.io/tags/</loc>
   </url>
-  
 </urlset>
